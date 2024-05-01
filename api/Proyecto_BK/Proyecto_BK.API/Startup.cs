@@ -69,7 +69,7 @@ namespace Sistema_Votaciones.API
 
             app.UseAuthorization();
 
-            app.UseCors("AllowAll");
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseEndpoints(endpoints =>
             {
