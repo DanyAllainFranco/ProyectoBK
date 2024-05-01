@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Proyecto_BK.Common/1.0.0": {
+        "dependencies": {
+          "Proyecto_BK.Entities": "1.0.0"
+        },
+        "runtime": {
+          "Proyecto_BK.Common.dll": {}
+        }
+      },
+      "Proyecto_BK.Entities/1.0.0": {
+        "runtime": {
+          "Proyecto_BK.Entities.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Proyecto_BK.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Proyecto_BK.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

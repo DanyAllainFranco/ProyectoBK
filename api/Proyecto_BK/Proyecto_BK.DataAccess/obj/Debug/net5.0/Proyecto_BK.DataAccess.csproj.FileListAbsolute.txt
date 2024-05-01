@@ -1,0 +1,15 @@
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\bin\Debug\net5.0\Proyecto_BK.DataAccess.deps.json
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\bin\Debug\net5.0\Proyecto_BK.DataAccess.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\bin\Debug\net5.0\ref\Proyecto_BK.DataAccess.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\bin\Debug\net5.0\Proyecto_BK.DataAccess.pdb
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\bin\Debug\net5.0\Proyecto_BK.Entities.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\bin\Debug\net5.0\Proyecto_BK.Entities.pdb
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\obj\Debug\net5.0\Proyecto_BK.DataAccess.csproj.AssemblyReference.cache
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\obj\Debug\net5.0\Proyecto_BK.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\obj\Debug\net5.0\Proyecto_BK.DataAccess.AssemblyInfoInputs.cache
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\obj\Debug\net5.0\Proyecto_BK.DataAccess.AssemblyInfo.cs
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\obj\Debug\net5.0\Proyecto_BK.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\obj\Debug\net5.0\Proyecto_BK.DataAccess.csproj.CopyComplete
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\obj\Debug\net5.0\Proyecto_BK.DataAccess.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\obj\Debug\net5.0\ref\Proyecto_BK.DataAccess.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.DataAccess\obj\Debug\net5.0\Proyecto_BK.DataAccess.pdb

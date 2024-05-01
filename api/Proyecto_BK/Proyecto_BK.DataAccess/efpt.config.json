@@ -1,0 +1,125 @@
+﻿{
+   "CodeGenerationMode": 0,
+   "ContextClassName": "DbsistemarestaurantebkContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": null,
+   "ProjectRootNamespace": "Proyecto_BK.DataAccess",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 1,
+   "Tables": [
+      {
+         "Name": "[Acce].[tbCargos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbPantallas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbPantallasPorRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbUsuarios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbClientes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbDepartamentos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbEmpleados]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbEstadosCiviles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbMunicipios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbAlimentos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbBebidas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbCombosPersonales]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbComplementos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbFactura]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbFacturaDetalle]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbPaquetes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbPaquetesPorComidas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbPostres]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbPromociones]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbPromocionesPorComidas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbPromocionesPorSusursales]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbSucursales]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "VJ7400.dbSistemaRestauranteBK",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}
