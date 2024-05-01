@@ -1,0 +1,12 @@
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.Entities\bin\Debug\net5.0\Proyecto_BK.Entities.deps.json
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.Entities\bin\Debug\net5.0\Proyecto_BK.Entities.dll
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.Entities\bin\Debug\net5.0\ref\Proyecto_BK.Entities.dll
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.Entities\bin\Debug\net5.0\Proyecto_BK.Entities.pdb
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.csproj.AssemblyReference.cache
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.AssemblyInfoInputs.cache
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.AssemblyInfo.cs
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.csproj.CoreCompileInputs.cache
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.dll
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\ref\Proyecto_BK.Entities.dll
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.pdb

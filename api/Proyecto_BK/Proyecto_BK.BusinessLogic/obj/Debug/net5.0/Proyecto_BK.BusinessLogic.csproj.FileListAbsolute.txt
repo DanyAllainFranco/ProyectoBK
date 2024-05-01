@@ -1,0 +1,17 @@
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\bin\Debug\net5.0\Proyecto_BK.BusinessLogic.deps.json
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\bin\Debug\net5.0\Proyecto_BK.BusinessLogic.dll
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\bin\Debug\net5.0\ref\Proyecto_BK.BusinessLogic.dll
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\bin\Debug\net5.0\Proyecto_BK.BusinessLogic.pdb
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\bin\Debug\net5.0\Proyecto_BK.DataAccess.dll
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\bin\Debug\net5.0\Proyecto_BK.Entities.dll
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\bin\Debug\net5.0\Proyecto_BK.DataAccess.pdb
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\bin\Debug\net5.0\Proyecto_BK.Entities.pdb
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\obj\Debug\net5.0\Proyecto_BK.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\obj\Debug\net5.0\Proyecto_BK.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\obj\Debug\net5.0\Proyecto_BK.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\obj\Debug\net5.0\Proyecto_BK.BusinessLogic.AssemblyInfo.cs
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\obj\Debug\net5.0\Proyecto_BK.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\obj\Debug\net5.0\Proyecto_BK.BusinessLogic.csproj.CopyComplete
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\obj\Debug\net5.0\Proyecto_BK.BusinessLogic.dll
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\obj\Debug\net5.0\ref\Proyecto_BK.BusinessLogic.dll
+C:\Users\informatica\Desktop\Proyecto_BK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\obj\Debug\net5.0\Proyecto_BK.BusinessLogic.pdb
