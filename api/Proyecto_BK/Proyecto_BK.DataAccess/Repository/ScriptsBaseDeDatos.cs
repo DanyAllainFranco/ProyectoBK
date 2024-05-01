@@ -136,6 +136,46 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Sucu_Eliminar = "[Rest].SP_Sucursales_Eliminar";
         #endregion
 
-       
+        #region Cargos
+        public static string Carg_Listar = "[Acce].SP_Cargos_Mostrar";
+        public static string Carg_Llenar = "[Acce].SP_Cargos_Llenar";
+        public static string Carg_Insertar = "[Acce].SP_Cargos_Insertar";
+        public static string Carg_Editar = "[Acce].SP_Cargos_Editar";
+        public static string Carg_Eliminar = "[Acce].SP_Cargos_Eliminar";
+        #endregion
+
+        #region Pantallas
+        public static string Pant_Listar = "[Acce].SP_Pantallas_Mostrar";
+        public static string Pant_Llenar = "[Acce].SP_Pantallas_Llenar";
+        public static string Pant_Insertar = "[Acce].SP_Pantallas_Insertar";
+        public static string Pant_Editar = "[Acce].SP_Pantallas_Editar";
+        public static string Pant_Eliminar = "[Acce].SP_Pantallas_Eliminar";
+        #endregion
+
+        #region Pantallas Por Roles
+        public static string PaRo_Listar = "[Acce].SP_PantallasPorRoles_Mostrar";
+        public static string PaRo_Llenar = "[Acce].SP_PantallasPorRoles_Llenar";
+        public static string PaRo_Insertar = "[Acce].SP_PantallasPorRoles_Insertar";
+        public static string PaRo_Editar = "[Acce].SP_PantallasPorRoles_Editar";
+        public static string PaRo_Eliminar = "[Acce].SP_PantallasPorRoles_Eliminar";
+        #endregion
+
+        #region Roles
+        public static string Role_Listar = "[Acce].SP_Roles_Mostrar";
+        public static string Role_Llenar = "[Acce].SP_Roles_Llenar";
+        public static string Role_Insertar = "[Acce].SP_Roles_Insertar";
+        public static string Role_Editar = "[Acce].SP_Roles_Editar";
+        public static string Role_Eliminar = "[Acce].SP_Roles_Eliminar";
+        #endregion
+
+        #region Usuarios
+        public static string Usua_Listar = "[Acce].SP_Usuarios_Mostrar";
+        public static string Usua_Llenar = "[Acce].SP_Usuarios_Llenar";
+        public static string Usua_Insertar = "[Acce].SP_Usuarios_Insertar";
+        public static string Usua_Editar = "[Acce].SP_Usuarios_Editar";
+        public static string Usua_Eliminar = "[Acce].SP_Usuarios_Eliminar";
+        #endregion
+
+
     }
 }
