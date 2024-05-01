@@ -30,6 +30,13 @@ namespace Proyecto_BK.API.Extensions
             CreateMap<PromocionViewModel, tbPromociones>().ReverseMap();
             CreateMap<SucursalViewModel, tbSucursales>().ReverseMap();
 
+            CreateMap<CargoViewModel, tbCargos>().ReverseMap();
+            CreateMap<PantallaViewModel, tbPantallas>().ReverseMap();
+            CreateMap<PantallaPorRolViewModel, tbPantallasPorRoles>().ReverseMap();
+            CreateMap<RolViewModel, tbRoles>().ReverseMap();
+            CreateMap<UsuarioViewModel, tbUsuarios>().ReverseMap();
+       
+
         }
     }
 }

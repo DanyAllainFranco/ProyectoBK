@@ -30,19 +30,13 @@ namespace Proyecto_BK.BusinessLogic.Services
             service.AddScoped<PromocionPorSucursalRepository>();
             service.AddScoped<PromocionRepository>();
             service.AddScoped<SucursalRepository>();
-            //service.AddScoped<PantallaRepository>();
-            //service.AddScoped<PantallaPorRolRepository>();
-            //service.AddScoped<DispositivoRepository>();
-            //service.AddScoped<EmpleadoRepositorio>();
-            //service.AddScoped<ClienteRepositorio>();
-            //service.AddScoped<EmpresaRepository>();
-            //service.AddScoped<EstadoCivilRepository>();
-            //service.AddScoped<MunicipioRepository>();
-            //service.AddScoped<PiezaRepository>();
-            //service.AddScoped<ServicioRepository>();
-            //service.AddScoped<PaqueteRepository>();
-            //service.AddScoped<RolRepositorio>();
-            //service.AddScoped<UsuarioRepositorio>();
+            service.AddScoped<PantallaRepository>();
+            service.AddScoped<PantallaPorRolRepository>();
+            service.AddScoped<CargoRepository>();
+            service.AddScoped<RolRepository>();
+            service.AddScoped<UsuarioRepository>();
+
+
             Proyecto_BKContext.BuildConnectionString(conn);
 
         }
