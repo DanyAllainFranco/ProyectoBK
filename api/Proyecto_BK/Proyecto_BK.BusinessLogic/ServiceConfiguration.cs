@@ -18,6 +18,18 @@ namespace Proyecto_BK.BusinessLogic.Services
             service.AddScoped<MunicipioRepository>();
             service.AddScoped<ClienteRepository>();
             service.AddScoped<EmpleadoRepository>();
+
+            service.AddScoped<AlimentoRepository>();
+            service.AddScoped<BebidaRepository>();
+            service.AddScoped<ComboPersonalRepository>();
+            service.AddScoped<ComplementoRepository>();
+            service.AddScoped<PaquetePorComidaRepository>();
+            service.AddScoped<PaqueteRepository>();
+            service.AddScoped<PostreRepository>();
+            service.AddScoped<PromocionPorComidaRepository>();
+            service.AddScoped<PromocionPorSucursalRepository>();
+            service.AddScoped<PromocionRepository>();
+            service.AddScoped<SucursalRepository>();
             //service.AddScoped<PantallaRepository>();
             //service.AddScoped<PantallaPorRolRepository>();
             //service.AddScoped<DispositivoRepository>();

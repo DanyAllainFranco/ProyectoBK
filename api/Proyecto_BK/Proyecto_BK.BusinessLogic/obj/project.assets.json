@@ -5769,11 +5769,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_BK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj",
+      "projectUniqueName": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj",
       "projectName": "Proyecto_BK.BusinessLogic",
-      "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_BK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj",
+      "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj",
       "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_BK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\obj\\",
+      "outputPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5790,8 +5790,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_BK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_BK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj"
+            "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj"
             }
           }
         }

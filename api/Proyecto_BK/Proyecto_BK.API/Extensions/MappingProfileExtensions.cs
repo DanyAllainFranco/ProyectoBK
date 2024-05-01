@@ -18,6 +18,18 @@ namespace Proyecto_BK.API.Extensions
             CreateMap<ClienteViewModel, tbClientes>().ReverseMap();
             CreateMap<EmpleadoViewModel, tbEmpleados>().ReverseMap();
 
+            CreateMap<AlimentoViewModel, tbAlimentos>().ReverseMap();
+            CreateMap<BebidaViewModel, tbBebidas>().ReverseMap();
+            CreateMap<ComboPersonalViewModel, tbCombosPersonales>().ReverseMap();
+            CreateMap<ComplementoViewModel, tbComplementos>().ReverseMap();
+            CreateMap<PaquetePorComidaViewModel, tbPaquetesPorComidas>().ReverseMap();
+            CreateMap<PaqueteViewModel, tbPaquetes>().ReverseMap();
+            CreateMap<PostreViewModel, tbPostres>().ReverseMap();
+            CreateMap<PromocionPorComidaViewModel, tbPromocionesPorComidas>().ReverseMap();
+            CreateMap<PromocionPorSucursalViewModel, tbPromocionesPorSusursales>().ReverseMap();
+            CreateMap<PromocionViewModel, tbPromociones>().ReverseMap();
+            CreateMap<SucursalViewModel, tbSucursales>().ReverseMap();
+
         }
     }
 }

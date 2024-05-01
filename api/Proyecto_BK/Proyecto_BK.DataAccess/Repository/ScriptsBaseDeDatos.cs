@@ -47,5 +47,95 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Muni_Editar = "[Gral].SP_Municipios_Editar";
         public static string Muni_Eliminar = "[Gral].SP_Municipios_Eliminar";
         #endregion
+
+        #region Alimentos
+        public static string Alim_Listar = "[Rest].SP_Alimentos_Mostrar";
+        public static string Alim_Llenar = "[Rest].SP_Alimentos_Llenar";
+        public static string Alim_Insertar = "[Rest].SP_Alimentos_Insertar";
+        public static string Alim_Editar = "[Rest].SP_Alimentos_Editar";
+        public static string Alim_Eliminar = "[Rest].SP_Alimentos_Eliminar";
+        #endregion
+
+        #region Bebidas
+        public static string Bebi_Listar = "[Rest].SP_Bebiidas_Mostrar";
+        public static string Bebi_Llenar = "[Rest].SP_Bebiidas_Llenar";
+        public static string Bebi_Insertar = "[Rest].SP_Bebiidas_Insertar";
+        public static string Bebi_Editar = "[Rest].SP_Bebiidas_Editar";
+        public static string Bebi_Eliminar = "[Rest].SP_Bebiidas_Eliminar";
+        #endregion
+
+        #region CombosPersonales
+        public static string Comb_Listar = "[Rest].SP_CombosPersonales_Mostrar";
+        public static string Comb_Llenar = "[Rest].SP_CombosPersonales_Llenar";
+        public static string Comb_Insertar = "[Rest].SP_CombosPersonales_Insertar";
+        public static string Comb_Editar = "[Rest].SP_CombosPersonales_Editar";
+        public static string Comb_Eliminar = "[Rest].SP_CombosPersonales_Eliminar";
+        #endregion
+
+        #region Complementos
+        public static string Comp_Listar = "[Rest].SP_Complementos_Mostrar";
+        public static string Comp_Llenar = "[Rest].SP_Complementos_Llenar";
+        public static string Comp_Insertar = "[Rest].SP_Complementos_Insertar";
+        public static string Comp_Editar = "[Rest].SP_Complementos_Editar";
+        public static string Comp_Eliminar = "[Rest].SP_Complementos_Eliminar";
+        #endregion
+
+        #region Paquetes
+        public static string Paqe_Listar = "[Rest].SP_Paquetes_Mostrar";
+        public static string Paqe_Llenar = "[Rest].SP_Paquetes_Llenar";
+        public static string Paqe_Insertar = "[Rest].SP_Paquetes_Insertar";
+        public static string Paqe_Editar = "[Rest].SP_Paquetes_Editar";
+        public static string Paqe_Eliminar = "[Rest].SP_Paquetes_Eliminar";
+        #endregion
+
+        #region Paquetes Por Comidas
+        public static string PaCo_Listar = "[Rest].SP_PaquetesPorComidas_Mostrar";
+        public static string PaCo_Llenar = "[Rest].SP_PaquetesPorComidas_Llenar";
+        public static string PaCo_Insertar = "[Rest].SP_PaquetesPorComidas_Insertar";
+        public static string PaCo_Editar = "[Rest].SP_PaquetesPorComidas_Editar";
+        public static string PaCo_Eliminar = "[Rest].SP_PaquetesPorComidas_Eliminar";
+        #endregion
+
+        #region Postres
+        public static string Post_Listar = "[Rest].SP_Postres_Mostrar";
+        public static string Post_Llenar = "[Rest].SP_Postres_Llenar";
+        public static string Post_Insertar = "[Rest].SP_Postres_Insertar";
+        public static string Post_Editar = "[Rest].SP_Postres_Editar";
+        public static string Post_Eliminar = "[Rest].SP_Postres_Eliminar";
+        #endregion
+
+        #region Promociones
+        public static string Prom_Listar = "[Rest].SP_Promociones_Mostrar";
+        public static string Prom_Llenar = "[Rest].SP_Promociones_Llenar";
+        public static string Prom_Insertar = "[Rest].SP_Promociones_Insertar";
+        public static string Prom_Editar = "[Rest].SP_Promociones_Editar";
+        public static string Prom_Eliminar = "[Rest].SP_Promociones_Eliminar";
+        #endregion
+
+        #region Promociones por Comidas
+        public static string PrSe_Listar = "[Rest].SP_PromocionesPorComidas_Mostrar";
+        public static string PrSe_Llenar = "[Rest].SP_PromocionesPorComidas_Llenar";
+        public static string PrSe_Insertar = "[Rest].SP_PromocionesPorComidas_Insertar";
+        public static string PrSe_Editar = "[Rest].SP_PromocionesPorComidas_Editar";
+        public static string PrSe_Eliminar = "[Rest].SP_PromocionesPorComidas_Eliminar";
+        #endregion
+
+        #region Promociones por Sucursales
+        public static string PPSu_Listar = "[Rest].SP_PromocionesPorSucursales_Mostrar";
+        public static string PPSu_Llenar = "[Rest].SP_PromocionesPorSucursales_Llenar";
+        public static string PPSu_Insertar = "[Rest].SP_PromocionesPorSucursales_Insertar";
+        public static string PPSu_Editar = "[Rest].SP_PromocionesPorSucursales_Editar";
+        public static string PPSu_Eliminar = "[Rest].SP_PromocionesPorSucursales_Eliminar";
+        #endregion
+
+        #region Sucursales
+        public static string Sucu_Listar = "[Rest].SP_Sucursales_Mostrar";
+        public static string Sucu_Llenar = "[Rest].SP_Sucursales_Llenar";
+        public static string Sucu_Insertar = "[Rest].SP_Sucursales_Insertar";
+        public static string Sucu_Editar = "[Rest].SP_Sucursales_Editar";
+        public static string Sucu_Eliminar = "[Rest].SP_Sucursales_Eliminar";
+        #endregion
+
+       
     }
 }
