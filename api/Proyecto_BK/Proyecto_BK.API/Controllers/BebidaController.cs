@@ -26,7 +26,7 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult List()
         {
             var list = _restauranteServices.ListBebida();
-            return Ok(list);
+            return Ok(list.Data);
         }
 
         [HttpGet("API/[controller]/Find")]

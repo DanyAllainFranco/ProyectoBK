@@ -14,31 +14,31 @@ export class AppComponent {
             this.router.navigate(['Index']);
         }
         ListarEmpleados (){
-            this.router.navigate(['Index']);
+            this.router.navigate(['IndexEmpleado']);
         }
         ListarEstadosCiviles (){
-            this.router.navigate(['Index']);
+            this.router.navigate(['IndexEstadoCivil']);
         }
         ListarMunicipios (){
-            this.router.navigate(['Index']);
+            this.router.navigate(['IndexMunicipio']);
         }
         ListarCombosPersonales (){
-            this.router.navigate(['Index']);
+            this.router.navigate(['IndexComboPersonal']);
         }
         ListarComplementos (){
-            this.router.navigate(['Index']);
+            this.router.navigate(['IndexComplemento']);
         }
         ListarPostres (){
-            this.router.navigate(['Index']);
+            this.router.navigate(['IndexPostre']);
         }
         ListarPromociones (){
-            this.router.navigate(['Index']);
+            this.router.navigate(['IndexPromocion']);
         }
         ListarPromocionesComidas (){
-            this.router.navigate(['Index']);
+            this.router.navigate(['IndexPromocionPorComida']);
         }
         ListarPromocionesSucursales (){
-            this.router.navigate(['Index']);
+            this.router.navigate(['IndexPromocionPorSucursal']);
         }
 
     }

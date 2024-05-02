@@ -30,15 +30,15 @@ import {PromocionporsucursalListadoComponent} from './demo/components/promocionp
                     { path: 'blocks', loadChildren: () => import('./demo/components/primeblocks/primeblocks.module').then(m => m.PrimeBlocksModule) },
                     { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) },
                     { path: 'Index', component: DepartamentosListadoComponent }, // Agrega la ruta para DepartamentosListadoComponent
-                    { path: 'Index', component: CombopersonalListadoComponent }, 
-                    { path: 'Index', component: ComplementoListadoComponent }, 
-                    { path: 'Index', component: EmpleadoListadoComponent }, 
-                    { path: 'Index', component: EstadocivilListadoComponent }, 
-                    { path: 'Index', component: MunicipioListadoComponent },
-                    { path: 'Index', component: PostreListadoComponent }, 
-                    { path: 'Index', component: PromocionListadoComponent },
-                    { path: 'Index', component: PromocionporcomidaListadoComponent }, 
-                    { path: 'Index', component: PromocionporsucursalListadoComponent } 
+                    { path: 'IndexComboPersonal', component: CombopersonalListadoComponent }, 
+                    { path: 'IndexComplemento', component: ComplementoListadoComponent }, 
+                    { path: 'IndexEmpleado', component: EmpleadoListadoComponent }, 
+                    { path: 'IndexEstadoCivil', component: EstadocivilListadoComponent }, 
+                    { path: 'IndexMunicipio', component: MunicipioListadoComponent },
+                    { path: 'IndexPostre', component: PostreListadoComponent }, 
+                    { path: 'IndexPromocion', component: PromocionListadoComponent },
+                    { path: 'IndexPromocionPorComida', component: PromocionporcomidaListadoComponent }, 
+                    { path: 'IndexPromocionPorSucursal', component: PromocionporsucursalListadoComponent } 
 
                 ]
             },
