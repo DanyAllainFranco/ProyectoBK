@@ -13,5 +13,33 @@ export class AppComponent {
         ListarDepartamento (){
             this.router.navigate(['Index']);
         }
+        ListarEmpleados (){
+            this.router.navigate(['Index']);
+        }
+        ListarEstadosCiviles (){
+            this.router.navigate(['Index']);
+        }
+        ListarMunicipios (){
+            this.router.navigate(['Index']);
+        }
+        ListarCombosPersonales (){
+            this.router.navigate(['Index']);
+        }
+        ListarComplementos (){
+            this.router.navigate(['Index']);
+        }
+        ListarPostres (){
+            this.router.navigate(['Index']);
+        }
+        ListarPromociones (){
+            this.router.navigate(['Index']);
+        }
+        ListarPromocionesComidas (){
+            this.router.navigate(['Index']);
+        }
+        ListarPromocionesSucursales (){
+            this.router.navigate(['Index']);
+        }
+
     }
 

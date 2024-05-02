@@ -121,7 +121,7 @@ namespace Proyecto_BK.DataAccess.Repository
         #endregion
 
         #region Promociones por Sucursales
-        public static string PPSu_Listar = "[Rest].SP_PromocionesPorSucursales_Mostrar";
+        public static string PPSu_Listar = "[Rest].[SP_PromocionesPorSucursales_Mostrar]";
         public static string PPSu_Llenar = "[Rest].SP_PromocionesPorSucursales_Llenar";
         public static string PPSu_Insertar = "[Rest].SP_PromocionesPorSucursales_Insertar";
         public static string PPSu_Editar = "[Rest].SP_PromocionesPorSucursales_Editar";

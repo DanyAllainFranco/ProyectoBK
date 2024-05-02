@@ -4,6 +4,17 @@ import { NotfoundComponent } from './demo/components/notfound/notfound.component
 import { AppLayoutComponent } from "./layout/app.layout.component";
 import { ListDemoComponent } from './demo/components/uikit/list/listdemo.component';
 import {DepartamentosListadoComponent} from './demo/components/departamentos_listado/departamentos-listado.component';
+import {CombopersonalListadoComponent} from './demo/components/combopersonal-listado/combopersonal-listado.component';
+import {ComplementoListadoComponent} from './demo/components/complemento-listado/complemento-listado.component';
+import {EmpleadoListadoComponent} from './demo/components/empleado-listado/empleado-listado.component';
+import {EstadocivilListadoComponent} from './demo/components/estadocivil-listado/estadocivil-listado.component';
+import {MunicipioListadoComponent} from './demo/components/municipio-listado/municipio-listado.component';
+import {PostreListadoComponent} from './demo/components/postre-listado/postre-listado.component';
+import {PromocionListadoComponent} from './demo/components/promocion-listado/promocion-listado.component';
+import {PromocionporcomidaListadoComponent} from './demo/components/promocionporcomida-listado/promocionporcomida-listado.component';
+import {PromocionporsucursalListadoComponent} from './demo/components/promocionporsucursal-listado/promocionporsucursal-listado.component';
+
+
 
 @NgModule({
     imports: [
@@ -18,7 +29,17 @@ import {DepartamentosListadoComponent} from './demo/components/departamentos_lis
                     { path: 'documentation', loadChildren: () => import('./demo/components/documentation/documentation.module').then(m => m.DocumentationModule) },
                     { path: 'blocks', loadChildren: () => import('./demo/components/primeblocks/primeblocks.module').then(m => m.PrimeBlocksModule) },
                     { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) },
-                    { path: 'Index', component: DepartamentosListadoComponent } // Agrega la ruta para DepartamentosListadoComponent
+                    { path: 'Index', component: DepartamentosListadoComponent }, // Agrega la ruta para DepartamentosListadoComponent
+                    { path: 'Index', component: CombopersonalListadoComponent }, 
+                    { path: 'Index', component: ComplementoListadoComponent }, 
+                    { path: 'Index', component: EmpleadoListadoComponent }, 
+                    { path: 'Index', component: EstadocivilListadoComponent }, 
+                    { path: 'Index', component: MunicipioListadoComponent },
+                    { path: 'Index', component: PostreListadoComponent }, 
+                    { path: 'Index', component: PromocionListadoComponent },
+                    { path: 'Index', component: PromocionporcomidaListadoComponent }, 
+                    { path: 'Index', component: PromocionporsucursalListadoComponent } 
+
                 ]
             },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
