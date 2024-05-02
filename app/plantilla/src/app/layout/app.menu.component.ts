@@ -74,6 +74,67 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/Index']
                             },
                             {
+                                label: 'Empleados',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/IndexEmpleado']
+                            },
+                            {
+                                label: 'Municipios',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/IndexMunicipio']
+                            },
+                            {
+                                label: 'Estados Civiles',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/IndexEstadoCivil']
+                            },
+                            {
+                                label: 'Error',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/auth/error']
+                            },
+                            {
+                                label: 'Access Denied',
+                                icon: 'pi pi-fw pi-lock',
+                                routerLink: ['/auth/access']
+                            }
+                        ]
+                    },
+                    {
+                        label: 'Restaurante',
+                        icon: 'pi pi-fw pi-user',
+                        items: [
+                            {
+                                label: 'Combos Personales',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/IndexComboPersonal']
+                            },
+                            {
+                                label: 'Complementos',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/IndexComplemento']
+                            },
+                            {
+                                label: 'Postres',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/IndexPostre']
+                            },
+                            {
+                                label: 'Promociones',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/IndexPromocion']
+                            },
+                            {
+                                label: 'Promociones Por Comidas',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/IndexPromocionPorComida']
+                            },
+                            {
+                                label: 'Promociones Por Sucursales',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/IndexPromocionPorSucursal']
+                            },
+                            {
                                 label: 'Error',
                                 icon: 'pi pi-fw pi-times-circle',
                                 routerLink: ['/auth/error']
