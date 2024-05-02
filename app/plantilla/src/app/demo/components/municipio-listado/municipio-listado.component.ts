@@ -18,8 +18,6 @@ import { RatingModule } from 'primeng/rating';
 
 @Component({
   selector: 'app-municipio-listado',
-  standalone: true,
-  imports: [],
   templateUrl: './municipio-listado.component.html',
   styleUrl: './municipio-listado.component.scss'
 })

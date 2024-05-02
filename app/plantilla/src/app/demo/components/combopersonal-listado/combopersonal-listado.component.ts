@@ -18,8 +18,6 @@ import { RatingModule } from 'primeng/rating';
 
 @Component({
   selector: 'app-combopersonal-listado',
-  standalone: true,
-  imports: [],
   templateUrl: './combopersonal-listado.component.html',
   styleUrl: './combopersonal-listado.component.scss'
 })

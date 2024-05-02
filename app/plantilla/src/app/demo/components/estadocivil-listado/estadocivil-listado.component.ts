@@ -18,8 +18,6 @@ import { RatingModule } from 'primeng/rating';
 
 @Component({
   selector: 'app-estadocivil-listado',
-  standalone: true,
-  imports: [],
   templateUrl: './estadocivil-listado.component.html',
   styleUrl: './estadocivil-listado.component.scss'
 })

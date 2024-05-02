@@ -18,8 +18,6 @@ import { RatingModule } from 'primeng/rating';
 
 @Component({
   selector: 'app-promocionporcomida-listado',
-  standalone: true,
-  imports: [],
   templateUrl: './promocionporcomida-listado.component.html',
   styleUrl: './promocionporcomida-listado.component.scss'
 })

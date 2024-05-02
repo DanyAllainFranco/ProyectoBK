@@ -18,8 +18,6 @@ import { RatingModule } from 'primeng/rating';
 
 @Component({
   selector: 'app-complemento-listado',
-  standalone: true,
-  imports: [],
   templateUrl: './complemento-listado.component.html',
   styleUrl: './complemento-listado.component.scss'
 })
