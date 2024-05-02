@@ -36,6 +36,13 @@ namespace Proyecto_BK.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("API/[controller]/Login")]
+        public IActionResult Login(string Usua_Usuario, string Usua_Contra)
+        {
+            var result = _accesoServices.UsuarioLogin(Usua_Usuario, Usua_Contra);
+            return Ok(result);
+        }
+
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(UsuarioViewModel json)
         {

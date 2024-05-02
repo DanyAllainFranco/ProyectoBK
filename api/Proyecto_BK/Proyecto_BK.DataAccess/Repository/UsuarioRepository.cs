@@ -23,7 +23,18 @@ namespace Proyecto_BK.DataAccess.Repository
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
-
+        public tbUsuarios Login(string Usua_Usuario, string Usua_Contra)
+        {
+            tbUsuarios result = new tbUsuarios();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Usua_Usuario", Usua_Usuario);
+                parameter.Add("Usua_Contra", Usua_Contra);
+                result = db.QueryFirst<tbUsuarios>(ScriptsBaseDeDatos.Usua_Login, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
+        }
         public tbUsuarios Find(int? Usua_Id)
         {
             tbUsuarios result = new tbUsuarios();

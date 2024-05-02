@@ -174,6 +174,8 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Usua_Insertar = "[Acce].SP_Usuarios_Insertar";
         public static string Usua_Editar = "[Acce].SP_Usuarios_Editar";
         public static string Usua_Eliminar = "[Acce].SP_Usuarios_Eliminar";
+        public static string Usua_Login = "[Acce].Usuario_Login";
+
         #endregion
 
 
