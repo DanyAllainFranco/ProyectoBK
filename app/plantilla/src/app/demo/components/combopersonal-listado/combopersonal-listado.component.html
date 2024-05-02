@@ -3,7 +3,7 @@
         <div class="card">
             <h5>Combos Personales</h5>
             <p-table [value]="ComboPersonal" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
-                [paginator]="true" [globalFilterFields]="['comb_Id','comb_Descripcion','comb_Precio','comb_Imagen','bebi_Id','post_id','comp_Id','alim_Id']" responsiveLayout="scroll">
+                [paginator]="true" [globalFilterFields]="['comb_Id','comb_Descripcion','comb_Precio','comb_Imagen','bebi_Descripcion','post_Descripcion','comp_Descripcion','alim_Descripcion']" responsiveLayout="scroll">
                 <ng-template pTemplate="caption">
                     <div class="flex justify-content-between flex-column sm:flex-row">
                         <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
@@ -48,28 +48,28 @@
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Bebida
-                                <p-columnFilter type="text" field="bebi_Id" display="menu"
+                                <p-columnFilter type="text" field="bebi_Descripcion" display="menu"
                                     placeholder="Buscar por Bebida"></p-columnFilter>
                             </div>
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Postre
-                                <p-columnFilter type="text" field="post_id" display="menu"
+                                <p-columnFilter type="text" field="post_Descripcion" display="menu"
                                     placeholder="Buscar por descripción"></p-columnFilter>
                             </div>
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Complemento
-                                <p-columnFilter type="text" field="comp_Id" display="menu"
+                                <p-columnFilter type="text" field="comp_Descripcion" display="menu"
                                     placeholder="Buscar por Complemento"></p-columnFilter>
                             </div>
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Alimento
-                                <p-columnFilter type="text" field="alim_Id" display="menu"
+                                <p-columnFilter type="text" field="alim_Descripcion" display="menu"
                                     placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
                         </th>
@@ -81,10 +81,10 @@
                         <td>{{comb.comb_Descripcion}}</td>
                         <td>{{comb.comb_Precio}}</td>
                         <td>{{comb.comb_Imagen}}</td>
-                        <td>{{comb.bebi_Id}}</td>
-                        <td>{{comb.post_id}}</td>
-                        <td>{{comb.comp_Id}}</td>
-                        <td>{{comb.alim_Id}}</td>
+                        <td>{{comb.bebi_Descripcion}}</td>
+                        <td>{{comb.post_Descripcion}}</td>
+                        <td>{{comb.comp_Descripcion}}</td>
+                        <td>{{comb.alim_Descripcion}}</td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
