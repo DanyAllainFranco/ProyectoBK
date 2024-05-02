@@ -20,6 +20,12 @@ namespace Proyecto_BK.Entities
         public DateTime? PrSe_Fecha_Modifica { get; set; }
         public bool? PrSe_Estado { get; set; }
 
+        public string Bebi_Descripcion { get; set; }
+        public string Post_Descripcion { get; set; }
+        public string Comp_Descripcion { get; set; }
+        public string Alim_Descripcion { get; set; }
+        public string Prom_Descripcion { get; set; }
+
         public virtual tbAlimentos Alim { get; set; }
         public virtual tbBebidas Bebi { get; set; }
         public virtual tbComplementos Comp { get; set; }

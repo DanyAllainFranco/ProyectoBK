@@ -27,6 +27,12 @@ namespace Proyecto_BK.Entities
         public DateTime? Comb_Fecha_Modifica { get; set; }
         public bool? Comb_Estado { get; set; }
 
+        public string Bebi_Descripcion { get; set; }
+        public string Post_Descripcion { get; set; }
+        public string Comp_Descripcion { get; set; }
+        public string Alim_Descripcion { get; set; }
+
+
         public virtual tbAlimentos Alim { get; set; }
         public virtual tbBebidas Bebi { get; set; }
         public virtual tbUsuarios Comb_Usua_CreacionNavigation { get; set; }

@@ -21,5 +21,10 @@ namespace Proyecto_BK.Common.Models
         public int? Comb_Usua_Modifica { get; set; }
         public DateTime? Comb_Fecha_Modifica { get; set; }
         public bool? Comb_Estado { get; set; }
+
+        public string Bebi_Descripcion { get; set; }
+        public string Post_Descripcion { get; set; }
+        public string Comp_Descripcion { get; set; }
+        public string Alim_Descripcion { get; set; }
     }
 }

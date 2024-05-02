@@ -30,6 +30,10 @@ namespace Proyecto_BK.Entities
         public DateTime? Empl_Fecha_Modifica { get; set; }
         public bool? Empl_Estado { get; set; }
 
+        public string Esta_Descripcion { get; set; }
+        public string Muni_Descripcion { get; set; }
+        public string Carg_Descripcion { get; set; }
+
         public virtual tbCargos Carg { get; set; }
         public virtual tbUsuarios Empl_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Empl_Usua_ModificaNavigation { get; set; }
