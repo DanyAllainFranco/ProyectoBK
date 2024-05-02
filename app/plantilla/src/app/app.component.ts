@@ -40,6 +40,29 @@ export class AppComponent {
         ListarPromocionesSucursales (){
             this.router.navigate(['IndexPromocionPorSucursal']);
         }
-
+        ListarCargos (){
+            this.router.navigate(['IndexCargos']);
+        }
+        ListarAlimentos (){
+            this.router.navigate(['IndexAlimentos']);
+        }
+        ListarClientes (){
+            this.router.navigate(['IndexClientes']);
+        }
+        ListarUsuarios (){
+            this.router.navigate(['IndexUsuarios']);
+        }
+        ListarBebidas (){
+            this.router.navigate(['IndexBebidas']);
+        }
+        ListarPaquetes (){
+            this.router.navigate(['IndexPaquetes']);
+        }
+        ListarPaquetesporComida (){
+            this.router.navigate(['IndexPaquetesporComida']);
+        }
+        ListarSucursales (){
+            this.router.navigate(['IndexSucursales']);
+        }
     }
 

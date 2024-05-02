@@ -22,3 +22,15 @@ C:\Users\test\OneDrive\Documentos\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.
 C:\Users\test\OneDrive\Documentos\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.dll
 C:\Users\test\OneDrive\Documentos\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\ref\Proyecto_BK.Entities.dll
 C:\Users\test\OneDrive\Documentos\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.pdb
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\bin\Debug\net5.0\Proyecto_BK.Entities.deps.json
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\bin\Debug\net5.0\Proyecto_BK.Entities.dll
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\bin\Debug\net5.0\ref\Proyecto_BK.Entities.dll
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\bin\Debug\net5.0\Proyecto_BK.Entities.pdb
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.csproj.AssemblyReference.cache
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.AssemblyInfoInputs.cache
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.AssemblyInfo.cs
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.csproj.CoreCompileInputs.cache
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.dll
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\ref\Proyecto_BK.Entities.dll
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Entities\obj\Debug\net5.0\Proyecto_BK.Entities.pdb

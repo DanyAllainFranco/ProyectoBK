@@ -17,41 +17,41 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Inicio',
                 items: [
-                    { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/uikit/list'] }
+                    { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/app/uikit/list'] }
                 ]
             },
             {
                 label: 'Sistema',
                 items: [
-                    { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
-                    { label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input'] },
-                    { label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/uikit/floatlabel'] },
-                    { label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/uikit/invalidstate'] },
-                    { label: 'Button', icon: 'pi pi-fw pi-box', routerLink: ['/uikit/button'] },
-                    { label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
-                    { label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list'] },
-                    { label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree'] },
-                    { label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel'] },
-                    { label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay'] },
-                    { label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media'] },
-                    { label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu'], routerLinkActiveOptions: { paths: 'subset', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' } },
-                    { label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message'] },
-                    { label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file'] },
-                    { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts'] },
-                    { label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc'] }
+                    { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/app/uikit/formlayout'] },
+                    { label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/app/uikit/input'] },
+                    { label: 'Float Label', icon: 'pi pi-fw pi-bookmark', routerLink: ['/app/uikit/floatlabel'] },
+                    { label: 'Invalid State', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/app/uikit/invalidstate'] },
+                    { label: 'Button', icon: 'pi pi-fw pi-box', routerLink: ['/app/uikit/button'] },
+                    { label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/app/uikit/table'] },
+                    { label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/app/uikit/list'] },
+                    { label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/app/uikit/tree'] },
+                    { label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/app/uikit/panel'] },
+                    { label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/app/uikit/overlay'] },
+                    { label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/app/uikit/media'] },
+                    { label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/app/uikit/menu'], routerLinkActiveOptions: { paths: 'subset', queryParams: 'ignored', matrixParams: 'ignored', fragment: 'ignored' } },
+                    { label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/app/uikit/message'] },
+                    { label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/app/uikit/file'] },
+                    { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/app/uikit/charts'] },
+                    { label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/app/uikit/misc'] }
                 ]
             },
             {
                 label: 'Prime Blocks',
                 items: [
-                    { label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/blocks'], badge: 'NEW' },
+                    { label: 'Free Blocks', icon: 'pi pi-fw pi-eye', routerLink: ['/app/blocks'], badge: 'NEW' },
                     { label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng'], target: '_blank' },
                 ]
             },
             {
                 label: 'Utilities',
                 items: [
-                    { label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['/utilities/icons'] },
+                    { label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['/app/utilities/icons'] },
                     { label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: ['https://www.primefaces.org/primeflex/'], target: '_blank' },
                 ]
             },
@@ -62,7 +62,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Landing',
                         icon: 'pi pi-fw pi-globe',
-                        routerLink: ['/landing']
+                        routerLink: ['/app/landing']
                     },
                     {
                         label: 'General',
@@ -71,32 +71,32 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Departamentos',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/Index']
+                                routerLink: ['/app/Index']
                             },
                             {
                                 label: 'Empleados',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/IndexEmpleado']
+                                routerLink: ['/app/IndexEmpleado']
                             },
                             {
                                 label: 'Municipios',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/IndexMunicipio']
+                                routerLink: ['/app/IndexMunicipio']
                             },
                             {
                                 label: 'Estados Civiles',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/IndexEstadoCivil']
+                                routerLink: ['/app/IndexEstadoCivil']
                             },
                             {
-                                label: 'Error',
+                                label: 'Clinetes',
                                 icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/auth/error']
+                                routerLink: ['/app/IndexClientes']
                             },
                             {
-                                label: 'Access Denied',
+                                label: '',
                                 icon: 'pi pi-fw pi-lock',
-                                routerLink: ['/auth/access']
+                                routerLink: ['/app/auth/access']
                             }
                         ]
                     },
@@ -107,64 +107,90 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Combos Personales',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/IndexComboPersonal']
+                                routerLink: ['/app/IndexComboPersonal']
                             },
                             {
                                 label: 'Complementos',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/IndexComplemento']
+                                routerLink: ['/app/IndexComplemento']
                             },
                             {
                                 label: 'Postres',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/IndexPostre']
+                                routerLink: ['/app/IndexPostre']
                             },
                             {
                                 label: 'Promociones',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/IndexPromocion']
+                                routerLink: ['/app/IndexPromocion']
                             },
                             {
                                 label: 'Promociones Por Comidas',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/IndexPromocionPorComida']
+                                routerLink: ['/app/IndexPromocionPorComida']
                             },
                             {
                                 label: 'Promociones Por Sucursales',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/IndexPromocionPorSucursal']
+                                routerLink: ['/app/IndexPromocionPorSucursal']
                             },
                             {
-                                label: 'Error',
+                                label: 'Bebidas',
                                 icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/auth/error']
+                                routerLink: ['/app/IndexBebidas']
                             },
                             {
-                                label: 'Access Denied',
+                                label: 'Paquetes',
                                 icon: 'pi pi-fw pi-lock',
-                                routerLink: ['/auth/access']
+                                routerLink: ['/app/IndexPaquetes']
+                            },
+                            {
+                                label: 'Paquetes por alimento',
+                                icon: 'pi pi-fw pi-lock',
+                                routerLink: ['/app/IndexPaquetesporAlimento']
+                            },
+                            {
+                                label: 'Sucursales',
+                                icon: 'pi pi-fw pi-lock',
+                                routerLink: ['/app/IndexSucursales']
                             }
+                        ]
+                    },{
+                        label: 'Acceso',
+                        icon: 'pi pi-fw pi-user',
+                        items: [
+                            {
+                                label: 'Cargos',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/app/IndexCargo']
+                            },
+                            {
+                                label: 'Usuarios',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/app/IndexUsuarios']
+                            },                        
+                        
                         ]
                     },
                     {
                         label: 'Crud',
                         icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/pages/crud']
+                        routerLink: ['/app/pages/crud']
                     },
                     {
                         label: 'Timeline',
                         icon: 'pi pi-fw pi-calendar',
-                        routerLink: ['/pages/timeline']
+                        routerLink: ['/app/pages/timeline']
                     },
                     {
                         label: 'Not Found',
                         icon: 'pi pi-fw pi-exclamation-circle',
-                        routerLink: ['/notfound']
+                        routerLink: ['/app/notfound']
                     },
                     {
                         label: 'Empty',
                         icon: 'pi pi-fw pi-circle-off',
-                        routerLink: ['/pages/empty']
+                        routerLink: ['/app/pages/empty']
                     },
                 ]
             },
@@ -214,7 +240,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Get Started',
                 items: [
                     {
-                        label: 'Documentation', icon: 'pi pi-fw pi-question', routerLink: ['/documentation']
+                        label: 'Documentation', icon: 'pi pi-fw pi-question', routerLink: ['/app/documentation']
                     },
                     {
                         label: 'View Source', icon: 'pi pi-fw pi-search', url: ['https://github.com/primefaces/sakai-ng'], target: '_blank'
