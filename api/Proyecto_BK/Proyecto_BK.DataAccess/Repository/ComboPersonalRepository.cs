@@ -34,6 +34,54 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+        public tbCombosPersonales GrafiCombos(string Usua_Usuario)
+        {
+            tbCombosPersonales result = new tbCombosPersonales();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Usua_Usuario", Usua_Usuario);
+                result = db.QueryFirst<tbCombosPersonales>(ScriptsBaseDeDatos.Grafi_Combos, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
+        }
+
+        public tbCombosPersonales GrafiPostres(string Usua_Usuario)
+        {
+            tbCombosPersonales result = new tbCombosPersonales();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Usua_Usuario", Usua_Usuario);
+                result = db.QueryFirst<tbCombosPersonales>(ScriptsBaseDeDatos.Grafi_Postre, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
+        }
+
+        public tbCombosPersonales GrafiPaquetes(string Usua_Usuario)
+        {
+            tbCombosPersonales result = new tbCombosPersonales();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Usua_Usuario", Usua_Usuario);
+                result = db.QueryFirst<tbCombosPersonales>(ScriptsBaseDeDatos.Grafi_Paquetes, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
+        }
+
+        public tbCombosPersonales GrafiAlimentos(string Usua_Usuario)
+        {
+            tbCombosPersonales result = new tbCombosPersonales();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Usua_Usuario", Usua_Usuario);
+                result = db.QueryFirst<tbCombosPersonales>(ScriptsBaseDeDatos.Grafi_Alimento, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
+        }
+
         public RequestStatus Insert(tbCombosPersonales item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))

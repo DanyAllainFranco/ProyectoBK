@@ -23,5 +23,10 @@ namespace Proyecto_BK.Common.Models
         public int? Empl_Usua_Modifica { get; set; }
         public DateTime? Empl_Fecha_Modifica { get; set; }
         public bool? Empl_Estado { get; set; }
+
+
+        public string Esta_Descripcion { get; set; }
+        public string Muni_Descripcion { get; set; }
+        public string Carg_Descripcion { get; set; }
     }
 }

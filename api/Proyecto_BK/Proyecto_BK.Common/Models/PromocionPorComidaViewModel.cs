@@ -19,5 +19,11 @@ namespace Proyecto_BK.Common.Models
         public int? PrSe_Usua_Modifica { get; set; }
         public DateTime? PrSe_Fecha_Modifica { get; set; }
         public bool? PrSe_Estado { get; set; }
+
+        public string Bebi_Descripcion { get; set; }
+        public string Post_Descripcion { get; set; }
+        public string Comp_Descripcion { get; set; }
+        public string Alim_Descripcion { get; set; }
+        public string Prom_Descripcion { get; set; }
     }
 }

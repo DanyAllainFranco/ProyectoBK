@@ -293,6 +293,90 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
+        public ServiceResult GrafiCombos(string Usua_Usuario)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var comboPersonal = _comboPersonalRepository.GrafiCombos(Usua_Usuario);
+                if (comboPersonal != null)
+                {
+                    return result.Ok(comboPersonal);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el Combo Personal con ID {Usua_Usuario}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"No se encontró el Combo Personal con ID {Usua_Usuario}");
+            }
+        }
+
+        public ServiceResult GrafiPostres(string Usua_Usuario)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var comboPersonal = _comboPersonalRepository.GrafiPostres(Usua_Usuario);
+                if (comboPersonal != null)
+                {
+                    return result.Ok(comboPersonal);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el Combo Personal con ID {Usua_Usuario}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"No se encontró el Combo Personal con ID {Usua_Usuario}");
+            }
+        }
+
+        public ServiceResult GrafiPaquetes(string Usua_Usuario)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var comboPersonal = _comboPersonalRepository.GrafiPaquetes(Usua_Usuario);
+                if (comboPersonal != null)
+                {
+                    return result.Ok(comboPersonal);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el Combo Personal con ID {Usua_Usuario}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"No se encontró el Combo Personal con ID {Usua_Usuario}");
+            }
+        }
+
+        public ServiceResult GrafiAlimentos(string Usua_Usuario)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var comboPersonal = _comboPersonalRepository.GrafiAlimentos(Usua_Usuario);
+                if (comboPersonal != null)
+                {
+                    return result.Ok(comboPersonal);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el Combo Personal con ID {Usua_Usuario}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"No se encontró el Combo Personal con ID {Usua_Usuario}");
+            }
+        }
+
         public ServiceResult CrearComboPersonal(tbCombosPersonales item)
         {
             var result = new ServiceResult();

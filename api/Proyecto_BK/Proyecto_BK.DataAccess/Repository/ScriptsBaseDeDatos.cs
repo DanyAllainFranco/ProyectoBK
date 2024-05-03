@@ -176,6 +176,12 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Usua_Eliminar = "[Acce].SP_Usuarios_Eliminar";
         #endregion
 
+        #region Graficos
+        public static string Grafi_Combos = "Rest.SP_ObtenerComboMasPedidoPorUsuario";
+        public static string Grafi_Paquetes = "Rest.SP_ObtenerPaqueteMasPedidoPorUsuario";
+        public static string Grafi_Alimento = "Rest.SP_ObtenerAlimentoMasPedidoPorUsuario";
+        public static string Grafi_Postre = "Rest.SP_ObtenerPostreMasPedidoPorUsuario";
+        #endregion
 
     }
 }
