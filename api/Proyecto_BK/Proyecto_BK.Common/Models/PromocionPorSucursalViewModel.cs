@@ -16,5 +16,9 @@ namespace Proyecto_BK.Common.Models
         public int? PPSu_Usua_Modifica { get; set; }
         public DateTime? PPSu_Fecha_Modifica { get; set; }
         public bool? PPSu_Estado { get; set; }
+
+        public string Prom_Descripcion { get; set; }
+        public string Sucu_Descripcion { get; set; }
+        public string Muni_Codigo { get; set; }
     }
 }

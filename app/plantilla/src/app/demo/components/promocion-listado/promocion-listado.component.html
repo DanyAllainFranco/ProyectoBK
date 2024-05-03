@@ -59,7 +59,11 @@
                         <td>{{prom.prom_Id}}</td>
                         <td>{{prom.prom_Descripcion}}</td>
                         <td>{{prom.prom_Precio}}</td>
-                        <td>{{prom.prom_Imagen}}</td>
+                        <td>
+                            <img [src]="prom.prom_Imagen" alt="Imagen de promoción" style="width: 100px; height: auto;">
+                        </td>
+                        
+                                             
                         <td>{{prom.prom_Dia}}</td>
               
                     </tr>

@@ -3,7 +3,7 @@
         <div class="card">
             <h5>Promociones por Sucursal</h5>
             <p-table [value]="PromocionSucursal" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
-                [paginator]="true" [globalFilterFields]="['ppSu_Id','prom_Id','sucu_Id']" responsiveLayout="scroll">
+                [paginator]="true" [globalFilterFields]="['ppSu_Id','prom_Descripcion','sucu_Descripcion','muni_Codigo']" responsiveLayout="scroll">
                 <ng-template pTemplate="caption">
                     <div class="flex justify-content-between flex-column sm:flex-row">
                         <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
@@ -27,14 +27,21 @@
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Promocion
-                                <p-columnFilter type="text" field="prom_Id" display="menu"
+                                <p-columnFilter type="text" field="prom_Descripcion" display="menu"
                                     placeholder="Buscar por Promocion"></p-columnFilter>
                             </div>
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Sucursal
-                                <p-columnFilter type="text" field="sucu_Id" display="menu"
+                                <p-columnFilter type="text" field="sucu_Descripcion" display="menu"
+                                    placeholder="Buscar por Sucursal"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Municipio
+                                <p-columnFilter type="text" field="muni_Codigo" display="menu"
                                     placeholder="Buscar por Sucursal"></p-columnFilter>
                             </div>
                         </th>
@@ -43,8 +50,9 @@
                 <ng-template pTemplate="body" let-PrSu>
                     <tr>
                         <td>{{PrSu.ppSu_Id}}</td>
-                        <td>{{PrSu.prom_Id}}</td>
-                        <td>{{PrSu.sucu_Id}}</td>
+                        <td>{{PrSu.prom_Descripcion}}</td>
+                        <td>{{PrSu.sucu_Descripcion}}</td>
+                        <td>{{PrSu.muni_Codigo}}</td>
                        
               
                     </tr>

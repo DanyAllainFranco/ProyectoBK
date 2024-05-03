@@ -16,5 +16,8 @@ namespace Proyecto_BK.Common.Models
         public DateTime Muni_Fecha_Creacion { get; set; }
         public int? Muni_Usua_Modifica { get; set; }
         public DateTime? Muni_Fecha_Modifica { get; set; }
+
+
+        public string Dept_Descripcion { get; set; }
     }
 }

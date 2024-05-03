@@ -3,7 +3,7 @@
         <div class="card">
             <h5>Empleados</h5>
             <p-table [value]="Empleado" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
-                [paginator]="true" [globalFilterFields]="['empl_Id','empl_Identidad','empl_Nombre','empl_Apellido','empl_Sexo','empl_Correo','esta_Id','muni_Codigo','carg_Id']" responsiveLayout="scroll">
+                [paginator]="true" [globalFilterFields]="['empl_Id','empl_Identidad','empl_Nombre','empl_Apellido','empl_Sexo','empl_Correo','esta_Id','muni_Codigo','carg_Id','esta_Descripcion','muni_Descripcion','carg_Descripcion']" responsiveLayout="scroll">
                 <ng-template pTemplate="caption">
                     <div class="flex justify-content-between flex-column sm:flex-row">
                         <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
@@ -62,21 +62,28 @@
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 EstadoCivil
-                                <p-columnFilter type="text" field="esta_Id" display="menu"
+                                <p-columnFilter type="text" field="esta_Descripcion" display="menu"
                                     placeholder="Buscar por EstadoCivil"></p-columnFilter>
                             </div>
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
-                                Municipio
+                                Codigo Municipio
                                 <p-columnFilter type="text" field="muni_Codigo" display="menu"
                                     placeholder="Buscar por Municipio"></p-columnFilter>
                             </div>
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
+                                 Municipio
+                                <p-columnFilter type="text" field="muni_Descripcion" display="menu"
+                                    placeholder="Buscar por Municipio"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
                                 Cargo
-                                <p-columnFilter type="text" field="carg_Id" display="menu"
+                                <p-columnFilter type="text" field="carg_Descripcion" display="menu"
                                     placeholder="Buscar por Cargo"></p-columnFilter>
                             </div>
                         </th>
@@ -90,9 +97,10 @@
                         <td>{{empl.empl_Apellido}}</td>
                         <td>{{empl.empl_Sexo}}</td>
                         <td>{{empl.empl_Correo}}</td>
-                        <td>{{empl.esta_Id}}</td>
+                        <td>{{empl.esta_Descripcion}}</td>
                         <td>{{empl.muni_Codigo}}</td>
-                        <td>{{empl.carg_Id}}</td>
+                        <td>{{empl.muni_Descripcion}}</td>
+                        <td>{{empl.carg_Descripcion}}</td>
                     
               
                     </tr>
