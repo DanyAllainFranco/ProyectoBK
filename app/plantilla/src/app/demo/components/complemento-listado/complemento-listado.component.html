@@ -52,7 +52,9 @@
                         <td>{{comp.comp_Id}}</td>
                         <td>{{comp.comp_Descripcion}}</td>
                         <td>{{comp.comp_Precio}}</td>
-                        <td>{{comp.comp_Imagen}}</td>
+                        <td>
+                            <img [src]="comp.comp_Imagen" alt="Imagen de promoción" style="width: 100px; height: auto;">
+                        </td>
               
                     </tr>
                 </ng-template>

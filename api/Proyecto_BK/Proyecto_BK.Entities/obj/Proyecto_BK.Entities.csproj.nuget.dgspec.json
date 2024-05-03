@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {}
+    "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
+    "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
         "projectName": "Proyecto_BK.Entities",
-        "projectPath": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
-        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\obj\\",
+        "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
+        "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -26,5 +26,14 @@ namespace Proyecto_BK.Common.Models
         public string Post_Descripcion { get; set; }
         public string Comp_Descripcion { get; set; }
         public string Alim_Descripcion { get; set; }
+
+
+        public string Usua_Usuario { get; set; }
+        public int TotalPedidosCombos { get; set; }
+        public int Paqe_Id { get; set; }
+        public string Paqe_Descripcion { get; set; }
+        public int TotalPedidosPaquetes { get; set; }
+        public int TotalPedidosAlimentos { get; set; }
+        public int TotalPedidosPostres { get; set; }
     }
 }
