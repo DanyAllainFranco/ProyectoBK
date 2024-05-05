@@ -5746,19 +5746,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\informatica\\.nuget\\packages\\": {}
+    "C:\\Users\\ACER\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj",
       "projectName": "Proyecto_BK.DataAccess",
-      "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj",
-      "packagesPath": "C:\\Users\\informatica\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\obj\\",
+      "projectPath": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj",
+      "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\informatica\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5772,8 +5772,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
-              "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj"
+            "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
+              "projectPath": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj"
             }
           }
         }
