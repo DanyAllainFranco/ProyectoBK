@@ -23,6 +23,7 @@ export class InicioDeSesionComponent {
         });
    }
 
+  
 
   // Método para redirigir a la página principal
   irAPaginaPrincipal():void {
@@ -31,8 +32,7 @@ export class InicioDeSesionComponent {
       this.usuarioService.login(loginData).subscribe(
         response => {
           console.log('Respuesta del servidor:', response);
-          if (response!="Error"){
-         
+          if (response!="Error"){  
           this.router.navigate(['/app/Principal']);
           }
 

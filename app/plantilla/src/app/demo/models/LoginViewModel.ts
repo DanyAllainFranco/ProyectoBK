@@ -1,4 +1,4 @@
 export class Login {
-    Usua_Usuario?: string;
-    Usua_Contra?: string;
+    Usua_Usuario!: string;
+    Usua_Contra!: string;
 }
