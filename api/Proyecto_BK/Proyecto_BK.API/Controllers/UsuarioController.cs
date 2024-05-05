@@ -36,6 +36,29 @@ namespace Proyecto_BK.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("API/[controller]/Login")]
+        public IActionResult Login(string Usua_Usuario, string Usua_Contra)
+        {
+
+
+             
+            var list = _accesoServices.UsuarioLogin(Usua_Usuario, Usua_Contra);
+
+
+            var prueba = list.Data as List<tbUsuarios>;
+            if (prueba.Count > 0)
+            {
+                return Ok(list.Data);
+            }
+            else
+            {
+                list.Message = "Error";
+                return Ok(list.Message);
+            }
+            //var result = _accesoServices.UsuarioLogin(Usua_Usuario, Usua_Contra);
+            //return Ok(result);
+        }
+
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(UsuarioViewModel json)
         {

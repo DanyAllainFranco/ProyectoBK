@@ -469,6 +469,27 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
+        public ServiceResult UsuarioLogin(string Usua_Usuario , string Usua_Contra)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var usuario = _usuarioRepository.Login(Usua_Usuario, Usua_Contra);
+                if (usuario != null)
+                {
+                    return result.Ok(usuario);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el usuario {Usua_Usuario}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"Error al buscar el usuario  {Usua_Usuario}");
+            }
+        }
+
         public ServiceResult CrearUsuario(tbUsuarios item)
         {
             var result = new ServiceResult();
