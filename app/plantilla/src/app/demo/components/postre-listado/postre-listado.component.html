@@ -53,7 +53,9 @@
                         <td>{{post.post_id}}</td>
                         <td>{{post.post_Descripcion}}</td>
                         <td>{{post.post_Precio}}</td>
-                        <td>{{post.post_Imagen}}</td>        
+                        <td>
+                            <img [src]="post.post_Imagen" alt="Imagen de promoción" style="width: 100px; height: auto;">
+                        </td>       
               
                     </tr>
                 </ng-template>

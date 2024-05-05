@@ -3,7 +3,7 @@
         <div class="card">
             <h5>Promocion Comida</h5>
             <p-table [value]="PromocionComida" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
-                [paginator]="true" [globalFilterFields]="['prSe_Id','prom_Id','bebi_Id','post_id','comp_Id','alim_Id']" responsiveLayout="scroll">
+                [paginator]="true" [globalFilterFields]="['prSe_Id','prom_Descripcion','bebi_Descripcion','post_Descripcion','comp_Descripcion','alim_Descripcion']" responsiveLayout="scroll">
                 <ng-template pTemplate="caption">
                     <div class="flex justify-content-between flex-column sm:flex-row">
                         <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
@@ -27,35 +27,35 @@
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Promocion
-                                <p-columnFilter type="text" field="prom_Id" display="menu"
+                                <p-columnFilter type="text" field="prom_Descripcion" display="menu"
                                     placeholder="Buscar por Promocion"></p-columnFilter>
                             </div>
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Bebida
-                                <p-columnFilter type="text" field="bebi_Id" display="menu"
+                                <p-columnFilter type="text" field="bebi_Descripcion" display="menu"
                                     placeholder="Buscar por Bebida"></p-columnFilter>
                             </div>
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Postre
-                                <p-columnFilter type="text" field="post_id" display="menu"
+                                <p-columnFilter type="text" field="post_Descripcion" display="menu"
                                     placeholder="Buscar por Postre"></p-columnFilter>
                             </div>
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Complemento
-                                <p-columnFilter type="text" field="comp_Id" display="menu"
+                                <p-columnFilter type="text" field="comp_Descripcion" display="menu"
                                     placeholder="Buscar por Complemento"></p-columnFilter>
                             </div>
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Alimento
-                                <p-columnFilter type="text" field="alim_Id" display="menu"
+                                <p-columnFilter type="text" field="alim_Descripcion" display="menu"
                                     placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
                         </th>
@@ -64,11 +64,11 @@
                 <ng-template pTemplate="body" let-PrCo>
                     <tr>
                         <td>{{PrCo.prSe_Id}}</td>
-                        <td>{{PrCo.prom_Id}}</td>
-                        <td>{{PrCo.bebi_Id}}</td>
-                        <td>{{PrCo.post_id}}</td>
-                        <td>{{PrCo.comp_Id}}</td>
-                        <td>{{PrCo.alim_Id}}</td>
+                        <td>{{PrCo.prom_Descripcion}}</td>
+                        <td>{{PrCo.bebi_Descripcion}}</td>
+                        <td>{{PrCo.post_Descripcion}}</td>
+                        <td>{{PrCo.comp_Descripcion}}</td>
+                        <td>{{PrCo.alim_Descripcion}}</td>
                     
                     
               

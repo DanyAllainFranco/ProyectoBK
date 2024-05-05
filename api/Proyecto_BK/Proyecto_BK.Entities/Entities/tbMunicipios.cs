@@ -23,6 +23,8 @@ namespace Proyecto_BK.Entities
         public int? Muni_Usua_Modifica { get; set; }
         public DateTime? Muni_Fecha_Modifica { get; set; }
 
+        public string Dept_Descripcion { get; set; }
+
         public virtual tbDepartamentos Dept_CodigoNavigation { get; set; }
         public virtual tbUsuarios Muni_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Muni_Usua_ModificaNavigation { get; set; }
