@@ -86,7 +86,7 @@ namespace Proyecto_BK.DataAccess.Repository
                 parameter.Add("Dept_Usua_Modifica", item.Dept_Usua_Modifica);
                 parameter.Add("Dept_Fecha_Modifica", item.Dept_Fecha_Modifica);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Editar, parameter, commandType: CommandType.StoredProcedure);
+                var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Llenar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }

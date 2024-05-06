@@ -75,6 +75,8 @@ namespace Proyecto_BK.Entities
         [NotMapped]
         public string Pant_Descripcion { get; set; }
 
+        [NotMapped]
+        public string Rol_Descripcion { get; set; }
 
         public virtual tbEmpleados Empl { get; set; }
         public virtual tbRoles Rol { get; set; }

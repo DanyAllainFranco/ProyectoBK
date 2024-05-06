@@ -15,12 +15,15 @@ namespace Proyecto_BK.Common.Models
         public bool? Usua_Admin { get; set; }
         public int? Empl_Id { get; set; }
         public int? Rol_Id { get; set; }
+
+        [NotMapped]
+        public string Rol_Descripcion { get; set; }
+
         public int? Usua_Usua_Creacion { get; set; }
         public DateTime? Usua_Fecha_Creacion { get; set; }
         public int? Usua_Usua_Modifica { get; set; }
         public DateTime? Usua_Fecha_Modifica { get; set; }
         public bool? Usua_Activo { get; set; }
-
 
         [NotMapped]
         public string Empl_Empleado { get; set; }
