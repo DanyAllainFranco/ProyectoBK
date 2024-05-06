@@ -70,8 +70,8 @@ namespace Proyecto_BK.API.Controllers
                 Usua_Admin = json.Usua_Admin,
                 Empl_Id = json.Empl_Id,
                 Rol_Id = json.Rol_Id,
-                Usua_Usua_Creacion = json.Usua_Usua_Creacion,
-                Usua_Fecha_Creacion = json.Usua_Fecha_Creacion,
+                Usua_Usua_Creacion = 1,
+                Usua_Fecha_Creacion = DateTime.Now,
                 Usua_Activo = json.Usua_Activo
             };
             var response = _accesoServices.CrearUsuario(modelo);
@@ -90,8 +90,8 @@ namespace Proyecto_BK.API.Controllers
                 Usua_Admin = json.Usua_Admin,
                 Empl_Id = json.Empl_Id,
                 Rol_Id = json.Rol_Id,
-                Usua_Usua_Modifica = json.Usua_Usua_Modifica,
-                Usua_Fecha_Modifica = json.Usua_Fecha_Modifica,
+                Usua_Usua_Modifica = 1,
+                Usua_Fecha_Modifica = DateTime.Now,
                 Usua_Activo = json.Usua_Activo
             };
             var list = _accesoServices.EditarUsuario(modelo);

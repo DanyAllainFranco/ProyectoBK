@@ -47,8 +47,8 @@ namespace Proyecto_BK.API.Controllers
                 Post_id = json.Post_id,
                 Comp_Id = json.Comp_Id,
                 Alim_Id = json.Alim_Id,
-                PrSe_Usua_Creacion = json.PrSe_Usua_Creacion,
-                PrSe_Fecha_Creacion = json.PrSe_Fecha_Creacion
+                PrSe_Usua_Creacion = 1,
+                PrSe_Fecha_Creacion = DateTime.Now
             };
             var response = _restauranteServices.CrearPromocionPorComida(modelo);
             return Ok(response);
@@ -66,8 +66,8 @@ namespace Proyecto_BK.API.Controllers
                 Post_id = json.Post_id,
                 Comp_Id = json.Comp_Id,
                 Alim_Id = json.Alim_Id,
-                PrSe_Usua_Modifica = json.PrSe_Usua_Modifica,
-                PrSe_Fecha_Modifica = json.PrSe_Fecha_Modifica
+                PrSe_Usua_Modifica = 1,
+                PrSe_Fecha_Modifica = DateTime.Now
             };
             var list = _restauranteServices.EditarPromocionPorComida(modelo);
             return Ok(list);

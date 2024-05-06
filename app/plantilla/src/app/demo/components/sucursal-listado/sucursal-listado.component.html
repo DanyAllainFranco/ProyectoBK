@@ -23,16 +23,29 @@
                                 <p-columnFilter type="text" field="sucu_Descripcion" display="menu"
                                     placeholder="Buscar por Usuario"></p-columnFilter>
                             </div>
+                        </th>    
+                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Municipio
                                 <p-columnFilter type="text" field="muni_Codigo" display="menu"
                                     placeholder="Buscar por Alimento"></p-columnFilter>
-                            </div> <div class="flex justify-content-between align-items-center">
+                            </div> 
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
                                 Encargado
                                 <p-columnFilter type="text" field="empl_Id" display="menu"
                                     placeholder="Buscar por Nombre"></p-columnFilter>
                             </div>
-                        </th>     
+
+                           
+                        </th>   
+                        <th style="text-align: center;">
+                    
+                            Acciones
+    
+                    
+                         </th>   
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-sucu>
@@ -40,6 +53,12 @@
                         <td>{{sucu.sucu_Descripcion}}</td>
                         <td>{{sucu.muni_Codigo}}</td>
                         <td>{{sucu.empl_Id}}</td>
+                        <td style="display: flex; justify-content: space-around;">
+                            <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(depto.dept_Codigo)"></button>
+                            <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(depto.dept_Codigo)"></button>
+                            <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(depto.dept_Codigo)"></button>
+                          
+                        </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">

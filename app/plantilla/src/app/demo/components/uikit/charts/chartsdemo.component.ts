@@ -88,8 +88,8 @@ export class GraficosComponent implements OnInit, OnDestroy {
         labels: labels,
         datasets: [{
             data: values,
-            backgroundColor: ['#FFCE56', '#FFD700', '#FFA07A','#FF6384', '#36A2EB', '#20B2AA'],
-            hoverBackgroundColor: ['#FFCE56', '#FFD700', '#FFA07A','#FF6384', '#36A2EB', '#20B2AA']
+            backgroundColor: ['#FFCE56', '#FFA07A', '#FFD700','#FF6384', '#36A2EB', '#20B2AA'],
+            hoverBackgroundColor: ['#FFCE56','#FFA07A', '#FFD700', '#FF6384', '#36A2EB', '#20B2AA']
             
         }]
     };

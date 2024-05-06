@@ -3,7 +3,7 @@
         <div class="card">
             <h5>Bebidas</h5>
             <p-table [value]="bebida" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
-                [paginator]="true" [globalFilterFields]="['bebi_Id,bebi_Descripcion,bebi_Precio']" responsiveLayout="scroll">
+                [paginator]="true" [globalFilterFields]="['bebi_Id,bebi_Descripcion, bebi_Imagen,bebi_Precio']" responsiveLayout="scroll">
                 <ng-template pTemplate="caption">
                     <div class="flex justify-content-between flex-column sm:flex-row">
                         <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
@@ -23,18 +23,42 @@
                                 <p-columnFilter type="text" field="bebi_Descripcion" display="menu"
                                     placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Imagen
+                                <p-columnFilter type="text" field="bebi_Imagen" display="menu"
+                                    placeholder="Buscar por Alimento"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Precio
                                 <p-columnFilter type="text" field="bebi_Precio" display="menu"
                                     placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
-                        </th>     
+                        </th> 
+                        <th style="text-align: center;">
+                    
+                            Acciones
+    
+                    
+                         </th>    
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-bebi>
                     <tr>
                         <td>{{bebi.bebi_Descripcion}}</td>
+                        <td>
+                            <img [src]="bebi.bebi_Imagen" alt="Imagen de Bebida" style="width: 100px; height: auto;">
+                        </td>  
                         <td>{{bebi.bebi_Precio}}</td>
+                        <td style="display: grid; justify-content: space-around;">
+                            <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(depto.dept_Codigo)"></button>
+                            <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(depto.dept_Codigo)"></button>
+                            <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(depto.dept_Codigo)"></button>
+                          
+                        </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">

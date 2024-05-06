@@ -43,8 +43,8 @@ namespace Proyecto_BK.API.Controllers
             var modelo = new tbRoles()
             {
                 Rol_Descripcion = json.Rol_Descripcion,
-                Rol_Usua_Creacion = json.Rol_Usua_Creacion,
-                Rol_Fecha_Creacion = json.Rol_Fecha_Creacion
+                Rol_Usua_Creacion = 1,
+                Rol_Fecha_Creacion = DateTime.Now
             };
             var response = _accesoServices.CrearRol(modelo);
             return Ok(response);
@@ -58,8 +58,8 @@ namespace Proyecto_BK.API.Controllers
             {
                 Rol_Id = Convert.ToInt32(json.Rol_Id),
                 Rol_Descripcion = json.Rol_Descripcion,
-                Rol_Usua_Modifica = json.Rol_Usua_Modifica,
-                Rol_Fecha_Modifica = json.Rol_Fecha_Modifica
+                Rol_Usua_Modifica = 1,
+                Rol_Fecha_Modifica = DateTime.Now
             };
             var list = _accesoServices.EditarRol(modelo);
             return Ok(list);

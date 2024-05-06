@@ -44,8 +44,8 @@ namespace Proyecto_BK.API.Controllers
             {
                 Rol_Id = json.Rol_Id,
                 Pant_Id = json.Pant_Id,
-                Paro_Usua_Creacion = json.Paro_Usua_Creacion,
-                Paro_Fecha_Creacion = json.Paro_Fecha_Creacion
+                Paro_Usua_Creacion = 1,
+                Paro_Fecha_Creacion = DateTime.Now
             };
             var response = _accesoServices.CrearPantallaPorRol(modelo);
             return Ok(response);
@@ -60,8 +60,8 @@ namespace Proyecto_BK.API.Controllers
                 Paro_Id = Convert.ToInt32(json.Paro_Id),
                 Rol_Id = json.Rol_Id,
                 Pant_Id = json.Pant_Id,
-                Paro_Usua_Modifica = json.Paro_Usua_Modifica,
-                Paro_Fecha_Modifica = json.Paro_Fecha_Modifica
+                Paro_Usua_Modifica = 1,
+                Paro_Fecha_Modifica = DateTime.Now
             };
             var list = _accesoServices.EditarPantallaPorRol(modelo);
             return Ok(list);

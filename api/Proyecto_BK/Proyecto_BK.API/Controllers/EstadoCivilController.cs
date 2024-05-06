@@ -45,8 +45,8 @@ namespace Proyecto_BK.API.Controllers
             var modelo = new tbEstadosCiviles()
             {
                 Esta_Descripcion = json.Esta_Descripcion,
-                Esta_Usua_Creacion = json.Esta_Usua_Creacion,
-                Esta_Fecha_Creacion = json.Esta_Fecha_Creacion
+                Esta_Usua_Creacion = 1,
+                Esta_Fecha_Creacion = DateTime.Now
             };
             var response = _generalServices.CrearEstado(modelo);
             return Ok(response);
@@ -59,8 +59,8 @@ namespace Proyecto_BK.API.Controllers
             {
                 Esta_Id = json.Esta_Id,
                 Esta_Descripcion = json.Esta_Descripcion,
-                Esta_Usua_Modifica = json.Esta_Usua_Modifica,
-                Esta_Fecha_Modifica = json.Esta_Fecha_Modifica
+                Esta_Usua_Modifica = 1,
+                Esta_Fecha_Modifica = DateTime.Now
             };
             var list = _generalServices.EditarEstado(modelo);
             return Ok(list);

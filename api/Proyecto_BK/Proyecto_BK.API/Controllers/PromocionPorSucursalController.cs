@@ -44,8 +44,8 @@ namespace Proyecto_BK.API.Controllers
             {
                 Prom_Id = json.Prom_Id,
                 Sucu_Id = json.Sucu_Id,
-                PPSu_Usua_Creacion = json.PPSu_Usua_Creacion,
-                PPSu_Fecha_Creacion = json.PPSu_Fecha_Creacion
+                PPSu_Usua_Creacion = 1,
+                PPSu_Fecha_Creacion = DateTime.Now
             };
             var response = _restauranteServices.CrearPromocionPorSucursal(modelo);
             return Ok(response);
@@ -60,8 +60,8 @@ namespace Proyecto_BK.API.Controllers
                 PPSu_Id = json.PPSu_Id,
                 Prom_Id = json.Prom_Id,
                 Sucu_Id = json.Sucu_Id,
-                PPSu_Usua_Modifica = json.PPSu_Usua_Modifica,
-                PPSu_Fecha_Modifica = json.PPSu_Fecha_Modifica
+                PPSu_Usua_Modifica = 1,
+                PPSu_Fecha_Modifica = DateTime.Now
             };
             var list = _restauranteServices.EditarPromocionPorSucursal(modelo);
             return Ok(list);

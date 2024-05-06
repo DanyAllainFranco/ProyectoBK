@@ -77,8 +77,8 @@ namespace Proyecto_BK.API.Controllers
                 Post_id = json.Post_id,
                 Comp_Id = json.Comp_Id,
                 Alim_Id = json.Alim_Id,
-                Comb_Usua_Creacion = json.Comb_Usua_Creacion,
-                Comb_Fecha_Creacion = json.Comb_Fecha_Creacion
+                Comb_Usua_Creacion = 1,
+                Comb_Fecha_Creacion = DateTime.Now
             };
             var response = _restauranteServices.CrearComboPersonal(modelo);
             return Ok(response);
@@ -98,8 +98,8 @@ namespace Proyecto_BK.API.Controllers
                 Post_id = json.Post_id,
                 Comp_Id = json.Comp_Id,
                 Alim_Id = json.Alim_Id,
-                Comb_Usua_Modifica = json.Comb_Usua_Modifica,
-                Comb_Fecha_Modifica = json.Comb_Fecha_Modifica
+                Comb_Usua_Modifica = 1,
+                Comb_Fecha_Modifica = DateTime.Now
             };
             var list = _restauranteServices.EditarComboPersonal(modelo);
             return Ok(list);

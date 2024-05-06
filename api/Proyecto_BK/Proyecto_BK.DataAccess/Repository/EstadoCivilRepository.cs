@@ -41,7 +41,7 @@ namespace Proyecto_BK.DataAccess.Repository
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Esta_Id", item.Esta_Id);
+               
                 parameter.Add("Esta_Descripcion", item.Esta_Descripcion);
                 parameter.Add("Esta_Usua_Creacion", item.Esta_Usua_Creacion);
                 parameter.Add("Esta_Fecha_Creacion", item.Esta_Fecha_Creacion);

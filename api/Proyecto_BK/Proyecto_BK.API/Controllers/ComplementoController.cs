@@ -45,8 +45,8 @@ namespace Proyecto_BK.API.Controllers
                 Comp_Descripcion = json.Comp_Descripcion,
                 Comp_Precio = json.Comp_Precio,
                 Comp_Imagen = json.Comp_Imagen,
-                Comp_Usua_Creacion = json.Comp_Usua_Creacion,
-                Comp_Fecha_Creacion = json.Comp_Fecha_Creacion
+                Comp_Usua_Creacion = 1,
+                Comp_Fecha_Creacion = DateTime.Now
             };
             var response = _restauranteServices.CrearComplemento(modelo);
             return Ok(response);
@@ -62,8 +62,8 @@ namespace Proyecto_BK.API.Controllers
                 Comp_Descripcion = json.Comp_Descripcion,
                 Comp_Precio = json.Comp_Precio,
                 Comp_Imagen = json.Comp_Imagen,
-                Comp_Usua_Modifica = json.Comp_Usua_Modifica,
-                Comp_Fecha_Modifica = json.Comp_Fecha_Modifica
+                Comp_Usua_Modifica = 1,
+                Comp_Fecha_Modifica = DateTime.Now
             };
             var list = _restauranteServices.EditarComplemento(modelo);
             return Ok(list);

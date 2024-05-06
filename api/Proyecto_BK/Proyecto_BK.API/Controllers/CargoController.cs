@@ -43,8 +43,8 @@ namespace Proyecto_BK.API.Controllers
             var modelo = new tbCargos()
             {
                 Carg_Descripcion = json.Carg_Descripcion,
-                Carg_Usua_Creacion = json.Carg_Usua_Creacion,
-                Carg_Fecha_Creacion = json.Carg_Fecha_Creacion
+                Carg_Usua_Creacion = 1,
+                Carg_Fecha_Creacion = DateTime.Now
             };
             var response = _accesoServices.CrearCargo(modelo);
             return Ok(response);
@@ -58,8 +58,8 @@ namespace Proyecto_BK.API.Controllers
             {
                 Carg_Id = Convert.ToInt32(json.Carg_Id),
                 Carg_Descripcion = json.Carg_Descripcion,
-                Carg_Usua_Modifica = json.Carg_Usua_Modifica,
-                Carg_Fecha_Modifica = json.Carg_Fecha_Modifica
+                Carg_Usua_Modifica = 1,
+                Carg_Fecha_Modifica = DateTime.Now
             };
             var list = _accesoServices.EditarCargo(modelo);
             return Ok(list);

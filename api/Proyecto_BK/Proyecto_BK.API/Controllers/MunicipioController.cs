@@ -48,8 +48,8 @@ namespace Proyecto_BK.API.Controllers
                 Muni_Codigo = json.Muni_Codigo,
                 Muni_Descripcion = json.Muni_Descripcion,
                 Dept_Codigo = json.Dept_Codigo,
-                Muni_Usua_Creacion = json.Muni_Usua_Creacion,
-                Muni_Fecha_Creacion = json.Muni_Fecha_Creacion
+                Muni_Usua_Creacion = 1,
+                Muni_Fecha_Creacion = DateTime.Now
             };
             var response = _generalServices.CrearMuni(modelo);
             return Ok(response);
@@ -63,8 +63,8 @@ namespace Proyecto_BK.API.Controllers
                 Muni_Codigo = json.Muni_Codigo,
                 Muni_Descripcion = json.Muni_Descripcion,
                 Dept_Codigo = json.Dept_Codigo,
-                Muni_Usua_Modifica = json.Muni_Usua_Modifica,
-                Muni_Fecha_Modifica = json.Muni_Fecha_Modifica
+                Muni_Usua_Modifica = 1,
+                Muni_Fecha_Modifica = DateTime.Now
             };
             var list = _generalServices.EditarMuni(modelo);
             return Ok(list);

@@ -43,8 +43,8 @@ namespace Proyecto_BK.API.Controllers
             var modelo = new tbPantallas()
             {
                 Pant_Descripcion = json.Pant_Descripcion,
-                Pant_Usua_Creacion = json.Pant_Usua_Creacion,
-                Pant_Fecha_Creacion = json.Pant_Fecha_Creacion
+                Pant_Usua_Creacion = 1,
+                Pant_Fecha_Creacion = DateTime.Now
             };
             var response = _accesoServices.CrearPantalla(modelo);
             return Ok(response);
@@ -58,8 +58,8 @@ namespace Proyecto_BK.API.Controllers
             {
                 Pant_Id = Convert.ToInt32(json.Pant_Id),
                 Pant_Descripcion = json.Pant_Descripcion,
-                Pant_Usua_Modifica = json.Pant_Usua_Modifica,
-                Pant_Fecha_Modifica = json.Pant_Fecha_Modifica
+                Pant_Usua_Modifica = 1,
+                Pant_Fecha_Modifica = DateTime.Now
             };
             var list = _accesoServices.EditarPantalla(modelo);
             return Ok(list);

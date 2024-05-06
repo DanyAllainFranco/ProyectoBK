@@ -51,8 +51,8 @@ namespace Proyecto_BK.API.Controllers
                 Esta_Id = json.Esta_Id,
                 Muni_Codigo = json.Muni_Codigo,
                 Carg_Id = json.Carg_Id,
-                Empl_Usua_Creacion = json.Empl_Usua_Creacion,
-                Empl_Fecha_Creacion = json.Empl_Fecha_Creacion
+                Empl_Usua_Creacion = 1,
+                Empl_Fecha_Creacion = DateTime.Now
             };
             var response = _generalServices.CrearEmpleado(modelo);
             return Ok(response);
@@ -73,8 +73,8 @@ namespace Proyecto_BK.API.Controllers
                 Esta_Id = json.Esta_Id,
                 Muni_Codigo = json.Muni_Codigo,
                 Carg_Id = json.Carg_Id,
-                Empl_Usua_Modifica = json.Empl_Usua_Modifica,
-                Empl_Fecha_Modifica = json.Empl_Fecha_Modifica
+                Empl_Usua_Modifica = 1,
+                Empl_Fecha_Modifica = DateTime.Now
             };
             var list = _generalServices.EditarEmpleado(modelo);
             return Ok(list);

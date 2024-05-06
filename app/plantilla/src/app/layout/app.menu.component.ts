@@ -21,7 +21,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Graficos',
                 items: [
-                    { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficos() }
+                    { label: 'Graficos', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficos() }
                 ]
             },
             {
@@ -77,7 +77,7 @@ export class AppMenuComponent implements OnInit {
                         routerLink: ['/app/landing']
                     },{
                         label: 'Reporte',
-                        icon: 'pi pi-fw pi-globe',
+                        icon: 'pi pi-file',
                         routerLink: ['/app/IndexInforme']
                     },
                     {
@@ -86,34 +86,30 @@ export class AppMenuComponent implements OnInit {
                         items: [
                             {
                                 label: 'Departamentos',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi-map-marker',
                                 routerLink: ['/app/Index']
                             },
                             {
                                 label: 'Empleados',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi-users',
                                 routerLink: ['/app/IndexEmpleado']
                             },
                             {
                                 label: 'Municipios',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi-map-marker',
                                 routerLink: ['/app/IndexMunicipio']
                             },
                             {
                                 label: 'Estados Civiles',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi-fw pi-heart',
                                 routerLink: ['/app/IndexEstadoCivil']
                             },
                             {
-                                label: 'Clinetes',
-                                icon: 'pi pi-fw pi-times-circle',
+                                label: 'Clientes',
+                                icon: 'pi pi-fw pi-users',
                                 routerLink: ['/app/IndexClientes']
                             },
-                            {
-                                label: '',
-                                icon: 'pi pi-fw pi-lock',
-                                routerLink: ['/app/auth/access']
-                            }
+                           
                         ]
                     },
                     {
@@ -122,52 +118,54 @@ export class AppMenuComponent implements OnInit {
                         items: [
                             {
                                 label: 'Combos Personales',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi-user',
                                 routerLink: ['/app/IndexComboPersonal']
                             },
                             {
                                 label: 'Complementos',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi-plus-circle',
                                 routerLink: ['/app/IndexComplemento']
                             },
                             {
                                 label: 'Postres',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi-plus-circle',
                                 routerLink: ['/app/IndexPostre']
                             },
                             {
+                                label: 'Bebidas',
+                                icon: 'pi pi-plus-circle',
+                                routerLink: ['/app/IndexBebidas']
+                            },
+                            {
                                 label: 'Promociones',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi-plus-circle',
                                 routerLink: ['/app/IndexPromocion']
                             },
                             {
                                 label: 'Promociones Por Comidas',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi-plus-circle',
                                 routerLink: ['/app/IndexPromocionPorComida']
                             },
-                            {
-                                label: 'Promociones Por Sucursales',
-                                icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/app/IndexPromocionPorSucursal']
-                            },
-                            {
-                                label: 'Bebidas',
-                                icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/app/IndexBebidas']
-                            },
+                          
+                          
                             {
                                 label: 'Paquetes',
-                                icon: 'pi pi-fw pi-lock',
+                                icon: 'pi pi-users',
                                 routerLink: ['/app/IndexPaquetes']
                             },
                             {
                                 label: 'Paquetes por alimento',
-                                icon: 'pi pi-fw pi-lock',
+                                icon: 'pi pi-users',
                                 routerLink: ['/app/IndexPaquetesporAlimento']
                             },
                             {
+                                label: 'Promociones Por Sucursales',
+                                icon: 'pi pi-building',
+                                routerLink: ['/app/IndexPromocionPorSucursal']
+                            },
+                            {
                                 label: 'Sucursales',
-                                icon: 'pi pi-fw pi-lock',
+                                icon: 'pi pi-building',
                                 routerLink: ['/app/IndexSucursales']
                             }
                         ]
@@ -177,12 +175,12 @@ export class AppMenuComponent implements OnInit {
                         items: [
                             {
                                 label: 'Cargos',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi pi-fw pi-key',
                                 routerLink: ['/app/IndexCargo']
                             },
                             {
                                 label: 'Usuarios',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi-user-plus',
                                 routerLink: ['/app/IndexUsuarios']
                             },                        
                         
