@@ -45,6 +45,12 @@
                                     placeholder="Buscar por Departamento"></p-columnFilter>
                             </div>
                         </th>
+                        <th style="text-align: center;">
+                    
+                            Acciones
+    
+                    
+                         </th> 
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-empl>
@@ -53,7 +59,12 @@
                         <td>{{empl.muni_Descripcion}}</td>
                         <td>{{empl.dept_Codigo}}</td>
                         <td>{{empl.dept_Descripcion}}</td>
-                        
+                        <td style="display: flex; justify-content: space-around;">
+                            <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(depto.dept_Codigo)"></button>
+                            <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(depto.dept_Codigo)"></button>
+                            <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(depto.dept_Codigo)"></button>
+                          
+                        </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">

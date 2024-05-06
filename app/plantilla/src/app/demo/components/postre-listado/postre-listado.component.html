@@ -45,6 +45,12 @@
                                     placeholder="Buscar por Imagen"></p-columnFilter>
                             </div>
                         </th>
+                        <th style="text-align: center;">
+                    
+                            Acciones
+    
+                    
+                         </th> 
                        
                     </tr>
                 </ng-template>
@@ -55,7 +61,13 @@
                         <td>{{post.post_Precio}}</td>
                         <td>
                             <img [src]="post.post_Imagen" alt="Imagen de promoción" style="width: 100px; height: auto;">
-                        </td>       
+                        </td>    
+                        <td style="display: grid; justify-content: space-around;">
+                            <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(depto.dept_Codigo)"></button>
+                            <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(depto.dept_Codigo)"></button>
+                            <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(depto.dept_Codigo)"></button>
+                          
+                        </td>   
               
                     </tr>
                 </ng-template>

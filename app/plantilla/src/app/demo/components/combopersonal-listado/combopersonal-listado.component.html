@@ -73,6 +73,12 @@
                                     placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
                         </th>
+                        <th style="text-align: center; min-width: 12rem">
+                    
+                            Acciones
+    
+                    
+                         </th> 
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-comb>
@@ -87,6 +93,12 @@
                         <td>{{comb.post_Descripcion}}</td>
                         <td>{{comb.comp_Descripcion}}</td>
                         <td>{{comb.alim_Descripcion}}</td>
+                        <td style="display: grid; justify-content: space-around;">
+                            <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(depto.dept_Codigo)"></button>
+                            <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(depto.dept_Codigo)"></button>
+                            <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(depto.dept_Codigo)"></button>
+                          
+                        </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="emptymessage">
