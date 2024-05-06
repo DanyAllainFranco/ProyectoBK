@@ -45,8 +45,8 @@ namespace Proyecto_BK.API.Controllers
                 Post_Descripcion = json.Post_Descripcion,
                 Post_Precio = json.Post_Precio,
                 Post_Imagen = json.Post_Imagen,
-                Post_Usua_Creacion = json.Post_Usua_Creacion,
-                Post_Fecha_Creacion = json.Post_Fecha_Creacion
+                Post_Usua_Creacion = 1,
+                Post_Fecha_Creacion = DateTime.Now
             };
             var response = _restauranteServices.CrearPostre(modelo);
             return Ok(response);
@@ -62,8 +62,8 @@ namespace Proyecto_BK.API.Controllers
                 Post_Descripcion = json.Post_Descripcion,
                 Post_Precio = json.Post_Precio,
                 Post_Imagen = json.Post_Imagen,
-                Post_Usua_Modifica = json.Post_Usua_Modifica,
-                Post_Fecha_Modifica = json.Post_Fecha_Modifica
+                Post_Usua_Modifica = 1,
+                Post_Fecha_Modifica = DateTime.Now
             };
             var list = _restauranteServices.EditarPostre(modelo);
             return Ok(list);

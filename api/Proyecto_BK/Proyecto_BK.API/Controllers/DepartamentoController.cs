@@ -46,8 +46,8 @@ namespace Proyecto_BK.API.Controllers
             {
                 Dept_Codigo = json.Dept_Codigo,
                 Dept_Descripcion = json.Dept_Descripcion,
-                Dept_Usua_Creacion = json.Dept_Usua_Creacion,
-                Dept_Fecha_Creacion = json.Dept_Fecha_Creacion
+                Dept_Usua_Creacion = 1,
+                Dept_Fecha_Creacion = DateTime.Now
             };
             var response = _generalServices.CrearDepto(modelo);
             return Ok(response);
@@ -60,8 +60,8 @@ namespace Proyecto_BK.API.Controllers
             {
                 Dept_Codigo = json.Dept_Codigo,
                 Dept_Descripcion = json.Dept_Descripcion,
-                Dept_Usua_Modifica = json.Dept_Usua_Modifica,
-                Dept_Fecha_Modifica = json.Dept_Fecha_Modifica
+                Dept_Usua_Modifica = 1,
+                Dept_Fecha_Modifica = DateTime.Now
             };
             var list = _generalServices.EditarDepto(modelo);
             return Ok(list);

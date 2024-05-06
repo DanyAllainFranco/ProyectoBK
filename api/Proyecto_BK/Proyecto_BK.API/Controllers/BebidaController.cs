@@ -45,8 +45,8 @@ namespace Proyecto_BK.API.Controllers
                 Bebi_Descripcion = json.Bebi_Descripcion,
                 Bebi_Precio = json.Bebi_Precio,
                 Bebi_Imagen = json.Bebi_Imagen,
-                Bebi_Usua_Creacion = json.Bebi_Usua_Creacion,
-                Bebi_Fecha_Creacion = json.Bebi_Fecha_Creacion
+                Bebi_Usua_Creacion = 1,
+                Bebi_Fecha_Creacion = DateTime.Now
             };
             var response = _restauranteServices.CrearBebida(modelo);
             return Ok(response);
@@ -62,8 +62,8 @@ namespace Proyecto_BK.API.Controllers
                 Bebi_Descripcion = json.Bebi_Descripcion,
                 Bebi_Precio = json.Bebi_Precio,
                 Bebi_Imagen = json.Bebi_Imagen,
-                Bebi_Usua_Modifica = json.Bebi_Usua_Modifica,
-                Bebi_Fecha_Modifica = json.Bebi_Fecha_Modifica
+                Bebi_Usua_Modifica = 1,
+                Bebi_Fecha_Modifica = DateTime.Now
             };
             var list = _restauranteServices.EditarBebida(modelo);
             return Ok(list);

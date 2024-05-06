@@ -46,8 +46,8 @@ namespace Proyecto_BK.API.Controllers
                 Prom_Precio = json.Prom_Precio,
                 Prom_Imagen = json.Prom_Imagen,
                 Prom_Dia = json.Prom_Dia,
-                Prom_Usua_Creacion = json.Prom_Usua_Creacion,
-                Prom_Fecha_Creacion = json.Prom_Fecha_Creacion
+                Prom_Usua_Creacion = 1,
+                Prom_Fecha_Creacion = DateTime.Now
             };
             var response = _restauranteServices.CrearPromocion(modelo);
             return Ok(response);
@@ -64,8 +64,8 @@ namespace Proyecto_BK.API.Controllers
                 Prom_Precio = json.Prom_Precio,
                 Prom_Imagen = json.Prom_Imagen,
                 Prom_Dia = json.Prom_Dia,
-                Prom_Usua_Modifica = json.Prom_Usua_Modifica,
-                Prom_Fecha_Modifica = json.Prom_Fecha_Modifica
+                Prom_Usua_Modifica = 1,
+                Prom_Fecha_Modifica = DateTime.Now
             };
             var list = _restauranteServices.EditarPromocion(modelo);
             return Ok(list);
