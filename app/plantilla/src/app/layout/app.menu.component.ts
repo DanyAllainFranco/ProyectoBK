@@ -82,7 +82,7 @@ export class AppMenuComponent implements OnInit {
                     },
                     {
                         label: 'General',
-                        icon: 'pi pi-fw pi-user',
+                        icon: 'pi pi-fw pi-globe',
                         items: [
                             {
                                 label: 'Departamentos',
@@ -118,7 +118,7 @@ export class AppMenuComponent implements OnInit {
                     },
                     {
                         label: 'Restaurante',
-                        icon: 'pi pi-fw pi-user',
+                        icon: 'pi pi-shopping-bag',
                         items: [
                             {
                                 label: 'Combos Personales',
@@ -173,7 +173,7 @@ export class AppMenuComponent implements OnInit {
                         ]
                     },{
                         label: 'Acceso',
-                        icon: 'pi pi-fw pi-user',
+                        icon: 'pi pi-key',
                         items: [
                             {
                                 label: 'Cargos',
