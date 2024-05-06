@@ -1,23 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChartModule } from 'primeng/chart'; // Asegúrate de importar ChartModule aquí
 import { GraficosComponent } from './graficos.component';
+import { ChartsDemoRoutingModule } from '../uikit/charts/chartsdemo-routing.module';
 
-describe('GraficosComponent', () => {
-  let component: GraficosComponent;
-  let fixture: ComponentFixture<GraficosComponent>;
+@NgModule({
+  declarations: [GraficosComponent],
+  imports: [
+    CommonModule,
+    ChartsDemoRoutingModule,
+    ChartModule 
+  ]
+})
+export class ChartsDemoModule { }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [GraficosComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(GraficosComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Graficos} from '../models/GraficosViewModel'
-import {HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
+import { Graficos } from '../models/GraficosViewModel';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 
 @Injectable({
@@ -9,42 +11,57 @@ import {HttpClient} from '@angular/common/http'
 export class AlimentomasPedidoServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/ComboPersonal/GrafiAlimentos?Usua_Usuario=Admin';
+  baseUrl = 'https://localhost:44332/API/ComboPersonal';
 
-  getAlimentomasPedido (){
-    return this.http.get<Graficos[]>(this.Url);
+  getAlimentomasPedido(Usua_Usuario: string) {
+    const url = `${this.baseUrl}/GrafiAlimentos?Usua_Usuario=${Usua_Usuario}`;
+    return this.http.get<Graficos[]>(url).pipe(
+      catchError(error => {
+        console.error('Error al obtener datos de alimentos:', error);
+        return throwError(error);
+      })
+    );
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class CombomasPedidoServiceService {
 
-    constructor(private http: HttpClient) { }
-    Url = 'https://localhost:44332/API/ComboPersonal/GrafiCombos?Usua_Usuario=Admin';
-  
-    getCombomasPedido (){
-      return this.http.get<Graficos[]>(this.Url);
-    }
+  constructor(private http: HttpClient) { }
+  baseUrl = 'https://localhost:44332/API/ComboPersonal';
+
+  getCombomasPedido(Usua_Usuario: string) {
+    const url = `${this.baseUrl}/GrafiCombos?Usua_Usuario=${Usua_Usuario}`;
+    return this.http.get<Graficos[]>(url);
   }
+}
 
-  
-  export class PaquetemasPedidoServiceService {
+@Injectable({
+  providedIn: 'root'
+})
+export class PaquetemasPedidoServiceService {
 
-    constructor(private http: HttpClient) { }
-    Url = 'https://localhost:44332/API/ComboPersonal/GrafiPaquetes?Usua_Usuario=Admin';
-  
-    getPaquetemasPedido (){
-      return this.http.get<Graficos[]>(this.Url);
-    }
+  constructor(private http: HttpClient) { }
+  baseUrl = 'https://localhost:44332/API/ComboPersonal';
+
+  getPaquetemasPedido(Usua_Usuario: string) {
+    const url = `${this.baseUrl}/GrafiPaquetes?Usua_Usuario=${Usua_Usuario}`;
+    return this.http.get<Graficos[]>(url);
   }
+}
 
-  
-  export class PostremasPedidoServiceService {
+@Injectable({
+  providedIn: 'root'
+})
+export class PostremasPedidoServiceService {
 
-    constructor(private http: HttpClient) { }
-    Url = 'https://localhost:44332/API/ComboPersonal/GrafiPostres?Usua_Usuario=Admin';
-  
-    getPostremasPedido (){
-      return this.http.get<Graficos[]>(this.Url);
-    }
+  constructor(private http: HttpClient) { }
+  baseUrl = 'https://localhost:44332/API/ComboPersonal';
+
+  getPostremasPedido(Usua_Usuario: string) {
+    const url = `${this.baseUrl}/GrafiPostres?Usua_Usuario=${Usua_Usuario}`;
+    return this.http.get<Graficos[]>(url);
   }
-  
+}

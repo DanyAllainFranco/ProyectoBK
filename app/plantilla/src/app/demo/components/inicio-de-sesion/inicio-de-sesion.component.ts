@@ -7,6 +7,8 @@ import { Usuario } from '../../models/UsuariosViewModel';
 import { Login } from '../../models/LoginViewModel';
 import { CommonModule } from '@angular/common';
 
+
+
 @Component({
   selector: 'app-inicio-de-sesion',
   templateUrl:'./inicio-de-sesion.component.html',
@@ -26,26 +28,26 @@ export class InicioDeSesionComponent {
   
 
   // Método para redirigir a la página principal
-  irAPaginaPrincipal():void {
+  irAPaginaPrincipal(): void {
     if (this.loginForm.valid) {
       const loginData: Login = this.loginForm.value;
       this.usuarioService.login(loginData).subscribe(
         response => {
           console.log('Respuesta del servidor:', response);
-          if (response!="Error"){  
-          this.router.navigate(['/app/Principal']);
+          if (response !== "Error") {
+            localStorage.setItem('usuario', loginData.Usua_Usuario); 
+            this.router.navigate(['/app/PrincipalGraficos'], { queryParams: { usuario: loginData.Usua_Usuario } });
           }
-
         },
         error => {
           console.error('Error al iniciar sesión:', error);
-
         }
       );
     } else {
       console.log('Formulario inválido');
     }
-  } 
+  }
+  
  }
 
  @NgModule({

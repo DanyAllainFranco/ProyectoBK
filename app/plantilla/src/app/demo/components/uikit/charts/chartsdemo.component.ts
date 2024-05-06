@@ -1,270 +1,208 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, debounceTime } from 'rxjs';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { Subscription } from 'rxjs';
+import { AlimentomasPedidoServiceService } from '../../../service/grafico-service.service';
+import { CombomasPedidoServiceService } from '../../../service/grafico-service.service';
+import { PostremasPedidoServiceService } from '../../../service/grafico-service.service';
+import { PaquetemasPedidoServiceService } from '../../../service/grafico-service.service';
+import { Graficos } from '../../../models/GraficosViewModel';
+import { ChartModule } from 'primeng/chart';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
+
 
 @Component({
-    templateUrl: './chartsdemo.component.html'
+  templateUrl: './chartsdemo.component.html',
 })
-export class ChartsDemoComponent implements OnInit, OnDestroy {
+export class GraficosComponent implements OnInit, OnDestroy {
 
-    lineData: any;
+  pieDataAlimentos: any;
+  pieDataCombos: any;
+  pieDataPaquetes: any;
+  pieDataPostres: any;
+  pieOptions: any;
+  pieOptionsAlimentos: any;
+  pieOptionsCombos: any;
+  pieOptionsPaquetes: any;
+  pieOptionsPostres: any;
+  subscriptionAlimentos: Subscription;
+  subscriptionCombos: Subscription;
+  subscriptionPaquetes: Subscription;
+  subscriptionPostres: Subscription;
+  textColor: string = '#000';
+  usuario: string;
+  
 
-    barData: any;
+  constructor(
+      private alimentomasPedidoService: AlimentomasPedidoServiceService,
+      private combomasPedidoService: CombomasPedidoServiceService,
+      private paquetemasPedidoService: PaquetemasPedidoServiceService,
+      private postremasPedidoService: PostremasPedidoServiceService,
+      private route: ActivatedRoute,
+      private router: Router
+  ) {}
 
-    pieData: any;
+  ngOnInit() {
+      this.route.queryParams.subscribe(params => {
+          this.usuario = params['usuario'];
+          if (this.usuario) {
+              this.loadData();
+          }
+      });
 
-    polarData: any;
+      localStorage.setItem('lastVisitedRoute', this.router.url);
+  }
 
-    radarData: any;
+  loadData() {
+    this.subscriptionAlimentos = this.alimentomasPedidoService.getAlimentomasPedido(this.usuario)
+    .subscribe((data: Graficos[]) => {
+        this.initChartsAlimentos(data);
+    });
 
-    lineOptions: any;
+      this.subscriptionCombos = this.combomasPedidoService.getCombomasPedido(this.usuario)
+          .subscribe((data: Graficos[]) => {
+              this.initChartsCombos(data);
+          });
 
-    barOptions: any;
+      this.subscriptionPaquetes = this.paquetemasPedidoService.getPaquetemasPedido(this.usuario)
+          .subscribe((data: Graficos[]) => {
+              this.initChartsPaquetes(data);
+          });
 
-    pieOptions: any;
+      this.subscriptionPostres = this.postremasPedidoService.getPostremasPedido(this.usuario)
+          .subscribe((data: Graficos[]) => {
+              this.initChartsPostres(data);
+          });
+  }
 
-    polarOptions: any;
-
-    radarOptions: any;
-
-    subscription: Subscription;
-    constructor(private layoutService: LayoutService) {
-        this.subscription = this.layoutService.configUpdate$
-            .pipe(debounceTime(25))
-            .subscribe((config) => {
-                this.initCharts();
-            });
+  initChartsAlimentos(data: Graficos[]) {
+    if (!Array.isArray(data)) {
+      console.error('data no es un arreglo');
+      return;
     }
-
-    ngOnInit() {
-        this.initCharts();
-    }
-
-    initCharts() {
-        const documentStyle = getComputedStyle(document.documentElement);
-        const textColor = documentStyle.getPropertyValue('--text-color');
-        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-        
-        this.barData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'My First dataset',
-                    backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                    borderColor: documentStyle.getPropertyValue('--primary-500'),
-                    data: [65, 59, 80, 81, 56, 55, 40]
-                },
-                {
-                    label: 'My Second dataset',
-                    backgroundColor: documentStyle.getPropertyValue('--primary-200'),
-                    borderColor: documentStyle.getPropertyValue('--primary-200'),
-                    data: [28, 48, 40, 19, 86, 27, 90]
+  
+    const labels = data.map(item => item.alim_Descripcion);
+    const values = data.map(item => item.totalPedidosAlimentos);
+  
+    this.pieDataAlimentos = {
+        labels: labels,
+        datasets: [{
+            data: values,
+            backgroundColor: ['#FFCE56', '#FFD700', '#FFA07A','#FF6384', '#36A2EB', '#20B2AA'],
+            hoverBackgroundColor: ['#FFCE56', '#FFD700', '#FFA07A','#FF6384', '#36A2EB', '#20B2AA']
+            
+        }]
+    };
+  
+    this.pieOptionsAlimentos = {
+        plugins: {
+            legend: {
+                labels: {
+                    usePointStyle: true,
+                    color: this.textColor
                 }
-            ]
-        };
-
-        this.barOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        fontColor: textColor
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: textColorSecondary,
-                        font: {
-                            weight: 500
-                        }
-                    },
-                    grid: {
-                        display: false,
-                        drawBorder: false
-                    }
-                },
-                y: {
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
-                    }
-                },
             }
+        }
+    };
+  }
+  
+  
+
+  initChartsCombos(data: Graficos[]) {
+      const labels = data.map(item => item.comb_Descripcion);
+      const values = data.map(item => item.totalPedidosCombos);
+  
+      this.pieDataCombos  = {
+          labels: labels,
+          datasets: [{
+              data: values,
+              backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56', '#4BC0C0', '#9966FF'], 
+              hoverBackgroundColor: ['#36A2EB', '#FF6384', '#FFCE56', '#4BC0C0', '#9966FF'] 
+          }]
+      };
+  
+      this.pieOptionsCombos = {
+          plugins: {
+              legend: {
+                  labels: {
+                      usePointStyle: true,
+                      color: this.textColor
+                  }
+              }
+          }
+      };
+  }
+
+  initChartsPaquetes(data: Graficos[]) {
+    if (Array.isArray(data)) {
+        const labels = data.map(item => item.paqe_Descripcion);
+        const values = data.map(item => item.totalPedidosPaquetes);
+
+        this.pieDataPaquetes = {
+            labels: labels,
+            datasets: [{
+                data: values,
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF8C00', '#20B2AA', '#FFD700'],
+                hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF8C00', '#20B2AA', '#FFD700']
+                
+            }]
         };
 
-        this.pieData = {
-            labels: ['A', 'B', 'C'],
-            datasets: [
-                {
-                    data: [540, 325, 702],
-                    backgroundColor: [
-                        documentStyle.getPropertyValue('--indigo-500'),
-                        documentStyle.getPropertyValue('--purple-500'),
-                        documentStyle.getPropertyValue('--teal-500')
-                    ],
-                    hoverBackgroundColor: [
-                        documentStyle.getPropertyValue('--indigo-400'),
-                        documentStyle.getPropertyValue('--purple-400'),
-                        documentStyle.getPropertyValue('--teal-400')
-                    ]
-                }]
-        };
-
-        this.pieOptions = {
+        this.pieOptionsPaquetes = {
             plugins: {
                 legend: {
                     labels: {
                         usePointStyle: true,
-                        color: textColor
+                        color: this.textColor
                     }
                 }
             }
         };
-
-        this.lineData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                    borderColor: documentStyle.getPropertyValue('--primary-500'),
-                    tension: .4
-                },
-                {
-                    label: 'Second Dataset',
-                    data: [28, 48, 40, 19, 86, 27, 90],
-                    fill: false,
-                    backgroundColor: documentStyle.getPropertyValue('--primary-200'),
-                    borderColor: documentStyle.getPropertyValue('--primary-200'),
-                    tension: .4
-                }
-            ]
-        };
-
-        this.lineOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        fontColor: textColor
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
-                    }
-                },
-                y: {
-                    ticks: {
-                        color: textColorSecondary
-                    },
-                    grid: {
-                        color: surfaceBorder,
-                        drawBorder: false
-                    }
-                },
-            }
-        };
-
-        this.polarData = {
-            datasets: [{
-                data: [
-                    11,
-                    16,
-                    7,
-                    3
-                ],
-                backgroundColor: [
-                    documentStyle.getPropertyValue('--indigo-500'),
-                    documentStyle.getPropertyValue('--purple-500'),
-                    documentStyle.getPropertyValue('--teal-500'),
-                    documentStyle.getPropertyValue('--orange-500')
-                ],
-                label: 'My dataset'
-            }],
-            labels: [
-                'Indigo',
-                'Purple',
-                'Teal',
-                'Orange'
-            ]
-        };
-
-        this.polarOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        color: textColor
-                    }
-                }
-            },
-            scales: {
-                r: {
-                    grid: {
-                        color: surfaceBorder
-                    }
-                }
-            }
-        };
-
-        this.radarData = {
-            labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
-            datasets: [
-                {
-                    label: 'My First dataset',
-                    borderColor: documentStyle.getPropertyValue('--indigo-400'),
-                    pointBackgroundColor: documentStyle.getPropertyValue('--indigo-400'),
-                    pointBorderColor: documentStyle.getPropertyValue('--indigo-400'),
-                    pointHoverBackgroundColor: textColor,
-                    pointHoverBorderColor: documentStyle.getPropertyValue('--indigo-400'),
-                    data: [65, 59, 90, 81, 56, 55, 40]
-                },
-                {
-                    label: 'My Second dataset',
-                    borderColor: documentStyle.getPropertyValue('--purple-400'),
-                    pointBackgroundColor: documentStyle.getPropertyValue('--purple-400'),
-                    pointBorderColor: documentStyle.getPropertyValue('--purple-400'),
-                    pointHoverBackgroundColor: textColor,
-                    pointHoverBorderColor: documentStyle.getPropertyValue('--purple-400'),
-                    data: [28, 48, 40, 19, 96, 27, 100]
-                }
-            ]
-        };
-
-        this.radarOptions = {
-            plugins: {
-                legend: {
-                    labels: {
-                        fontColor: textColor
-                    }
-                }
-            },
-            scales: {
-                r: {
-                    grid: {
-                        color: textColorSecondary
-                    }
-                }
-            }
-        };
+    } else {
+        console.error('El argumento data no es un array en initChartsPaquetes.');
     }
+}
 
-    ngOnDestroy() {
-        if (this.subscription) {
-            this.subscription.unsubscribe();
-        }
-    }
-    
+
+
+  initChartsPostres(data: Graficos[]) {
+      const labels = data.map(item => item.post_Descripcion);
+      const values = data.map(item => item.totalPedidosPostres);
+  
+      this.pieDataPostres = {
+          labels: labels,
+          datasets: [{
+              data: values,
+              backgroundColor: [ '#9966FF', '#FF8C00','#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
+              hoverBackgroundColor: ['#9966FF', '#FF8C00','#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+
+          }]
+      };
+  
+      this.pieOptionsPostres = {
+          plugins: {
+              legend: {
+                  labels: {
+                      usePointStyle: true,
+                      color: this.textColor
+                  }
+              }
+          }
+      };
+  }
+
+  ngOnDestroy() {
+      if (this.subscriptionAlimentos) {
+          this.subscriptionAlimentos.unsubscribe();
+      }
+      if (this.subscriptionCombos) {
+          this.subscriptionCombos.unsubscribe();
+      }
+      if (this.subscriptionPaquetes) {
+          this.subscriptionPaquetes.unsubscribe();
+      }
+      if (this.subscriptionPostres) {
+          this.subscriptionPostres.unsubscribe();
+      }
+  }
 }

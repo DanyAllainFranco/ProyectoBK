@@ -20,7 +20,9 @@ import { ClientesListadoComponent } from './demo/components/cliente-listado/clie
 import { UsuariosListadoComponent } from './demo/components/usuario-listado/usuario-listado.component';
 import { PaqueteListadoComponent } from './demo/components/paquete-listado/paquete-listado.component';
 import { SucursalListadoComponent } from './demo/components/sucursal-listado/sucursal-listado.component';
+// import { GraficosComponent } from './demo/components/graficos/graficos.component';
 import { ListDemoComponent } from './demo/components/uikit/list/listdemo.component';
+import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.component';
 
 @NgModule({
     imports: [
@@ -32,6 +34,7 @@ import { ListDemoComponent } from './demo/components/uikit/list/listdemo.compone
                 path: 'app', component: AppLayoutComponent, // Resto de tus rutas van bajo 'app'
                 children: [
                     { path: 'Principal',  component:ListDemoComponent},
+                    { path: 'PrincipalGraficos',  component:GraficosComponent},
                     { path: 'dashboard', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
                     { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
@@ -54,7 +57,8 @@ import { ListDemoComponent } from './demo/components/uikit/list/listdemo.compone
                     { path: 'IndexClientes', component: ClientesListadoComponent },
                     { path: 'IndexUsuarios', component: UsuariosListadoComponent },
                     { path: 'IndexPaquetes', component: PaqueteListadoComponent },
-                    { path: 'IndexSucursales', component: SucursalListadoComponent }
+                    { path: 'IndexSucursales', component: SucursalListadoComponent },
+                    // { path: 'IndexGraficos', component: GraficosComponent }
                 ]
             },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },

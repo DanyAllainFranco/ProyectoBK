@@ -1,6 +1,8 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
+import { Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-menu',
@@ -9,17 +11,26 @@ import { LayoutService } from './service/app.layout.service';
 export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
+    usuario: string;
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(public layoutService: LayoutService, private router: Router) { }
 
     ngOnInit() {
+        this.usuario = localStorage.getItem('usuario');
         this.model = [
+            {
+                label: 'Graficos',
+                items: [
+                    { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficos() }
+                ]
+            },
             {
                 label: 'Inicio',
                 items: [
-                    { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/app/uikit/list'] }
+                    { label: 'Inicio', icon: 'pi pi-fw pi-home', routerLink: ['/app/uikit/'] }
                 ]
             },
+        
             {
                 label: 'Sistema',
                 items: [
@@ -48,6 +59,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: ['https://www.primefaces.org/primeblocks-ng'], target: '_blank' },
                 ]
             },
+
             {
                 label: 'Utilities',
                 items: [
@@ -249,4 +261,8 @@ export class AppMenuComponent implements OnInit {
             }
         ];
     }
+    loadGraficos() {
+        this.router.navigate(['/app/PrincipalGraficos'], { queryParams: { usuario: this.usuario } });
+    }
 }
+

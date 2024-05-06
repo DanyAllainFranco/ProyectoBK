@@ -40,28 +40,28 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult GrafiCombos(string Usua_Usuario)
         {
             var result = _restauranteServices.GrafiCombos(Usua_Usuario);
-            return Ok(result);
+            return Json(result.Data);
         }
 
         [HttpGet("API/[controller]/GrafiPostres")]
         public IActionResult GrafiPostres(string Usua_Usuario)
         {
             var result = _restauranteServices.GrafiPostres(Usua_Usuario);
-            return Ok(result);
+            return Json(result.Data);
         }
 
         [HttpGet("API/[controller]/GrafiPaquetes")]
         public IActionResult GrafiPaquetes(string Usua_Usuario)
         {
             var result = _restauranteServices.GrafiPaquetes(Usua_Usuario);
-            return Ok(result);
+            return Json(result.Data);
         }
 
         [HttpGet("API/[controller]/GrafiAlimentos")]
         public IActionResult GrafiAlimentos(string Usua_Usuario)
         {
             var result = _restauranteServices.GrafiAlimentos(Usua_Usuario);
-            return Ok(result);
+            return Json(result.Data);
         }
 
         [HttpPost("API/[controller]/Insert")]

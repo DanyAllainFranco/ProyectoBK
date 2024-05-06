@@ -64,5 +64,8 @@ export class AppComponent {
         ListarSucursales (){
             this.router.navigate(['IndexSucursales']);
         }
+        ListarGraficos (){
+            this.router.navigate(['IndexGraficos']);
+        }
     }
 
