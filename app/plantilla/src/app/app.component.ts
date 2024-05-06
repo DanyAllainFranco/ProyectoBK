@@ -67,5 +67,7 @@ export class AppComponent {
         ListarGraficos (){
             this.router.navigate(['IndexGraficos']);
         }
-    }
-
+        InformeDeVentas (){
+            this.router.navigate(['IndexInforme']);
+        }
+}

@@ -21,8 +21,10 @@ import { UsuariosListadoComponent } from './demo/components/usuario-listado/usua
 import { PaqueteListadoComponent } from './demo/components/paquete-listado/paquete-listado.component';
 import { SucursalListadoComponent } from './demo/components/sucursal-listado/sucursal-listado.component';
 // import { GraficosComponent } from './demo/components/graficos/graficos.component';
+import { ReporteVentasComponent } from './demo/components/reporte-ventas/reporte-ventas.component';
 import { ListDemoComponent } from './demo/components/uikit/list/listdemo.component';
 import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.component';
+
 
 @NgModule({
     imports: [
@@ -59,7 +61,8 @@ import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.com
                     { path: 'IndexPaquetes', component: PaqueteListadoComponent },
                     { path: 'IndexSucursales', component: SucursalListadoComponent },
                     // { path: 'IndexGraficos', component: GraficosComponent }
-                ]
+                    { path: 'IndexInforme', component: ReporteVentasComponent }
+                                ]
             },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
             { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
