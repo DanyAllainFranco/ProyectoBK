@@ -81,7 +81,7 @@ namespace Proyecto_BK.DataAccess.Repository
         #endregion
 
         #region Paquetes
-        public static string Paqe_Listar = "[Rest].SP_Paquetes_Mostrar";
+        public static string Paqe_Listar = "[Rest].[SP_Paquetes_Mostrar]";
         public static string Paqe_Llenar = "[Rest].SP_Paquetes_Llenar";
         public static string Paqe_Insertar = "[Rest].SP_Paquetes_Insertar";
         public static string Paqe_Editar = "[Rest].SP_Paquetes_Editar";
