@@ -20,7 +20,9 @@ import { ClientesListadoComponent } from './demo/components/cliente-listado/clie
 import { UsuariosListadoComponent } from './demo/components/usuario-listado/usuario-listado.component';
 import { PaqueteListadoComponent } from './demo/components/paquete-listado/paquete-listado.component';
 import { SucursalListadoComponent } from './demo/components/sucursal-listado/sucursal-listado.component';
+import { ReporteVentasComponent } from './demo/components/reporte-ventas/reporte-ventas.component';
 import { ListDemoComponent } from './demo/components/uikit/list/listdemo.component';
+
 
 @NgModule({
     imports: [
@@ -54,7 +56,8 @@ import { ListDemoComponent } from './demo/components/uikit/list/listdemo.compone
                     { path: 'IndexClientes', component: ClientesListadoComponent },
                     { path: 'IndexUsuarios', component: UsuariosListadoComponent },
                     { path: 'IndexPaquetes', component: PaqueteListadoComponent },
-                    { path: 'IndexSucursales', component: SucursalListadoComponent }
+                    { path: 'IndexSucursales', component: SucursalListadoComponent },
+                    { path: 'IndexInforme', component: ReporteVentasComponent }
                 ]
             },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },

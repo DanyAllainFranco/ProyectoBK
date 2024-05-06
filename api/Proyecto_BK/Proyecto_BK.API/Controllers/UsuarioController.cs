@@ -40,7 +40,7 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult Login(string Usua_Usuario, string Usua_Contra)
         {
 
-
+                
              
             var list = _accesoServices.UsuarioLogin(Usua_Usuario, Usua_Contra);
 
