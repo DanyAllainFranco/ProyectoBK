@@ -21,7 +21,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Graficos',
                 items: [
-                    { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficos() }
+                    { label: 'Graficos', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficos() }
                 ]
             },
             {
