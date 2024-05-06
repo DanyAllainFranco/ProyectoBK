@@ -15,3 +15,6 @@ export class DepartamentoServiceService {
     return this.http.get<Departamento[]>(this.Url);
   }
 }
+
+
+
