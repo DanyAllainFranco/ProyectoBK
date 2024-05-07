@@ -54,10 +54,6 @@ namespace Proyecto_BK.API.Controllers
             return Json(list.Data);
         }
 
-  
-
-
-
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(ComplementoViewModel item)
         {

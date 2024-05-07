@@ -1035,24 +1035,18 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult LlenarPromocionPorSucursal(int PPSu_Id)
+        public ServiceResult LlenarPromocionPorSucursal(string id)
         {
             var result = new ServiceResult();
             try
             {
-                var promocionPorSucursal = _promocionPorSucursalRepository.Find(PPSu_Id);
-                if (promocionPorSucursal != null)
-                {
-                    return result.Ok(promocionPorSucursal);
-                }
-                else
-                {
-                    return result.Error($"No se encontró la Promoción por Sucursal con ID {PPSu_Id}");
-                }
+                var list = _promocionPorSucursalRepository.Fill(id);
+
+                return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró la Promoción por Sucursal con ID {PPSu_Id}");
+                return result.Error(ex);
             }
         }
 
@@ -1061,19 +1055,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _promocionPorSucursalRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _promocionPorSucursalRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Promoción por Sucursal creada con éxito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información de la Promoción por Sucursal");
+                return result.Error(ex.Message);
             }
         }
 
@@ -1089,13 +1083,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe una Promoción por Sucursal con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
 
@@ -1111,7 +1104,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró la Promoción por Sucursal a eliminar" : list.MessageStatus;
+                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Complemento a eliminar" : list.MessageStatus;
                     return result.Error(list);
                 }
             }
