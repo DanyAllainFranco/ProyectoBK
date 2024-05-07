@@ -27,10 +27,14 @@
                                             <select formControlName="Muni_Codigo" pInputText id="municipio" required class="form-control" [ngClass]="{'ng-invalid ng-dirty': submitted && formSucursal.get('Muni_Codigo').value === '0'}">
                                                 <option *ngFor="let municipio of municipios" [value]="municipio.muni_Codigo">{{ municipio.muni_Descripcion }}</option>
                                             </select>
+                                            <label for="admin">Admin</label>
+                                            <p-inputSwitch formControlName="admin"></p-inputSwitch>
+
                                         </div>
                                     </div>
                                 </div>
-                                                               <input pInputText formControlName="id" autocomplete="off" id="email" type="text" hidden />
+                      
+                                <input pInputText formControlName="id" autocomplete="off" id="email" type="text" hidden />
                                 <small *ngIf="campoVacio('sucursal')" class="text-danger">El campo es requerido.</small>
                             </div>
                         </div>

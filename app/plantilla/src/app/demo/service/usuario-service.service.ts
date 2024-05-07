@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Login} from '../models/LoginViewModel';
 import {Usuario} from '../models/UsuariosViewModel'
 import {EmpleadoDDL} from '../models/EmpleadoViewModel'
-import {RolesDLL} from '../models/RolesViesModel'
+import {RolesDLL} from '../models/RolesViewModel'
 import {HttpClient} from '@angular/common/http'
 import {Observable} from 'rxjs';
 
