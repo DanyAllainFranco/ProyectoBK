@@ -33,6 +33,16 @@ namespace Proyecto_BK.API.Controllers
 
         [HttpGet("API/[controller]/DropDown")]
         public IActionResult ListDropdown()
+        [HttpGet("API/[controller]/EmpleadoDDL")]
+        public IActionResult EmpleadoDDL()
+        {
+
+            var list = _generalServices.EmpleadoDDL();
+            return Ok(list.Data);
+        }
+
+        [HttpGet("API/[controller]/Find")]
+        public IActionResult Find(int Empl_Id)
         {
             var list = _generalServices.ListEmpleado();
             var drop = list.Data as List<tbEmpleados>;

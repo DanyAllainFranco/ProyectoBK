@@ -14,6 +14,8 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Depa_Insertar = "[Gral].[SP_Departamentos_Insertar]";
         public static string Depa_Editar = "[Gral].[SP_Departamentos_Editar]";
         public static string Depa_Eliminar = "[Gral].[SP_Departamentos_Eliminar]";
+        public static string MuniDDL = "[Gral].[MunicipioDDL]";
+
         #endregion
 
         #region Clientes
@@ -30,6 +32,8 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Empl_Insertar = "[Gral].SP_Empleados_Insertar";
         public static string Empl_Editar = "[Gral].SP_Empleados_Editar";
         public static string Empl_Eliminar = "[Gral].SP_Empleados_Eliminar";
+        public static string EmpleadoDDL = "[Gral].EmpleadoDDL";
+
         #endregion
 
         #region Estados Civiles 
@@ -37,7 +41,9 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Esta_Llenar = "[Gral].SP_EstadosCiviles_Llenar";
         public static string Esta_Insertar = "[Gral].SP_EstadosCiviles_Insertar";
         public static string Esta_Editar = "[Gral].SP_EstadosCiviles_Editar";
-        public static string Esta_Eliminar = "[Gral].SP_EstadosCiviles_Eliminar";
+        public static string Esta_Eliminar = "[Gral].SP_EstadosCiviles_Eliminar"; //EstadoCivilDDL
+        public static string EstadoCivilDDL = "[Gral].EstadoCivilDDL";
+
         #endregion
 
         #region Municipios
@@ -165,7 +171,8 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Role_Llenar = "[Acce].SP_Roles_Llenar";
         public static string Role_Insertar = "[Acce].SP_Roles_Insertar";
         public static string Role_Editar = "[Acce].SP_Roles_Editar";
-        public static string Role_Eliminar = "[Acce].SP_Roles_Eliminar";
+        public static string Role_Eliminar = "[Acce].SP_Roles_Eliminar";//RolesDDL
+        public static string RolesDDL = "[Acce].SP_RolDDL";
         #endregion
 
         #region Usuarios

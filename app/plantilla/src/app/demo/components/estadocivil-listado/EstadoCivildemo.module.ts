@@ -15,7 +15,6 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from "primeng/dropdown";
-import { MatExpansionModule } from '@angular/material/expansion';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -31,14 +30,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 		InputTextModule,
 		DropdownModule,
 		ReactiveFormsModule,
-
 		ButtonModule,
 		OverlayPanelModule,
 		TableModule,
 		ConfirmDialogModule,
 		SidebarModule,
 		RippleModule,
-		MatExpansionModule,
 		ConfirmPopupModule
 	],
 	declarations: [EstadocivilListadoComponent],

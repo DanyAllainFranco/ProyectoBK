@@ -61,6 +61,15 @@ namespace Proyecto_BK.DataAccess.Repository
 
         }
 
+        public IEnumerable<tbMunicipios> MuniDDL()
+        {
+            List<tbMunicipios> result = new List<tbMunicipios>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                result = db.Query<tbMunicipios>(ScriptsBaseDeDatos.MuniDDL, commandType: CommandType.Text).ToList();
+                return result;
+            }
+        }
 
         public tbDepartamentos List(string Dept_Codigo)
         {

@@ -11,8 +11,15 @@ export class Empleado {
     carg_Descripcion?:string;
     esta_Descripcion?:String;
     muni_Descripcion?:String;
+    empl_Usua_Creacion?: number;
+    empl_Fecha_Creacion?: Date;
+    empl_Usua_Modifica?: number;
+    empl_Fecha_Modifica?: Date;
+}
 
-
+export class EmpleadoDDL{
+    empl_Id?: number;
+    empl_Nombre?: string;
 }
 
 

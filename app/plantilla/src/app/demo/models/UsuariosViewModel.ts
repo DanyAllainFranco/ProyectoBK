@@ -1,13 +1,13 @@
 export class Usuario {
-    Usua_Id?: number;
-    Usua_Usuario?: string;
-    Usua_Contra?: string;
-    Usua_Admin?: boolean;
-    Empl_Id?: number;
-    Rol_Id?: number;
-    Usua_Usua_Creacion?: number;
-    Usua_Fecha_Creacion?: Date;
-    Usua_Usua_Modifica?: number;
-    Usua_Fecha_Modifica?: Date;
-    Usua_Estado?: boolean;
+    usua_Id?: number;
+    usua_Usuario?: string;
+    usua_Contra?: string;
+    usua_Admin?: boolean;
+    empl_Id?: number;
+    rol_Id?: number;
+    usua_Usua_Creacion?: number;
+    usua_Fecha_Creacion?: Date;
+    usua_Usua_Modifica?: number;
+    usua_Fecha_Modifica?: Date;
+    usua_Estado?: boolean;
 }

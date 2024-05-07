@@ -23,4 +23,12 @@ export class Fill {
 export class dropMunicipio{
     value?:String;
     text?:String;
+    muni_Usua_Creacion?: number;
+    muni_Fecha_Creacion?: Date;
+    muni_Usua_Modifica?: number;
+    muni_Fecha_Modifica?: Date;
+}
+export class DropMunicipios{
+    muni_Codigo?: string;
+    muni_Descripcion?: string;
 }
