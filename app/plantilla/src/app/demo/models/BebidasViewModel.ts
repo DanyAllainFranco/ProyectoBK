@@ -9,3 +9,9 @@ export class Bebidas {
     Bebi_Fecha_Modifica?: Date;
     Bebi_Estado?: boolean;
 }
+
+
+export class dropBebida{
+    value?:String;
+    text?:String;
+}

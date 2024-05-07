@@ -116,7 +116,7 @@
 
 
 
-        <p-table #dt1 [value]="Empleado" dataKey="empl_Id" [rows]="10" [loading]="loading" [rowHover]="true" [class.hidden]="!DataTable" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['Empl_Id,Empl_Nombre,Empl_Apellido, Empl_Sexo,Carg_Cargo,Empl_FechaNaciminto,Esta_Id,muni_Descripcion']" responsiveLayout="scroll">
+        <p-table #dt1 [value]="Empleado" dataKey="empl_Id" [rows]="10" [loading]="loading" [rowHover]="true" [class.hidden]="!DataTable" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['Empl_Id,Empl_Nombre,Empl_Apellido, Empl_Sexo,Carg_Cargo,Empl_FechaNaciminto,Esta_Id,Muni_Descripcion']" responsiveLayout="scroll">
 
             <ng-template pTemplate="header">
                 <tr>
@@ -160,7 +160,7 @@
                     <th style="min-width: 12rem">
                         <div class="flex justify-content-between align-items-center">
                             Estado Civil
-                            <p-columnFilter type="text" field="estado_Civil" display="menu" placeholder="Search by country"></p-columnFilter>
+                            <p-columnFilter type="text" field="esta_Descripcion" display="menu" placeholder="Search by country"></p-columnFilter>
                         </div>
                     </th>
                     <th style="min-width: 12rem">

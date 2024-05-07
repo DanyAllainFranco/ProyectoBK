@@ -50,6 +50,7 @@ export class Fill {
     carg_Descripcion?:string;
     esta_Descripcion?:String;
     muni_Descripcion?:String;
+    dept_Descripcion?:String;
     empl_Correo:string;
 
     dept_Codigo?:String;
