@@ -30,6 +30,14 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
+        [HttpGet("API/[controller]/EmpleadoDDL")]
+        public IActionResult EmpleadoDDL()
+        {
+
+            var list = _generalServices.EmpleadoDDL();
+            return Ok(list.Data);
+        }
+
         [HttpGet("API/[controller]/Find")]
         public IActionResult Find(int Empl_Id)
         {

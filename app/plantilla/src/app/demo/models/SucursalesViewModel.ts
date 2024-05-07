@@ -1,11 +1,11 @@
 export class Sucursales {
-    Sucu_Id?: number;
-    Sucu_Descripcion?: string;
-    Muni_Codigo?: string;
-    Empl_Id?: number;
-    Sucu_Usua_Creacion?: number;
-    Sucu_Fecha_Creacion?: Date;
-    Sucu_Usua_Modifica?: number;
-    Sucu_Fecha_Modifica?: Date;
-    Sucu_Estado?: boolean;
+    sucu_Id?: number;
+    sucu_Descripcion?: string;
+    muni_Codigo?: string;
+    empl_Id?: number;
+    sucu_Usua_Creacion?: number;
+    sucu_Fecha_Creacion?: Date;
+    sucu_Usua_Modifica?: number;
+    sucu_Fecha_Modifica?: Date;
+    sucu_Estado?: boolean;
 }

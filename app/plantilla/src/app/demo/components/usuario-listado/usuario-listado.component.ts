@@ -15,11 +15,14 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
+import { MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-usuario-listado',
   templateUrl: './usuario-listado.component.html',
-  styleUrl: './usuario-listado.component.scss'
+  styleUrl: './usuario-listado.component.scss',
+  providers: [MessageService]
 })
 
 export class UsuariosListadoComponent implements OnInit {

@@ -29,6 +29,13 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
+        [HttpGet("API/[controller]/RolesDDL")]
+        public IActionResult RolesDDL()
+        {
+            var list = _accesoServices.RolesDDL();
+            return Ok(list.Data);
+        }
+
         [HttpGet("API/[controller]/Find")]
         public IActionResult Find(int Rol_Id)
         {

@@ -69,6 +69,18 @@ namespace Proyecto_BK.DataAccess.Repository
 
         }
 
+        public IEnumerable<tbEmpleados> EmpleadoDDL()
+        {
+
+            List<tbEmpleados> result = new List<tbEmpleados>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                result = db.Query<tbEmpleados>(ScriptsBaseDeDatos.EmpleadoDDL, commandType: CommandType.Text).ToList();
+                return result;
+            }
+
+        }
+
         public RequestStatus Update(tbEmpleados item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))

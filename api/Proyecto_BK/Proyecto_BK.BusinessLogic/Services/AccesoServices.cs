@@ -334,7 +334,7 @@ namespace Proyecto_BK.BusinessLogic.Services
         #endregion
 
         #region Roles
-        public ServiceResult ListRoles()
+        public ServiceResult ListRoles() //RolesDDL
         {
             var result = new ServiceResult();
             try
@@ -348,6 +348,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
+        public ServiceResult RolesDDL() //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _rolRepository.RolesDDL();
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
         public ServiceResult LlenarRol(int Rol_Id)
         {
             var result = new ServiceResult();

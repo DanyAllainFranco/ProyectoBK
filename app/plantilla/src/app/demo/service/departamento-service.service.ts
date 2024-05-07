@@ -26,7 +26,7 @@ export class DepartamentoServiceService {
     return this.http.get<Departamento>(`${this.UrlObtener}?Dept_Codigo=${id}`);
   }
 
-  UrlUpdate = 'https://localhost:44332/API/Departamento';
+  UrlUpdate = 'https://localhost:44332/API/Departamento/Update';
   actualizar(dept_Codigo:number,modelo:Departamento):Observable<Departamento>{
     return this.http.put<Departamento>(this.UrlUpdate,modelo);
   }

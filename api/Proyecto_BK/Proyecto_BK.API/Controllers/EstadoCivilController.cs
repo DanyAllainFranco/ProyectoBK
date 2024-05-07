@@ -23,10 +23,18 @@ namespace Proyecto_BK.API.Controllers
         }
 
         [HttpGet("API/[controller]/List")]
-        public IActionResult List()
+        public IActionResult List() //EstadoCivilDDL
         {
 
             var list = _generalServices.ListEstado();
+            return Ok(list.Data);
+        }
+
+        [HttpGet("API/[controller]/EstadoCivilDDL")]
+        public IActionResult EstadoCivilDDL() //EstadoCivilDDL
+        {
+
+            var list = _generalServices.EstadoCivilDDL();
             return Ok(list.Data);
         }
         [HttpGet("API/[controller]/Fill")]

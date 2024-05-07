@@ -176,7 +176,7 @@ export class AppMenuComponent implements OnInit {
                             {
                                 label: 'Cargos',
                                 icon: 'pi pi pi-fw pi-key',
-                                routerLink: ['/app/IndexCargo']
+                                routerLink: ['/app/IndexCargos']
                             },
                             {
                                 label: 'Usuarios',

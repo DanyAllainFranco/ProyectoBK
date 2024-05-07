@@ -63,6 +63,19 @@ namespace Proyecto_BK.DataAccess.Repository
 
         }
 
+
+        public IEnumerable<tbEstadosCiviles> EstadoCivilDDL()
+        {
+
+            List<tbEstadosCiviles> result = new List<tbEstadosCiviles>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                result = db.Query<tbEstadosCiviles>(ScriptsBaseDeDatos.EstadoCivilDDL, commandType: CommandType.Text).ToList();
+                return result;
+            }
+
+        }
+
         public RequestStatus Update(tbEstadosCiviles item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))

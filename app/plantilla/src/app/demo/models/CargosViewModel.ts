@@ -1,9 +1,9 @@
 export class Cargos {
-    Carg_Id? : number;
-    Carg_Descripcion? :string;
-    Carg_Usua_Creacion?: number;
-    Carg_Fecha_Creacion?: Date;
-    Carg_Usua_Modifica? : number;
-    Carg_Fecha_Modifica? : Date;
-    Carg_Estado? : boolean;
+    carg_Id? : number;
+    carg_Descripcion? :string;
+    carg_Usua_creacion?: number;
+    carg_Fecha_creacion?: Date;
+    carg_Usua_Modifica? : number;
+    carg_Fecha_Modifica? : Date;
+    carg_Estado? : boolean;
 }

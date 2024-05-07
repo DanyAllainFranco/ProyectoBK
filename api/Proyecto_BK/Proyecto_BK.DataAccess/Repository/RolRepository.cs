@@ -60,6 +60,16 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+        public IEnumerable<tbRoles> RolesDDL()
+        {
+            List<tbRoles> result = new List<tbRoles>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                result = db.Query<tbRoles>(ScriptsBaseDeDatos.RolesDDL, commandType: CommandType.Text).ToList();
+                return result;
+            }
+        }
+
         public RequestStatus Update(tbRoles item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))

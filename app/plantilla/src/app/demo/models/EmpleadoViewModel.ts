@@ -1,15 +1,21 @@
 export class Empleado {
-    Empl_Id?: number;
-    Empl_Identidad?: string;
-    Empl_Nombre?: string;
-    Empl_Apellido?: string;
-    Empl_Sexo?: string;
-    Empl_Correo?: string;
-    Esta_Id?: number;
-    Muni_Codigo?: string;
-    Carg_Id?: number;
-    Empl_Usua_Creacion?: number;
-    Empl_Fecha_Creacion?: Date;
-    Empl_Usua_Modifica?: number;
-    Empl_Fecha_Modifica?: Date;
+    empl_Id?: number;
+    empl_Identidad?: string;
+    empl_Nombre?: string;
+    empl_Apellido?: string;
+    empl_Sexo?: string;
+    empl_Correo?: string;
+    esta_Id?: number;
+    muni_Codigo?: string;
+    carg_Id?: number;
+    empl_Usua_Creacion?: number;
+    empl_Fecha_Creacion?: Date;
+    empl_Usua_Modifica?: number;
+    empl_Fecha_Modifica?: Date;
+}
+
+export class EmpleadoDDL{
+    empl_Id?: number;
+    empl_Nombre?: string;
+
 }

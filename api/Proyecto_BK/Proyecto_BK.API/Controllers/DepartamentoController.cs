@@ -29,6 +29,16 @@ namespace Proyecto_BK.API.Controllers
             var list = _generalServices.ListDepto();
             return Ok(list.Data);
         }
+
+
+        [HttpGet("API/[controller]/MunicipioDDL")]
+        public IActionResult MunicipioDDL()
+        {
+
+            var list = _generalServices.MuniDDL();
+            return Ok(list.Data);
+        }
+
         [HttpGet("API/[controller]/Fill")]
 
         public IActionResult Fill(string Dept_Codigo)

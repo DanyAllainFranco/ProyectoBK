@@ -48,6 +48,22 @@ namespace Proyecto_BK.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+
+        public ServiceResult MuniDDL()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _departamentosRepository.MuniDDL();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
         public ServiceResult LlenarDepto(string Dept_Codigo)
         {
             var result = new ServiceResult();
@@ -216,12 +232,27 @@ namespace Proyecto_BK.BusinessLogic.Services
         #endregion
 
         #region Estado Civil
-        public ServiceResult ListEstado()
+        public ServiceResult ListEstado() //EstadoCivilDDL
         {
             var result = new ServiceResult();
             try
             {
                 var list = _estadocivilRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        public ServiceResult EstadoCivilDDL() //EstadoCivilDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _estadocivilRepository.EstadoCivilDDL();
 
                 return result.Ok(list);
             }
@@ -413,6 +444,21 @@ namespace Proyecto_BK.BusinessLogic.Services
             try
             {
                 var list = _empleadoRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        public ServiceResult EmpleadoDDL()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _empleadoRepository.EmpleadoDDL();
 
                 return result.Ok(list);
             }
