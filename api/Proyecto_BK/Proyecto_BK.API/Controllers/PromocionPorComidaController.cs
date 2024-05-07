@@ -29,48 +29,54 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
-        [HttpGet("API/[controller]/Find")]
-        public IActionResult Find(int PrSe_Id)
+        [HttpGet("API/[controller]/Fill/{id}")]
+        public IActionResult Fill(string id)
         {
-            var result = _restauranteServices.LlenarPromocionPorComida(PrSe_Id);
-            return Ok(result);
+            var list = _restauranteServices.LlenarPromocionPorComida(id);
+            return Json(list.Data);
         }
 
+   
+
         [HttpPost("API/[controller]/Insert")]
-        public IActionResult Create(PromocionPorComidaViewModel json)
+        public IActionResult Create(PromocionPorComidaViewModel item)
         {
-            _mapper.Map<tbPromocionesPorComidas>(json);
+            var model = _mapper.Map<tbPromocionesPorComidas>(item);
             var modelo = new tbPromocionesPorComidas()
             {
-                Prom_Id = json.Prom_Id,
-                Bebi_Id = json.Bebi_Id,
-                Post_id = json.Post_id,
-                Comp_Id = json.Comp_Id,
-                Alim_Id = json.Alim_Id,
+                Prom_Id = item.Prom_Id,
+                Bebi_Id = item.Bebi_Id,
+                Post_id = item.Post_id,
+                Comp_Id = item.Comp_Id,
+                Alim_Id = item.Alim_Id,
                 PrSe_Usua_Creacion = 1,
                 PrSe_Fecha_Creacion = DateTime.Now
             };
-            var response = _restauranteServices.CrearPromocionPorComida(modelo);
-            return Ok(response);
+            var list = _restauranteServices.CrearPromocionPorComida(modelo);
+
+            return Ok(new { success = true, message = list.Message });
         }
 
         [HttpPut("API/[controller]/Update")]
-        public IActionResult Update(PromocionPorComidaViewModel json)
+        public IActionResult Update(PromocionPorComidaViewModel item)
         {
-            _mapper.Map<tbPromocionesPorComidas>(json);
-            var modelo = new tbPromocionesPorComidas()
             {
-                PrSe_Id = json.PrSe_Id,
-                Prom_Id = json.Prom_Id,
-                Bebi_Id = json.Bebi_Id,
-                Post_id = json.Post_id,
-                Comp_Id = json.Comp_Id,
-                Alim_Id = json.Alim_Id,
-                PrSe_Usua_Modifica = 1,
-                PrSe_Fecha_Modifica = DateTime.Now
-            };
-            var list = _restauranteServices.EditarPromocionPorComida(modelo);
-            return Ok(list);
+                var model = _mapper.Map<tbPromocionesPorComidas>(item);
+                var modelo = new tbPromocionesPorComidas()
+                {
+                    PrSe_Id = item.PrSe_Id,
+                    Prom_Id = item.Prom_Id,
+                    Bebi_Id = item.Bebi_Id,
+                    Post_id = item.Post_id,
+                    Comp_Id = item.Comp_Id,
+                    Alim_Id = item.Alim_Id,
+                    PrSe_Usua_Modifica = 1,
+                    PrSe_Fecha_Modifica = DateTime.Now
+                };
+                var list = _restauranteServices.EditarPromocionPorComida(modelo);
+
+                return Ok(new { success = true, message = list.Message });
+            }
         }
 
         [HttpDelete("API/[controller]/Delete")]

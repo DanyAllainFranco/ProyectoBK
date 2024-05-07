@@ -845,24 +845,18 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult LlenarPromocion(int Prom_Id)
+        public ServiceResult LlenarPromocion(string id)
         {
             var result = new ServiceResult();
             try
             {
-                var promocion = _promocionRepository.Find(Prom_Id);
-                if (promocion != null)
-                {
-                    return result.Ok(promocion);
-                }
-                else
-                {
-                    return result.Error($"No se encontró la Promoción con ID {Prom_Id}");
-                }
+                var list = _promocionRepository.Fill(id);
+
+                return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró la Promoción con ID {Prom_Id}");
+                return result.Error(ex);
             }
         }
 
@@ -871,19 +865,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _promocionRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _promocionRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Promoción creada con éxito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información de la Promoción");
+                return result.Error(ex.Message);
             }
         }
 
@@ -899,13 +893,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe una Promoción con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
 
@@ -921,7 +914,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró la Promoción a eliminar" : list.MessageStatus;
+                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Complemento a eliminar" : list.MessageStatus;
                     return result.Error(list);
                 }
             }
@@ -947,24 +940,18 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult LlenarPromocionPorComida(int PrSe_Id)
+        public ServiceResult LlenarPromocionPorComida(string id)
         {
             var result = new ServiceResult();
             try
             {
-                var promocionPorComida = _promocionPorComidaRepository.Find(PrSe_Id);
-                if (promocionPorComida != null)
-                {
-                    return result.Ok(promocionPorComida);
-                }
-                else
-                {
-                    return result.Error($"No se encontró la Promoción por Comida con ID {PrSe_Id}");
-                }
+                var list = _promocionPorComidaRepository.Fill(id);
+
+                return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró la Promoción por Comida con ID {PrSe_Id}");
+                return result.Error(ex);
             }
         }
 
@@ -973,19 +960,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _promocionPorComidaRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _promocionPorComidaRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Promoción por Comida creada con éxito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información de la Promoción por Comida");
+                return result.Error(ex.Message);
             }
         }
 
@@ -1001,13 +988,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe una Promoción por Comida con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
 
@@ -1023,7 +1009,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró la Promoción por Comida a eliminar" : list.MessageStatus;
+                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Complemento a eliminar" : list.MessageStatus;
                     return result.Error(list);
                 }
             }

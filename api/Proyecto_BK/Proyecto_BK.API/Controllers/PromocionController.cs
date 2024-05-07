@@ -46,46 +46,51 @@ namespace Proyecto_BK.API.Controllers
             return Ok(rol.ToList());
         }
 
-        [HttpGet("API/[controller]/Find")]
-        public IActionResult Find(int Prom_Id)
+        [HttpGet("API/[controller]/Fill/{id}")]
+        public IActionResult Fill(string id)
         {
-            var result = _restauranteServices.LlenarPromocion(Prom_Id);
-            return Ok(result);
+            var list = _restauranteServices.LlenarPromocion(id);
+            return Json(list.Data);
         }
 
+
         [HttpPost("API/[controller]/Insert")]
-        public IActionResult Create(PromocionViewModel json)
+        public IActionResult Create(PromocionViewModel item)
         {
-            _mapper.Map<tbPromociones>(json);
+            var model = _mapper.Map<tbPromociones>(item);
             var modelo = new tbPromociones()
             {
-                Prom_Descripcion = json.Prom_Descripcion,
-                Prom_Precio = json.Prom_Precio,
-                Prom_Imagen = json.Prom_Imagen,
-                Prom_Dia = json.Prom_Dia,
+                Prom_Descripcion = item.Prom_Descripcion,
+                Prom_Precio = item.Prom_Precio,
+                Prom_Imagen = item.Prom_Imagen,
+                Prom_Dia = item.Prom_Dia,
                 Prom_Usua_Creacion = 1,
                 Prom_Fecha_Creacion = DateTime.Now
             };
-            var response = _restauranteServices.CrearPromocion(modelo);
-            return Ok(response);
+            var list = _restauranteServices.CrearPromocion(modelo);
+
+            return Ok(new { success = true, message = list.Message });
         }
 
         [HttpPut("API/[controller]/Update")]
-        public IActionResult Update(PromocionViewModel json)
+        public IActionResult Update(PromocionViewModel item)
         {
-            _mapper.Map<tbPromociones>(json);
-            var modelo = new tbPromociones()
             {
-                Prom_Id = Convert.ToInt32(json.Prom_Id),
-                Prom_Descripcion = json.Prom_Descripcion,
-                Prom_Precio = json.Prom_Precio,
-                Prom_Imagen = json.Prom_Imagen,
-                Prom_Dia = json.Prom_Dia,
-                Prom_Usua_Modifica = 1,
-                Prom_Fecha_Modifica = DateTime.Now
-            };
-            var list = _restauranteServices.EditarPromocion(modelo);
-            return Ok(list);
+                var model = _mapper.Map<tbPromociones>(item);
+                var modelo = new tbPromociones()
+                {
+                    Prom_Id = item.Prom_Id,
+                    Prom_Descripcion = item.Prom_Descripcion,
+                    Prom_Precio = item.Prom_Precio,
+                    Prom_Imagen = item.Prom_Imagen,
+                    Prom_Dia = item.Prom_Dia,
+                    Prom_Usua_Modifica = 1,
+                    Prom_Fecha_Modifica = DateTime.Now
+                };
+                var list = _restauranteServices.EditarPromocion(modelo);
+
+                return Ok(new { success = true, message = list.Message });
+            }
         }
 
         [HttpDelete("API/[controller]/Delete")]
