@@ -114,10 +114,11 @@ namespace Proyecto_BK.DataAccess.Repository
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Muni_Codigo", item.Muni_Codigo);
-                parameter.Add("Muni_Descripcion", item.Muni_Descripcion);
-                parameter.Add("Muni_Usua_Modifica", item.Muni_Usua_Modifica);
-                parameter.Add("Muni_Fecha_Modifica", item.Muni_Fecha_Modifica);
+                parameter.Add("@Muni_Codigo", item.Muni_Codigo);
+                parameter.Add("@Muni_Descripcion", item.Muni_Descripcion);
+                parameter.Add("@Dept_Codigo", item.Dept_Codigo);
+                parameter.Add("@Muni_Usua_Modifica", item.Muni_Usua_Modifica);
+                parameter.Add("@Muni_Fecha_Modifica", item.Muni_Fecha_Modifica);
 
                 var result = db.Execute(sql, parameter, commandType: CommandType.StoredProcedure);
                 string mensaje = (result == 1) ? "exito" : "error";

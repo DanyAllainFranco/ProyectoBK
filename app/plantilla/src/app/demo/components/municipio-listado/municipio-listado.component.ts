@@ -54,8 +54,8 @@ export class MunicipioListadoComponent implements OnInit {
         //Inicializamos form,drops,lista
         this.municipioForm = new FormGroup({
             Muni_Codigo: new FormControl("",Validators.required),
-            Muni_Municipio: new FormControl("", Validators.required),
-            Depa_Codigo: new FormControl('0', [Validators.required])
+            Muni_Descripcion: new FormControl("", Validators.required),
+            Dept_Codigo: new FormControl('0', [Validators.required])
           });
         this.service.getDropDownsDepartamentos().subscribe((data: dropDepartamento[]) => {
             this.departamentos = data;
@@ -97,8 +97,8 @@ export class MunicipioListadoComponent implements OnInit {
         this.Detalles = false;
         this.municipioForm = new FormGroup({
             Muni_Codigo: new FormControl("",Validators.required),
-            Muni_Municipio: new FormControl("", Validators.required),
-            Depa_Codigo: new FormControl('0', [Validators.required])
+            Muni_Descripcion: new FormControl("", Validators.required),
+            Dept_Codigo: new FormControl('0', [Validators.required])
         });
         this.submitted = false;
         this.Agregar= true;
@@ -120,7 +120,7 @@ export class MunicipioListadoComponent implements OnInit {
 
     //Insert
     onSubmit() {
-    if (this.municipioForm.valid && this.municipioForm.get('Depa_Codigo').value !== '0') {
+    if (this.municipioForm.valid && this.municipioForm.get('Dept_Codigo').value !== '0') {
        this.viewModel = this.municipioForm.value;
        if (this.Valor == "Agregar") {
         this.service.EnviarMunicipios(this.viewModel).subscribe((data: MensajeViewModel[]) => {
@@ -136,8 +136,8 @@ export class MunicipioListadoComponent implements OnInit {
              this.Agregar = true;
              this.municipioForm = new FormGroup({
                  Muni_Codigo: new FormControl("",Validators.required),
-                 Muni_Municipio: new FormControl("", Validators.required),
-                 Depa_Codigo: new FormControl('0', [Validators.required])
+                 Muni_Descripcion: new FormControl("", Validators.required),
+                 Dept_Codigo: new FormControl('0', [Validators.required])
              });
      
             }else{
@@ -159,8 +159,8 @@ export class MunicipioListadoComponent implements OnInit {
              this.Agregar = true;
              this.municipioForm = new FormGroup({
                  Muni_Codigo: new FormControl("",Validators.required),
-                 Muni_Municipio: new FormControl("", Validators.required),
-                 Depa_Codigo: new FormControl('0', [Validators.required])
+                 Muni_Descripcion: new FormControl("", Validators.required),
+                 Dept_Codigo: new FormControl('0', [Validators.required])
              });
      
             }else{
@@ -198,8 +198,8 @@ export class MunicipioListadoComponent implements OnInit {
                     this.Agregar = true;
                     this.municipioForm = new FormGroup({
                         Muni_Codigo: new FormControl("",Validators.required),
-                        Muni_Municipio: new FormControl("", Validators.required),
-                        Depa_Codigo: new FormControl('0', [Validators.required])
+                        Muni_Descripcion: new FormControl("", Validators.required),
+                        Dept_Codigo: new FormControl('0', [Validators.required])
                     });
                     this.deleteProductDialog = false;
                    }else{
@@ -215,8 +215,8 @@ export class MunicipioListadoComponent implements OnInit {
             next: (data: Fill) => {
                 this.municipioForm = new FormGroup({
                     Muni_Codigo: new FormControl(data.muni_Codigo,Validators.required),
-                    Muni_Municipio: new FormControl(data.muni_Descripcion, Validators.required),
-                    Depa_Codigo: new FormControl(data.dept_Codigo, [Validators.required])
+                    Muni_Descripcion: new FormControl(data.muni_Descripcion, Validators.required),
+                    Dept_Codigo: new FormControl(data.dept_Codigo, [Validators.required])
                 });
                 this.Collapse= true;
                 this.DataTable = false;

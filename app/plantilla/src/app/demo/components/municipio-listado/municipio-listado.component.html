@@ -20,7 +20,7 @@
                     </div>
                   <div class="field col-12 md:col-6">
                     <label for="municipio">Municipio</label>
-                    <input pInputText id="municipio" formControlName="muni_Descripcion" type="text" required autofocus  [ngClass]="{'ng-invalid ng-dirty': submitted && municipioForm.get('muni_Descripcion').value === ''}"
+                    <input pInputText id="municipio" formControlName="Muni_Descripcion" type="text" required autofocus  [ngClass]="{'ng-invalid ng-dirty': submitted && municipioForm.get('muni_Descripcion').value === ''}"
                     (keydown)="validarTexto($event)" />
                     <small class="ng-dirty ng-invalid" *ngIf="submitted && municipioForm.controls['muni_Descripcion'].invalid" style="color: red !important;">Municipio Requerido</small>
                   </div>
@@ -93,10 +93,10 @@
             </ng-template>
             <ng-template pTemplate="body" let-muni>
                 <tr>
-                    <td>{{empl.muni_Codigo}}</td>
-                    <td>{{empl.muni_Descripcion}}</td>
-                    <td>{{empl.dept_Codigo}}</td>
-                    <td>{{empl.dept_Descripcion}}</td>
+                    <td>{{muni.muni_Codigo}}</td>
+                    <td>{{muni.muni_Descripcion}}</td>
+                    <td>{{muni.dept_Codigo}}</td>
+                    <td>{{muni.dept_Descripcion}}</td>
                     <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
                         <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="Fill(muni.muni_Codigo)" severity="primary" [raised]="true" [plain]="true"></p-button>
                         <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(muni.muni_Codigo)" severity="secondary" [raised]="true" [plain]="true"></p-button>
