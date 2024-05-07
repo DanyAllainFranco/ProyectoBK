@@ -35,7 +35,7 @@
 
                 <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
                   <button pButton icon="pi pi-check" type="submit" label="Agregar" class="p-button-outlined"></button>
-                  <button pButton icon="pi pi-stop" type="button" (click)="cancelar()" label="Cancelar" class="p-button-outlined"></button>
+                  <button pButton icon="pi pi-times" type="button" (click)="cancelar()" label="Cerrar" class="p-button-outlined"></button>
                 </div>
 
             </form>
@@ -179,7 +179,7 @@
                 </div>
             </div>
             <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
-              <button pButton icon="pi pi-stop" type="button" (click)="cancelar()" label="Volver" class="p-button-outlined"></button>
+              <button pButton icon="pi pi-arrow-left" type="button" (click)="cancelar()" label="Volver" class="p-button-outlined"></button>
             </div>
         </div>
         <p-dialog [(visible)]="deleteProductDialog" header="Confirmar" [modal]="true" [style]="{width:'450px'}">

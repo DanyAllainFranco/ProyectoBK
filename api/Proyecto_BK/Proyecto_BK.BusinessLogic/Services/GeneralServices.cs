@@ -277,7 +277,7 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult LlenarEstado(int Esta_Id)
+        public ServiceResult LlenarEstado(int id)
         {
             var result = new ServiceResult();
             try
@@ -484,7 +484,7 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
         
-        public ServiceResult LlenarEmpleado(int Empl_Id)
+        public ServiceResult LlenarEmpleado(int id)
         {
             {
                 var result = new ServiceResult();

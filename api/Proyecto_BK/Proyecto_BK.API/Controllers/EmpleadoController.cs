@@ -31,8 +31,8 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
-        [HttpGet("API/[controller]/DropDown")]
-        public IActionResult ListDropdown()
+        //[HttpGet("API/[controller]/DropDown")]
+        //public IActionResult ListDropdown()
         [HttpGet("API/[controller]/EmpleadoDDL")]
         public IActionResult EmpleadoDDL()
         {
@@ -59,7 +59,7 @@ namespace Proyecto_BK.API.Controllers
 
 
         [HttpGet("API/[controller]/Fill/{id}")]
-        public IActionResult Find(int id)
+        public IActionResult Fill(int id)
         {
             var list = _generalServices.LlenarEmpleado(id);
             return Json(list.Data);
