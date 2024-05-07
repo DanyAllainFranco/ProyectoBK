@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
@@ -37,6 +38,22 @@ namespace Proyecto_BK.API.Controllers
 
             var list = _generalServices.LlenarMuni(Muni_Codigo);
             return Ok(list);
+        }
+
+        [HttpGet("API/[controller]/Lista/{id}")]
+        public IActionResult IndexPorMunicipio(string id)
+        {
+            var list = _generalServices.ListadoMunicipioDepartamento(id);
+            var drop = list.Data as List<tbMunicipios>;
+            var rol = drop.Select(x => new SelectListItem
+            {
+                Text = x.Muni_Descripcion,
+                Value = x.Muni_Codigo
+            }).ToList();
+
+
+            rol.Insert(0, new SelectListItem { Text = "-- SELECCIONE --", Value = "0" });
+            return Ok(rol.ToList());
         }
 
         [HttpPost("API/[controller]/Insert")]

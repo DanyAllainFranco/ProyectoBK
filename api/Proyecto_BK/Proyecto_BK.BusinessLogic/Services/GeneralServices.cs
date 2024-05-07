@@ -139,6 +139,21 @@ namespace Proyecto_BK.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult ListadoMunicipioDepartamento(string id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _municipioRepository.Lista(id);
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
         public ServiceResult LlenarMuni(string Muni_Codigo)
         {
             var result = new ServiceResult();
@@ -421,24 +436,20 @@ namespace Proyecto_BK.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
-        public ServiceResult LlenarEmpleado(int Empl_Id)
+        public ServiceResult LlenarEmpleado(int id)
         {
-            var result = new ServiceResult();
-            try
             {
-                var votante = _empleadoRepository.Find(Empl_Id);
-                if (votante != null)
+                var result = new ServiceResult();
+                try
                 {
-                    return result.Ok(votante);
+                    var list = _empleadoRepository.Fill(id);
+
+                    return result.Ok(list);
                 }
-                else
+                catch (Exception ex)
                 {
-                    return result.Error($"No se encontró el Empleado con ID {Empl_Id}");
+                    return result.Error(ex);
                 }
-            }
-            catch (Exception ex)
-            {
-                return result.Error($"No se encontró el Empleado con ID {Empl_Id}");
             }
         }
 
@@ -447,19 +458,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _empleadoRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _empleadoRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Empleado creado con exito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la informacion del Empleado");
+                return result.Error(ex.Message);
             }
         }
 
@@ -475,13 +486,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Empleado con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Y existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
         public ServiceResult EliminarEmpleado(int Empl_Id)

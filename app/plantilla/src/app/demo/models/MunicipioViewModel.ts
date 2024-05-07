@@ -1,9 +1,26 @@
 export class Municipio {
-    Muni_Codigo?: string;
-    Muni_Descripcion?: string;
-    Dept_Codigo?: string;
-    Muni_Usua_Creacion?: number;
-    Muni_Fecha_Creacion?: Date;
-    Muni_Usua_Modifica?: number;
-    Muni_Fecha_Modifica?: Date;
+    muni_Codigo?: string;
+    muni_Descripcion?: string;
+    dept_Codigo?: string;
+}
+
+export class MunicipioEnviar {
+    Muni_Codigo: string;
+    Muni_Municipio: string;
+    Depa_Codigo: string;
+}
+
+export class Fill {
+    muni_Codigo: string;
+    muni_Municipio: string;
+    dept_Codigo: string;
+    muni_Usua_Creacion?: string;
+    muni_Fecha_Creacion?: string;
+    muni_Usua_Modifica?: string;
+    muni_Fecha_Modifica?: string;
+}
+
+export class dropMunicipio{
+    value?:String;
+    text?:String;
 }

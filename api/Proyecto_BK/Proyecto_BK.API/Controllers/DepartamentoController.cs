@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
@@ -36,6 +37,21 @@ namespace Proyecto_BK.API.Controllers
 
             var list = _generalServices.LlenarDepto(Dept_Codigo);
             return Ok(list);
+        }
+        [HttpGet("API/[controller]/DropDown")]
+        public IActionResult ListDepaDrop()
+        {
+            var list = _generalServices.ListDepto();
+            var drop = list.Data as List<tbDepartamentos>;
+            var rol = drop.Select(x => new SelectListItem
+            {
+                Text = x.Dept_Descripcion,
+                Value = x.Dept_Codigo
+            }).ToList();
+
+
+            rol.Insert(0, new SelectListItem { Text = "-- SELECCIONE --", Value = "0" });
+            return Ok(rol.ToList());
         }
 
         [HttpPost("API/[controller]/Insert")]

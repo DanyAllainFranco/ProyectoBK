@@ -33,6 +33,21 @@ namespace Proyecto_BK.DataAccess.Repository
             throw new NotImplementedException();
         }
 
+        public IEnumerable<tbMunicipios> Lista(string id)
+        {
+            const string sql = "[Gral].[SP_MunicipiosPorDepartamentos_Mostrar]";
+
+            List<tbMunicipios> result = new List<tbMunicipios>();
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Dept_Codigo", id);
+                result = db.Query<tbMunicipios>(sql, parameter, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
         public RequestStatus Insert(tbMunicipios item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
