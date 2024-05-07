@@ -192,5 +192,12 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Grafi_Postre = "Rest.SP_ObtenerPostreMasPedidoPorUsuario";
         #endregion
 
+        #region Factura
+        public static string Factura_Encontrar = "Rest.SP_Factura_Cargar";
+        public static string Factura_Listar = "Rest.SP_Factura_Listar";
+        public static string Factura_Insertar = "Rest.SP_Factura_Insertar";
+        #endregion
+
+
     }
 }

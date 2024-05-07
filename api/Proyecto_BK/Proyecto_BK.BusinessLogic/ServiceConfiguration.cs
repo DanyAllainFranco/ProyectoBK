@@ -35,6 +35,7 @@ namespace Proyecto_BK.BusinessLogic.Services
             service.AddScoped<CargoRepository>();
             service.AddScoped<RolRepository>();
             service.AddScoped<UsuarioRepository>();
+            service.AddScoped<FacturaRepository>();
 
 
             Proyecto_BKContext.BuildConnectionString(conn);

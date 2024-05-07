@@ -1,4 +1,5 @@
-﻿using Proyecto_BK.DataAccess.Repository;
+﻿using Proyecto_BK.Common.Models;
+using Proyecto_BK.DataAccess.Repository;
 using Proyecto_BK.Entities;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Proyecto_BK.BusinessLogic.Services
         private readonly PromocionPorComidaRepository _promocionPorComidaRepository;
         private readonly PromocionPorSucursalRepository _promocionPorSucursalRepository;
         private readonly SucursalRepository _sucursalRepository;
-
+        private readonly FacturaRepository _facturaRepository;
 
 
         public RestauranteServices(
@@ -35,7 +36,8 @@ namespace Proyecto_BK.BusinessLogic.Services
                PromocionRepository promocionRepository,
                PromocionPorComidaRepository promocionPorComidaRepository,
                PromocionPorSucursalRepository promocionPorSucursalRepository,
-               SucursalRepository sucursalRepository
+               SucursalRepository sucursalRepository,
+               FacturaRepository facturaRepository
             )
 
         {
@@ -50,8 +52,69 @@ namespace Proyecto_BK.BusinessLogic.Services
             _promocionPorComidaRepository = promocionPorComidaRepository;
             _promocionPorSucursalRepository = promocionPorSucursalRepository;
             _sucursalRepository = sucursalRepository;
+            _facturaRepository = facturaRepository;
         }
 
+
+        #region Factura
+        public ServiceResult ListFactura()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        public ServiceResult LlenarFactura(int Fact_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var factura = _facturaRepository.Find(Fact_Id);
+                if (factura != null)
+                {
+                    return result.Ok(factura);
+                }
+                else
+                {
+                    return result.Error($"No se encontró la factura con ID {Fact_Id}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"No se encontró la factura con ID {Fact_Id}");
+            }
+        }
+
+        public ServiceResult CrearFactuea(FacturaViewModel item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _facturaRepository.Insert(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok("Alimento creado con éxito", response);
+                }
+                else
+                {
+                    return result.Error("Por favor, rellene todos los campos");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al guardar la información de la factura");
+            }
+        }
+
+
+        #endregion
 
         #region Alimentos
         public ServiceResult ListAlimento()

@@ -1491,6 +1491,19 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Proyecto_BK.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Proyecto_BK.Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Proyecto_BK.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Proyecto_BK.Common.dll": {}
+        }
+      },
       "Proyecto_BK.DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -1498,6 +1511,7 @@
           "Dapper": "2.0.90",
           "Microsoft.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
+          "Proyecto_BK.Common": "1.0.0",
           "Proyecto_BK.Entities": "1.0.0"
         },
         "compile": {
@@ -5746,6 +5760,11 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
+    },
+    "Proyecto_BK.Common/1.0.0": {
+      "type": "project",
+      "path": "../Proyecto_BK.Common/Proyecto_BK.Common.csproj",
+      "msbuildProject": "../Proyecto_BK.Common/Proyecto_BK.Common.csproj"
     },
     "Proyecto_BK.DataAccess/1.0.0": {
       "type": "project",

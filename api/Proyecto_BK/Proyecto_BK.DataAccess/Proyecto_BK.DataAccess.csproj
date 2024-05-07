@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Proyecto_BK.Common\Proyecto_BK.Common.csproj" />
     <ProjectReference Include="..\Proyecto_BK.Entities\Proyecto_BK.Entities.csproj" />
   </ItemGroup>
 

@@ -35,7 +35,8 @@ namespace Proyecto_BK.API.Extensions
             CreateMap<PantallaPorRolViewModel, tbPantallasPorRoles>().ReverseMap();
             CreateMap<RolViewModel, tbRoles>().ReverseMap();
             CreateMap<UsuarioViewModel, tbUsuarios>().ReverseMap();
-       
+            CreateMap<FacturaViewModel, tbFactura>().ReverseMap();
+            CreateMap<FacturaViewModel, tbFacturaDetalle>().ReverseMap();
 
         }
     }

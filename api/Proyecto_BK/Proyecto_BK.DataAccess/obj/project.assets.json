@@ -1491,6 +1491,19 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Proyecto_BK.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Proyecto_BK.Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Proyecto_BK.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Proyecto_BK.Common.dll": {}
+        }
+      },
       "Proyecto_BK.Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -5731,6 +5744,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "Proyecto_BK.Common/1.0.0": {
+      "type": "project",
+      "path": "../Proyecto_BK.Common/Proyecto_BK.Common.csproj",
+      "msbuildProject": "../Proyecto_BK.Common/Proyecto_BK.Common.csproj"
+    },
     "Proyecto_BK.Entities/1.0.0": {
       "type": "project",
       "path": "../Proyecto_BK.Entities/Proyecto_BK.Entities.csproj",
@@ -5742,6 +5760,7 @@
       "Dapper >= 2.0.90",
       "Microsoft.EntityFrameworkCore >= 5.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.0",
+      "Proyecto_BK.Common >= 1.0.0",
       "Proyecto_BK.Entities >= 1.0.0"
     ]
   },
@@ -5772,6 +5791,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
+            "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj": {
+              "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj"
+            },
             "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
               "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj"
             }

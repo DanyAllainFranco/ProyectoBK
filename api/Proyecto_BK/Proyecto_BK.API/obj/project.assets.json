@@ -2152,6 +2152,7 @@
           "Dapper": "2.0.90",
           "Microsoft.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
+          "Proyecto_BK.Common": "1.0.0",
           "Proyecto_BK.Entities": "1.0.0"
         },
         "compile": {

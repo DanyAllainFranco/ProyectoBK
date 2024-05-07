@@ -236,6 +236,9 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
+              "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj": {
+                "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj"
+              },
               "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
                 "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj"
               }
