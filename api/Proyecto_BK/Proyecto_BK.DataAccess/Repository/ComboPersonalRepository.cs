@@ -22,16 +22,19 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
-        public tbCombosPersonales Find(int? Comb_Id)
+
+        public tbCombosPersonales Fill(string id)
         {
+
             tbCombosPersonales result = new tbCombosPersonales();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Comb_Id", Comb_Id);
+                parameter.Add("Comb_Id", id);
                 result = db.QueryFirst<tbCombosPersonales>(ScriptsBaseDeDatos.Comb_Llenar, parameter, commandType: CommandType.StoredProcedure);
                 return result;
             }
+
         }
 
         public IEnumerable<tbCombosPersonales> GrafiCombos(string Usua_Usuario)
@@ -87,21 +90,27 @@ namespace Proyecto_BK.DataAccess.Repository
 
         public RequestStatus Insert(tbCombosPersonales item)
         {
+            const string sql = "[Rest].SP_CombosPersonales_Insertar";
+
+
+
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
-                var parameter = new DynamicParameters();
-                parameter.Add("Comb_Descripcion", item.Comb_Descripcion);
-                parameter.Add("Comb_Precio", item.Comb_Precio);
-                parameter.Add("Comb_Imagen", item.Comb_Imagen);
-                parameter.Add("Bebi_Id", item.Bebi_Id);
-                parameter.Add("Post_id", item.Post_id);
-                parameter.Add("Comp_Id", item.Comp_Id);
-                parameter.Add("Alim_Id", item.Alim_Id);
-                parameter.Add("Comb_Usua_Creacion", item.Comb_Usua_Creacion);
-                parameter.Add("Comb_Fecha_Creacion", item.Comb_Fecha_Creacion);
+                var parametro = new DynamicParameters();
+                parametro.Add("@Comb_Descripcion", item.Comb_Descripcion);
+                parametro.Add("@Comb_Precio", item.Comb_Precio);
+                parametro.Add("@Comb_Imagen", item.Comb_Imagen);
+                parametro.Add("@Bebi_Id", item.Bebi_Id);
+                parametro.Add("@Post_id", item.Post_id);
+                parametro.Add("@Comp_Id", item.Comp_Id);
+                parametro.Add("@Alim_Id", item.Alim_Id);
+                parametro.Add("@Comb_Usua_Creacion", item.Comb_Usua_Creacion);
+                parametro.Add("@Comb_Fecha_Creacion", item.Comb_Fecha_Creacion);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Comb_Insertar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Éxito" : "Error" };
+
+                var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
         }
 
@@ -117,23 +126,33 @@ namespace Proyecto_BK.DataAccess.Repository
 
         public RequestStatus Update(tbCombosPersonales item)
         {
+            string sql = ScriptsBaseDeDatos.Comb_Editar;
+
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Comb_Id", item.Comb_Id);
-                parameter.Add("Comb_Descripcion", item.Comb_Descripcion);
-                parameter.Add("Comb_Precio", item.Comb_Precio);
-                parameter.Add("Comb_Imagen", item.Comb_Imagen);
-                parameter.Add("Bebi_Id", item.Bebi_Id);
-                parameter.Add("Post_id", item.Post_id);
-                parameter.Add("Comp_Id", item.Comp_Id);
-                parameter.Add("Alim_Id", item.Alim_Id);
-                parameter.Add("Comb_Usua_Modifica", item.Comb_Usua_Modifica);
-                parameter.Add("Comb_Fecha_Modifica", item.Comb_Fecha_Modifica);
+                parameter.Add("@Comb_Id", item.Comb_Id);
+                parameter.Add("@Comb_Descripcion", item.Comb_Descripcion);
+                parameter.Add("@Comb_Precio", item.Comb_Precio);
+                parameter.Add("@Comb_Imagen", item.Comb_Imagen);
+                parameter.Add("@Bebi_Id", item.Bebi_Id);
+                parameter.Add("@Post_id", item.Post_id);
+                parameter.Add("@Comp_Id", item.Comp_Id);
+                parameter.Add("@Alim_Id", item.Alim_Id);
+                parameter.Add("@Comb_Usua_Modifica", item.Comb_Usua_Modifica);
+                parameter.Add("@Comb_Fecha_Modifica", item.Comb_Fecha_Modifica);
+                var result = db.Execute(sql, parameter, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "exito" : "error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Comb_Editar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Éxito" : "Error" };
             }
         }
+
+
+        public tbCombosPersonales Find(int? id)
+        {
+            throw new NotImplementedException();
+        }
+    
     }
 }

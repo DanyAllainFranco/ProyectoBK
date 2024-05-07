@@ -29,11 +29,14 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
-        [HttpGet("API/[controller]/Find")]
-        public IActionResult Find(int Comb_Id)
+
+        [HttpGet("API/[controller]/Fill/{id}")]
+
+        public IActionResult Fill(string id)
         {
-            var result = _restauranteServices.LlenarComboPersonal(Comb_Id);
-            return Ok(result);
+
+            var list = _restauranteServices.LlenarComboPersonal(id);
+            return Json(list.Data);
         }
 
         [HttpGet("API/[controller]/GrafiCombos")]
@@ -65,45 +68,48 @@ namespace Proyecto_BK.API.Controllers
         }
 
         [HttpPost("API/[controller]/Insert")]
-        public IActionResult Create(ComboPersonalViewModel json)
+        public IActionResult Create(ComboPersonalViewModel item)
         {
-            _mapper.Map<tbCombosPersonales>(json);
+            var model = _mapper.Map<tbCombosPersonales>(item);
             var modelo = new tbCombosPersonales()
             {
-                Comb_Descripcion = json.Comb_Descripcion,
-                Comb_Precio = json.Comb_Precio,
-                Comb_Imagen = json.Comb_Imagen,
-                Bebi_Id = json.Bebi_Id,
-                Post_id = json.Post_id,
-                Comp_Id = json.Comp_Id,
-                Alim_Id = json.Alim_Id,
+                Comb_Descripcion = item.Comb_Descripcion,
+                Comb_Precio = item.Comb_Precio,
+                Comb_Imagen = item.Comb_Imagen,
+                Bebi_Id = item.Bebi_Id,
+                Post_id = item.Post_id,
+                Comp_Id = item.Comp_Id,
+                Alim_Id = item.Alim_Id,
                 Comb_Usua_Creacion = 1,
                 Comb_Fecha_Creacion = DateTime.Now
             };
-            var response = _restauranteServices.CrearComboPersonal(modelo);
-            return Ok(response);
+            var list = _restauranteServices.CrearComboPersonal(modelo);
+
+            return Ok(new { success = true, message = list.Message });
         }
 
         [HttpPut("API/[controller]/Update")]
-        public IActionResult Update(ComboPersonalViewModel json)
+        public IActionResult Update(ComboPersonalViewModel item)
         {
-            _mapper.Map<tbCombosPersonales>(json);
+            var model = _mapper.Map<tbCombosPersonales>(item);
             var modelo = new tbCombosPersonales()
             {
-                Comb_Id = Convert.ToInt32(json.Comb_Id),
-                Comb_Descripcion = json.Comb_Descripcion,
-                Comb_Precio = json.Comb_Precio,
-                Comb_Imagen = json.Comb_Imagen,
-                Bebi_Id = json.Bebi_Id,
-                Post_id = json.Post_id,
-                Comp_Id = json.Comp_Id,
-                Alim_Id = json.Alim_Id,
+                Comb_Id = item.Comb_Id,
+                Comb_Descripcion = item.Comb_Descripcion,
+                Comb_Precio = item.Comb_Precio,
+                Comb_Imagen = item.Comb_Imagen,
+                Bebi_Id = item.Bebi_Id,
+                Post_id = item.Post_id,
+                Comp_Id = item.Comp_Id,
+                Alim_Id = item.Alim_Id,
                 Comb_Usua_Modifica = 1,
                 Comb_Fecha_Modifica = DateTime.Now
             };
             var list = _restauranteServices.EditarComboPersonal(modelo);
-            return Ok(list);
+
+            return Ok(new { success = true, message = list.Message });
         }
+
 
         [HttpDelete("API/[controller]/Delete")]
         public IActionResult Delete(int Comb_Id)
@@ -111,5 +117,7 @@ namespace Proyecto_BK.API.Controllers
             var response = _restauranteServices.EliminarComboPersonal(Comb_Id);
             return Ok(response);
         }
+
+      
     }
 }

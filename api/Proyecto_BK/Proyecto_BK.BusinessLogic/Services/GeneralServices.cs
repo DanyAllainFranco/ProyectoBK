@@ -486,7 +486,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    return result.Error("Y existe un registro con ese nombre");
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)

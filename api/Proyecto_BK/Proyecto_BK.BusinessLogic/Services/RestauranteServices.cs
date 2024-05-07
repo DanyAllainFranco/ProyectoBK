@@ -272,24 +272,18 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult LlenarComboPersonal(int Comb_Id)
+        public ServiceResult LlenarComboPersonal(string id)
         {
             var result = new ServiceResult();
             try
             {
-                var comboPersonal = _comboPersonalRepository.Find(Comb_Id);
-                if (comboPersonal != null)
-                {
-                    return result.Ok(comboPersonal);
-                }
-                else
-                {
-                    return result.Error($"No se encontró el Combo Personal con ID {Comb_Id}");
-                }
+                var list = _comboPersonalRepository.Fill(id);
+
+                return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró el Combo Personal con ID {Comb_Id}");
+                return result.Error(ex);
             }
         }
 
@@ -382,19 +376,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _comboPersonalRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _comboPersonalRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Combo Personal creado con éxito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información del Combo Personal");
+                return result.Error(ex.Message);
             }
         }
 
@@ -410,13 +404,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Combo Personal con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
 
@@ -432,7 +425,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Combo Personal a eliminar" : list.MessageStatus;
+                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Empleado a eliminar" : list.MessageStatus;
                     return result.Error(list);
                 }
             }
@@ -458,24 +451,18 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult LlenarComplemento(int Comp_Id)
+        public ServiceResult LlenarComplemento(string id)
         {
             var result = new ServiceResult();
             try
             {
-                var complemento = _complementoRepository.Find(Comp_Id);
-                if (complemento != null)
-                {
-                    return result.Ok(complemento);
-                }
-                else
-                {
-                    return result.Error($"No se encontró el Complemento con ID {Comp_Id}");
-                }
+                var list = _complementoRepository.Fill(id);
+
+                return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró el Complemento con ID {Comp_Id}");
+                return result.Error(ex);
             }
         }
 
@@ -484,19 +471,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _complementoRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _complementoRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Complemento creado con éxito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información del Complemento");
+                return result.Error(ex.Message);
             }
         }
 
@@ -512,13 +499,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Complemento con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
 
@@ -764,24 +750,18 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult LlenarPostre(int Post_id)
+        public ServiceResult LlenarPostre(string id)
         {
             var result = new ServiceResult();
             try
             {
-                var postre = _postreRepository.Find(Post_id);
-                if (postre != null)
-                {
-                    return result.Ok(postre);
-                }
-                else
-                {
-                    return result.Error($"No se encontró el Postre con ID {Post_id}");
-                }
+                var list = _postreRepository.Fill(id);
+
+                return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró el Postre con ID {Post_id}");
+                return result.Error(ex);
             }
         }
 
@@ -790,19 +770,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _postreRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _postreRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Postre creado con éxito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información del Postre");
+                return result.Error(ex.Message);
             }
         }
 
@@ -818,13 +798,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Postre con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
 

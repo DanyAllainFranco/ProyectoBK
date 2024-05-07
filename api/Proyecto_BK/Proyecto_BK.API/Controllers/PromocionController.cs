@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
@@ -27,6 +28,22 @@ namespace Proyecto_BK.API.Controllers
         {
             var list = _restauranteServices.ListPromocion();
             return Ok(list.Data);
+        }
+
+        [HttpGet("API/[controller]/DropDown")]
+        public IActionResult ListPromocionDrop()
+        {
+            var list = _restauranteServices.ListPromocion();
+            var drop = list.Data as List<tbPromociones>;
+            var rol = drop.Select(x => new SelectListItem
+            {
+                Text = x.Prom_Descripcion,
+                Value = x.Prom_Id.ToString()
+            }).ToList();
+
+
+            rol.Insert(0, new SelectListItem { Text = "-- SELECCIONE --", Value = "0" });
+            return Ok(rol.ToList());
         }
 
         [HttpGet("API/[controller]/Find")]

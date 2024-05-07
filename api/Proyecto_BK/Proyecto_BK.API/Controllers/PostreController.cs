@@ -46,44 +46,48 @@ namespace Proyecto_BK.API.Controllers
             return Ok(rol.ToList());
         }
 
-        [HttpGet("API/[controller]/Find")]
-        public IActionResult Find(int Post_id)
+        [HttpGet("API/[controller]/Fill/{id}")]
+        public IActionResult Fill(string id)
         {
-            var result = _restauranteServices.LlenarPostre(Post_id);
-            return Ok(result);
+            var list = _restauranteServices.LlenarPostre(id);
+            return Json(list.Data);
         }
 
         [HttpPost("API/[controller]/Insert")]
-        public IActionResult Create(PostreViewModel json)
+        public IActionResult Create(PostreViewModel item)
         {
-            _mapper.Map<tbPostres>(json);
+            var model = _mapper.Map<tbPostres>(item);
             var modelo = new tbPostres()
             {
-                Post_Descripcion = json.Post_Descripcion,
-                Post_Precio = json.Post_Precio,
-                Post_Imagen = json.Post_Imagen,
+                Post_Descripcion = item.Post_Descripcion,
+                Post_Precio = item.Post_Precio,
+                Post_Imagen = item.Post_Imagen,
                 Post_Usua_Creacion = 1,
                 Post_Fecha_Creacion = DateTime.Now
             };
-            var response = _restauranteServices.CrearPostre(modelo);
-            return Ok(response);
+            var list = _restauranteServices.CrearPostre(modelo);
+
+            return Ok(new { success = true, message = list.Message });
         }
 
         [HttpPut("API/[controller]/Update")]
-        public IActionResult Update(PostreViewModel json)
+        public IActionResult Update(PostreViewModel item)
         {
-            _mapper.Map<tbPostres>(json);
-            var modelo = new tbPostres()
             {
-                Post_id = Convert.ToInt32(json.Post_id),
-                Post_Descripcion = json.Post_Descripcion,
-                Post_Precio = json.Post_Precio,
-                Post_Imagen = json.Post_Imagen,
-                Post_Usua_Modifica = 1,
-                Post_Fecha_Modifica = DateTime.Now
-            };
-            var list = _restauranteServices.EditarPostre(modelo);
-            return Ok(list);
+                var model = _mapper.Map<tbPostres>(item);
+                var modelo = new tbPostres()
+                {
+                    Post_id = item.Post_id,
+                    Post_Descripcion = item.Post_Descripcion,
+                    Post_Precio = item.Post_Precio,
+                    Post_Imagen = item.Post_Imagen,
+                    Post_Usua_Modifica = 1,
+                    Post_Fecha_Modifica = DateTime.Now
+                };
+                var list = _restauranteServices.EditarPostre(modelo);
+
+                return Ok(new { success = true, message = list.Message });
+            }
         }
 
         [HttpDelete("API/[controller]/Delete")]
@@ -92,5 +96,7 @@ namespace Proyecto_BK.API.Controllers
             var response = _restauranteServices.EliminarPostre(Post_id);
             return Ok(response);
         }
+
+
     }
 }

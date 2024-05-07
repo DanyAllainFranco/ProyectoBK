@@ -47,51 +47,59 @@ namespace Proyecto_BK.API.Controllers
         }
 
 
-        [HttpGet("API/[controller]/Find")]
-        public IActionResult Find(int Comp_Id)
+        [HttpGet("API/[controller]/Fill/{id}")]
+        public IActionResult Fill(string id)
         {
-            var result = _restauranteServices.LlenarComplemento(Comp_Id);
-            return Ok(result);
+            var list = _restauranteServices.LlenarComplemento(id);
+            return Json(list.Data);
         }
 
+  
+
+
+
         [HttpPost("API/[controller]/Insert")]
-        public IActionResult Create(ComplementoViewModel json)
+        public IActionResult Create(ComplementoViewModel item)
         {
-            _mapper.Map<tbComplementos>(json);
+            var model = _mapper.Map<tbComplementos>(item);
             var modelo = new tbComplementos()
             {
-                Comp_Descripcion = json.Comp_Descripcion,
-                Comp_Precio = json.Comp_Precio,
-                Comp_Imagen = json.Comp_Imagen,
+                Comp_Descripcion = item.Comp_Descripcion,
+                Comp_Precio = item.Comp_Precio,
+                Comp_Imagen = item.Comp_Imagen,
                 Comp_Usua_Creacion = 1,
                 Comp_Fecha_Creacion = DateTime.Now
             };
-            var response = _restauranteServices.CrearComplemento(modelo);
-            return Ok(response);
+            var list = _restauranteServices.CrearComplemento(modelo);
+
+            return Ok(new { success = true, message = list.Message });
         }
 
         [HttpPut("API/[controller]/Update")]
-        public IActionResult Update(ComplementoViewModel json)
+        public IActionResult Update(ComplementoViewModel item)
         {
-            _mapper.Map<tbComplementos>(json);
-            var modelo = new tbComplementos()
             {
-                Comp_Id = Convert.ToInt32(json.Comp_Id),
-                Comp_Descripcion = json.Comp_Descripcion,
-                Comp_Precio = json.Comp_Precio,
-                Comp_Imagen = json.Comp_Imagen,
-                Comp_Usua_Modifica = 1,
-                Comp_Fecha_Modifica = DateTime.Now
-            };
-            var list = _restauranteServices.EditarComplemento(modelo);
-            return Ok(list);
+                var model = _mapper.Map<tbComplementos>(item);
+                var modelo = new tbComplementos()
+                {
+                    Comp_Id = item.Comp_Id,
+                    Comp_Descripcion = item.Comp_Descripcion,
+                    Comp_Precio = item.Comp_Precio,
+                    Comp_Imagen = item.Comp_Imagen,
+                    Comp_Usua_Creacion = 1,
+                    Comp_Fecha_Creacion = DateTime.Now
+                };
+                var list = _restauranteServices.EditarComplemento(modelo);
+
+                return Ok(new { success = true, message = list.Message });
+            }
         }
 
-        [HttpDelete("API/[controller]/Delete")]
-        public IActionResult Delete(int Comp_Id)
-        {
-            var response = _restauranteServices.EliminarComplemento(Comp_Id);
-            return Ok(response);
-        }
+            [HttpDelete("API/[controller]/Delete")]
+            public IActionResult Delete(int Comp_Id)
+            {
+                var response = _restauranteServices.EliminarComplemento(Comp_Id);
+                return Ok(response);
+            }
     }
 }
