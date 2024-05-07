@@ -6,7 +6,7 @@
     </div>
     <div class="card-body">
 
-        <button (click)="collapse()" pButton icon="pi pi-plus" style="margin-bottom: 10px;" [class.hidden]="!Agregar">Agregar</button>
+        <button (click)="collapse()" pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" [class.hidden]="!Agregar">Agregar</button>
           
         <div [class.hidden]="!Collapse" style="margin-top: 20px;">
 
@@ -57,7 +57,7 @@
                                 <select formControlName="Esta_Id" pInputText id="estado" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('Esta_Id').value === '0'}" >
                                   <option *ngFor="let estadocivil of estadocivil" [value]="estadocivil.value">{{ estadocivil.text }}</option>
                                 </select>
-                                <small *ngIf="submitted && clienteForm.get('Esta_Id').value === '0'" style="color: red;">Estado Civil Requerido</small>
+                                <small *ngIf="submitted && clienteForm.get('Esta_Id').value === '0'" style="color: red;">Estado Civil es Requerido</small>
                               </div>
                   
 
@@ -67,7 +67,7 @@
                                 <select formControlName="Carg_Id" pInputText id="cargo" required autofocus [ngClass]="{'ng-invalid ng-dirty': submitted && clienteForm.get('Carg_Id').value === '0'}" >
                                   <option *ngFor="let cargo of cargo" [value]="cargo.value">{{ cargo.text }}</option>
                                 </select>
-                                <small *ngIf="submitted && clienteForm.get('Carg_Id').value === '0'" style="color: red;">El Cargo Requerido</small>
+                                <small *ngIf="submitted && clienteForm.get('Carg_Id').value === '0'" style="color: red;">El Cargo es Requerido</small>
                               </div>
                   
                   
@@ -200,10 +200,10 @@
                     <td>{{empl.muni_Codigo}}</td>
                     <td>{{empl.muni_Descripcion}}</td>
                     <td>{{empl.carg_Descripcion}}</td>
-                    <td style="display: flex; justify-content: space-around;">
-                        <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(empl.empl_Id)"></button>
-                        <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(empl.empl_Id)"></button>
-                        <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(empl.empl_Id)"></button>
+                    <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
+                        <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="Fill(empl.empl_Id)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                        <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(empl.empl_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
+                        <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="deleteSelectedProducts(empl.empl_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
                     </td>
                 </tr>
             </ng-template>

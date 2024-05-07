@@ -5,7 +5,7 @@
     </div>
     <div class="card-body">
     
-          <button (click)="collapse()" pButton icon="pi pi-plus" style="margin-bottom: 10px ;" [class.hidden]="!Agregar">Agregar</button>
+          <button (click)="collapse()" pButton icon="pi pi-plus-circle" style="margin-bottom: 10px ;" [class.hidden]="!Agregar">Agregar</button>
           
           <div [class.hidden]="!Collapse" style="margin-top: 20px;">
 
@@ -16,7 +16,7 @@
                     <label for="Esta_Descripcion">Estado Civil</label>
                     <input pInputText id="Esta_Descripcion" formControlName="Esta_Descripcion" type="text" required autofocus  [ngClass]="{'ng-invalid ng-dirty': submitted && estadocivilForm.get('Esta_Descripcion').value === ''}"
                     (keydown)="validarTexto($event)" />
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && estadocivilForm.controls['Esta_Descripcion'].invalid" style="color: red !important;">La Estado Civiles Requerido</small>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && estadocivilForm.controls['Esta_Descripcion'].invalid" style="color: red !important;">Estados Civiles Requeridos</small>
                   </div>
 
                   
@@ -77,15 +77,15 @@
                     <td>
                         {{esta.esta_Descripcion}}
                     </td>
-                    <td style="display: flex; justify-content: space-around;">
-                        <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(esta.esta_Id)"></button>
-                        <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(esta.esta_Id)"></button>
-                        <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(esta.esta_Id)"></button>
+                    <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
+                        <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="Fill(esta.esta_Id)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                        <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(esta.esta_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
+                        <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="deleteSelectedProducts(esta.esta_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
                       
                     </td>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="emptymessage">
+            <ng-template pTemplate="emptymessage"> 
                 <tr>
                     <td colspan="8">No customers found.</td>
                 </tr>
