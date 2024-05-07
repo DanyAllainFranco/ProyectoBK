@@ -16,8 +16,8 @@ export class dropEstadoCivil{
 export class Fill {
     esta_Id: string;
     esta_Descripcion: string;
-    usuarioCreacion: string;
-    usuarioModificacion: string;
-    fechaCreacion : string;
-    fechaModificacion : string;
+    esta_Usua_Creacion: string;
+    esta_Fecha_Creacion: string;
+    esta_Usua_Modifica : string;
+    esta_Fecha_Modifica : string;
 }

@@ -36,6 +36,7 @@ export class EstadoCivilServiceService {
   EliminarEstadoCivil(ID): Observable<any>{
     return this.http.delete<any>('https://localhost:44332/API/EstadoCivil/Delete/' + ID)
   }
+  
   ActualizarEstadoCivil(formData){
     return this.http.put('https://localhost:44332/API/EstadoCivil/Update/', formData)
   }
