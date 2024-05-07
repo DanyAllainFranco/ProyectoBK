@@ -9,3 +9,9 @@ export class Alimento {
     Alim__Fecha_Modifica?: Date;
     Alim__Estado?: boolean;
 }
+
+
+export class dropAlimento{
+    value?:String;
+    text?:String;
+}
