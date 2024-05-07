@@ -31,13 +31,15 @@ namespace Proyecto_BK.API.Controllers
             var list = _generalServices.ListMuni();
             return Ok(list.Data);
         }
-        [HttpGet("API/[controller]/Fill")]
 
-        public IActionResult Fill(string Muni_Codigo)
+
+        [HttpGet("API/[controller]/Fill/{id}")]
+
+        public IActionResult Fill(string id)
         {
 
-            var list = _generalServices.LlenarMuni(Muni_Codigo);
-            return Ok(list);
+            var list = _generalServices.LlenarMuni(id);
+            return Json(list.Data);
         }
 
         [HttpGet("API/[controller]/Lista/{id}")]
@@ -57,40 +59,46 @@ namespace Proyecto_BK.API.Controllers
         }
 
         [HttpPost("API/[controller]/Insert")]
-        public IActionResult Create(MunicipioViewModel json)
+        public IActionResult Insert(MunicipioViewModel item)
         {
-            _mapper.Map<tbMunicipios>(json);
+            var model = _mapper.Map<tbMunicipios>(item);
             var modelo = new tbMunicipios()
             {
-                Muni_Codigo = json.Muni_Codigo,
-                Muni_Descripcion = json.Muni_Descripcion,
-                Dept_Codigo = json.Dept_Codigo,
+                Muni_Codigo = item.Muni_Codigo,
+                Muni_Descripcion = item.Muni_Descripcion,
+                Dept_Codigo = item.Dept_Codigo,
                 Muni_Usua_Creacion = 1,
                 Muni_Fecha_Creacion = DateTime.Now
             };
-            var response = _generalServices.CrearMuni(modelo);
-            return Ok(response);
+            var list = _generalServices.CrearMuni(modelo);
+
+            return Ok(new { success = true, message = list.Message });
         }
+
+
         [HttpPut("API/[controller]/Update")]
-        public IActionResult Update(MunicipioViewModel json)
+        public IActionResult Update(MunicipioViewModel item)
         {
-            _mapper.Map<tbMunicipios>(json);
+            _mapper.Map<tbMunicipios>(item);
             var modelo = new tbMunicipios()
             {
-                Muni_Codigo = json.Muni_Codigo,
-                Muni_Descripcion = json.Muni_Descripcion,
-                Dept_Codigo = json.Dept_Codigo,
+                Muni_Codigo = item.Muni_Codigo,
+                Muni_Descripcion = item.Muni_Descripcion,
+                Dept_Codigo = item.Dept_Codigo,
                 Muni_Usua_Modifica = 1,
                 Muni_Fecha_Modifica = DateTime.Now
             };
             var list = _generalServices.EditarMuni(modelo);
-            return Ok(list);
+
+            return Ok(new { success = true, message = list.Message });
         }
-        [HttpDelete("API/[controller]/Delete")]
-        public IActionResult Delete(string Muni_Codigo)
+
+
+        [HttpDelete("API/[controller]/Delete/{id}")]
+        public IActionResult Delete(string id)
         {
-            var list = _generalServices.Eliminarmuni(Muni_Codigo);
-            return Ok(list);
+            var list = _generalServices.Eliminarmuni(id);
+            return Ok(new { success = true, message = list.Message });
         }
     }
 }

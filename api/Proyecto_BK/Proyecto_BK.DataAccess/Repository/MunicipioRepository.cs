@@ -50,17 +50,23 @@ namespace Proyecto_BK.DataAccess.Repository
         }
         public RequestStatus Insert(tbMunicipios item)
         {
+            const string sql = "[Gral].SP_Municipios_Insertar";
+
+
+
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
-                var parameter = new DynamicParameters();
-                parameter.Add("Muni_Codigo", item.Muni_Codigo);
-                parameter.Add("Muni_Descripcion", item.Muni_Descripcion);
-                parameter.Add("Dept_Codigo", item.Dept_Codigo);
-                parameter.Add("Muni_Usua_Creacion", item.Muni_Usua_Creacion);
-                parameter.Add("Muni_Fecha_Creacion", item.Muni_Fecha_Creacion);
+                var parametro = new DynamicParameters();
+                parametro.Add("@Muni_Codigo", item.Muni_Codigo);
+                parametro.Add("@Muni_Descripcion", item.Muni_Descripcion);
+                parametro.Add("@Dept_Codigo", item.Dept_Codigo);
+                parametro.Add("@Muni_Usua_Creacion", item.Muni_Usua_Creacion);
+                parametro.Add("@Muni_Fecha_Creacion", item.Muni_Fecha_Creacion);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Muni_Insertar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+
+                var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
         }
 
@@ -87,14 +93,14 @@ namespace Proyecto_BK.DataAccess.Repository
         //    }
         //}
 
-        public tbMunicipios Find(string Muni_Codigo)
+        public tbMunicipios Fill(string id)
         {
 
             tbMunicipios result = new tbMunicipios();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Muni_Codigo", Muni_Codigo);
+                parameter.Add("Muni_Codigo", id);
                 result = db.QueryFirst<tbMunicipios>(ScriptsBaseDeDatos.Muni_Llenar, parameter, commandType: CommandType.StoredProcedure);
                 return result;
             }
@@ -103,6 +109,8 @@ namespace Proyecto_BK.DataAccess.Repository
 
         public RequestStatus Update(tbMunicipios item)
         {
+            string sql = ScriptsBaseDeDatos.Muni_Editar;
+
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
@@ -111,8 +119,10 @@ namespace Proyecto_BK.DataAccess.Repository
                 parameter.Add("Muni_Usua_Modifica", item.Muni_Usua_Modifica);
                 parameter.Add("Muni_Fecha_Modifica", item.Muni_Fecha_Modifica);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Muni_Editar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+                var result = db.Execute(sql, parameter, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "exito" : "error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+
             }
         }
     }
