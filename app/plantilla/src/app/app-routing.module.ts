@@ -47,7 +47,7 @@ import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.com
                     { path: 'IndexComboPersonal', component: CombopersonalListadoComponent }, 
                     { path: 'IndexComplemento', component: ComplementoListadoComponent }, 
                     { path: 'IndexEmpleado', component: EmpleadoListadoComponent }, 
-                    { path: 'IndexEstadoCivil', component: EstadocivilListadoComponent }, 
+                    { path: 'IndexEstadoCivil', data: { breadcrumb: 'Estado' }, loadChildren: () => import('./demo/components/estadocivil-listado/EstadoCivildemo.module').then(m => m.EstadoCivilDemoModule) },
                     { path: 'IndexMunicipio', component: MunicipioListadoComponent },
                     { path: 'IndexPostre', component: PostreListadoComponent }, 
                     { path: 'IndexPromocion', component: PromocionListadoComponent },

@@ -230,18 +230,18 @@ namespace Proyecto_BK.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
-        public ServiceResult LlenarEstado(int Esta_Id)
+        public ServiceResult LlenarEstado(int id)
         {
             var result = new ServiceResult();
             try
             {
-                var list = _estadocivilRepository.Find(Esta_Id);
+                var list = _estadocivilRepository.Find(id);
 
                 return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
         public ServiceResult CrearEstado(tbEstadosCiviles item)
@@ -249,19 +249,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var reponse = _estadocivilRepository.Insert(item);
-                if (reponse.CodeStatus == 1)
+                var list = _estadocivilRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Estado Civil creado con exito", reponse);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Ya existe un Estado Civil con ese codigo o con ese nombre");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex.Message);
             }
         }
         public ServiceResult EditarEstado(tbEstadosCiviles item)
@@ -269,39 +269,39 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var reponse = _estadocivilRepository.Update(item);
-                if (reponse.CodeStatus == 1)
+                var list = _estadocivilRepository.Update(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok($"Estado Civil {item.Esta_Id} editado con éxito", reponse);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Ya existe un Estado Civil con ese nombre");
+                    return result.Error("Y existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
-        public ServiceResult EliminarEstado(int Esta_Id)
+        public ServiceResult EliminarEstado(string Esta_Id)
         {
             var result = new ServiceResult();
             try
             {
-                var reponse = _departamentosRepository.Delete(Esta_Id);
-                if (reponse.CodeStatus == 1)
+                var list = _estadocivilRepository.Delete(Esta_Id);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok($"Estado Civil {Esta_Id} eliminado con éxito", reponse);
+                    return result.Ok($"La accion ha sido existosa", list);
                 }
                 else
                 {
-                    return result.Error("No se encontró el Estado Civil a eliminar");
+                    return result.Error("No se pudo realizar la accion");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
         #endregion

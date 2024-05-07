@@ -12,7 +12,7 @@ namespace Proyecto_BK.DataAccess.Repository
 {
     public partial class EstadoCivilRepository : IRepository<tbEstadosCiviles>
     {
-        public RequestStatus Delete(int? Esta_Id)
+        public RequestStatus Delete(string Esta_Id)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
@@ -20,34 +20,49 @@ namespace Proyecto_BK.DataAccess.Repository
                 parameter.Add("Esta_Id", Esta_Id);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Esta_Eliminar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Éxito" : "Error" };
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
 
-        public tbEstadosCiviles Find(int? Esta_Id)
+        public RequestStatus Delete(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public tbEstadosCiviles Find(int id)
         {
             tbEstadosCiviles result = new tbEstadosCiviles();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Esta_Id", Esta_Id);
+                parameter.Add("Esta_Id", id);
                 result = db.QueryFirst<tbEstadosCiviles>(ScriptsBaseDeDatos.Esta_Llenar, parameter, commandType: CommandType.StoredProcedure);
                 return result;
             }
         }
 
+        public tbEstadosCiviles Find(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
         public RequestStatus Insert(tbEstadosCiviles item)
         {
+            const string sql = "[Gral].SP_EstadosCiviles_Insertar";
+
+
+
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
-                var parameter = new DynamicParameters();
-               
-                parameter.Add("Esta_Descripcion", item.Esta_Descripcion);
-                parameter.Add("Esta_Usua_Creacion", item.Esta_Usua_Creacion);
-                parameter.Add("Esta_Fecha_Creacion", item.Esta_Fecha_Creacion);
+                var parametro = new DynamicParameters();
+                parametro.Add("@Esta_Descripcion", item.Esta_Descripcion);
+                parametro.Add("@Esta_Usua_Creacion", item.Esta_Usua_Creacion);
+                parametro.Add("@Esta_Fecha_Creacion", item.Esta_Fecha_Creacion);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Esta_Insertar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+
+                var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
         }
 
@@ -65,16 +80,20 @@ namespace Proyecto_BK.DataAccess.Repository
 
         public RequestStatus Update(tbEstadosCiviles item)
         {
+            string sql = ScriptsBaseDeDatos.Esta_Editar;
+
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Esta_Id", item.Esta_Id);
-                parameter.Add("Esta_Descripcion", item.Esta_Descripcion);
-                parameter.Add("Esta_Usua_Modifica", item.Esta_Usua_Modifica);
-                parameter.Add("Esta_Fecha_Modifica", item.Esta_Fecha_Modifica);
+                parameter.Add("@Esta_Id", item.Esta_Id);
+                parameter.Add("@Esta_Descripcion", item.Esta_Descripcion);
+                parameter.Add("@Esta_Usua_Modifica", item.Esta_Usua_Modifica);
+                parameter.Add("@Esta_Fecha_Modifica", item.Esta_Fecha_Modifica);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Esta_Editar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+                var result = db.Execute(sql, parameter, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "exito" : "error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+
             }
         }
     }

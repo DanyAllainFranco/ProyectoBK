@@ -11,6 +11,8 @@ import { map } from 'rxjs';
 export class EstadoCivilServiceService {
 
   constructor(private http: HttpClient) { }
+
+
   Url = 'https://localhost:44332/API/EstadoCivil/List';
 
   getEstadoCivil (){
@@ -20,7 +22,7 @@ export class EstadoCivilServiceService {
 
 
   EnviarEstadoCivil(formData: any): Observable<any> {
-    return this.http.post<any>('https://localhost:44332/API/EstadoCivil/Insert', formData).pipe(
+    return this.http.post<any>('https://localhost:44332/API/EstadoCivil/Create', formData).pipe(
       map(response => {
         return response;
       }),

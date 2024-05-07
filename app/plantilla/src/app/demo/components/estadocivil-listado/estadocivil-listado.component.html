@@ -13,10 +13,10 @@
                 <div class="p-fluid p-formgrid grid">
 
                   <div class="field col-12 md:col-6">
-                    <label for="esta_Descripcion">Estado Civil</label>
-                    <input pInputText id="esta_Descripcion" formControlName="esta_Descripcion" type="text" required autofocus  [ngClass]="{'ng-invalid ng-dirty': submitted && estadocivilForm.get('esta_Descripcion').value === ''}"
+                    <label for="Esta_Descripcion">Estado Civil</label>
+                    <input pInputText id="Esta_Descripcion" formControlName="Esta_Descripcion" type="text" required autofocus  [ngClass]="{'ng-invalid ng-dirty': submitted && estadocivilForm.get('Esta_Descripcion').value === ''}"
                     (keydown)="validarTexto($event)" />
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && estadocivilForm.controls['esta_Descripcion'].invalid" style="color: red !important;">La Estado Civiles Requerido</small>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && estadocivilForm.controls['Esta_Descripcion'].invalid" style="color: red !important;">La Estado Civiles Requerido</small>
                   </div>
 
                   

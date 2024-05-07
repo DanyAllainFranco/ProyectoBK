@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EstadocivilListadoComponent } from './estadocivil-listado.component';
 import { EstadoCivilRoutingModule } from './EstadoCivildemo-routing.module';
-import { ToastModule } from 'primeng/toast';
+import {ToastModule} from 'primeng/toast';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
@@ -17,6 +17,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from "primeng/dropdown";
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
 	imports: [
@@ -39,6 +41,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 		MatExpansionModule,
 		ConfirmPopupModule
 	],
-	declarations: [EstadocivilListadoComponent]
+	declarations: [EstadocivilListadoComponent],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EstadoCivilDemoModule { }
