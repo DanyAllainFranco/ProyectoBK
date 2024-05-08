@@ -54,7 +54,7 @@
             <!-- Botón para abrir el modal de nuevo cargo -->
             <div class="grid">
                 <div class="col-12">
-                    <button (click)="displayNuevausuario()" pButton icon="pi pi-external-link" label="Nuevo" class="mr-2"></button>
+                    <button (click)="displayNuevausuario()" pButton icon="pi pi-plus-circle" label="Nuevo" class="mr-2"></button>
                 </div>
             </div>
     
@@ -105,11 +105,17 @@
                         <td>{{usuario.empl_Id}}</td>
                         <td>{{usuario.usua_Admin}}</td>
 
-                        <td  style="display: flex; grid-gap:10px">
-                            <!-- Botón para editar cargo -->
-                            <button pButton pRipple type="button" label="Editar" class="p-button-primary" (click)="editusuario(usuario)"></button>
+                        <!-- <td  style="display: flex; grid-gap:10px">
+                             <!-- Botón para editar cargo  -->
+                            <!-- <button pButton pRipple type="button" label="Editar" class="p-button-primary" (click)="editusuario(usuario)"></button> -->
                             <!-- Botón para eliminar cargo -->
-                            <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" (click)="confirmarEliminarusuario(usuario)"></button>
+                            <!-- <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" (click)="confirmarEliminarusuario(usuario)"></button> -->
+                        <!-- </td> --> 
+
+                        <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
+                            <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="editusuario(usuario)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                            <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(depto.dept_Codigo)" severity="secondary" [raised]="true" [plain]="true"></p-button>
+                            <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="confirmarEliminarusuario(depto.usuario)" severity="danger" [raised]="true" [plain]="true"></p-button>
                         </td>
                     </tr>
                 </ng-template>
