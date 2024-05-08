@@ -19,9 +19,10 @@ export class AppMenuComponent implements OnInit {
         this.usuario = localStorage.getItem('usuario');
         this.model = [
             {
-                label: 'Graficos',
+                label: 'Principal',
                 items: [
-                    { label: 'Graficos', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficos() }
+                    { label: 'Graficos', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficos() },
+                    { label: 'Facturar', icon: 'pi pi-fw pi-home', routerLink: ['/app/IndexFactura/'] }
                 ]
             },
             {

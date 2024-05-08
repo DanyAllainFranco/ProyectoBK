@@ -24,6 +24,8 @@ import { SucursalListadoComponent } from './demo/components/sucursal-listado/suc
 import { ReporteVentasComponent } from './demo/components/reporte-ventas/reporte-ventas.component';
 import { ListDemoComponent } from './demo/components/uikit/list/listdemo.component';
 import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.component';
+import { FacturaListadoComponent } from './demo/components/factura-listado/factura-listado.component';
+import { FacturacionComponent } from './demo/components/facturacion/facturacion.component';
 
 
 @NgModule({
@@ -61,7 +63,10 @@ import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.com
                     { path: 'IndexPaquetes', component: PaqueteListadoComponent },
                     { path: 'IndexSucursales', component: SucursalListadoComponent },
                     // { path: 'IndexGraficos', component: GraficosComponent }
-                    { path: 'IndexInforme', component: ReporteVentasComponent }
+                    { path: 'IndexInforme', component: ReporteVentasComponent }, //IndexFactura
+                    { path: 'IndexFactura', component: FacturaListadoComponent }, //IndexFactura
+                    { path: 'IndexFacturacion', component: FacturacionComponent } //IndexFactura
+
                                 ]
             },
             { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },

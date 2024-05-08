@@ -69,5 +69,9 @@ export class AppComponent {
         }
         InformeDeVentas (){
             this.router.navigate(['IndexInforme']);
+        }Factura (){
+            this.router.navigate(['IndexFactura']);
+        }Facturacion (){
+            this.router.navigate(['IndexFacturacion']);
         }
 }

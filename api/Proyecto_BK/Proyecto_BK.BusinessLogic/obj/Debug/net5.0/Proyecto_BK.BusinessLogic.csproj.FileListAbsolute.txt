@@ -68,3 +68,5 @@ C:\Users\informatica\Desktop\ProyectoBK\ProyectoBK\api\Proyecto_BK\Proyecto_BK.B
 C:\Users\informatica\Desktop\ProyectoBK\ProyectoBK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\obj\Debug\net5.0\Proyecto_BK.BusinessLogic.pdb
 C:\Users\informatica\Desktop\ProyectoBK\ProyectoBK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\bin\Debug\net5.0\Proyecto_BK.Common.dll
 C:\Users\informatica\Desktop\ProyectoBK\ProyectoBK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\bin\Debug\net5.0\Proyecto_BK.Common.pdb
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\bin\Debug\net5.0\Proyecto_BK.Common.dll
+C:\Users\ACER\OneDrive\Escritorio\proyect_bk\ProyectoBK\api\Proyecto_BK\Proyecto_BK.BusinessLogic\bin\Debug\net5.0\Proyecto_BK.Common.pdb
