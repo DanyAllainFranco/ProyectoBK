@@ -2,6 +2,7 @@
     <div class="col-12">
         <div class="card">
             <h5>Promociones por Sucursal</h5>
+            <button  pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" [class.hidden]="">Agregar</button>
             <p-table [value]="PromocionSucursal" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
                 [paginator]="true" [globalFilterFields]="['ppSu_Id','prom_Descripcion','sucu_Descripcion','muni_Codigo']" responsiveLayout="scroll">
                 <ng-template pTemplate="caption">

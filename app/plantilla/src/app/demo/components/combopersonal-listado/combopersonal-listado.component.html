@@ -2,6 +2,7 @@
     <div class="col-12">
         <div class="card">
             <h5>Combos Personales</h5>
+            <button  pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" [class.hidden]="">Agregar</button>
             <p-table [value]="ComboPersonal" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
                 [paginator]="true" [globalFilterFields]="['comb_Id','comb_Descripcion','comb_Precio','comb_Imagen','bebi_Descripcion','post_Descripcion','comp_Descripcion','alim_Descripcion']" responsiveLayout="scroll">
                 <ng-template pTemplate="caption">

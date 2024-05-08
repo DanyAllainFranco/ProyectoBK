@@ -2,6 +2,7 @@
     <div class="col-12">
         <div class="card">
             <h5>Paquetes</h5>
+            <button  pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" [class.hidden]="">Agregar</button>
             <p-table [value]="paquete" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
                 [paginator]="true" [globalFilterFields]="['paqe_Id,paqe_Descripcion,paqe_Imagen,paqe_Precio']" responsiveLayout="scroll">
                 <ng-template pTemplate="caption">

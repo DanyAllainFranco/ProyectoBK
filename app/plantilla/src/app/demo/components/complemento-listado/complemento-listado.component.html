@@ -2,6 +2,7 @@
     <div class="col-12">
         <div class="card">
             <h5>Complementos</h5>
+            <button  pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" [class.hidden]="">Agregar</button>
             <p-table [value]="Complemento" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
                 [paginator]="true" [globalFilterFields]="['comp_Id','comp_Descripcion','comp_Precio','comp_Imagen']" responsiveLayout="scroll">
                 <ng-template pTemplate="caption">
