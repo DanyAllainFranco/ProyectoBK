@@ -24,6 +24,7 @@ import { SucursalListadoComponent } from './demo/components/sucursal-listado/suc
 import { ReporteVentasComponent } from './demo/components/reporte-ventas/reporte-ventas.component';
 import { ListDemoComponent } from './demo/components/uikit/list/listdemo.component';
 import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.component';
+import { RolesListadoComponent } from './demo/components/roles-listado/roles-listado.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.com
                     { path: 'IndexUsuarios', component: UsuariosListadoComponent },
                     { path: 'IndexPaquetes', component: PaqueteListadoComponent },
                     { path: 'IndexSucursales', component: SucursalListadoComponent },
+                    {path: 'IndexRoles', component:RolesListadoComponent},
                     // { path: 'IndexGraficos', component: GraficosComponent }
                     { path: 'IndexInforme', component: ReporteVentasComponent }
                                 ]

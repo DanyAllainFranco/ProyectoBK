@@ -70,4 +70,7 @@ export class AppComponent {
         InformeDeVentas (){
             this.router.navigate(['IndexInforme']);
         }
+        ListarRoles (){
+            this.router.navigate(['IndexRoles']);
+        }
 }

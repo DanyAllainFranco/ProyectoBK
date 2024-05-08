@@ -187,8 +187,12 @@ export class AppMenuComponent implements OnInit {
                                 label: 'Usuarios',
                                 icon: 'pi pi-user-plus',
                                 routerLink: ['/app/IndexUsuarios']
-                            },                        
-                        
+                            },
+                            {
+                                label: 'Roles',
+                                icon: 'pi pi-sitemap',
+                                routerLink: ['/app/IndexRoles']
+                            },                                                   
                         ]
                     },
                     {
