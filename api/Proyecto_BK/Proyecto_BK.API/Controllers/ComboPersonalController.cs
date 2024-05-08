@@ -67,6 +67,35 @@ namespace Proyecto_BK.API.Controllers
             return Json(result.Data);
         }
 
+        [HttpGet("API/[controller]/GrafiAlimentosFiltro/{Usua_Usuario}/{FechaInicio}/{FechaFin}")]
+        public IActionResult GrafiAlimentoFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.GrafiAlimentosFiltro(Usua_Usuario, FechaInicio, FechaFin);
+            return Json(result.Data);
+        }
+
+
+        [HttpGet("API/[controller]/GrafiPostresFiltro/{Usua_Usuario}/{FechaInicio}/{FechaFin}")]
+        public IActionResult GrafiPostresFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.GrafiPostreFiltro(Usua_Usuario, FechaInicio, FechaFin);
+            return Json(result.Data);
+        }
+
+        [HttpGet("API/[controller]/GrafiCombosFiltro/{Usua_Usuario}/{FechaInicio}/{FechaFin}")]
+        public IActionResult GrafiCombosFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.GrafiComboFiltro(Usua_Usuario, FechaInicio, FechaFin);
+            return Json(result.Data);
+        }
+
+        [HttpGet("API/[controller]/GrafiPaquetesFiltro/{Usua_Usuario}/{FechaInicio}/{FechaFin}")]
+        public IActionResult GrafiPaquetesFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.GrafiPaqueteFiltro(Usua_Usuario, FechaInicio, FechaFin);
+            return Json(result.Data);
+        }
+
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(ComboPersonalViewModel item)
         {

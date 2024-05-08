@@ -21,7 +21,8 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Graficos',
                 items: [
-                    { label: 'Graficos', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficos() }
+                    { label: 'Graficos', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficos() },
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficosFiltros() }
                 ]
             },
             {
@@ -275,5 +276,10 @@ export class AppMenuComponent implements OnInit {
     loadGraficos() {
         this.router.navigate(['/app/PrincipalGraficos'], { queryParams: { usuario: this.usuario } });
     }
+    loadGraficosFiltros() {
+        this.router.navigate(['/app/FiltrosGraficos'], { queryParams: { usuario: this.usuario } });
+    }
+
+    
 }
 

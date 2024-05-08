@@ -25,7 +25,7 @@ import { ReporteVentasComponent } from './demo/components/reporte-ventas/reporte
 import { ListDemoComponent } from './demo/components/uikit/list/listdemo.component';
 import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.component';
 import { RolesListadoComponent } from './demo/components/roles-listado/roles-listado.component';
-
+import { FiltrosComponent } from './demo/components/filtros/filtros.component';
 
 @NgModule({
     imports: [
@@ -38,6 +38,7 @@ import { RolesListadoComponent } from './demo/components/roles-listado/roles-lis
                 children: [
                     { path: 'Principal',  component:ListDemoComponent},
                     { path: 'PrincipalGraficos',  component:GraficosComponent},
+                    { path: 'FiltrosGraficos',  component:FiltrosComponent},
                     { path: 'dashboard', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
                     { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },

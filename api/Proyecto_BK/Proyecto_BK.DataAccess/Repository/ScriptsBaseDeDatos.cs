@@ -190,6 +190,10 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Grafi_Paquetes = "Rest.SP_ObtenerPaqueteMasPedidoPorUsuario";
         public static string Grafi_Alimento = "Rest.SP_ObtenerAlimentoMasPedidoPorUsuario";
         public static string Grafi_Postre = "Rest.SP_ObtenerPostreMasPedidoPorUsuario";
+        public static string Grafi_AlimentoFiltro = "[Rest].[SP_ObtenerAlimentoMasPedidoPorUsuarioFiltro]";
+        public static string Grafi_PostreFiltro = "[Rest].[SP_ObtenerPostreMasPedidoPorUsuarioFiltro]";
+        public static string Grafi_PaquetesFiltro = "[Rest].[SP_ObtenerPaqueteMasPedidoPorUsuarioFiltro]";
+        public static string Grafi_CombosFiltro = "[Rest].[SP_ObtenerComboMasPedidoPorUsuarioFiltro]";
         #endregion
 
     }
