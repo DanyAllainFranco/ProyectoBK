@@ -74,11 +74,17 @@
         <tr>
             <td>{{departamento.dept_Codigo}}</td>
             <td>{{departamento.dept_Descripcion}}</td>
-            <td  style="display: flex; grid-gap:10px">
+            <!-- <td  style="display: flex; grid-gap:10px">
                 <button pButton pRipple type="button" label="Editar" class="p-button-primary" (click)="editDepartamento(departamento)"></button>
                 <button pButton pRipple type="button" label="Detalles" class="p-button-secondary" (click)="Detalle()"></button>
                 <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" (click)="confirmarEliminarDepartamento(departamento)"></button>
 
+            </td> -->
+
+            <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
+                <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="editDepartamento(departamento)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="Detalle()" severity="secondary" [raised]="true" [plain]="true"></p-button>
+                <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="confirmarEliminarDepartamento(departamento)" severity="danger" [raised]="true" [plain]="true"></p-button>
             </td>
         </tr>
     </ng-template>

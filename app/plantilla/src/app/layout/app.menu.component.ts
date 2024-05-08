@@ -122,6 +122,11 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/app/IndexComboPersonal']
                             },
                             {
+                                label: 'Alimentos',
+                                icon: 'pi pi-plus-circle',
+                                routerLink: ['/app/IndexAlimentos']
+                            },
+                            {
                                 label: 'Complementos',
                                 icon: 'pi pi-plus-circle',
                                 routerLink: ['/app/IndexComplemento']

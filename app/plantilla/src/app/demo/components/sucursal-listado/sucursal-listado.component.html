@@ -49,7 +49,7 @@
             <!-- Botón para abrir el modal de nuevo cargo -->
             <div class="grid">
                 <div class="col-12">
-                    <button (click)="displayNuevaSucursal()" pButton icon="pi pi-external-link" label="Nuevo" class="mr-2"></button>
+                    <button (click)="displayNuevaSucursal()" pButton icon="pi pi-plus-circle" label="Nuevo" class="mr-2"></button>
                 </div>
             </div>
     
@@ -84,11 +84,17 @@
                         <td>{{sucursal.sucu_Descripcion}}</td>
                         <td>{{sucursal.muni_Codigo}}</td>
 
-                        <td  style="display: flex; grid-gap:10px">
+                        <!-- <td  style="display: flex; grid-gap:10px"> -->
                             <!-- Botón para editar cargo -->
-                            <button pButton pRipple type="button" label="Editar" class="p-button-primary" (click)="editSucursal(sucursal)"></button>
+                            <!-- <button pButton pRipple type="button" label="Editar" class="p-button-primary" (click)="editSucursal(sucursal)"></button> -->
                             <!-- Botón para eliminar cargo -->
-                            <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" (click)="confirmarEliminarSucursal(sucursal)"></button>
+                            <!-- <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" (click)="confirmarEliminarSucursal(sucursal)"></button>
+                        </td> -->
+
+                        <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
+                            <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="editSucursal(sucursal)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                            <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(depto.dept_Codigo)" severity="secondary" [raised]="true" [plain]="true"></p-button>
+                            <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="confirmarEliminarSucursal(sucursal)" severity="danger" [raised]="true" [plain]="true"></p-button>
                         </td>
                     </tr>
                 </ng-template>

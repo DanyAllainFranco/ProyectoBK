@@ -71,11 +71,10 @@
                         
                                              
                         <td>{{prom.prom_Dia}}</td>
-                        <td style="display: grid; justify-content: space-around;">
-                            <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(depto.dept_Codigo)"></button>
-                            <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(depto.dept_Codigo)"></button>
-                            <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(depto.dept_Codigo)"></button>
-                          
+                        <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
+                            <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="Fill(depto.dept_Codigo)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                            <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(depto.dept_Codigo)" severity="secondary" [raised]="true" [plain]="true"></p-button>
+                            <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="deleteSelectedProducts(depto.dept_Codigo)" severity="danger" [raised]="true" [plain]="true"></p-button>
                         </td>
               
                     </tr>
