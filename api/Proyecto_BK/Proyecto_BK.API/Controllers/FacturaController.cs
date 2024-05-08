@@ -42,31 +42,13 @@ namespace Proyecto_BK.API.Controllers
             _mapper.Map<FacturaViewModel>(json);
             var modelo = new FacturaViewModel()
             {
-                //parameter.Add("@Sucu_Id", item.Sucu_Id);
-                //parameter.Add("@Empl_Id", item.Empl_Id);
-                //parameter.Add("@Fact_Fecha", item.Fact_Fecha);
-                //parameter.Add("@Fact_Total", item.Fact_Total);
-                //parameter.Add("@Fact_Fecha_Creacion", item.Fact_Fecha_Creacion);
-                //parameter.Add("Usua_Fecha_Creacion", item.Fact_Usua_Creacion);
-                //parameter.Add("@Fact_Id", item.Fact_Id);
-                //parameter.Add("@Prom_Id", item.Prom_Id);
-                //parameter.Add("@Comb_Id", item.Comb_Id);
-                //parameter.Add("@Paqe_Id", item.Paqe_Id);
-                //parameter.Add("@Bebi_Id", item.Bebi_Id);
-                //parameter.Add("@Post_id", item.Post_id);
-                //parameter.Add("@Comp_Id", item.Comb_Id);
-                //parameter.Add("@Alim_Id", item.Alim_Id);
-                //parameter.Add("@FaDe_Cantidad", item.FaDe_Cantidad);
-                //parameter.Add("@FaDe_Subtotal", item.FaDe_Subtotal);
-                //parameter.Add("@FaDe_Usua_Creacion", item.FaDe_Usua_Creacion);
-                //parameter.Add("@FaDe_Fecha_Creacion", item.FaDe_Fecha_Creacion);
-
-                Sucu_Id = json.Sucu_Id,
+               Sucu_Id = json.Sucu_Id,
                 Empl_Id = json.Empl_Id,
                 Fact_Fecha = DateTime.Now,
                 Fact_Total = json.Fact_Total,
                 Fact_Fecha_Creacion = DateTime.Now,
                 Fact_Usua_Creacion = 1,
+                Clie_Id = json.Clie_Id,
                 Fact_Id = json.Fact_Id,
                 Prom_Id = json.Prom_Id,
                 Comb_Id = json.Comb_Id,
@@ -78,7 +60,17 @@ namespace Proyecto_BK.API.Controllers
                 FaDe_Cantidad = json.FaDe_Cantidad,
                 FaDe_Subtotal = json.FaDe_Subtotal,
                 FaDe_Usua_Creacion = 1,
-                FaDe_Fecha_Creacion = DateTime.Now
+                FaDe_Fecha_Creacion = DateTime.Now,
+                Clie_Identidad = json.Clie_Identidad,
+                Clie_Nombre = json.Clie_Nombre,
+                Clie_Apellido = "N/D",
+                Clie_Sexo = "N",
+                Clie_Correo = "N/D",
+                Esta_Id = 1,
+                Muni_Codigo = "0501",
+                Carg_Id = 6,
+                Clie_Usua_Creacion = 1,
+                Clie_Fecha_Creacion = DateTime.Now
             };
             var response = _restauranteServices.CrearFactuea(modelo);
             return Ok(response);

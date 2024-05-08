@@ -36,6 +36,7 @@ export class InicioDeSesionComponent {
           console.log('Respuesta del servidor:', response);
           if (response !== "Error") {
             localStorage.setItem('usuario', loginData.Usua_Usuario); 
+
             this.router.navigate(['/app/PrincipalGraficos'], { queryParams: { usuario: loginData.Usua_Usuario } });
           }
         },

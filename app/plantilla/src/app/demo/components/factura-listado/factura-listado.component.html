@@ -4,7 +4,7 @@
             <h5>Factura</h5>
             <div class="grid">
                 <div class="col-12">
-                    <button  pButton icon="pi pi-external-link" (click)="CrearNuevaFactura()" label="Nueva factura" class="mr-2"></button>
+                    <button  pButton icon="pi pi-external-link" (click)="CrearNuevaFactura()" label="Nueva orden" class="mr-2"></button>
                 </div>
             </div>
             <p-table [value]="factura" [rows]="11" [rowHover]="true" styleClass="p-datatable-gridlines"
@@ -35,10 +35,10 @@
                                 <p-columnFilter type="text" field="fact_Precio" display="menu"
                                 placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
-                        </th>
+                        </th> 
                         <th>
                             <div class="flex justify-content-between align-items-center">
-                                Emisor
+                                Factura a nombre de
                                 <p-columnFilter type="text" field="fact_Precio" display="menu"
                                 placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
@@ -100,8 +100,8 @@
                 <ng-template pTemplate="body" let-fact>
                     <tr>
                         <td>{{fact.fact_Id}}</td>
-                        <td>{{fact.fact_Id}}</td>
-                        <td>{{fact.empl_Nombre}}</td>
+                        <td>{{fact.fact_Fecha}}</td>
+                        <td>{{fact.clie_Nombre}}</td>
                         <td>{{fact.sucu_Descripcion}}</td>
                         <td>{{fact.alim_Descripcion}}</td>
                         <td>{{fact.bebi_Descripcion}}</td>

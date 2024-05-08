@@ -28,7 +28,7 @@ import { DialogModule } from 'primeng/dialog';
 })
 
 export class FacturacionComponent{
-  // display: boolean = false;
+  display: boolean = false;
   // submitted = false;
   // sucursal: Sucursales[] = [];
   // municipios: any[] = [];

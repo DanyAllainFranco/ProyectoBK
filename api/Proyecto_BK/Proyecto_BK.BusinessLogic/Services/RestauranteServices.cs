@@ -100,7 +100,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                 var response = _facturaRepository.Insert(item);
                 if (response.CodeStatus == 1)
                 {
-                    return result.Ok("Alimento creado con éxito", response);
+                    return result.Ok("Factura creada  con éxito", response);
                 }
                 else
                 {

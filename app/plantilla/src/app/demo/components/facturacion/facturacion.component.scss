@@ -202,7 +202,7 @@ table th{
 /** Invoice 1 Start **/
 .invoice-1 {
     padding: 30px 0;
-    background: #fff6f6;
+    background: #fff;
 }
 
 .invoice-1 .mb-30 {
@@ -228,8 +228,7 @@ table th{
 
 .invoice-1 .invoice-headar {
     height: 125px;
-    margin-bottom: 25px;
-    background: #f3f3f3;
+    background: #fff;
 }
 
 .invoice-1 .invoice-headar p span{
@@ -248,9 +247,9 @@ table th{
 }
 
 .invoice-1 .invoice-id{
-    border-radius: 75px 0 0 75px;
+    border-radius: 75px 0 0 75px;  
     z-index: 0;
-    background-image: linear-gradient(to bottom, #ff0000, #ff8100);
+    background-image: linear-gradient(to bottom, #D62700, #FF8733);
 }
 
 .invoice-1 .payment-method-list-1{
@@ -286,7 +285,7 @@ table th{
 }
 
 .invoice-1 .invoice-top {
-    padding: 40px 50px 10px;
+    padding: 40px 50px 40px;
     font-size: 15px;
 }
 
@@ -478,4 +477,31 @@ table th{
     .invoice-1 .d-none-580{
         display: none!important;
     }
+}
+
+ .contenedor{
+    width: 30px;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 1em;
+	padding-top: 20px;
+    // max-width: 1000px;
+    display: grid;
+ }
+
+ .button{
+	padding: 10px;
+	text-align: center;
+	cursor: pointer;
+	background-color: #FF8733;
+	color: #fff;
+	font-size: 30px;
+	border-radius: 5px;
+	box-shadow: 1px 1px 1px #333;
+	transition: .2s;
+	&:hover {
+		box-shadow: 10px 10px 10px #fff;
+		transform: scale(1.05);
+		background-color: #D62700;
+		color: #fff;
+	}
 }
