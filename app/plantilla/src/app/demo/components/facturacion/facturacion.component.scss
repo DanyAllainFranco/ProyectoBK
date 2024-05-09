@@ -505,3 +505,68 @@ table th{
 		color: #fff;
 	}
 }
+
+
+pos-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Estilos para los botones */
+  .square-button {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Estilos para los inputs */
+  .inputs {
+    margin-top: 20px;
+  }
+  
+  .inputs input {
+    width: calc(50% - 5px);
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    display: inline-block; /* Para mostrar los inputs en línea */
+  }
+  
+  /* Estilos para los select */
+  .selects {
+    margin-top: 20px;
+  }
+  
+  .column {
+    float: left;
+    width: 50%;
+  }
+  
+  .selects select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Clearfix para las columnas */
+  .column:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+

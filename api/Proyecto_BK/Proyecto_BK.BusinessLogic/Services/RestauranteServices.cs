@@ -57,7 +57,24 @@ namespace Proyecto_BK.BusinessLogic.Services
 
 
         #region Factura
-        public ServiceResult ListFactura()
+
+        public ServiceResult ListadoFacturaDetalles(int Fact_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.ListaDetalles(Fact_Id);
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult ListadoFactura()
         {
             var result = new ServiceResult();
             try
@@ -65,51 +82,56 @@ namespace Proyecto_BK.BusinessLogic.Services
                 var list = _facturaRepository.List();
                 return result.Ok(list);
             }
+
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+
+                return result.Error(ex.Message);
             }
         }
 
-        public ServiceResult LlenarFactura(int Fact_Id)
+        public ServiceResult CrearFactura(FacturaViewModel item, out int id)
         {
             var result = new ServiceResult();
             try
             {
-                var factura = _facturaRepository.Find(Fact_Id);
-                if (factura != null)
+                var (lost, scope) = _facturaRepository.Insertar(item);
+                id = scope;
+                if (lost.CodeStatus > 0)
                 {
-                    return result.Ok(factura);
+                    return result.Ok(lost);
                 }
                 else
                 {
-                    return result.Error($"No se encontró la factura con ID {Fact_Id}");
+                    lost.MessageStatus = (lost.CodeStatus != 1) ? "401 Error de consulta" : lost.MessageStatus;
+                    return result.Error(lost);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró la factura con ID {Fact_Id}");
+                id = 0;
+                return result.Error(ex.Message);
             }
         }
 
-        public ServiceResult CrearFactuea(FacturaViewModel item)
+        public ServiceResult InsertarDetalle(FacturaDetalleViewModel item)
         {
             var result = new ServiceResult();
             try
             {
-                var response = _facturaRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _facturaRepository.InsertarDetalle(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Factura creada  con éxito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información de la factura");
+                return result.Error(ex.Message);
             }
         }
 

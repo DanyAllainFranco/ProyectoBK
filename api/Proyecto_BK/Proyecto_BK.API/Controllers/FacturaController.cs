@@ -11,69 +11,75 @@ using System.Threading.Tasks;
 namespace Proyecto_BK.API.Controllers
 {
     [ApiController]
-    public class FacturaContoller : Controller
+    [Route("API/[controller]")]
+    public class FacturaController : Controller
     {
         private readonly RestauranteServices _restauranteServices;
-        private readonly IMapper _mapper;
 
-        public FacturaContoller(RestauranteServices restauranteServices, IMapper mapper)
+        private readonly IMapper _mapper;
+        public FacturaController(RestauranteServices restauranteServices, IMapper mapper)
         {
             _restauranteServices = restauranteServices;
             _mapper = mapper;
         }
-
-        [HttpGet("API/[controller]/List")]
-        public IActionResult List()
+        [HttpGet("List")]
+        public IActionResult Index()
         {
-            var list = _restauranteServices.ListFactura();
+            var list = _restauranteServices.ListadoFactura();
             return Ok(list.Data);
         }
 
-        [HttpGet("API/[controller]/Find")]
-        public IActionResult Find(int Fact_Id)
+        [HttpGet("ListaDetalles/{Fact_Id}")]
+        public IActionResult ListaDetalles(int Fact_Id)
         {
-            var result = _restauranteServices.LlenarFactura(Fact_Id);
-            return Ok(result);
+            var list = _restauranteServices.ListadoFacturaDetalles(Fact_Id);
+            return Ok(list.Data);
         }
-  
-        [HttpPost("API/[controller]/Insert")]
-        public IActionResult Create(FacturaViewModel json)
+
+        [HttpPost("Create")]
+
+        public IActionResult Insert(FacturaViewModel item)
         {
-            _mapper.Map<FacturaViewModel>(json);
-            var modelo = new FacturaViewModel()
+            if (item.Fact_Id == 0)
             {
-               Sucu_Id = json.Sucu_Id,
-                Empl_Id = json.Empl_Id,
-                Fact_Fecha = DateTime.Now,
-                Fact_Total = json.Fact_Total,
-                Fact_Fecha_Creacion = DateTime.Now,
-                Fact_Usua_Creacion = 1,
-                Clie_Id = json.Clie_Id,
-                Fact_Id = json.Fact_Id,
-                Prom_Id = json.Prom_Id,
-                Comb_Id = json.Comb_Id,
-                Paqe_Id = json.Paqe_Id,
-                Bebi_Id = json.Bebi_Id,
-                Post_id = json.Post_id,
-                Comp_Id = json.Comp_Id,
-                Alim_Id = json.Alim_Id,
-                FaDe_Cantidad = json.FaDe_Cantidad,
-                FaDe_Subtotal = json.FaDe_Subtotal,
-                FaDe_Usua_Creacion = 1,
-                FaDe_Fecha_Creacion = DateTime.Now,
-                Clie_Identidad = json.Clie_Identidad,
-                Clie_Nombre = json.Clie_Nombre,
-                Clie_Apellido = "N/D",
-                Clie_Sexo = "N",
-                Clie_Correo = "N/D",
-                Esta_Id = 1,
-                Muni_Codigo = "0501",
-                Carg_Id = 6,
-                Clie_Usua_Creacion = 1,
-                Clie_Fecha_Creacion = DateTime.Now
-            };
-            var response = _restauranteServices.CrearFactuea(modelo);
-            return Ok(response);
+                var modele = _mapper.Map<FacturaViewModel>(item);
+                var modeloFactura = new FacturaViewModel()
+                {
+                    Sucu_Id = item.Sucu_Id,
+                    Empl_Id = item.Empl_Id,
+                    Fact_Total = item.Fact_Total,
+                    Clie_Identidad = item.Clie_Identidad,
+                    Clie_Nombre = item.Clie_Nombre
+
+                };
+                var IdFactura = _restauranteServices.CrearFactura(modeloFactura, out int id);
+                IdFactura.Message = id.ToString();
+
+                var model = _mapper.Map<FacturaDetalleViewModel>(item);
+                var modelo = new FacturaDetalleViewModel()
+                {
+                    FaDe_Ident = item.FaDe_Ident,
+                    FaDe_ProdId = item.FaDe_ProdId,
+                    FaDe_Cantidad = item.FaDe_Cantidad,
+                    Fact_Id = Convert.ToInt32(IdFactura.Message),
+                };
+                var list = _restauranteServices.InsertarDetalle(modelo);
+                return Ok(new { success = true, message = list.Message, id = IdFactura.Message });
+            }
+            else
+            {
+                var model = _mapper.Map<FacturaDetalleViewModel>(item);
+                var modelo = new FacturaDetalleViewModel()
+                {
+                    FaDe_Ident = item.FaDe_Ident,
+                    FaDe_ProdId = item.FaDe_ProdId,
+                    FaDe_Cantidad = item.FaDe_Cantidad,
+                    Fact_Id = item.Fact_Id
+                };
+                var list = _restauranteServices.InsertarDetalle(modelo);
+                return Ok(new { success = true, message = list.Message, id = item.Fact_Id });
+            }
         }
+
     }
 }

@@ -18,6 +18,15 @@ import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
+import { FormsModule } from '@angular/forms';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { SidebarModule } from 'primeng/sidebar';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { TooltipModule } from 'primeng/tooltip';
+import { AutoCompleteModule } from "primeng/autocomplete";
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { InputGroupModule } from 'primeng/inputgroup';
 
 @Component({
   selector: 'app-facturacion',
@@ -175,19 +184,23 @@ export class FacturacionComponent{
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    TableModule,
-    ButtonModule,
-    InputTextModule,
-    ToggleButtonModule,
-    RippleModule,
-    MultiSelectModule,
-    DropdownModule,
-    ProgressBarModule,
-    DialogModule,
-    ToastModule,
-    SliderModule,
-    RatingModule
+		ToastModule,
+		DialogModule,
+		FormsModule,
+		TooltipModule,
+		InputTextModule,
+		DropdownModule,
+		ButtonModule,
+		OverlayPanelModule,
+		TableModule,
+		ConfirmDialogModule,
+		SidebarModule,
+		RippleModule,
+		ConfirmPopupModule,
+		ReactiveFormsModule,
+		AutoCompleteModule,
+		InputGroupAddonModule,
+		InputGroupModule
     ],
   declarations: [FacturacionComponent]
 })
