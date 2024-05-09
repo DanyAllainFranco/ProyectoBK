@@ -382,24 +382,49 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult CrearRol(tbRoles item)
+        public (ServiceResult, int) InsertarRoles(tbRoles item)
         {
             var result = new ServiceResult();
+            int rolid = 0;
             try
             {
-                var response = _rolRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var lost = _rolRepository.Insertar(item);
+                rolid = lost.Item2;
+
+                if (lost.Item1.CodeStatus > 0)
                 {
-                    return result.Ok("Rol creado con éxito", response);
+                    return (result.Ok(lost), rolid);
+
                 }
                 else
                 {
-                    return result.Error("Por favor rellene todos los campos");
+                    return (result.Error(lost), rolid);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información del rol");
+                return (result.Error(ex.Message), rolid);
+            }
+        }
+        public ServiceResult InsertarPantallasPorRoles(tbPantallasPorRoles item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _rolRepository.InsertarPantallaPorRoles(item);
+                if (lost.CodeStatus > 0)
+                {
+                    return result.Ok(lost);
+
+                }
+                else
+                {
+                    return result.Error(lost);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
             }
         }
 

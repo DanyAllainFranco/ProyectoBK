@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Proyecto_BK.BusinessLogic;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
@@ -42,6 +43,46 @@ namespace Proyecto_BK.API.Controllers
             var result = _accesoServices.LlenarRol(Rol_Id);
             return Ok(result);
         }
+        [HttpPost("RolCrear")]
+        public IActionResult Insert([FromBody] RoleWithScreens data)
+        {
+            var result = new ServiceResult();
+            var rol = data.Rol_Descripcion;
+            var pantallas = data.Screens;
+
+            var modelo = new tbRoles()
+            {
+                Rol_Descripcion = rol,
+                Rol_Usua_Creacion = 1,
+                Rol_Fecha_Creacion = DateTime.Now
+            };
+            (var list, int Role_IdScope) = _accesoServices.InsertarRoles(modelo);
+
+
+            foreach (var pantalla in pantallas)
+            {
+                var modelo2 = new tbPantallasPorRoles()
+                {
+                    Pant_Id = pantalla.Pant_Id,
+                    Rol_Id = Role_IdScope,
+                    Paro_Usua_Creacion = 1
+                };
+
+                result = _accesoServices.InsertarPantallasPorRoles(modelo2);
+
+
+            }
+
+
+            if (result.Success == true)
+            {
+                return Ok(list);
+            }
+            else
+            {
+                return Problem();
+            }
+        }
 
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(RolViewModel json)
@@ -53,7 +94,7 @@ namespace Proyecto_BK.API.Controllers
                 Rol_Usua_Creacion = 1,
                 Rol_Fecha_Creacion = DateTime.Now
             };
-            var response = _accesoServices.CrearRol(modelo);
+            var response = _accesoServices.InsertarRoles(modelo);
             return Ok(response);
         }
 
