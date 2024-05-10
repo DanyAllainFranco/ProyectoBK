@@ -68,6 +68,14 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Bebi_Insertar = "[Rest].SP_Bebiidas_Insertar";
         public static string Bebi_Editar = "[Rest].SP_Bebiidas_Editar";
         public static string Bebi_Eliminar = "[Rest].SP_Bebiidas_Eliminar";
+
+        public static string Bebi_Autocompletar = "[Rest].[SP_BebidasDDL]";
+
+        #endregion
+
+        #region Combos
+        public static string Combos_Autocompletado  = "[Rest].[SP_CombosDDL]";
+
         #endregion
 
         #region CombosPersonales
@@ -84,6 +92,9 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Comp_Insertar = "[Rest].SP_Complementos_Insertar";
         public static string Comp_Editar = "[Rest].SP_Complementos_Editar";
         public static string Comp_Eliminar = "[Rest].SP_Complementos_Eliminar";
+
+        public static string Comp_Autocompletar = "[Rest].[SP_ComplementosDDL]";
+
         #endregion
 
         #region Paquetes
@@ -92,6 +103,9 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Paqe_Insertar = "[Rest].SP_Paquetes_Insertar";
         public static string Paqe_Editar = "[Rest].SP_Paquetes_Editar";
         public static string Paqe_Eliminar = "[Rest].SP_Paquetes_Eliminar";
+
+        public static string Paqe_Autocompletar = "[Rest].[SP_PaquetesDDL]";
+
         #endregion
 
         #region Paquetes Por Comidas
@@ -108,6 +122,9 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Post_Insertar = "[Rest].SP_Postres_Insertar";
         public static string Post_Editar = "[Rest].SP_Postres_Editar";
         public static string Post_Eliminar = "[Rest].SP_Postres_Eliminar";
+
+        public static string Post_Autocompletar = "[Rest].[SP_PostresDDL]";
+
         #endregion
 
         #region Promociones

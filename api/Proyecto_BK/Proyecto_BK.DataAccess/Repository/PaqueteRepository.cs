@@ -60,6 +60,15 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+        public IEnumerable<tbPaquetes> PaqueteDDL()
+        {
+            List<tbPaquetes> result = new List<tbPaquetes>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                result = db.Query<tbPaquetes>(ScriptsBaseDeDatos.Paqe_Autocompletar, commandType: CommandType.Text).ToList();
+                return result;
+            }
+        }
         public RequestStatus Update(tbPaquetes item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))

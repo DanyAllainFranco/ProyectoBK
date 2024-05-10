@@ -60,6 +60,16 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+        public IEnumerable<tbPostres> PostresDDL()
+        {
+            List<tbPostres> result = new List<tbPostres>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                result = db.Query<tbPostres>(ScriptsBaseDeDatos.Post_Autocompletar, commandType: CommandType.Text).ToList();
+                return result;
+            }
+        }
+
         public RequestStatus Update(tbPostres item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))

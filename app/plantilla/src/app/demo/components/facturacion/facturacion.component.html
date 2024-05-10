@@ -20,46 +20,38 @@
                             <form [formGroup]="FacturaForm" (keydown)="handleKeyDown($event)" (ngSubmit)="onSubmit()">
                                 <div class="p-fluid p-formgrid grid">
                                   <div class="field col-12 md:col-6">
-                                    <label for="">Empleado</label>
+                                    <!---Cliente nombre-->
+                                    <label for="">Cliente</label>
                                     <p-inputGroup>
-                                      <p-inputGroupAddon>
-                                          <i class="pi pi-user"></i>
-                                      </p-inputGroupAddon>
-                                      <input pInputText id="Empl_Nombre" formControlName="Empl_Nombre" type="text" required autofocus  [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('Empl_Nombre').value === ''}"
-                                      (keydown)="validarTexto($event)" />
-                                  </p-inputGroup>
-                                    <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Empl_Nombre'].invalid" style="color: red !important;">Empleado Requerido</small>
+                                        <p-inputGroupAddon>
+                                            <i class="pi pi-user"></i>
+                                        </p-inputGroupAddon>
+                                        <input pInputText type="text" placeholder="Nombre" formControlName="Clie_Nombre"/>
+                                    </p-inputGroup>     
+                                    <!---Cierre cliente nombre-->
+                           
+                                <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Clie_Nombre'].invalid" style="color: red !important;">Nombre Requerido</small>
                                   </div>
-                                    <div class="field col-12 md:col-6">
+                                    <div class="field col-12 md:col-6">                                                                            
+                                     <!---Cliente identidad-->
                                       <label for="">Identidad</label>
-                                      <p-autoComplete [(ngModel)]="selectedClientesAdvanced"
-                                      [suggestions]="filteredClientes"
-                                      (completeMethod)="filterCliente($event)"
-                                      (onSelect)="onSelectCliente($event)"
-                                      field="clie_DNI"
-                                      formControlName="Clie_DNI"
-                                      [dropdown]="true"
-                                      appendTo="body">
-                                  </p-autoComplete>
-                                      <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Clie_DNI'].invalid" style="color: red !important;">Impuesto Requerido</small>
+                                      <p-inputGroup>
+                                        <p-inputGroupAddon>
+                                            <i class="pi pi-user"></i>
+                                        </p-inputGroupAddon>
+                                        <input pInputText type="text" placeholder="Numero de identidad" formControlName="Clie_Identidad"/>
+                                    </p-inputGroup>
+                                      <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Clie_Identidad'].invalid" style="color: red !important;">Identidad requerida</small>
                                     </div>
-                                    <div class="field col-12 md:col-6">
-                                      <label for="">Nombre</label>
-                                      <input pInputText id="Cliente" formControlName="Clie_Nombre" type="text" required autofocus  [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('Clie_Nombre').value === ''}"
-                                      (keydown)="validarTexto($event)" />
-                                      <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Clie_Nombre'].invalid" style="color: red !important;">Impuesto Requerido</small>
-                                    </div>
+                                    <!---Cierre cliente identidad-->
+
                                </div>
-                       
-                                  </div>       
-                            <p-table [value]="FacturaDetalle" >
+                                    <p-table [value]="FacturaDetalle" >
                               <ng-template pTemplate="header">
                                   <tr>
                                       <th style="width:15%;">Tabla</th>
-                                      <th style="width:5%;">Código</th>
                                       <th style="width:45%;">Producto</th>
                                       <th style="width:10%;">Cantidad</th>
-                                      <th style="width:10%;">Precio</th>
                                       <th style="width:10%;">Total</th>
                                       <th></th>
                                   </tr>
@@ -76,33 +68,27 @@
                                   <tr>
                                       <td style="width:15%;">
                                           <label>
-                                              <input type="radio" name="j-m-radio" value="N" (change)="onRadioChange($event)" formControlName="Faxd_Dif" />
-                                              Complemento
+                                              <input type="radio" value="N" (change)="onRadioChange($event)" formControlName="FaDe_Ident" />
+                                              C
                                           </label>
-                                          <label>
-                                            <input type="radio" name="j-m-radio" value="C" (change)="onRadioChange($event)" formControlName="Faxd_Dif" />
+                                          <!-- <label>
+                                            <input type="radio" value="C" (change)="onRadioChange($event)" formControlName="FaDe_Ident" />
                                             Combo
+                                        </label> -->
+                                        <label>
+                                            <input type="radio" value="D" (change)="onRadioChange($event)" formControlName="FaDe_Ident" />
+                                            P
                                         </label>
                                        
                                         <label>
-                                            <input type="radio" name="j-m-radio" value="D" (change)="onRadioChange($event)" formControlName="Faxd_Dif" />
-                                            Postre
+                                            <input type="radio" value="B" (change)="onRadioChange($event)" formControlName="FaDe_Ident" />
+                                            B
                                         </label>
                                        
                                         <label>
-                                            <input type="radio" name="j-m-radio" value="B" (change)="onRadioChange($event)" formControlName="Faxd_Dif" />
-                                            Bebida
+                                            <input type="radio" value="P" (change)="onRadioChange($event)" formControlName="FaDe_Ident" />
+                                            P
                                         </label>
-                                       
-                                        <label>
-                                            <input type="radio" name="j-m-radio" value="P" (change)="onRadioChange($event)" formControlName="Faxd_Dif" />
-                                            Paquete
-                                        </label>
-                                      </td>
-                                      <td style="width:5%;">
-                                          <input pInputText id="Prod_Id" formControlName="Prod_Id" type="text" required autofocus
-                                              [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('Prod_Id').invalid}"
-                                              (keydown)="cantidad($event)" />
                                       </td>
                                       <td style="width:45%;">
                                           <p-autoComplete [(ngModel)]="selectedCountryAdvanced"
@@ -116,25 +102,23 @@
                                           </p-autoComplete>
                                       </td>
                                       <td style="width:10%;">
-                                          <input pInputText id="Faxd_Cantidad" formControlName="Faxd_Cantidad" type="text" required autofocus 
-                                              [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('Faxd_Cantidad').value === '0' || FacturaForm.get('Faxd_Cantidad').value === ''}"
+                                          <input pInputText id="FaDe_Cantidad" formControlName="FaDe_Cantidad" type="text" required autofocus 
+                                              [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('FaDe_Cantidad').value === '0' || FacturaForm.get('FaDe_Cantidad').value === ''}"
                                                />
-                                               <small *ngIf="submitted && FacturaForm.get('Faxd_Cantidad').value === '0'" style="color: red;">Cantidad es 0</small>
-                                      </td>   <small *ngIf="submitted && FacturaForm.get('Faxd_Cantidad').value === ''" style="color: red;">Cantidad es requerida</small>
+                                               <small *ngIf="submitted && FacturaForm.get('FaDe_Cantidad').value === '0'" style="color: red;">Cantidad es 0</small>
+                                      </td>   <small *ngIf="submitted && FacturaForm.get('FaDe_Cantidad').value === ''" style="color: red;">Cantidad es requerida</small>
                                       <td style="width:10%;">
                                           0
                                       </td>
                                       <td style="width:10%;">0</td>
                                   </tr>
                               </ng-template>
-                          </p-table>
-                      
-                                           
+                          </p-table>                
                            <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
-                              <button pButton icon="pi pi-stop" type="button" (click)="cancelar()" label="Cancelar" class="p-button-outlined"></button>
+                              <button pButton icon="pi pi-stop" type="button" label="Cancelar" (click)="cancelar()" class="p-button-outlined"></button>
                           </div>
                           </form>             
-                        </div>               
+                   </div>               
                 </div>
             </div>
         </div>

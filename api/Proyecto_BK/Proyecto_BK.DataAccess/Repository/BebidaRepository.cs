@@ -60,6 +60,15 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+        public IEnumerable<tbBebidas> BebidaDDL()
+        {
+            List<tbBebidas> result = new List<tbBebidas>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                result = db.Query<tbBebidas>(ScriptsBaseDeDatos.Bebi_Autocompletar, commandType: CommandType.Text).ToList();
+                return result;
+            }
+        }
         public RequestStatus Update(tbBebidas item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))

@@ -60,6 +60,16 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+        public IEnumerable<tbComplementos> ComplementosDDL()
+        {
+            List<tbComplementos> result = new List<tbComplementos>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                result = db.Query<tbComplementos>(ScriptsBaseDeDatos.Comp_Autocompletar, commandType: CommandType.Text).ToList();
+                return result;
+            }
+        }
+
         public RequestStatus Update(tbComplementos item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))

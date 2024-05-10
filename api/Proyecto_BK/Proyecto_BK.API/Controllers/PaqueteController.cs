@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
@@ -28,6 +29,21 @@ namespace Proyecto_BK.API.Controllers
             var list = _restauranteServices.ListPaquete();
             return Ok(list.Data);
         }
+
+        [HttpGet("PaqueteAutoCompletado")]
+        public IActionResult AutoCompletado()
+        {
+            var list = _restauranteServices.PaqueteAucompletado();
+            var drop = list.Data as List<tbPaquetes>;
+            var rol = drop.Select(x => new SelectListItem
+            {
+                Text = x.Paqe_Descripcion,
+                Value = x.Paqe_Id.ToString()
+            }).ToList();
+
+            return Ok(rol.ToList());
+        }
+
 
         [HttpGet("API/[controller]/Find")]
         public IActionResult Find(int Paqe_Id)

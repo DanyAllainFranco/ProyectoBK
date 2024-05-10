@@ -59,6 +59,7 @@ export class FacturacionComponent{
   MunCodigo: boolean = true;
   Valor: string = "";
   staticData = [{}];
+  filteredCountries: any[] = [];
 
 
   deleteProductDialog: boolean = false;
@@ -70,11 +71,7 @@ export class FacturacionComponent{
   FechaCreacion: String = "";
   FechaModificacion: String = "";
   ID: String = "";
-  facura_impresa: any = null;
-
   selectedRadio: string = '1'; 
-
-
   Fact_ID: string = "0";
   selectedMetodo: string = '';
 
@@ -83,8 +80,6 @@ export class FacturacionComponent{
   metodos: any[] = [];
   clientes: any[] = [];
   countries: any[] = [];
-  onSubmit: any;
-
   constructor(private service: FacturaServiceService, private router: Router,
     private messageService: MessageService,private fb: FormBuilder
   
@@ -107,45 +102,75 @@ export class FacturacionComponent{
     });
       this.FacturaForm = new FormGroup({
         //FACTURA
-        Mepa_Metodo: new FormControl("Paypal", Validators.required),
-        Mepa_Id: new FormControl("1", Validators.required),
-        Empl_Id: new FormControl("3", [Validators.required]),
-        Clie_Id: new FormControl("1", [Validators.required]),
-        Clie_DNI: new FormControl(""),
-        Impu_Impuesto: new FormControl("15%",Validators.required),
-        Clie_Nombre: new FormControl("Usuario Final", [Validators.required]),
-        Empl_Nombre: new FormControl("Eduardo Varela", [Validators.required]),
-        Prod_Producto: new FormControl(""),
+        Clie_Nombre: new FormControl("", Validators.required),
+        Clie_Identidad: new FormControl("", [Validators.required]),
+        // Impu_Impuesto: new FormControl("15%",Validators.required),
+         Emp_Id: new FormControl("1", [Validators.required]),
+         Sucu_Id: new FormControl("1", [Validators.required]),
+        // Prod_Producto: new FormControl(""),
         //Detalle
-        Faxd_Dif: new FormControl("1",Validators.required),
-        Prod_Nombre: new FormControl("", Validators.required),
-        Prod_Id: new FormControl("", Validators.required),
-        Faxd_Cantidad: new FormControl("", [Validators.required]),
+        Prod_Producto: new FormControl(""),
+        FaDe_Ident: new FormControl("D",Validators.required),
+        FaDe_ProdId: new FormControl("", Validators.required),
+        FaDe_Cantidad: new FormControl("", [Validators.required]),
     });      
 
+    this.service.getBebida().subscribe(countries => {
+      this.countries = countries;
+  });
+  
+  this.service.getComplemento().subscribe(countries => {
+    this.countries = countries;
+});
+
+this.service.getPostre().subscribe(countries => {
+  this.countries = countries;
+});
+
+this.service.getPaquete().subscribe(countries => {
+  this.countries = countries;
+});
+
+// this.service.getBebida().subscribe(countries => {
+//   this.countries = countries;
+// });
   }
    onRadioChange(event: Event) {
     const target = event.target as HTMLInputElement;
     const value = target.value;
     this.selectedRadio = target.value;
 
-    if (value === "1") {
-      this.service.getAutoCompletadoJoya().subscribe(countries => {
+    if (value === "N") {
+      this.service.getComplemento().subscribe(countries => {
       this.countries = countries;
-      this.FacturaForm.get('Faxd_Dif').setValue(value); 
-      this.FacturaForm.get('Prod_Nombre').setValue(""); 
-      this.FacturaForm.get('Prod_Id').setValue(""); 
+      this.FacturaForm.get('FaDe_Ident').setValue(value); 
+      this.FacturaForm.get('FaDe_ProdId').setValue(""); 
       this.FacturaForm.get('Prod_Producto').setValue(""); 
-      this.FacturaForm.get('Faxd_Cantidad').setValue(""); 
+      this.FacturaForm.get('FaDe_Cantidad').setValue(""); 
     });
-    } else {
-      this.service.getAutoCompletadoMaquillaje().subscribe(countries => {
+    } else if(value == "D") {
+      this.service.getPostre().subscribe(countries => {
         this.countries = countries;
-      this.FacturaForm.get('Faxd_Dif').setValue(value); 
-      this.FacturaForm.get('Prod_Nombre').setValue(""); 
+      this.FacturaForm.get('FaDe_Ident').setValue(value); 
+      this.FacturaForm.get('FaDe_ProdId').setValue(""); 
       this.FacturaForm.get('Prod_Producto').setValue(""); 
-      this.FacturaForm.get('Prod_Id').setValue(""); 
-      this.FacturaForm.get('Faxd_Cantidad').setValue(""); 
+      this.FacturaForm.get('FaDe_Cantidad').setValue(""); 
+    });
+    } else if(value == "B") {
+      this.service.getBebida().subscribe(countries => {
+        this.countries = countries;
+      this.FacturaForm.get('FaDe_Ident').setValue(value); 
+      this.FacturaForm.get('FaDe_ProdId').setValue(""); 
+      this.FacturaForm.get('Prod_Producto').setValue(""); 
+      this.FacturaForm.get('FaDe_Cantidad').setValue(""); 
+    });
+    } else if(value == "P") {
+      this.service.getPaquete().subscribe(countries => {
+        this.countries = countries;
+      this.FacturaForm.get('FaDe_Ident').setValue(value); 
+      this.FacturaForm.get('FaDe_ProdId').setValue("");
+      this.FacturaForm.get('Prod_Producto').setValue(""); 
+      this.FacturaForm.get('FaDe_Cantidad').setValue(""); 
     });
     }
   }
@@ -162,8 +187,9 @@ export class FacturacionComponent{
         }
     }
    
-    this.FacturaForm.get('Faxd_Cantidad').setValue(1); 
-}
+    this.FacturaForm.get('FaDe_Cantidad').setValue(1); 
+    this.filteredCountries = filtered;
+  }
 
 handleKeyDown(event: KeyboardEvent) {
   if (event.key === "Enter" || event.key === "Tab") {
@@ -171,9 +197,58 @@ handleKeyDown(event: KeyboardEvent) {
       this.onSubmit(); 
   }
 }
- 
-}
+// cantidad(event: any){
+//   console.log(event.key)
+//   console.log()
+//   this.service.getDatosPorCodigo(this.FacturaForm.get('Prod_Id').value).subscribe(countries => {
+//     this.FacturaForm.get('Prod_Nombre').setValue(countries[0].maqu_Nombre); 
+//     this.FacturaForm.get('Prod_Id').setValue(countries[0].maqu_Id); 
+//     this.FacturaForm.get('Prod_Producto').setValue(countries[0].maqu_Nombre); 
+//     this.FacturaForm.get('Faxd_Cantidad').setValue(1); 
+//   });
 
+// }
+
+onSubmit() {
+  if (this.FacturaForm.valid && this.FacturaForm.get('FaDe_Cantidad').value !== '0') {
+     this.viewModel = this.FacturaForm.value;
+     this.viewModel.Fact_Id = this.Fact_ID;
+     if (this.Valor == "Agregar") {
+      this.service.EnviarFactura(this.viewModel).subscribe((data: MensajeViewModel[]) => {
+          if(data["message"] == "Operación completada exitosamente."){
+           this.Fact_ID = data["id"];
+           this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Insertado con Exito', life: 3000 });
+           this.DataTable = false;
+           this.submitted = false;
+           this.Detalles = false;
+           this.Agregar = true;
+           this.service.getFacturasDetalle(this.Fact_ID).subscribe((data: any)=>{
+          this.FacturaDetalle = data;
+          console.log(this.Fact_ID);
+          });
+          }else{
+           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No hay stock de este producto', life: 3000 });
+          }
+          
+       })
+     } 
+
+  }   
+      else 
+      {
+          this.submitted = true;
+      }
+  }
+
+  cancelar(){
+    this.DataTable = true;
+    this.Detalles = false;
+    this.ngOnInit();
+    this.submitted = false;
+    this.Agregar= true;
+    this.Valor = "";
+  }
+}
 @NgModule({
   imports: [
     CommonModule,

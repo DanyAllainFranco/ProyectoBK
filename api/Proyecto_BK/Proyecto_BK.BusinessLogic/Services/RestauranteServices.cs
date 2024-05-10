@@ -255,6 +255,20 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
+        public ServiceResult BebidasAutocompletado()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _bebidaRepository.BebidaDDL();
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
         public ServiceResult LlenarBebida(int Bebi_Id)
         {
             var result = new ServiceResult();
@@ -543,6 +557,20 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
+        public ServiceResult ComplementoAutocompletado()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _complementoRepository.ComplementosDDL();
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
         public ServiceResult LlenarComplemento(int Comp_Id)
         {
             var result = new ServiceResult();
@@ -637,6 +665,20 @@ namespace Proyecto_BK.BusinessLogic.Services
             try
             {
                 var list = _paqueteRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        public ServiceResult PaqueteAucompletado()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _paqueteRepository.PaqueteDDL();
                 return result.Ok(list);
             }
             catch (Exception ex)
@@ -848,6 +890,21 @@ namespace Proyecto_BK.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+
+        public ServiceResult PostreAutocompletar()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _postreRepository.List();
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
 
         public ServiceResult LlenarPostre(int Post_id)
         {
