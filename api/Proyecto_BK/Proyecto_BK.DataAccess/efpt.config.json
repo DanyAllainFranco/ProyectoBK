@@ -1,12 +1,12 @@
 ﻿{
    "CodeGenerationMode": 0,
    "ContextClassName": "DbsistemarestaurantebkContext",
-   "ContextNamespace": null,
+   "ContextNamespace": "Context",
    "DefaultDacpacSchema": null,
    "FilterSchemas": false,
    "IncludeConnectionString": false,
    "ModelNamespace": null,
-   "OutputContextPath": null,
+   "OutputContextPath": "Context",
    "OutputPath": null,
    "ProjectRootNamespace": "Proyecto_BK.DataAccess",
    "Schemas": null,
@@ -62,7 +62,7 @@
          "ObjectType": 0
       },
       {
-         "Name": "[Rest].[tbCombosPersonales]",
+         "Name": "[Rest].[tbCombo]",
          "ObjectType": 0
       },
       {

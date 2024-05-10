@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule,Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Rol } from '../../../demo/models/RolesViewModel';
+import { Fill, Rol } from '../../../demo/models/RolesViewModel';
 import { RolService } from '../../../demo/service/rol.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -24,6 +24,7 @@ import {MostrarmensajeService} from 'src/app/demo/service/mostrarmensaje.service
 import { Subscription } from 'rxjs';
 import { MensajeViewModel } from '../../models/MensajeVIewModel';
 import { TimeScale } from 'chart.js';
+import { dA } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-rol-listado',
@@ -35,6 +36,34 @@ export class RolListadoComponent implements OnInit{
   rol: Rol[] = [];
   successMessage: string = '';
   successMessageSubscription: Subscription;
+  display: boolean = false;
+  formDepartamento: FormGroup;
+  selectedDepartamento: any;
+  modalTitle: string = 'Nuevo Registro';
+  modalButtonLabel: string = 'Guardar';
+  confirmacionVisible: boolean = false;
+  departamentoAEliminar: Rol | null = null;
+
+  departamento: Fill[] = [];
+
+  Collapse: boolean = false;
+  DataTable: boolean = true;
+  Detalles: boolean = false;
+  Agregar: boolean = true;
+  MunCodigo: boolean = true;
+  Valor: string = "";
+  staticData = [{}];
+  RolCodigo: boolean = true;
+
+  //DETALLE
+  Rol: String = "";
+  Codigo: number = 0;
+  Panta: [] = [];
+  UsuarioCreacion: String = "";
+  UsuarioModificacion: String = "";
+  FechaCreacion: String = "";
+  FechaModificacion: String = "";
+
   constructor(
     private service: RolService,
     private router: Router,
@@ -55,6 +84,66 @@ ngOnInit(): void {
     }
 }
 
+
+detalles(codigo){
+  this.Collapse= false;
+  this.DataTable = false;
+  this.Detalles = true;
+  this.service.Detalle(codigo).subscribe(
+    (data: any) => {
+      console.log(data)
+      this.departamento = data;
+      this.Rol = data.rol_Descripcion,
+      console.log(this.departamento)
+      console.log("Rol:" + " " + this.Rol)
+               this.Codigo = data.rol_Id,
+               this.Panta = data.pant_Descripcion,
+               this.UsuarioCreacion = data.UsuarioCreacion,
+               this.UsuarioModificacion = data.UsuarioModificacion
+               this.FechaCreacion = data.rol_Fecha_Creacion,
+               this.FechaModificacion = data.rol_Fecha_Modifica
+    },
+    error => {
+      console.log(error);
+    }
+    );
+}
+//Cerrar Collapse y reiniciar el form
+cancelar(){
+  this.Collapse= false;
+  this.DataTable = true;
+  this.Detalles = false;
+  this.RolCodigo=true;
+}
+
+
+
+confirmarEliminarDepartamento(departamento: Rol) {
+  this.departamentoAEliminar = departamento;
+  this.confirmacionVisible = true;
+}
+
+eliminarDepartamento() {
+  if (this.departamentoAEliminar) {
+    const idDepartamento = this.departamentoAEliminar.rol_Id;
+    this.service.eliminar(idDepartamento).subscribe({
+      next: (data) => {
+        this.getRoles();
+        this.confirmacionVisible = false;
+        console.log(idDepartamento);
+        this.messageService.add({severity:'success', summary:'Éxito', detail:'Rol eliminado correctamente!'});
+      },
+      error: (e) => {
+        console.log(e);
+        this.messageService.add({severity:'error', summary:'Error', detail:'Este rol no se puede eliminar.'});
+      }
+    });
+  }
+}
+
+cancelarEliminar() {
+  this.confirmacionVisible = false;
+}
 editarRol(rolId: number) {
   console.log(rolId)
   this.router.navigate(['app/EditarRol', rolId]); // Redirige a la ruta de edición con el ID del rol

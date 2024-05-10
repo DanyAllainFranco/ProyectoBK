@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,14 +100,14 @@ namespace Proyecto_BK.API.Controllers
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(ComboPersonalViewModel item)
         {
-            var model = _mapper.Map<tbCombosPersonales>(item);
-            var modelo = new tbCombosPersonales()
+            var model = _mapper.Map<tbCombo>(item);
+            var modelo = new tbCombo()
             {
                 Comb_Descripcion = item.Comb_Descripcion,
                 Comb_Precio = item.Comb_Precio,
                 Comb_Imagen = item.Comb_Imagen,
                 Bebi_Id = item.Bebi_Id,
-                Post_id = item.Post_id,
+                Post_Id = item.Post_id,
                 Comp_Id = item.Comp_Id,
                 Alim_Id = item.Alim_Id,
                 Comb_Usua_Creacion = 1,
@@ -120,19 +121,19 @@ namespace Proyecto_BK.API.Controllers
         [HttpPut("API/[controller]/Update")]
         public IActionResult Update(ComboPersonalViewModel item)
         {
-            var model = _mapper.Map<tbCombosPersonales>(item);
-            var modelo = new tbCombosPersonales()
+            var model = _mapper.Map<tbCombo>(item);
+            var modelo = new tbCombo()
             {
                 Comb_Id = item.Comb_Id,
                 Comb_Descripcion = item.Comb_Descripcion,
                 Comb_Precio = item.Comb_Precio,
                 Comb_Imagen = item.Comb_Imagen,
                 Bebi_Id = item.Bebi_Id,
-                Post_id = item.Post_id,
+                Post_Id = item.Post_id,
                 Comp_Id = item.Comp_Id,
                 Alim_Id = item.Alim_Id,
                 Comb_Usua_Modifica = 1,
-                Comb_Fecha_Modifica = DateTime.Now
+                Comb_Fecha_Modificacion = DateTime.Now
             };
             var list = _restauranteServices.EditarComboPersonal(modelo);
 

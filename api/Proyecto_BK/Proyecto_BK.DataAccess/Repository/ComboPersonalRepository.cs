@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Linq;
 
 namespace Proyecto_BK.DataAccess.Repository
 {
-    public partial class ComboPersonalRepository : IRepository<tbCombosPersonales>
+    public partial class ComboPersonalRepository : IRepository<tbCombo>
     {
         public RequestStatus Delete(int? Comb_Id)
         {
@@ -23,125 +24,125 @@ namespace Proyecto_BK.DataAccess.Repository
         }
 
 
-        public tbCombosPersonales Fill(string id)
+        public tbCombo Fill(string id)
         {
 
-            tbCombosPersonales result = new tbCombosPersonales();
+            tbCombo result = new tbCombo();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Comb_Id", id);
-                result = db.QueryFirst<tbCombosPersonales>(ScriptsBaseDeDatos.Comb_Llenar, parameter, commandType: CommandType.StoredProcedure);
+                result = db.QueryFirst<tbCombo>(ScriptsBaseDeDatos.Comb_Llenar, parameter, commandType: CommandType.StoredProcedure);
                 return result;
             }
 
         }
 
-        public IEnumerable<tbCombosPersonales> GrafiCombos(string Usua_Usuario)
+        public IEnumerable<tbCombo> GrafiCombos(string Usua_Usuario)
         {
-            IEnumerable<tbCombosPersonales> result = new List<tbCombosPersonales>();
+            IEnumerable<tbCombo> result = new List<tbCombo>();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Usua_Usuario", Usua_Usuario);
-                result = db.Query<tbCombosPersonales>(ScriptsBaseDeDatos.Grafi_Combos, parameter, commandType: CommandType.StoredProcedure);
+                result = db.Query<tbCombo>(ScriptsBaseDeDatos.Grafi_Combos, parameter, commandType: CommandType.StoredProcedure);
             }
             return result;
         }
 
-        public IEnumerable<tbCombosPersonales> GrafiPostres(string Usua_Usuario)
+        public IEnumerable<tbCombo> GrafiPostres(string Usua_Usuario)
         {
-            IEnumerable<tbCombosPersonales> result = new List<tbCombosPersonales>();
+            IEnumerable<tbCombo> result = new List<tbCombo>();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Usua_Usuario", Usua_Usuario);
-                result = db.Query<tbCombosPersonales>(ScriptsBaseDeDatos.Grafi_Postre, parameter, commandType: CommandType.StoredProcedure);
+                result = db.Query<tbCombo>(ScriptsBaseDeDatos.Grafi_Postre, parameter, commandType: CommandType.StoredProcedure);
             }
             return result;
         }
 
-        public IEnumerable<tbCombosPersonales> GrafiPaquetes(string Usua_Usuario)
+        public IEnumerable<tbCombo> GrafiPaquetes(string Usua_Usuario)
         {
-            IEnumerable<tbCombosPersonales> result = new List<tbCombosPersonales>();
+            IEnumerable<tbCombo> result = new List<tbCombo>();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Usua_Usuario", Usua_Usuario);
-                result = db.Query<tbCombosPersonales>(ScriptsBaseDeDatos.Grafi_Paquetes, parameter, commandType: CommandType.StoredProcedure);
+                result = db.Query<tbCombo>(ScriptsBaseDeDatos.Grafi_Paquetes, parameter, commandType: CommandType.StoredProcedure);
             }
             return result;
         }
 
 
-        public IEnumerable<tbCombosPersonales> GrafiAlimentos(string Usua_Usuario)
+        public IEnumerable<tbCombo> GrafiAlimentos(string Usua_Usuario)
         {
-            IEnumerable<tbCombosPersonales> result = new List<tbCombosPersonales>();
+            IEnumerable<tbCombo> result = new List<tbCombo>();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Usua_Usuario", Usua_Usuario);
-                result = db.Query<tbCombosPersonales>(ScriptsBaseDeDatos.Grafi_Alimento, parameter, commandType: CommandType.StoredProcedure);
+                result = db.Query<tbCombo>(ScriptsBaseDeDatos.Grafi_Alimento, parameter, commandType: CommandType.StoredProcedure);
             }
             return result;
         }
-        public IEnumerable<tbCombosPersonales> GrafiAlimentosFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
+        public IEnumerable<tbCombo> GrafiAlimentosFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
         {
-            IEnumerable<tbCombosPersonales> result = new List<tbCombosPersonales>();
+            IEnumerable<tbCombo> result = new List<tbCombo>();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Usua_Usuario", Usua_Usuario);
                 parameter.Add("FechaInicio", FechaInicio);
                 parameter.Add("FechaFin", FechaFin);
-                result = db.Query<tbCombosPersonales>(ScriptsBaseDeDatos.Grafi_AlimentoFiltro, parameter, commandType: CommandType.StoredProcedure);
+                result = db.Query<tbCombo>(ScriptsBaseDeDatos.Grafi_AlimentoFiltro, parameter, commandType: CommandType.StoredProcedure);
             }
             return result;
         }
-        public IEnumerable<tbCombosPersonales> GrafiPostreFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
+        public IEnumerable<tbCombo> GrafiPostreFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
         {
-            IEnumerable<tbCombosPersonales> result = new List<tbCombosPersonales>();
+            IEnumerable<tbCombo> result = new List<tbCombo>();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Usua_Usuario", Usua_Usuario);
                 parameter.Add("FechaInicio", FechaInicio);
                 parameter.Add("FechaFin", FechaFin);
-                result = db.Query<tbCombosPersonales>(ScriptsBaseDeDatos.Grafi_PostreFiltro, parameter, commandType: CommandType.StoredProcedure);
+                result = db.Query<tbCombo>(ScriptsBaseDeDatos.Grafi_PostreFiltro, parameter, commandType: CommandType.StoredProcedure);
             }
             return result;
         }
 
-        public IEnumerable<tbCombosPersonales> GrafiComboFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
+        public IEnumerable<tbCombo> GrafiComboFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
         {
-            IEnumerable<tbCombosPersonales> result = new List<tbCombosPersonales>();
+            IEnumerable<tbCombo> result = new List<tbCombo>();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Usua_Usuario", Usua_Usuario);
                 parameter.Add("FechaInicio", FechaInicio);
                 parameter.Add("FechaFin", FechaFin);
-                result = db.Query<tbCombosPersonales>(ScriptsBaseDeDatos.Grafi_CombosFiltro, parameter, commandType: CommandType.StoredProcedure);
+                result = db.Query<tbCombo>(ScriptsBaseDeDatos.Grafi_CombosFiltro, parameter, commandType: CommandType.StoredProcedure);
             }
             return result;
         }
-        public IEnumerable<tbCombosPersonales> GrafiPaquetesFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
+        public IEnumerable<tbCombo> GrafiPaquetesFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
         {
-            IEnumerable<tbCombosPersonales> result = new List<tbCombosPersonales>();
+            IEnumerable<tbCombo> result = new List<tbCombo>();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Usua_Usuario", Usua_Usuario);
                 parameter.Add("FechaInicio", FechaInicio);
                 parameter.Add("FechaFin", FechaFin);
-                result = db.Query<tbCombosPersonales>(ScriptsBaseDeDatos.Grafi_PaquetesFiltro, parameter, commandType: CommandType.StoredProcedure);
+                result = db.Query<tbCombo>(ScriptsBaseDeDatos.Grafi_PaquetesFiltro, parameter, commandType: CommandType.StoredProcedure);
             }
             return result;
         }
 
-        public RequestStatus Insert(tbCombosPersonales item)
+        public RequestStatus Insert(tbCombo item)
         {
-            const string sql = "[Rest].SP_CombosPersonales_Insertar";
+            const string sql = "[Rest].SP_Combos_Insertar";
 
 
 
@@ -152,7 +153,7 @@ namespace Proyecto_BK.DataAccess.Repository
                 parametro.Add("@Comb_Precio", item.Comb_Precio);
                 parametro.Add("@Comb_Imagen", item.Comb_Imagen);
                 parametro.Add("@Bebi_Id", item.Bebi_Id);
-                parametro.Add("@Post_id", item.Post_id);
+                parametro.Add("@Post_id", item.Post_Id);
                 parametro.Add("@Comp_Id", item.Comp_Id);
                 parametro.Add("@Alim_Id", item.Alim_Id);
                 parametro.Add("@Comb_Usua_Creacion", item.Comb_Usua_Creacion);
@@ -165,17 +166,17 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
-        public IEnumerable<tbCombosPersonales> List()
+        public IEnumerable<tbCombo> List()
         {
-            List<tbCombosPersonales> result = new List<tbCombosPersonales>();
+            List<tbCombo> result = new List<tbCombo>();
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
-                result = db.Query<tbCombosPersonales>(ScriptsBaseDeDatos.Comb_Listar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbCombo>(ScriptsBaseDeDatos.Comb_Listar, commandType: CommandType.Text).ToList();
                 return result;
             }
         }
 
-        public RequestStatus Update(tbCombosPersonales item)
+        public RequestStatus Update(tbCombo item)
         {
             string sql = ScriptsBaseDeDatos.Comb_Editar;
 
@@ -187,11 +188,11 @@ namespace Proyecto_BK.DataAccess.Repository
                 parameter.Add("@Comb_Precio", item.Comb_Precio);
                 parameter.Add("@Comb_Imagen", item.Comb_Imagen);
                 parameter.Add("@Bebi_Id", item.Bebi_Id);
-                parameter.Add("@Post_id", item.Post_id);
+                parameter.Add("@Post_id", item.Post_Id);
                 parameter.Add("@Comp_Id", item.Comp_Id);
                 parameter.Add("@Alim_Id", item.Alim_Id);
                 parameter.Add("@Comb_Usua_Modifica", item.Comb_Usua_Modifica);
-                parameter.Add("@Comb_Fecha_Modifica", item.Comb_Fecha_Modifica);
+                parameter.Add("@Comb_Fecha_Modifica", item.Comb_Fecha_Modificacion);
                 var result = db.Execute(sql, parameter, commandType: CommandType.StoredProcedure);
                 string mensaje = (result == 1) ? "exito" : "error";
                 return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
@@ -200,7 +201,7 @@ namespace Proyecto_BK.DataAccess.Repository
         }
 
 
-        public tbCombosPersonales Find(int? id)
+        public tbCombo Find(int? id)
         {
             throw new NotImplementedException();
         }

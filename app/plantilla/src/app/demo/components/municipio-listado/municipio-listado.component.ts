@@ -83,8 +83,8 @@ export class MunicipioListadoComponent implements OnInit {
                this.Muni = data.muni_Descripcion,
                this.Codigo = data.muni_Codigo,
                this.Depa = data.dept_Codigo,
-               this.UsuarioCreacion = data.muni_Usua_Creacion,
-               this.UsuarioModificacion = data.muni_Usua_Modifica
+               this.UsuarioCreacion = data.usua_Creacion,
+               this.UsuarioModificacion = data.usua_Modifica
                this.FechaCreacion = data.muni_Fecha_Creacion,
                this.FechaModificacion = data.muni_Fecha_Modifica
             }

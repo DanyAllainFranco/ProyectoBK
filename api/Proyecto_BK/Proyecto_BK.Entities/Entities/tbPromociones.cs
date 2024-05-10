@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Proyecto_BK.Entities
+namespace Proyecto_BK.Entities.Entities
 {
     public partial class tbPromociones
     {

@@ -2,11 +2,12 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Proyecto_BK.Entities;
+using Proyecto_BK.DataAccess;
+using Proyecto_BK.Entities.Entities;
 
 #nullable disable
 
-namespace Proyecto_BK.DataAccess
+namespace Proyecto_BK.DataAccess.Context
 {
     public partial class DbsistemarestaurantebkContext : DbContext
     {
@@ -19,12 +20,11 @@ namespace Proyecto_BK.DataAccess
         {
         }
 
-      
         public virtual DbSet<tbAlimentos> tbAlimentos { get; set; }
         public virtual DbSet<tbBebidas> tbBebidas { get; set; }
         public virtual DbSet<tbCargos> tbCargos { get; set; }
         public virtual DbSet<tbClientes> tbClientes { get; set; }
-        public virtual DbSet<tbCombosPersonales> tbCombosPersonales { get; set; }
+        public virtual DbSet<tbCombo> tbCombo { get; set; }
         public virtual DbSet<tbComplementos> tbComplementos { get; set; }
         public virtual DbSet<tbDepartamentos> tbDepartamentos { get; set; }
         public virtual DbSet<tbEmpleados> tbEmpleados { get; set; }
@@ -204,56 +204,56 @@ namespace Proyecto_BK.DataAccess
                     .HasConstraintName("Fk_tbClientes_Muni_Codigo");
             });
 
-            modelBuilder.Entity<tbCombosPersonales>(entity =>
+            modelBuilder.Entity<tbCombo>(entity =>
             {
                 entity.HasKey(e => e.Comb_Id)
-                    .HasName("PK__tbCombos__D1035637FCA97E54");
+                    .HasName("PK__tbCombo__D1035637C09DAE64");
 
-                entity.ToTable("tbCombosPersonales", "Rest");
+                entity.ToTable("tbCombo", "Rest");
 
                 entity.Property(e => e.Comb_Descripcion)
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Comb_Estado).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Comb_Fecha_Creacion).HasColumnType("date");
 
-                entity.Property(e => e.Comb_Fecha_Modifica).HasColumnType("date");
+                entity.Property(e => e.Comb_Fecha_Modificacion).HasColumnType("date");
 
                 entity.Property(e => e.Comb_Imagen).IsUnicode(false);
 
                 entity.Property(e => e.Comb_Precio).HasColumnType("money");
 
                 entity.HasOne(d => d.Alim)
-                    .WithMany(p => p.tbCombosPersonales)
+                    .WithMany(p => p.tbCombo)
                     .HasForeignKey(d => d.Alim_Id)
-                    .HasConstraintName("Fk_tbCombosPersonales_Alim_Id");
+                    .HasConstraintName("FK_Alim_Id_tbAlimentos");
 
                 entity.HasOne(d => d.Bebi)
-                    .WithMany(p => p.tbCombosPersonales)
+                    .WithMany(p => p.tbCombo)
                     .HasForeignKey(d => d.Bebi_Id)
-                    .HasConstraintName("Fk_tbCombosPersonales_Bebi_Id");
+                    .HasConstraintName("FK_Bebi_Id_tbBebidas");
 
                 entity.HasOne(d => d.Comb_Usua_CreacionNavigation)
-                    .WithMany(p => p.tbCombosPersonalesComb_Usua_CreacionNavigation)
+                    .WithMany(p => p.tbComboComb_Usua_CreacionNavigation)
                     .HasForeignKey(d => d.Comb_Usua_Creacion)
-                    .HasConstraintName("Fk_tbCombosPersonales_Usua_Creacion");
+                    .HasConstraintName("FK_Comb_Usua_Creacion_tbUsuarios");
 
                 entity.HasOne(d => d.Comb_Usua_ModificaNavigation)
-                    .WithMany(p => p.tbCombosPersonalesComb_Usua_ModificaNavigation)
+                    .WithMany(p => p.tbComboComb_Usua_ModificaNavigation)
                     .HasForeignKey(d => d.Comb_Usua_Modifica)
-                    .HasConstraintName("Fk_tbCombosPersonales_Usua_Modifica");
+                    .HasConstraintName("FK_Comb_Usua_Modifica_tbUsuarios");
 
                 entity.HasOne(d => d.Comp)
-                    .WithMany(p => p.tbCombosPersonales)
+                    .WithMany(p => p.tbCombo)
                     .HasForeignKey(d => d.Comp_Id)
-                    .HasConstraintName("Fk_tbCombosPersonales_Comp_Id");
+                    .HasConstraintName("FK_Comp_Id_tbComplemento");
 
                 entity.HasOne(d => d.Post)
-                    .WithMany(p => p.tbCombosPersonales)
-                    .HasForeignKey(d => d.Post_id)
-                    .HasConstraintName("Fk_tbCombosPersonales_Post_id");
+                    .WithMany(p => p.tbCombo)
+                    .HasForeignKey(d => d.Post_Id)
+                    .HasConstraintName("FK_Post_Id_tbPostre");
             });
 
             modelBuilder.Entity<tbComplementos>(entity =>
@@ -419,13 +419,18 @@ namespace Proyecto_BK.DataAccess
 
                 entity.Property(e => e.Fact_Estado).HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.Fact_Fecha).HasColumnType("date");
+                entity.Property(e => e.Fact_Fecha)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Fact_Fecha_Creacion).HasColumnType("date");
 
-                entity.Property(e => e.Fact_Fecha_Modifica).HasColumnType("date");
-
                 entity.Property(e => e.Fact_Total).HasColumnType("money");
+
+                entity.HasOne(d => d.Clie)
+                    .WithMany(p => p.tbFactura)
+                    .HasForeignKey(d => d.Clie_Id)
+                    .HasConstraintName("FK_Clie_Id_tbFactura");
 
                 entity.HasOne(d => d.Empl)
                     .WithMany(p => p.tbFactura)
@@ -433,14 +438,9 @@ namespace Proyecto_BK.DataAccess
                     .HasConstraintName("Fk_tbFactura_Empl_Id");
 
                 entity.HasOne(d => d.Fact_Usua_CreacionNavigation)
-                    .WithMany(p => p.tbFacturaFact_Usua_CreacionNavigation)
+                    .WithMany(p => p.tbFactura)
                     .HasForeignKey(d => d.Fact_Usua_Creacion)
                     .HasConstraintName("Fk_tbFactura_Usua_Creacion");
-
-                entity.HasOne(d => d.Fact_Usua_ModificaNavigation)
-                    .WithMany(p => p.tbFacturaFact_Usua_ModificaNavigation)
-                    .HasForeignKey(d => d.Fact_Usua_Modifica)
-                    .HasConstraintName("Fk_tbFactura_Usua_Modifica");
 
                 entity.HasOne(d => d.Sucu)
                     .WithMany(p => p.tbFactura)
@@ -455,58 +455,17 @@ namespace Proyecto_BK.DataAccess
 
                 entity.ToTable("tbFacturaDetalle", "Rest");
 
-                entity.Property(e => e.FaDe_Estado).HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.FaDe_Fecha_Creacion).HasColumnType("date");
-
-                entity.Property(e => e.FaDe_Fecha_Modifica).HasColumnType("date");
+                entity.Property(e => e.FaDe_Ident)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength(true);
 
                 entity.Property(e => e.FaDe_Subtotal).HasColumnType("money");
-
-                entity.HasOne(d => d.Alim)
-                    .WithMany(p => p.tbFacturaDetalle)
-                    .HasForeignKey(d => d.Alim_Id)
-                    .HasConstraintName("Fk_tbFacturaDetalle_Alim_Id");
-
-                entity.HasOne(d => d.Bebi)
-                    .WithMany(p => p.tbFacturaDetalle)
-                    .HasForeignKey(d => d.Bebi_Id)
-                    .HasConstraintName("Fk_tbFacturaDetalle_Bebi_Id");
-
-                entity.HasOne(d => d.Comb)
-                    .WithMany(p => p.tbFacturaDetalle)
-                    .HasForeignKey(d => d.Comb_Id)
-                    .HasConstraintName("Fk_tbFacturaDetalle_Comb_Id");
-
-                entity.HasOne(d => d.Comp)
-                    .WithMany(p => p.tbFacturaDetalle)
-                    .HasForeignKey(d => d.Comp_Id)
-                    .HasConstraintName("Fk_tbFacturaDetalle_Comp_Id");
-
-                entity.HasOne(d => d.FaDe_Usua_CreacionNavigation)
-                    .WithMany(p => p.tbFacturaDetalleFaDe_Usua_CreacionNavigation)
-                    .HasForeignKey(d => d.FaDe_Usua_Creacion)
-                    .HasConstraintName("Fk_tbFacturaDetalle_Usua_Creacion");
-
-                entity.HasOne(d => d.FaDe_Usua_ModificaNavigation)
-                    .WithMany(p => p.tbFacturaDetalleFaDe_Usua_ModificaNavigation)
-                    .HasForeignKey(d => d.FaDe_Usua_Modifica)
-                    .HasConstraintName("Fk_tbFacturaDetalle_Usua_Modifica");
 
                 entity.HasOne(d => d.Fact)
                     .WithMany(p => p.tbFacturaDetalle)
                     .HasForeignKey(d => d.Fact_Id)
                     .HasConstraintName("Fk_tbFacturaDetalle_Fact_Id");
-
-                entity.HasOne(d => d.Paqe)
-                    .WithMany(p => p.tbFacturaDetalle)
-                    .HasForeignKey(d => d.Paqe_Id)
-                    .HasConstraintName("Fk_tbFacturaDetalle_Paqe_Id");
-
-                entity.HasOne(d => d.Post)
-                    .WithMany(p => p.tbFacturaDetalle)
-                    .HasForeignKey(d => d.Post_id)
-                    .HasConstraintName("Fk_tbFacturaDetalle_Post_id");
             });
 
             modelBuilder.Entity<tbMunicipios>(entity =>
@@ -646,11 +605,9 @@ namespace Proyecto_BK.DataAccess
             modelBuilder.Entity<tbPaquetesPorComidas>(entity =>
             {
                 entity.HasKey(e => e.PaCo_Id)
-                    .HasName("PK__tbPaquet__E71C6FCB2F9ED8A5");
+                    .HasName("PK__tbPaquet__E71C6FCB080E2ECC");
 
                 entity.ToTable("tbPaquetesPorComidas", "Rest");
-
-                entity.Property(e => e.PaCo_Id).ValueGeneratedNever();
 
                 entity.Property(e => e.PaCo_Estado).HasDefaultValueSql("((1))");
 

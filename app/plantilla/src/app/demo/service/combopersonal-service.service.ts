@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { BASE_URL } from './UrlParaAPI';
-import { ComboPersonal,Fill } from '../models/ComboPersonalViewModel';
+import { ComboPEnviar, ComboPersonal,Fill } from '../models/ComboPersonalViewModel';
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
@@ -9,6 +9,7 @@ import { dropBebida } from '../models/BebidasViewModel';
 import { dropComplemento } from '../models/ComplementoViewModel';
 import { dropAlimento } from '../models/AlimentosViewModel';
 import { dropPostre } from '../models/PostreViewModel';
+import { Respuesta } from '../models/ServiceResult';
 
 
 
@@ -16,7 +17,7 @@ import { dropPostre } from '../models/PostreViewModel';
   providedIn: 'root'
 })
 export class ComboPersonalServiceService {
-
+  successMessage: string = '';
   constructor(private http: HttpClient) { }
   Url = 'https://localhost:44332/API/ComboPersonal/List';
 
@@ -57,7 +58,11 @@ export class ComboPersonalServiceService {
 
 
 
-
+  agregar(modelo: ComboPEnviar): Observable<Respuesta> {
+    console.log(modelo)
+    return this.http.post<Respuesta>(`${BASE_URL}API/ComboPersonal/Insert`, modelo);
+  }
+  
 
   EnviarComboP(formData: any): Observable<any> {
     return this.http.post<any>(BASE_URL + 'API/ComboPersonal/Insert/', formData).pipe(

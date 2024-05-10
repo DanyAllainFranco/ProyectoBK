@@ -102,6 +102,7 @@ export class DepartamentosListadoComponent implements OnInit {
       });
     }
   }
+  
   cancelarEliminar() {
     this.confirmacionVisible = false;
   }

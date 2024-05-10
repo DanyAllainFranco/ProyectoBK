@@ -162,6 +162,7 @@ export class RolEditarComponent implements OnInit {
     this.rolService.obtenerRolPorId(id).subscribe(
       (data: Rol) => {
         this.rol = data;
+        console.log("Este es el rol: " + this.rol.rol_Descripcion)
         this.form.patchValue({
           nombreRol: this.rol.rol_Descripcion
         });

@@ -1,5 +1,6 @@
 ﻿using Proyecto_BK.DataAccess.Repository;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -454,7 +455,7 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult CrearComboPersonal(tbCombosPersonales item)
+        public ServiceResult CrearComboPersonal(tbCombo item)
         {
             var result = new ServiceResult();
             try
@@ -475,7 +476,7 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult EditarComboPersonal(tbCombosPersonales item)
+        public ServiceResult EditarComboPersonal(tbCombo item)
         {
             var result = new ServiceResult();
             try

@@ -15,7 +15,7 @@ export class ComboPersonal {
 }
 
 export class ComboPEnviar {
-    Comb_Id?: string;
+    Comb_Id?: number;
     Comb_Descripcion?: string;
     Comb_Precio?: string;
     Comb_Imagen?: string;
@@ -23,6 +23,7 @@ export class ComboPEnviar {
     Post_Id?: string;
     Comp_Id?: string;
     Alim_Id?: string;
+    ComB_Usua_Creacion?: number;
 }
 
 export class Fill {

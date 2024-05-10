@@ -13,6 +13,8 @@ export class Postre {
 export class Postre2{
     post_Id: number;
     post_Descripcion: string;
+    post_Precio: string;
+    post_Imagen: string;
     post_Usua_Creacion: number;
 }
 

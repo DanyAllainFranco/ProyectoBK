@@ -39,6 +39,10 @@ export class CombopersonalListadoComponent implements OnInit {
       }
     );
   }
+
+  Nuevo(){
+    this.router.navigate(['app/CreateCombo'])
+  }
 }
 
 @NgModule({

@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -35,6 +36,20 @@ namespace Proyecto_BK.DataAccess.Repository
                 return result;
             }
         }
+
+        public IEnumerable<tbRoles> Detalle(int Rol_Id)
+        {
+
+
+            List<tbRoles> result = new List<tbRoles>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameters = new { Rol_Id = Rol_Id };
+                result = db.Query<tbRoles>(ScriptsBaseDeDatos.Role_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
 
         public (RequestStatus, int) Insertar(tbRoles item)
         {

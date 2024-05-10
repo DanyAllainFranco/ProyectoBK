@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Rol} from '../models/RolesViewModel'
+import {Fill, Rol} from '../models/RolesViewModel'
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Pantallas, PantallasAgregadas } from '../models/PantallaViewMode';
@@ -44,10 +44,14 @@ eliminarPantallasDeRol(RolId: number): Observable<Respuesta> {
     return this.http.put<Rol>(`${BASE_URL}API/Rol/Update`,modelo);
   }
   
-  eliminar(idDepartamento:string):Observable<void>{
+  eliminar(idDepartamento:number):Observable<void>{
     return this.http.delete<void>(`${BASE_URL}API/Rol/Delete/${idDepartamento}`);
   }
   obtenerRolPorId(idRol: number): Observable<Rol> {
     return this.http.get<Rol>(`${BASE_URL}API/Rol/Find?Rol_Id=${idRol}`);
+  }
+
+  Detalle(idRol: number){
+    return this.http.get<Fill[]>(`${BASE_URL}API/Rol/Detalles/${idRol}`);
   }
 }

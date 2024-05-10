@@ -1,5 +1,6 @@
 ﻿using Proyecto_BK.DataAccess.Repository;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -454,6 +455,28 @@ namespace Proyecto_BK.BusinessLogic.Services
                 return result.Error("Error en la capa de servicio al listar roles");
             }
         }
+
+        public ServiceResult DetallasRol(int Rol_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var rol = _rolRepository.Detalle(Rol_Id);
+                if (rol != null)
+                {
+                    return result.Ok(rol);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el rol con ID {Rol_Id}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"Error al buscar el rol con ID {Rol_Id}");
+            }
+        }
+
         public ServiceResult LlenarRol(int Rol_Id)
         {
             var result = new ServiceResult();

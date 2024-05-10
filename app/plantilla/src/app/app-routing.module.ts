@@ -1,5 +1,5 @@
 import { Route, RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { NgModule, createComponent } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
 import { InicioDeSesionComponent } from './demo/components/inicio-de-sesion/inicio-de-sesion.component';
@@ -28,6 +28,7 @@ import { RolListadoComponent } from './demo/components/rol-listado/rol-listado.c
 import { FiltrosComponent } from './demo/components/filtros/filtros.component';
 import {RolCreateComponent} from './demo/components/rol-create/rol-create.component';
 import {RolEditarComponent} from './demo/components/rol-editar/rol-editar.component';
+import {ComboCreateComponent} from './demo/components/combo-create/combo-create.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -48,6 +49,7 @@ import {RolEditarComponent} from './demo/components/rol-editar/rol-editar.compon
                     { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) },
                     { path: 'Index', component: DepartamentosListadoComponent },
                     { path: 'IndexComboPersonal', component: CombopersonalListadoComponent }, 
+                    { path: 'CreateCombo', component: ComboCreateComponent }, 
                     { path: 'IndexComplemento', component: ComplementoListadoComponent }, 
                     { path: 'IndexEmpleado', data: { breadcrumb: 'Empleado' }, loadChildren: () => import('./demo/components/empleado-listado/empleadodemo.module').then(m => m.EmpleadoDemoModule) },
                     { path: 'IndexEstadoCivil', data: { breadcrumb: 'Estado' }, loadChildren: () => import('./demo/components/estadocivil-listado/EstadoCivildemo.module').then(m => m.EstadoCivilDemoModule) },

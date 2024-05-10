@@ -71,7 +71,7 @@ namespace Proyecto_BK.DataAccess.Repository
         #endregion
 
         #region CombosPersonales
-        public static string Comb_Listar = "[Rest].SP_CombosPersonales_Mostrar";
+        public static string Comb_Listar = "[Rest].SP_Combos_Mostrar";
         public static string Comb_Llenar = "[Rest].SP_CombosPersonales_Llenar";
         public static string Comb_Insertar = "[Rest].SP_CombosPersonales_Insertar";
         public static string Comb_Editar = "[Rest].SP_CombosPersonales_Editar";

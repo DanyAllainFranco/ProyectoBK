@@ -4,6 +4,7 @@ using Proyecto_BK.BusinessLogic;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,7 +70,15 @@ namespace Proyecto_BK.API.Controllers
             var result = _accesoServices.LlenarRol(Rol_Id);
             return Ok(result.Data);
         }
-      
+
+        [HttpGet("API/[controller]/Detalles/{Rol_Id}")]
+        public IActionResult Detalles(int Rol_Id)
+        {
+            var result = _accesoServices.DetallasRol(Rol_Id);
+            return Ok(result.Data);
+        }
+
+
 
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(RolViewModel item)
@@ -102,7 +111,7 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list);
         }
 
-        [HttpDelete("API/[controller]/Delete")]
+        [HttpDelete("API/[controller]/Delete/{Rol_Id}")]
         public IActionResult Delete(int Rol_Id)
         {
             var response = _accesoServices.EliminarRol(Rol_Id);

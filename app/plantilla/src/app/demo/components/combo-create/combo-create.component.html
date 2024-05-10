@@ -1,0 +1,31 @@
+<div class="grid">
+    <p-toast></p-toast>
+    <div class="col-12 p-lg-12">
+        <div class="card">
+            <h3>Rol:</h3>
+            <form [formGroup]="form">
+                <div class="field">
+                    <input type="text" class="p-inputtext col-6" required autofocus formControlName="Comb_Descripcion">
+                    <br>
+                    <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                        [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label for="state">Alimentos</label>
+                    <select pInputText required autofocus>
+                        <option *ngFor="let departamento of departamento" [value]="departamento.alim_Id">{{
+                            departamento.alim_Descripcion }}</option>
+                    </select>
+
+                </div>
+            </form>
+
+            <div class="p-field p-d-flex" style="justify-content: end;">
+                <button pButton pRipple type="button" label="Volver" icon="pi pi-times"
+                    class="p-button-rounded p-button-secondary mt-4" (click)="Volver()"></button>
+                <button pButton pRipple type="button" label="Guardar" icon="pi pi-check" class="p-button-rounded ms-6"
+                    (click)="guardar()"></button>
+            </div>
+        </div>
+    </div>
+</div>
