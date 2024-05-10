@@ -57,7 +57,7 @@ export class FacturaListadoComponent implements OnInit {
   }
 
   getFactura() {
-    this.service.getFactura().subscribe(
+    this.service.getFacturas().subscribe(
       (data: any) => {
         this.factura = data;
       },

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Factura} from '../models/FacturaViewModel'
+import {Factura,FacturaDetalle} from '../models/FacturaViewModel'
 import {HttpClient} from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 
 @Injectable({
@@ -11,9 +11,26 @@ export class FacturaServiceService {
 
   constructor(private http: HttpClient) { }
   Url = 'https://localhost:44332/API/FacturaContoller/List';
-  getFactura (){
+  getFacturas (){
     return this.http.get<Factura[]>(this.Url);
   }
+
+  FacturaDetalleURL = 'https://localhost:44332/API/Factura/ListaDetalles/';
+  getFacturasDetalle(id){
+    return this.http.get<FacturaDetalle[]>(this.FacturaDetalleURL,id)
+  }
+
+ CrearFactura = 'https://localhost:44332/API/Factura/Creat' ;
+  EnviarFactura(formData: any): Observable<any> {
+    return this.http.post<any>(this.CrearFactura, formData).pipe(
+      map(response => {
+        return response;
+      }),
+    );
+  }
+
+
+
 
 //DROPDOWNS
 

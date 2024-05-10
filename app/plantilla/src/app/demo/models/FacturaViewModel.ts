@@ -6,30 +6,31 @@ export class Factura {
      Empl_Nombre ?:string;
      Fact_Fecha ?:Date;
      Fact_Total ?:DecimalPipe;
-     Fact_Usua_Creacion?:number;
-     Fact_Fecha_Creacion ?:Date;
-     Fact_Usua_Modifica ?:number;
-     Fact_Fecha_Modifica ?:number;
-     Fact_Estado ?:boolean;
-     FaDe_Id ?:number;
-     Fact_Id ?:number;
-     Prom_Id ?:number;
-     Prom_Descripcion ?:string;
-     Comb_Id ?:number;
-     Comb_Descripcion ?:string;
-     Paqe_Id ?:number;
-     Paqe_Descripcion ?:string;
-     Bebi_Id ?:number;
-     Bebi_Descripcion ?:string;
-     FaDe_Subtotal ?:DecimalPipe;
-     Post_id ?:number;
-     Post_Descripcion ?:string;
-     Comp_Id ?:number;
-     Comp_Descripcion ?:string;
-     Alim_Id ?:number;
-     Alim_Descripcion ?:string;
-     FaDe_Cantidad ?:number;
-     FaDe_Usua_Creacion ?:number;
-     FaDe_Fecha_Creacion ?:Date;
-     Subtotales ?:DecimalPipe;
+     Clie_Id?:number;
+     Clie_Nombre?:String;
+     Clie_Identidad?:string;
 }
+
+export class FacturaDetalle{
+     
+}
+
+export class FacturaDetallesEnviar {
+     FaDe_Ident?:String;
+     FaDe_ProdId?:String;
+     Faxd_Cantidad?:String;
+     Fact_Id?:String;
+ }
+
+ export class FacturaEnviar {
+     Sucu_Id?:number;
+     FaDe_Ident?:String;
+     Empl_Id ?:number;
+     Empl_Nombre ?:string;
+     Fact_Fecha ?:Date;
+     Fact_Total ?:DecimalPipe;
+     Clie_Id?:number;
+     Clie_Nombre?:String;
+     Clie_Identidad?:string;
+ }
+ 

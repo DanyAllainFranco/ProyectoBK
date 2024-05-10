@@ -30,21 +30,8 @@
                                   </p-inputGroup>
                                     <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Empl_Nombre'].invalid" style="color: red !important;">Empleado Requerido</small>
                                   </div>
-                  
-                                  <div class="field col-12 md:col-6">
-                                      <label for="">Impuesto</label>
-                                      <p-inputGroup>
-                                          <p-inputGroupAddon>
-                                              <i class="pi pi-tags" style="line-height: 1.25"></i>
-                                          </p-inputGroupAddon>
-                                          <input pInputText id="Impu_Impuesto" formControlName="Impu_Impuesto" type="text" required autofocus  [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('Impu_Impuesto').value === ''}"
-                                          (keydown)="validarTexto($event)" />
-                                      </p-inputGroup>
-                  
-                                      <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Impu_Impuesto'].invalid" style="color: red !important;">Impuesto Requerido</small>
-                                    </div>
                                     <div class="field col-12 md:col-6">
-                                      <label for="">DNI</label>
+                                      <label for="">Identidad</label>
                                       <p-autoComplete [(ngModel)]="selectedClientesAdvanced"
                                       [suggestions]="filteredClientes"
                                       (completeMethod)="filterCliente($event)"
@@ -57,36 +44,13 @@
                                       <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Clie_DNI'].invalid" style="color: red !important;">Impuesto Requerido</small>
                                     </div>
                                     <div class="field col-12 md:col-6">
-                                      <label for="">Cliente</label>
+                                      <label for="">Nombre</label>
                                       <input pInputText id="Cliente" formControlName="Clie_Nombre" type="text" required autofocus  [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('Clie_Nombre').value === ''}"
                                       (keydown)="validarTexto($event)" />
                                       <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Clie_Nombre'].invalid" style="color: red !important;">Impuesto Requerido</small>
                                     </div>
-                                    <div class="field col-12 md:col-12">
-                                      <label for="">Método de Pago</label>
-                                      <div class="payment-method-icons" >
-                                          <!-- Efectivo -->
-                                          <button type="button" (click)="selectMetodoPago('Efectivo')" [class.selected]="selectedMetodo === 'Efectivo'">
-                                              <i class="pi pi-wallet"></i> Efectivo
-                                          </button>
-                                  
-                                          <!-- Tarjeta de Crédito -->
-                                          <button type="button" (click)="selectMetodoPago('Tarjeta de Crédito')" [class.selected]="selectedMetodo === 'Tarjeta de Crédito'">
-                                              <i class="pi pi-credit-card"></i> Tarjeta de Crédito
-                                          </button>
-                                  
-                                          <!-- Pago en Línea -->
-                                          <button type="button" (click)="selectMetodoPago('Pago en Línea')" [class.selected]="selectedMetodo === 'Pago en Línea'">
-                                              <i class="pi pi-globe"></i> Pago en Línea
-                                          </button>
-                                      </div>
-                                  
-                                      <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Mepa_Metodo'].invalid" style="color: red !important;">
-                                          Método Requerido
-                                      </small>
-                                  </div>
+                               </div>
                        
-                                 
                                   </div>       
                             <p-table [value]="FacturaDetalle" >
                               <ng-template pTemplate="header">
@@ -102,12 +66,7 @@
                               </ng-template>
                               <ng-template pTemplate="body" let-detalle>
                                   <tr>
-                                      <td style="width:15%;">{{detalle.categoria}}</td>
-                                      <td style="width:5%;"> {{detalle.prod_Id}}</td>
-                                      <td style="width:45%;">{{detalle.producto}}</td>
-                                      <td style="width:10%;">{{detalle.cantidad}}</td>
-                                      <td style="width:10%;">{{detalle.precio_Unitario}}</td>
-                                      <td style="width:10%;">{{detalle.total}}</td>
+                                      <td style="width:15%;"></td>
                                       <td>
                                           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" ></button>
                                       </td>
@@ -117,13 +76,28 @@
                                   <tr>
                                       <td style="width:15%;">
                                           <label>
-                                              <input type="radio" name="j-m-radio" value="1" (change)="onRadioChange($event)" formControlName="Faxd_Dif" />
-                                              J
+                                              <input type="radio" name="j-m-radio" value="N" (change)="onRadioChange($event)" formControlName="Faxd_Dif" />
+                                              Complemento
                                           </label>
                                           <label>
-                                              <input type="radio" name="j-m-radio" value="0" (change)="onRadioChange($event)" formControlName="Faxd_Dif" />
-                                              M
-                                          </label>
+                                            <input type="radio" name="j-m-radio" value="C" (change)="onRadioChange($event)" formControlName="Faxd_Dif" />
+                                            Combo
+                                        </label>
+                                       
+                                        <label>
+                                            <input type="radio" name="j-m-radio" value="D" (change)="onRadioChange($event)" formControlName="Faxd_Dif" />
+                                            Postre
+                                        </label>
+                                       
+                                        <label>
+                                            <input type="radio" name="j-m-radio" value="B" (change)="onRadioChange($event)" formControlName="Faxd_Dif" />
+                                            Bebida
+                                        </label>
+                                       
+                                        <label>
+                                            <input type="radio" name="j-m-radio" value="P" (change)="onRadioChange($event)" formControlName="Faxd_Dif" />
+                                            Paquete
+                                        </label>
                                       </td>
                                       <td style="width:5%;">
                                           <input pInputText id="Prod_Id" formControlName="Prod_Id" type="text" required autofocus
@@ -155,18 +129,10 @@
                               </ng-template>
                           </p-table>
                       
-                  
-                  
-                          <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;" [class.hidden]="!Tabla">
-                             <h1>SubTotal:500lps</h1>
-                          </div>
-                          <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;" [class.hidden]="!Tabla">
-                              <h1>Total:575lps</h1>
-                           </div>
-                          <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+                                           
+                           <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
                               <button pButton icon="pi pi-stop" type="button" (click)="cancelar()" label="Cancelar" class="p-button-outlined"></button>
                           </div>
-                        
                           </form>             
                         </div>               
                 </div>
