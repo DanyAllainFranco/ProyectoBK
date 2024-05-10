@@ -311,12 +311,12 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult EliminarPantallaPorRol(int Paro_Id)
+        public ServiceResult EliminarPantallaPorRol(int Rol_Id)
         {
             var result = new ServiceResult();
             try
             {
-                var response = _pantallaPorRolRepository.Delete(Paro_Id);
+                var response = _rolRepository.EliminarPantaPorRol(Rol_Id);
                 if (response.CodeStatus > 0)
                 {
                     return result.Ok("Pantalla por rol eliminada con éxito", response);
@@ -345,6 +345,99 @@ namespace Proyecto_BK.BusinessLogic.Services
             catch (Exception ex)
             {
                 return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+        public ServiceResult ListPantallas2(int RolId) //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _rolRepository.ListPanta2(RolId);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+        public ServiceResult EliminarPantallasPorRoles(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _rolRepository.EliminarPantaPorRol(id);
+                if (lost.CodeStatus > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error(lost);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        public ServiceResult ListaPantallasPorRoles(int Role_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _rolRepository.List1(Role_Id);
+                if (lost.Count() > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+
+            }
+        }
+        public ServiceResult ListPantallas() //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _rolRepository.ListPanta();
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+        public ServiceResult InsertarRol(tbRoles item, out int ingrId)
+        {
+            var result = new ServiceResult();
+            ingrId = 0;
+            try
+            {
+                var (lost, idGenerado) = _rolRepository.Insertar(item);
+                if (lost.CodeStatus > 0)
+                {
+                    ingrId = idGenerado;
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                    return result.Error(lost);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
             }
         }
 
@@ -446,6 +539,59 @@ namespace Proyecto_BK.BusinessLogic.Services
             catch (Exception ex)
             {
                 return result.Error("Error al actualizar el rol");
+            }
+        }
+        public ServiceResult EliminarPantallasDeRol(int[] PantallasIds, int Rol_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                // Lógica para eliminar todas las pantallas del rol en tu repositorio de datos
+                var deleteResult = _rolRepository.EliminarPantallasDeRol(PantallasIds, Rol_Id);
+
+                // Verificar si la eliminación fue exitosa y actualizar el resultado en consecuencia
+                if (deleteResult.CodeStatus > 0)
+                {
+                    return result.Ok(deleteResult);
+                }
+                else
+                {
+                    // Manejar cualquier error o condición de fallo
+                    deleteResult.MessageStatus = (deleteResult.CodeStatus == 0) ? "401 Error de Consulta" : deleteResult.MessageStatus;
+                    return result.Error(deleteResult);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Manejar excepciones y devolver un resultado de error
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult InsertarPAntxROle(List<int> PantIds, int Rol_Id, int usuaModifica)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                foreach (var Pant_Id in PantIds)
+                {
+                    var lost = _rolRepository.InsertarPor(Pant_Id, Rol_Id, usuaModifica);
+                    if (lost.CodeStatus > 0)
+                    {
+                        // Realizar algún tipo de lógica si es necesario
+                    }
+                    else
+                    {
+                        lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                        return result.Error(lost);
+                    }
+                }
+
+                return result.Ok(); // Si todo fue exitoso
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
             }
         }
 

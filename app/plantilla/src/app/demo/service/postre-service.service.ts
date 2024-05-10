@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BASE_URL } from './UrlParaAPI';
-import {Postre,Fill } from '../models/PostreViewModel'
+import {Postre,Fill, Postre2 } from '../models/PostreViewModel'
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
@@ -19,15 +19,11 @@ export class PostreServiceService {
     return this.http.get<Postre[]>(this.Url);
   }
 
-  EnviarPost(formData: any): Observable<any> {
-    return this.http.post<any>(BASE_URL + 'API/Postre/Insert/', formData).pipe(
-      map(response => {
-        return response;
-      }),
-    );
+  
+  agregar(modelo: Postre2): Observable<Postre2> {
+    return this.http.post<Postre2>(`${BASE_URL}` + 'API/Postre/Insert', modelo);
   }
-
-    
+  
   getFill(codigo: string): Observable<Fill> {
     return this.http.get<Fill>(`${BASE_URL + 'API/Postre/Fill/' + codigo}`);
   }

@@ -93,6 +93,104 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+        public RequestStatus InsertarPor(int Pant_Id, int Rol_Id, int usuaCreacion)
+        {
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("Rol_Id", Rol_Id);
+                parametro.Add("Pant_Id", Pant_Id);
+                parametro.Add("Paro_Usua_Creacion", usuaCreacion);
+                parametro.Add("Paro_Fecha_Creacion", DateTime.Now);
+
+                var result = db.Execute(ScriptsBaseDeDatos.PaRo_Insertar,
+                    parametro,
+                     commandType: CommandType.StoredProcedure
+                    );
+
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+        }
+        public RequestStatus EliminarPantallasDeRol(int[] PantallasIds, int Rol_Id)
+        {
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                foreach (var Pant_Id in PantallasIds)
+                {
+                    var parametro = new DynamicParameters();
+                    parametro.Add("Rol_Id", Rol_Id);
+                    parametro.Add("Pant_Id", Pant_Id);
+
+                    var result = db.Execute(ScriptsBaseDeDatos.PaRo_Eliminar,
+                        parametro,
+                        commandType: CommandType.StoredProcedure
+                    );
+
+                    string mensaje = (result == 1) ? "Exito" : "Error";
+                    if (result <= 0)
+                    {
+                        return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+                    }
+                }
+            }
+            return new RequestStatus { CodeStatus = 1, MessageStatus = "Exito" };
+        }
+
+        public IEnumerable<tbPantallas> ListPanta2(int RolId)
+        {
+            List<tbPantallas> result = new List<tbPantallas>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("RoleId", RolId);
+              
+                result = db.Query<tbPantallas>(ScriptsBaseDeDatos.Pant_Listar2,parametro, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
+        public IEnumerable<tbPantallasPorRoles> List1(int Role_Id)
+        {
+            string sql = ScriptsBaseDeDatos.PaRo_Listar;
+
+            List<tbPantallasPorRoles> result = new List<tbPantallasPorRoles>();
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Rol_Id", Role_Id);
+                result = db.Query<tbPantallasPorRoles>(sql, parametro, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+        public RequestStatus EliminarPantaPorRol(int? id)
+        {
+            string sql = ScriptsBaseDeDatos.PaRo_Eliminar;
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Rol_ID", id);
+                var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
+
+                return new RequestStatus { CodeStatus = result, MessageStatus = "" };
+
+            }
+        }
+
+
+        public IEnumerable<tbPantallas> ListPanta()
+        {
+            List<tbPantallas> result = new List<tbPantallas>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                result = db.Query<tbPantallas>(ScriptsBaseDeDatos.Pant_Listar, commandType: CommandType.Text).ToList();
+                return result;
+            }
+        }
+
         public IEnumerable<tbRoles> RolesDDL()
         {
             List<tbRoles> result = new List<tbRoles>();

@@ -24,9 +24,10 @@ import { SucursalListadoComponent } from './demo/components/sucursal-listado/suc
 import { ReporteVentasComponent } from './demo/components/reporte-ventas/reporte-ventas.component';
 import { ListDemoComponent } from './demo/components/uikit/list/listdemo.component';
 import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.component';
-import { RolesListadoComponent } from './demo/components/roles-listado/roles-listado.component';
+import { RolListadoComponent } from './demo/components/rol-listado/rol-listado.component';
 import { FiltrosComponent } from './demo/components/filtros/filtros.component';
-
+import {RolCreateComponent} from './demo/components/rol-create/rol-create.component';
+import {RolEditarComponent} from './demo/components/rol-editar/rol-editar.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -62,7 +63,9 @@ import { FiltrosComponent } from './demo/components/filtros/filtros.component';
                     { path: 'IndexUsuarios', component: UsuariosListadoComponent },
                     { path: 'IndexPaquetes', component: PaqueteListadoComponent },
                     { path: 'IndexSucursales', component: SucursalListadoComponent },
-                    {path: 'IndexRoles', component:RolesListadoComponent},
+                    {path: 'IndexRoles', component:RolListadoComponent},
+                    { path: 'CreateRol', component: RolCreateComponent } , 
+                    { path: 'EditarRol/:id', component: RolEditarComponent } ,
                     // { path: 'IndexGraficos', component: GraficosComponent }
                     { path: 'IndexInforme', component: ReporteVentasComponent }
                                 ]

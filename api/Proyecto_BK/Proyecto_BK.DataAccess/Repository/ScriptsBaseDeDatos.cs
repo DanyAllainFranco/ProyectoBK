@@ -152,6 +152,7 @@ namespace Proyecto_BK.DataAccess.Repository
 
         #region Pantallas
         public static string Pant_Listar = "[Acce].SP_Pantallas_Mostrar";
+        public static string Pant_Listar2 = "[Acce].SP_Pantallas_Mostrar2";
         public static string Pant_Llenar = "[Acce].SP_Pantallas_Llenar";
         public static string Pant_Insertar = "[Acce].SP_Pantallas_Insertar";
         public static string Pant_Editar = "[Acce].SP_Pantallas_Editar";

@@ -3,6 +3,10 @@ export class Roles{
  rol_Descripcion?:string;
 }
 
+export class Rol{
+    rol_Id!: number;
+    rol_Descripcion!:string;   
+}
 export class RolesDLL{
 rol_Id?:number;
 rol_Descripcion?:string;

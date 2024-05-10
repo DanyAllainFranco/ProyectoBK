@@ -1,0 +1,69 @@
+<p-toast></p-toast>
+<div class="grid">
+    
+    <div class="col-12">
+        <div class="card">
+            <h1>Roles</h1>
+
+            <div class="grid">
+                <div class="col-12" >
+                    <button  pButton icon="pi pi-external-link" (click)="Nuevo()" label="Nuevo" class="mr-2"></button>
+                       
+                </div>
+            </div>
+    
+            <p-table [value]="rol" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
+    [paginator]="true" [globalFilterFields]="['rol_Id','rol_Descripcion']" responsiveLayout="scroll">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Código
+                    <p-columnFilter type="text" field="dept_Id" display="menu"
+                        placeholder="Buscar por código"></p-columnFilter>
+                </div>
+            </th>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Rol
+                    <p-columnFilter type="text" field="dept_Descripcion" display="menu"
+                        placeholder="Buscar por descripción"></p-columnFilter>
+                </div>
+            </th>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Acciones
+                  
+                </div>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rol>
+        <tr>
+            <td>{{rol.rol_Id}}</td>
+            <td>{{rol.rol_Descripcion}}</td>
+            <td  style="display: flex; grid-gap:10px">
+                <button pButton pRipple type="button" label="Editar" class="p-button-warning" (click)="editarRol(rol.rol_Id)"></button>
+                <button pButton pRipple type="button" label="Detalles" class="p-button-info" (click)="detalle(departamento)"></button>
+                <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" (click)="confirmarEliminarDepartamento(departamento)"></button>
+
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="2">No hay datos para cargar.</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="loadingbody">
+        <tr>
+            <td colspan="2">Cargando datos. Por favor espera.</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+        </div>
+       
+    </div>
+</div>

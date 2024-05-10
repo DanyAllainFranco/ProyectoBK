@@ -30,6 +30,32 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
+        [HttpGet("API/[controller]/ListPantallas")]
+        public IActionResult ListPanta()
+        {
+            var list = _accesoServices.ListPantallas();
+            return Ok(list.Data);
+        }
+
+        [HttpGet("API/[controller]/ListPantallas2/{RolId}")]
+        public IActionResult ListPanta2(int RolId)
+        {
+            var list = _accesoServices.ListPantallas2(RolId);
+            return Ok(list.Data);
+        }
+        [HttpGet("API/[controller]/PantallasAgregadas/{RolId}")]
+        public IActionResult PantallasAgregadas(int RolId)
+        {
+            var listado = _accesoServices.ListaPantallasPorRoles(RolId);
+            if (listado.Success == true)
+            {
+                return Ok(listado.Data);
+            }
+            else
+            {
+                return Problem();
+            }
+        }
         [HttpGet("API/[controller]/RolesDDL")]
         public IActionResult RolesDDL()
         {
@@ -41,71 +67,34 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult Find(int Rol_Id)
         {
             var result = _accesoServices.LlenarRol(Rol_Id);
-            return Ok(result);
+            return Ok(result.Data);
         }
-        [HttpPost("RolCrear")]
-        public IActionResult Insert([FromBody] RoleWithScreens data)
-        {
-            var result = new ServiceResult();
-            var rol = data.Rol_Descripcion;
-            var pantallas = data.Screens;
-
-            var modelo = new tbRoles()
-            {
-                Rol_Descripcion = rol,
-                Rol_Usua_Creacion = 1,
-                Rol_Fecha_Creacion = DateTime.Now
-            };
-            (var list, int Role_IdScope) = _accesoServices.InsertarRoles(modelo);
-
-
-            foreach (var pantalla in pantallas)
-            {
-                var modelo2 = new tbPantallasPorRoles()
-                {
-                    Pant_Id = pantalla.Pant_Id,
-                    Rol_Id = Role_IdScope,
-                    Paro_Usua_Creacion = 1
-                };
-
-                result = _accesoServices.InsertarPantallasPorRoles(modelo2);
-
-
-            }
-
-
-            if (result.Success == true)
-            {
-                return Ok(list);
-            }
-            else
-            {
-                return Problem();
-            }
-        }
+      
 
         [HttpPost("API/[controller]/Insert")]
-        public IActionResult Create(RolViewModel json)
+        public IActionResult Create(RolViewModel item)
         {
-            _mapper.Map<tbRoles>(json);
+            //var model = _mapper.Map<tbRoles>(item);
             var modelo = new tbRoles()
             {
-                Rol_Descripcion = json.Rol_Descripcion,
-                Rol_Usua_Creacion = 1,
-                Rol_Fecha_Creacion = DateTime.Now
-            };
-            var response = _accesoServices.InsertarRoles(modelo);
-            return Ok(response);
-        }
+                Rol_Descripcion = item.Rol_Descripcion,
+                Rol_Usua_Creacion = item.Rol_Usua_Creacion,
 
+            };
+
+            int rolId;
+            var prueba = _accesoServices.InsertarRol(modelo, out rolId);
+            prueba.Message = rolId.ToString();
+            return Ok(prueba);
+        }
         [HttpPut("API/[controller]/Update")]
-        public IActionResult Update(RolViewModel json)
+        public IActionResult Update(RolViewModel item)
         {
-            _mapper.Map<tbRoles>(json);
+            //_mapper.Map<tbRoles>(json);
             var modelo = new tbRoles()
             {
-                Rol_Id = Convert.ToInt32(json.Rol_Id),
-                Rol_Descripcion = json.Rol_Descripcion,
+                Rol_Id = Convert.ToInt32(item.Rol_Id),
+                Rol_Descripcion = item.Rol_Descripcion,
                 Rol_Usua_Modifica = 1,
                 Rol_Fecha_Modifica = DateTime.Now
             };
@@ -119,5 +108,24 @@ namespace Proyecto_BK.API.Controllers
             var response = _accesoServices.EliminarRol(Rol_Id);
             return Ok(response);
         }
+
+
+        [HttpPost("API/[controller]/Agregarpant")]
+        public IActionResult Agregarpant([FromBody] AgregarPantallasViewModel request)
+        {
+            var result = _accesoServices.InsertarPAntxROle(request.PantIds, request.RolId, request.Usua_Id);
+            return Ok(result);
+        }
+
+
+        [HttpDelete("API/[controller]/EliminarPantallas/{Rol_Id}")]
+        public IActionResult EliminarPantallasDeRol(int Rol_Id)
+        {
+            var response = _accesoServices.EliminarPantallaPorRol(Rol_Id);
+            
+                return Ok(response);
+           
+        }
+
     }
 }
