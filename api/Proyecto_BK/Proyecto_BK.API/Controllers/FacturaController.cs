@@ -29,6 +29,13 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
+        [HttpGet("ListadaEncabezado")]
+        public IActionResult ListaEncabezado()
+        {
+            var list = _restauranteServices.ListadoFactura();
+            return Ok(list.Data);
+        }
+
         [HttpGet("ListaDetalles/{Fact_Id}")]
         public IActionResult ListaDetalles(int Fact_Id)
         {
