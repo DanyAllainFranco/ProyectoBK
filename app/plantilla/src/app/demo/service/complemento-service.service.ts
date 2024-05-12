@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BASE_URL } from './UrlParaAPI';
-import { Complemento,Fill } from '../models/ComplementoViewModel';
+import { CargarComplementos, Complemento,Fill } from '../models/ComplementoViewModel';
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
@@ -14,7 +14,7 @@ export class ComplementoServiceService {
   Url = 'https://localhost:44332/API/Complemento/List';
 
   getComplemento (){
-    return this.http.get<Complemento[]>(this.Url);
+    return this.http.get<CargarComplementos[]>(this.Url);
   }
 
 

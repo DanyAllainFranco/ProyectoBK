@@ -10,6 +10,11 @@ export class Postre {
     Post_Estado?: string;
 }
 
+export class CargarPostres{
+    post_id?: number;
+    post_Descripcion?: string;
+}
+
 export class Postre2{
     post_Id: number;
     post_Descripcion: string;

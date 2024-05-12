@@ -39,6 +39,9 @@ export class CombopersonalListadoComponent implements OnInit {
       }
     );
   }
+  editarCombo(combId: number) {
+    this.router.navigate(['app/EditarCombo', combId]); // Redirige a la ruta de edición con el ID del rol
+  }
 
   Nuevo(){
     this.router.navigate(['app/CreateCombo'])

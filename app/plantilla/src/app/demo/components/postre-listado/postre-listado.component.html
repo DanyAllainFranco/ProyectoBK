@@ -3,8 +3,8 @@
         <div class="card">
             <h5>Postres</h5>
             <p-dialog header="{{modalTitle}}" [(visible)]="display" [modal]="true" showEffect="fade"
-                [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
-                <form [formGroup]="formDepartamento">
+                [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}" (onHide)="recargarPagina()">
+                <form [formGroup]="formDepartamento" (ngSubmit)="guardarDepartamento()">
                     <div class="p-fluid">
                         <div class="p-formgrid grid">
                             <div class="field col">
@@ -13,7 +13,7 @@
                                     type="text" />
                             </div>
                             <div class="field col">
-                                <label htmlFor="email2">Precio</label>
+                                     <label htmlFor="email2">Precio</label>
                                 <input pInputText formControlName="post_Precio" autocomplete="off" id="email2"
                                     type="text" />
 
@@ -24,39 +24,34 @@
                     <div class="p-fluid">
                         <div class="p-formgrid grid">
                             <div class="field col">
-                                <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
-                                    [multiple]="true" accept="image/*" [maxFileSize]="1000000">
-                                    <ng-template pTemplate="content">
-                                        <!-- <p-image src="assets/demo/images/galleria/galleria10.jpg" alt="Image" width="250" [preview]="true"></p-image> -->
-                                        <div class="col-12">
-                                            <div class="flex justify-content-center">
-                                                <p-image src="assets/demo/images/galleria/galleria10.jpg" alt="Image"
-                                                    width="250" [preview]="true"></p-image>
-                                            </div>
-
-                                        </div>
-                                    </ng-template>
+                                <label>Imagen:</label>
+                                <p-fileUpload #fileUpload name="demo[]" [mode]="'basic'" (onSelect)="onImageSelect($event)"
+                                    [multiple]="false" accept="image/*"  [maxFileSize]="1000000" chooseLabel="{{ showFileUpload ? 'Seleccione' : '' }}">
                                 </p-fileUpload>
                             </div>
+                            
                         </div>
                     </div>
-
-
-
-
-
+                    <div class="justify-content-center ms-5">
+                        <!-- Contenedor para centrar la imagen -->
+                        <div class="text-center">
+                            <p-image *ngIf="selectedImageURL" [src]="selectedImageURL" alt="Imagen seleccionada"
+                            width="250" [preview]="true"></p-image>
+                        </div>
+                    </div>
                 </form>
                 <ng-template pTemplate="footer">
-                    <button pButton icon="pi pi-times" (click)="display=false" label="Cerrar"
+                    <button pButton icon="pi pi-times" (click)="recargarPagina()" label="Cerrar"
                         class="p-button-outlined p-button-danger mr-2"></button>
-                    <button pButton icon="pi pi-check" (click)="guardarDepartamento()" label="{{modalButtonLabel}}"
-                        class="p-button-outlined"></button>
+                        <button pButton icon="pi pi-check" label="{{modalButtonLabel}}"
+                        class="p-button-outlined" (click)="guardarDepartamento()"></button>
                 </ng-template>
+          
             </p-dialog>
             <div class="grid">
                 <div class="col-12">
-                    <button (click)="displayNuevoDepartamento()" pButton icon="pi pi-plus-circle" label="Nuevo"
-                        class="mr-2"></button>
+                    <button type="reset" (click)="displayNuevoDepartamento()" pButton icon="pi pi-plus-circle" label="Nuevo"
+                    class="mr-2"></button>
 
                 </div>
             </div>

@@ -21,8 +21,8 @@ import { DialogModule } from 'primeng/dialog';
 import { ImageModule } from 'primeng/image';
 import { GalleriaModule } from 'primeng/galleria';
 import { CarouselModule } from 'primeng/carousel';
-
 import { FileUploadModule } from 'primeng/fileupload';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-postre-listado',
@@ -41,6 +41,10 @@ export class PostreListadoComponent implements OnInit {
   confirmacionVisible: boolean = false;
   departamentoAEliminar: Postre | null = null;
   uploadedFiles: any[] = [];
+  selectedImageURL: string | null = null;
+   imageSelected: boolean = false;
+   showFileUpload: boolean = true;
+prueba: string = "";
   
   constructor(
     private service: PostreServiceService, 
@@ -48,6 +52,7 @@ export class PostreListadoComponent implements OnInit {
     private fb: FormBuilder,
     private _postreServices: PostreServiceService,
     private messageService: MessageService,
+    private http: HttpClient
   )
      {
       this.formDepartamento = this.fb.group({
@@ -74,44 +79,50 @@ export class PostreListadoComponent implements OnInit {
       }
     );
   }
-  displayNuevoDepartamento() {
-    this.formDepartamento.reset();
-    this.modalTitle = 'Nuevo Registro';
-    this.modalButtonLabel = 'Guardar';
-    this.display = true;
-  }
-
-  // editDepartamento(departamento: any) {
-  //   this.selectedDepartamento = departamento;
-  //   this.modalTitle = 'Editar Registro';
-  //   this.modalButtonLabel = 'Actualizar';
-  //   this.formDepartamento.patchValue({
-  //     codigo: departamento.dept_Codigo,
-  //     departamento: departamento.dept_Descripcion,
-
-  //   });
-  //   this.display = true;
-  // }
-
-  onUpload(event: any) {
-    for (const file of event.files) {
-        this.uploadedFiles.push(file);
-    }
-
-    this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded' });
+ // Función para mostrar el modal y limpiar el formulario y la imagen seleccionada
+ displayNuevoDepartamento() {
+  this.formDepartamento.reset(); // Resetear el formulario
+  this.selectedImageURL = null; // Limpiar la URL de la imagen seleccionada
+  this.showFileUpload = true; // Restaurar el botón de carga de archivos
+  this.modalTitle = 'Nuevo Registro';
+  this.modalButtonLabel = 'Guardar';
+  this.display = true;
 }
 
-  guardarDepartamento() {
-    if (this.formDepartamento.invalid) {
-      return;
+// Función para recargar la página cuando se cierra el modal
+recargarPagina() {
+  location.reload();
+}
+
+  
+  onImageSelect(event: any) {
+    const selectedFile: File = event.files[0];
+    this.selectedImageURL = URL.createObjectURL(selectedFile);
+    this.imageSelected = true;
+    this.showFileUpload = true;
+    this.prueba = selectedFile.name;
+}
+
+guardarDepartamento() {
+  const modelo: Postre2 = {
+    post_Id: 0,
+    post_Descripcion: this.formDepartamento.value.post_Descripcion,
+    post_Precio: this.formDepartamento.value.post_Precio,
+    post_Imagen: this.prueba,
+    post_Usua_Creacion: 1,
+  };
+
+  // Enviar los datos del formulario a tu API para agregar el registro
+  this._postreServices.agregar(modelo).subscribe({
+    next: () => {
+      this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Departamento creado correctamente!' });
+    },
+    error: (error) => {
+      console.error('Error al agregar el departamento:', error);
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al agregar el departamento.' });
     }
-    if (this.modalTitle === 'Nuevo Registro') {
-      this.NuevoDepartamento();
-    } 
-    // else {
-    //   this.actualizarDepartamento();
-    // }
-  }
+  });
+}
 
   NuevoDepartamento() {
     const modelo: Postre2 = {
@@ -133,26 +144,6 @@ export class PostreListadoComponent implements OnInit {
       }
     })
   }
-
-  // actualizarDepartamento() {
-  //   const idDepartamento = this.selectedDepartamento.dept_Codigo;
-  //   const modelo: Departamento = {
-  //     dept_Codigo: this.formDepartamento.value.codigo,
-  //     dept_Descripcion: this.formDepartamento.value.departamento
-  //   }
-  //   this._departamentoServicio.actualizar(idDepartamento, modelo).subscribe({
-  //     next: (data) => {
-  //       this.getPostres();
-  //       this.display = false;
-  //       console.log(idDepartamento);
-  //       this.messageService.add({severity:'success', summary:'Éxito', detail:'¡Departamento editado correctamente!'});
-  //     },
-  //     error: (e) => {
-  //       console.log(e);
-  //       this.messageService.add({severity:'error', summary:'Error', detail:'Departamento ya existente.'});
-  //     }
-  //   })
-  // }
 }
 
 @NgModule({

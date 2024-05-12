@@ -29,6 +29,10 @@ import { FiltrosComponent } from './demo/components/filtros/filtros.component';
 import {RolCreateComponent} from './demo/components/rol-create/rol-create.component';
 import {RolEditarComponent} from './demo/components/rol-editar/rol-editar.component';
 import {ComboCreateComponent} from './demo/components/combo-create/combo-create.component';
+import {ComboEditarComponent} from './demo/components/combo-editar/combo-editar.component';
+
+
+
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -68,6 +72,7 @@ import {ComboCreateComponent} from './demo/components/combo-create/combo-create.
                     {path: 'IndexRoles', component:RolListadoComponent},
                     { path: 'CreateRol', component: RolCreateComponent } , 
                     { path: 'EditarRol/:id', component: RolEditarComponent } ,
+                    { path: 'EditarCombo/:id', component: ComboEditarComponent } ,
                     // { path: 'IndexGraficos', component: GraficosComponent }
                     { path: 'IndexInforme', component: ReporteVentasComponent }
                                 ]

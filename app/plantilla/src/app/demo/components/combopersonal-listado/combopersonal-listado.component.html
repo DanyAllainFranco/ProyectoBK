@@ -44,13 +44,6 @@
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
-                                Imagen
-                                <p-columnFilter type="text" field="comb_Imagen" display="menu"
-                                    placeholder="Buscar por imagen"></p-columnFilter>
-                            </div>
-                        </th>
-                        <th style="min-width: 12rem">
-                            <div class="flex justify-content-between align-items-center">
                                 Bebida
                                 <p-columnFilter type="text" field="bebi_Descripcion" display="menu"
                                     placeholder="Buscar por Bebida"></p-columnFilter>
@@ -90,17 +83,13 @@
                         <td>{{comb.comb_Id}}</td>
                         <td>{{comb.comb_Descripcion}}</td>
                         <td>{{comb.comb_Precio}}</td>
-                        <td>
-                            <img [src]="comb.comb_Imagen" alt="Imagen de promoción" style="width: 100px; height: auto;">
-                        </td>
+                       
                         <td>{{comb.bebi_Descripcion}}</td>
                         <td>{{comb.post_Descripcion}}</td>
                         <td>{{comb.comp_Descripcion}}</td>
                         <td>{{comb.alim_Descripcion}}</td>
                         <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
-                            <p-button label="Editar" icon="pi pi-user-edit" size="small"
-                                (click)="Fill(depto.dept_Codigo)" severity="primary" [raised]="true"
-                                [plain]="true"></p-button>
+                            <button pButton pRipple type="button" label="Editar" class="p-button-warning" (click)="editarCombo(comb.comb_Id)"></button>
                             <p-button label="Detalles" icon="pi pi-book" size="small"
                                 (click)="detalles(depto.dept_Codigo)" severity="secondary" [raised]="true"
                                 [plain]="true"></p-button>

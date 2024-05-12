@@ -10,6 +10,10 @@ export class Complemento {
     Comp_Estado?: string;
 }
 
+export class CargarComplementos{
+    comp_Id?: number;
+    comp_Descripcion?: string;
+}
 
 export class dropComplemento{
     value?:String;

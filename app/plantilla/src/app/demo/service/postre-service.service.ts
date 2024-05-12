@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BASE_URL } from './UrlParaAPI';
-import {Postre,Fill, Postre2 } from '../models/PostreViewModel'
+import {Postre,Fill, Postre2, CargarPostres } from '../models/PostreViewModel'
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
+import { CargarAlimentos } from '../models/AlimentosViewModel';
 
 
 
@@ -16,7 +17,7 @@ export class PostreServiceService {
   Url = 'https://localhost:44332/API/Postre/List';
 
   getPostre (){
-    return this.http.get<Postre[]>(this.Url);
+    return this.http.get<CargarPostres[]>(this.Url);
   }
 
   

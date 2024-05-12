@@ -10,6 +10,12 @@ export class Bebidas {
     Bebi_Estado?: boolean;
 }
 
+export class CargarBebidas{
+    bebi_Id?: number;
+    bebi_Descripcion?: string;
+    Bebi_Precio?: number;
+    Bebi_Imagen?: string;
+}
 
 export class dropBebida{
     value?:String;
