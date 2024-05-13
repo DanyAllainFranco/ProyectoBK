@@ -76,4 +76,7 @@ export class AppComponent {
         }Impresion (){
             this.router.navigate(['IndexFac']);
         }
+        ListarRoles (){
+            this.router.navigate(['IndexRoles']);
+        }
 }

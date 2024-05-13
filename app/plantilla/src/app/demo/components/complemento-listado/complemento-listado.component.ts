@@ -16,6 +16,7 @@ import { ToastModule } from 'primeng/toast';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 
+
 @Component({
   selector: 'app-complemento-listado',
   templateUrl: './complemento-listado.component.html',
@@ -24,7 +25,9 @@ import { RatingModule } from 'primeng/rating';
 export class ComplementoListadoComponent implements OnInit {
   Complemento!: Complemento[];
 
-  constructor(private service: ComplementoServiceService, private router: Router) {}
+  constructor(private service: ComplementoServiceService,
+
+     private router: Router) {}
 
   ngOnInit(): void {
     this.service.getComplemento().subscribe(
@@ -37,6 +40,8 @@ export class ComplementoListadoComponent implements OnInit {
         console.log(error);
       }
     );
+
+   
   }
 }
 

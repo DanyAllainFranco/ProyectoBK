@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
-namespace Proyecto_BK.Entities
+namespace Proyecto_BK.Entities.Entities
 {
     public partial class tbEmpleados
     {
@@ -28,11 +29,12 @@ namespace Proyecto_BK.Entities
         public int? Empl_Usua_Modifica { get; set; }
         public DateTime? Empl_Fecha_Modifica { get; set; }
         public bool? Empl_Estado { get; set; }
-
+        [NotMapped]
         public string Esta_Descripcion { get; set; }
+        [NotMapped]
         public string Muni_Descripcion { get; set; }
+        [NotMapped]
         public string Carg_Descripcion { get; set; }
-
         public virtual tbCargos Carg { get; set; }
         public virtual tbUsuarios Empl_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Empl_Usua_ModificaNavigation { get; set; }

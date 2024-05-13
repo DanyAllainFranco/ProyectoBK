@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
-namespace Proyecto_BK.Entities
+namespace Proyecto_BK.Entities.Entities
 {
     public partial class tbPromocionesPorComidas
     {
@@ -18,13 +19,16 @@ namespace Proyecto_BK.Entities
         public int? PrSe_Usua_Modifica { get; set; }
         public DateTime? PrSe_Fecha_Modifica { get; set; }
         public bool? PrSe_Estado { get; set; }
-
+        [NotMapped]
         public string Bebi_Descripcion { get; set; }
+        [NotMapped]
         public string Post_Descripcion { get; set; }
+        [NotMapped]
         public string Comp_Descripcion { get; set; }
+        [NotMapped]
         public string Alim_Descripcion { get; set; }
+        [NotMapped]
         public string Prom_Descripcion { get; set; }
-
         public virtual tbAlimentos Alim { get; set; }
         public virtual tbBebidas Bebi { get; set; }
         public virtual tbComplementos Comp { get; set; }

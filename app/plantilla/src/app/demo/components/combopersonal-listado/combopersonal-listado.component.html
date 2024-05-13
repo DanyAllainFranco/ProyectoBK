@@ -1,9 +1,14 @@
+<p-toast></p-toast>
 <div class="grid">
     <div class="col-12">
         <div class="card">
             <h5>Combos Personales</h5>
+            <button pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" [class.hidden]=""
+                (click)="Nuevo()">Agregar</button>
             <p-table [value]="ComboPersonal" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
-                [paginator]="true" [globalFilterFields]="['comb_Id','comb_Descripcion','comb_Precio','comb_Imagen','bebi_Descripcion','post_Descripcion','comp_Descripcion','alim_Descripcion']" responsiveLayout="scroll">
+                [paginator]="true"
+                [globalFilterFields]="['comb_Id','comb_Descripcion','comb_Precio','comb_Imagen','bebi_Descripcion','post_Descripcion','comp_Descripcion','alim_Descripcion']"
+                responsiveLayout="scroll">
                 <ng-template pTemplate="caption">
                     <div class="flex justify-content-between flex-column sm:flex-row">
                         <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
@@ -40,13 +45,6 @@
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
-                                Imagen
-                                <p-columnFilter type="text" field="comb_Imagen" display="menu"
-                                    placeholder="Buscar por imagen"></p-columnFilter>
-                            </div>
-                        </th>
-                        <th style="min-width: 12rem">
-                            <div class="flex justify-content-between align-items-center">
                                 Bebida
                                 <p-columnFilter type="text" field="bebi_Descripcion" display="menu"
                                     placeholder="Buscar por Bebida"></p-columnFilter>
@@ -73,12 +71,17 @@
                                     placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
                         </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Imagen
+                            </div>
+                        </th>
                         <th style="text-align: center; min-width: 12rem">
-                    
+
                             Acciones
-    
-                    
-                         </th> 
+
+
+                        </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-comb>
@@ -86,18 +89,26 @@
                         <td>{{comb.comb_Id}}</td>
                         <td>{{comb.comb_Descripcion}}</td>
                         <td>{{comb.comb_Precio}}</td>
-                        <td>
-                            <img [src]="comb.comb_Imagen" alt="Imagen de promoción" style="width: 100px; height: auto;">
-                        </td>
+
                         <td>{{comb.bebi_Descripcion}}</td>
                         <td>{{comb.post_Descripcion}}</td>
                         <td>{{comb.comp_Descripcion}}</td>
                         <td>{{comb.alim_Descripcion}}</td>
-                        <td style="display: grid; justify-content: space-around;">
-                            <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(depto.dept_Codigo)"></button>
-                            <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(depto.dept_Codigo)"></button>
-                            <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(depto.dept_Codigo)"></button>
-                          
+
+                        <td>
+                            <img src="https://localhost:44332/uploads/{{comb.comb_Imagen}}" alt="" width="100">
+                        </td>
+                        <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
+                            <p-button label="Editar" icon="pi pi-user-edit" size="small"
+                                (click)="editarCombo(comb.comb_Id)" severity="primary" [raised]="true"
+                                [plain]="true"></p-button>
+                            <p-button label="Detalles" icon="pi pi-book" size="small"
+                                (click)="detalleCombo(comb.comb_Id)" severity="secondary" [raised]="true"
+                                [plain]="true"></p-button>
+                            <p-button label="Eliminar" icon="pi pi-trash" size="small"
+                                (click)="confirmarEliminarDepartamento(comb)" severity="danger" [raised]="true"
+                                [plain]="true"></p-button>
+
                         </td>
                     </tr>
                 </ng-template>
@@ -113,5 +124,14 @@
                 </ng-template>
             </p-table>
         </div>
+        <p-dialog header="Confirmar Eliminación" [(visible)]="confirmacionVisible" modal="true"
+            [style]="{ width: '300px' }">
+            <p>¿Está seguro de que desea eliminar este registro?</p>
+            <p-footer>
+                <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
+                <button pButton type="button" label="Confirmar" class="p-button-danger"
+                    (click)="eliminarDepartamento()"></button>
+            </p-footer>
+        </p-dialog>
     </div>
 </div>

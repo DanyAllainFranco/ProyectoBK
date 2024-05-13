@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
-namespace Proyecto_BK.Entities
+namespace Proyecto_BK.Entities.Entities
 {
     public partial class tbMunicipios
     {
@@ -21,9 +22,12 @@ namespace Proyecto_BK.Entities
         public DateTime Muni_Fecha_Creacion { get; set; }
         public int? Muni_Usua_Modifica { get; set; }
         public DateTime? Muni_Fecha_Modifica { get; set; }
-
+        [NotMapped]
         public string Dept_Descripcion { get; set; }
-
+        [NotMapped]
+        public string Usua_Creacion { get; set; }
+        [NotMapped]
+        public string Usua_Modifica { get; set; }
         public virtual tbDepartamentos Dept_CodigoNavigation { get; set; }
         public virtual tbUsuarios Muni_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Muni_Usua_ModificaNavigation { get; set; }

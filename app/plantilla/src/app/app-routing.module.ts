@@ -1,5 +1,5 @@
 import { Route, RouterModule, Routes } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { NgModule, createComponent } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
 import { InicioDeSesionComponent } from './demo/components/inicio-de-sesion/inicio-de-sesion.component';
@@ -27,6 +27,17 @@ import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.com
 import { FacturaListadoComponent } from './demo/components/factura-listado/factura-listado.component';
 import { FacturacionComponent } from './demo/components/facturacion/facturacion.component';
 import { FacturaComponent } from './demo/components/factura/factura.component';
+import { RolListadoComponent } from './demo/components/rol-listado/rol-listado.component';
+import { FiltrosComponent } from './demo/components/filtros/filtros.component';
+import {RolCreateComponent} from './demo/components/rol-create/rol-create.component';
+import {RolEditarComponent} from './demo/components/rol-editar/rol-editar.component';
+import {ComboCreateComponent} from './demo/components/combo-create/combo-create.component';
+import {ComboEditarComponent} from './demo/components/combo-editar/combo-editar.component';
+import {ComboDetalleComponent} from './demo/components/combo-detalle/combo-detalle.component';
+import {RolDetalleComponent} from './demo/components/rol-detalle/rol-detalle.component';
+import {PromocionCreateComponent} from './demo/components/promocion-create/promocion-create.component';
+
+
 
 
 @NgModule({
@@ -40,6 +51,7 @@ import { FacturaComponent } from './demo/components/factura/factura.component';
                 children: [
                     { path: 'Principal',  component:ListDemoComponent},
                     { path: 'PrincipalGraficos',  component:GraficosComponent},
+                    { path: 'FiltrosGraficos',  component:FiltrosComponent},
                     { path: 'dashboard', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
                     { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
                     { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
@@ -48,10 +60,11 @@ import { FacturaComponent } from './demo/components/factura/factura.component';
                     { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) },
                     { path: 'Index', component: DepartamentosListadoComponent },
                     { path: 'IndexComboPersonal', component: CombopersonalListadoComponent }, 
+                    { path: 'CreateCombo', component: ComboCreateComponent }, 
                     { path: 'IndexComplemento', component: ComplementoListadoComponent }, 
-                    { path: 'IndexEmpleado', component: EmpleadoListadoComponent }, 
-                    { path: 'IndexEstadoCivil', component: EstadocivilListadoComponent }, 
-                    { path: 'IndexMunicipio', component: MunicipioListadoComponent },
+                    { path: 'IndexEmpleado', data: { breadcrumb: 'Empleado' }, loadChildren: () => import('./demo/components/empleado-listado/empleadodemo.module').then(m => m.EmpleadoDemoModule) },
+                    { path: 'IndexEstadoCivil', data: { breadcrumb: 'Estado' }, loadChildren: () => import('./demo/components/estadocivil-listado/EstadoCivildemo.module').then(m => m.EstadoCivilDemoModule) },
+                    { path: 'IndexMunicipio', data: { breadcrumb: 'Municipio' }, loadChildren: () => import('./demo/components/municipio-listado/Municipiodemo.module').then(m => m.MunicipioDemoModule) },
                     { path: 'IndexPostre', component: PostreListadoComponent }, 
                     { path: 'IndexPromocion', component: PromocionListadoComponent },
                     { path: 'IndexPromocionPorComida', component: PromocionporcomidaListadoComponent }, 
@@ -63,6 +76,13 @@ import { FacturaComponent } from './demo/components/factura/factura.component';
                     { path: 'IndexUsuarios', component: UsuariosListadoComponent },
                     { path: 'IndexPaquetes', component: PaqueteListadoComponent },
                     { path: 'IndexSucursales', component: SucursalListadoComponent },
+                    {path: 'IndexRoles', component:RolListadoComponent},
+                    { path: 'CreateRol', component: RolCreateComponent } , 
+                    { path: 'EditarRol/:id', component: RolEditarComponent } ,
+                    { path: 'DetalleRol/:id', component: RolDetalleComponent } ,
+                    { path: 'CreatePromocion', component: PromocionCreateComponent } ,
+                    { path: 'EditarCombo/:id', component: ComboEditarComponent } ,
+                    { path: 'DetalleCombo/:id', component: ComboDetalleComponent },
                     // { path: 'IndexGraficos', component: GraficosComponent }
                     { path: 'IndexInforme', component: ReporteVentasComponent }, //IndexFactura
                     { path: 'IndexFactura', component: FacturaListadoComponent }, //IndexFactura

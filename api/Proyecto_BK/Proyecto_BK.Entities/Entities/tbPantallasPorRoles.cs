@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
-namespace Proyecto_BK.Entities
+namespace Proyecto_BK.Entities.Entities
 {
     public partial class tbPantallasPorRoles
     {
@@ -16,6 +17,8 @@ namespace Proyecto_BK.Entities
         public DateTime? Paro_Fecha_Modifica { get; set; }
         public bool? Paro_Estado { get; set; }
 
+        [NotMapped]
+        public string Pant_Descripcion { get; set; }
         public virtual tbPantallas Pant { get; set; }
         public virtual tbUsuarios Paro_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Paro_Usua_ModificaNavigation { get; set; }

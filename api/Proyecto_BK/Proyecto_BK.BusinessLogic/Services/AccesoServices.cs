@@ -1,5 +1,6 @@
 ﻿using Proyecto_BK.DataAccess.Repository;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -311,12 +312,12 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult EliminarPantallaPorRol(int Paro_Id)
+        public ServiceResult EliminarPantallaPorRol(int Rol_Id)
         {
             var result = new ServiceResult();
             try
             {
-                var response = _pantallaPorRolRepository.Delete(Paro_Id);
+                var response = _rolRepository.EliminarPantaPorRol(Rol_Id);
                 if (response.CodeStatus > 0)
                 {
                     return result.Ok("Pantalla por rol eliminada con éxito", response);
@@ -347,6 +348,81 @@ namespace Proyecto_BK.BusinessLogic.Services
                 return result.Error("Error en la capa de servicio al listar roles");
             }
         }
+        public ServiceResult ListPantallas2(int RolId) //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _rolRepository.ListPanta2(RolId);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+        public ServiceResult ListaPantallasPorRoles(int Role_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _rolRepository.List1(Role_Id);
+                if (lost.Count() > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+
+            }
+        }
+        public ServiceResult ListPantallas() //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _rolRepository.ListPanta();
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+
+
+        public ServiceResult InsertarRol(tbRoles item, out int ingrId)
+        {
+            var result = new ServiceResult();
+            ingrId = 0;
+            try
+            {
+                var (lost, idGenerado) = _rolRepository.Insertar(item);
+                if (lost.CodeStatus > 0)
+                {
+                    ingrId = idGenerado;
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                    return result.Error(lost);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
 
         public ServiceResult RolesDDL() //RolesDDL
         {
@@ -361,6 +437,28 @@ namespace Proyecto_BK.BusinessLogic.Services
                 return result.Error("Error en la capa de servicio al listar roles");
             }
         }
+
+        public ServiceResult DetallasRol(int Rol_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var rol = _rolRepository.Detalle(Rol_Id);
+                if (rol != null)
+                {
+                    return result.Ok(rol);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el rol con ID {Rol_Id}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"Error al buscar el rol con ID {Rol_Id}");
+            }
+        }
+
         public ServiceResult LlenarRol(int Rol_Id)
         {
             var result = new ServiceResult();
@@ -382,24 +480,28 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult CrearRol(tbRoles item)
+        public (ServiceResult, int) InsertarRoles(tbRoles item)
         {
             var result = new ServiceResult();
+            int rolid = 0;
             try
             {
-                var response = _rolRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var lost = _rolRepository.Insertar(item);
+                rolid = lost.Item2;
+
+                if (lost.Item1.CodeStatus > 0)
                 {
-                    return result.Ok("Rol creado con éxito", response);
+                    return (result.Ok(lost), rolid);
+
                 }
                 else
                 {
-                    return result.Error("Por favor rellene todos los campos");
+                    return (result.Error(lost), rolid);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información del rol");
+                return (result.Error(ex.Message), rolid);
             }
         }
 
@@ -421,6 +523,33 @@ namespace Proyecto_BK.BusinessLogic.Services
             catch (Exception ex)
             {
                 return result.Error("Error al actualizar el rol");
+            }
+        }
+
+        public ServiceResult InsertarPAntxROle(List<int> PantIds, int Rol_Id, int usuaModifica)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                foreach (var Pant_Id in PantIds)
+                {
+                    var lost = _rolRepository.InsertarPor(Pant_Id, Rol_Id, usuaModifica);
+                    if (lost.CodeStatus > 0)
+                    {
+                       
+                    }
+                    else
+                    {
+                        lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                        return result.Error(lost);
+                    }
+                }
+
+                return result.Ok(); // Si todo fue exitoso
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
             }
         }
 

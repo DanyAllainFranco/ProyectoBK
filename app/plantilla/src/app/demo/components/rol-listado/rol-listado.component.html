@@ -1,0 +1,146 @@
+<p-toast></p-toast>
+<div class="grid">
+    
+    <div class="col-12">
+        <div class="card">
+            <h1>Roles</h1>
+
+            <div class="grid">
+                <div class="col-12" >
+                    <button  pButton icon="pi pi-external-link" (click)="Nuevo()" label="Nuevo" class="mr-2"></button>
+                       
+                </div>
+            </div>
+    
+            <p-table [value]="rol" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
+    [paginator]="true" [globalFilterFields]="['rol_Id','rol_Descripcion']" responsiveLayout="scroll">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Código
+                    <p-columnFilter type="text" field="dept_Id" display="menu"
+                        placeholder="Buscar por código"></p-columnFilter>
+                </div>
+            </th>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Rol
+                    <p-columnFilter type="text" field="dept_Descripcion" display="menu"
+                        placeholder="Buscar por descripción"></p-columnFilter>
+                </div>
+            </th>
+            <th style="min-width: 12rem">
+                <div class="flex justify-content-between align-items-center">
+                    Acciones
+                  
+                </div>
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rol>
+        <tr>
+            <td>{{rol.rol_Id}}</td>
+            <td>{{rol.rol_Descripcion}}</td>
+            <td  style="display: flex; grid-gap:10px">
+                <p-button label="Editar" icon="pi pi-user-edit" size="small" (click)="editarRol(rol.rol_Id)"
+                severity="primary" [raised]="true" [plain]="true"></p-button>
+                <p-button label="Detalles" icon="pi pi-book" size="small"
+                (click)="detalleRol(rol.rol_Id)" severity="secondary" [raised]="true"
+                    [plain]="true"></p-button>
+                <p-button label="Eliminar" icon="pi pi-trash" size="small"
+                (click)="confirmarEliminarDepartamento(rol)" severity="danger" [raised]="true"
+                [plain]="true"></p-button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="2">No hay datos para cargar.</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="loadingbody">
+        <tr>
+            <td colspan="2">Cargando datos. Por favor espera.</td>
+        </tr>
+    </ng-template>
+</p-table>
+        </div>
+
+
+        <div class="card-body" [class.hidden]="!Detalles">
+            <div class="p-fluid p-formgrid grid">
+
+                <div class="field col-12 md:col-4" [class.hidden]="!RolCodigo">
+                    <div class="field rows">
+                        <label for="Codigo" style="font-weight: 800;">Codigo:</label>
+                    </div>
+                    <div class="field rows">
+                        <label for="Codigo">{{ Codigo }}</label>
+                    </div>
+                </div>
+                
+                <div class="field col-12 md:col-4">
+                    <div class="field rows">
+                        <label for="Municipio" style="font-weight: 800;">Rol:</label>
+                    </div>
+                    <div class="field rows">
+                        <label for="Municipio">{{ Rol }}</label>
+                    </div>
+                </div>
+                
+                <div class="field col-12 md:col-4">
+                    <div class="field rows" style="font-weight: 800;">
+                        <label for="Departamento">Pantallas:</label>
+                    </div>
+                    <div class="field rows">
+                        <label for="Departamento">{{ Panta }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                       <h1>Auditoria</h1>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p-table [value]="staticData">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width:200px">Accion</th>
+                                <th style="width:200px">Usuario</th>
+                                <th style="width:200px">Fecha</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-transaction>
+                            <tr>
+                                <td style="width:200px;">Creado</td>
+                                <td style="width:200px">{{ UsuarioCreacion }}</td>
+                                <td style="width:200px">{{ FechaCreacion }}</td>
+                            </tr>
+                            <tr>
+                                <td style="width:200px;">Modificado</td>
+                                <td style="width:200px">{{ UsuarioModificacion }}</td>
+                                <td style="width:200px">{{ FechaModificacion }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+              <button pButton icon="pi pi-arrow-left" type="button" (click)="cancelar()" label="Volver" class="p-button-outlined"></button>
+            </div>
+        </div>
+
+
+        <p-dialog header="Confirmar Eliminación" [(visible)]="confirmacionVisible" modal="true" [style]="{ width: '300px' }">
+            <p>¿Está seguro de que desea eliminar este registro?</p>
+            <p-footer>
+              <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
+              <button pButton type="button" label="Confirmar" class="p-button-danger" (click)="eliminarDepartamento()"></button>
+            </p-footer>
+          </p-dialog>
+    </div>
+</div>

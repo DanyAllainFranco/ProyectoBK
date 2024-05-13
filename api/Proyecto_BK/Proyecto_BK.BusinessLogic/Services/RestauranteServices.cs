@@ -1,6 +1,7 @@
 ﻿using Proyecto_BK.Common.Models;
 using Proyecto_BK.DataAccess.Repository;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -393,24 +394,18 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult LlenarComboPersonal(int Comb_Id)
+        public ServiceResult LlenarComboPersonal(string id)
         {
             var result = new ServiceResult();
             try
             {
-                var comboPersonal = _comboPersonalRepository.Find(Comb_Id);
-                if (comboPersonal != null)
-                {
-                    return result.Ok(comboPersonal);
-                }
-                else
-                {
-                    return result.Error($"No se encontró el Combo Personal con ID {Comb_Id}");
-                }
+                var list = _comboPersonalRepository.Fill(id);
+
+                return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró el Combo Personal con ID {Comb_Id}");
+                return result.Error(ex);
             }
         }
 
@@ -498,28 +493,111 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult CrearComboPersonal(tbCombosPersonales item)
+        public ServiceResult GrafiAlimentosFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
         {
             var result = new ServiceResult();
             try
             {
-                var response = _comboPersonalRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var comboPersonal = _comboPersonalRepository.GrafiAlimentosFiltro(Usua_Usuario, FechaInicio, FechaFin);
+                if (comboPersonal != null)
                 {
-                    return result.Ok("Combo Personal creado con éxito", response);
+                    return result.Ok(comboPersonal);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error($"No se encontró el Combo Personal con ID {Usua_Usuario}");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información del Combo Personal");
+                return result.Error(ex.Message);
             }
         }
 
-        public ServiceResult EditarComboPersonal(tbCombosPersonales item)
+        public ServiceResult GrafiPostreFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var comboPersonal = _comboPersonalRepository.GrafiPostreFiltro(Usua_Usuario, FechaInicio, FechaFin);
+                if (comboPersonal != null)
+                {
+                    return result.Ok(comboPersonal);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el Combo Personal con ID {Usua_Usuario}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult GrafiComboFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var comboPersonal = _comboPersonalRepository.GrafiComboFiltro(Usua_Usuario, FechaInicio, FechaFin);
+                if (comboPersonal != null)
+                {
+                    return result.Ok(comboPersonal);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el Combo Personal con ID {Usua_Usuario}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        public ServiceResult GrafiPaqueteFiltro(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var comboPersonal = _comboPersonalRepository.GrafiPaquetesFiltro(Usua_Usuario, FechaInicio, FechaFin);
+                if (comboPersonal != null)
+                {
+                    return result.Ok(comboPersonal);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el Combo Personal con ID {Usua_Usuario}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult CrearComboPersonal(tbCombo item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _comboPersonalRepository.Insert(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EditarComboPersonal(tbCombo item)
         {
             var result = new ServiceResult();
             try
@@ -531,13 +609,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Combo Personal con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
 
@@ -553,7 +630,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Combo Personal a eliminar" : list.MessageStatus;
+                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Empleado a eliminar" : list.MessageStatus;
                     return result.Error(list);
                 }
             }
@@ -594,23 +671,17 @@ namespace Proyecto_BK.BusinessLogic.Services
         }
 
         public ServiceResult LlenarComplemento(int Comp_Id)
-        {
+      {
             var result = new ServiceResult();
             try
             {
-                var complemento = _complementoRepository.Find(Comp_Id);
-                if (complemento != null)
-                {
-                    return result.Ok(complemento);
-                }
-                else
-                {
-                    return result.Error($"No se encontró el Complemento con ID {Comp_Id}");
-                }
+                var list = _complementoRepository.Fill(id);
+
+                return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró el Complemento con ID {Comp_Id}");
+                return result.Error(ex);
             }
         }
 
@@ -619,19 +690,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _complementoRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _complementoRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Complemento creado con éxito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información del Complemento");
+                return result.Error(ex.Message);
             }
         }
 
@@ -647,13 +718,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Complemento con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
 
@@ -933,19 +1003,13 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var postre = _postreRepository.Find(Post_id);
-                if (postre != null)
-                {
-                    return result.Ok(postre);
-                }
-                else
-                {
-                    return result.Error($"No se encontró el Postre con ID {Post_id}");
-                }
+                var list = _postreRepository.Fill(id);
+
+                return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró el Postre con ID {Post_id}");
+                return result.Error(ex);
             }
         }
 
@@ -954,19 +1018,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _postreRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _postreRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Postre creado con éxito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información del Postre");
+                return result.Error(ex.Message);
             }
         }
 
@@ -982,13 +1046,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Postre con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
 
@@ -1030,24 +1093,56 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult LlenarPromocion(int Prom_Id)
+        public ServiceResult ListDias()
         {
             var result = new ServiceResult();
             try
             {
-                var promocion = _promocionRepository.Find(Prom_Id);
-                if (promocion != null)
-                {
-                    return result.Ok(promocion);
-                }
-                else
-                {
-                    return result.Error($"No se encontró la Promoción con ID {Prom_Id}");
-                }
+                var list = _promocionRepository.ListDias();
+                return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró la Promoción con ID {Prom_Id}");
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult LlenarPromocion(string id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _promocionRepository.Fill(id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+        public ServiceResult InsertarPromo(tbPromociones item, out int ingrId)
+        {
+            var result = new ServiceResult();
+            ingrId = 0;
+            try
+            {
+                var (lost, idGenerado) = _promocionRepository.Insertar(item);
+                if (lost.CodeStatus > 0)
+                {
+                    ingrId = idGenerado;
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                    return result.Error(lost);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
             }
         }
 
@@ -1056,19 +1151,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _promocionRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _promocionRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Promoción creada con éxito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información de la Promoción");
+                return result.Error(ex.Message);
             }
         }
 
@@ -1084,13 +1179,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe una Promoción con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
 
@@ -1106,7 +1200,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró la Promoción a eliminar" : list.MessageStatus;
+                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Complemento a eliminar" : list.MessageStatus;
                     return result.Error(list);
                 }
             }
@@ -1132,24 +1226,18 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult LlenarPromocionPorComida(int PrSe_Id)
+        public ServiceResult LlenarPromocionPorComida(string id)
         {
             var result = new ServiceResult();
             try
             {
-                var promocionPorComida = _promocionPorComidaRepository.Find(PrSe_Id);
-                if (promocionPorComida != null)
-                {
-                    return result.Ok(promocionPorComida);
-                }
-                else
-                {
-                    return result.Error($"No se encontró la Promoción por Comida con ID {PrSe_Id}");
-                }
+                var list = _promocionPorComidaRepository.Fill(id);
+
+                return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró la Promoción por Comida con ID {PrSe_Id}");
+                return result.Error(ex);
             }
         }
 
@@ -1158,19 +1246,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _promocionPorComidaRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _promocionPorComidaRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Promoción por Comida creada con éxito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información de la Promoción por Comida");
+                return result.Error(ex.Message);
             }
         }
 
@@ -1186,13 +1274,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe una Promoción por Comida con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
 
@@ -1208,7 +1295,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró la Promoción por Comida a eliminar" : list.MessageStatus;
+                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Complemento a eliminar" : list.MessageStatus;
                     return result.Error(list);
                 }
             }
@@ -1234,24 +1321,18 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
-        public ServiceResult LlenarPromocionPorSucursal(int PPSu_Id)
+        public ServiceResult LlenarPromocionPorSucursal(string id)
         {
             var result = new ServiceResult();
             try
             {
-                var promocionPorSucursal = _promocionPorSucursalRepository.Find(PPSu_Id);
-                if (promocionPorSucursal != null)
-                {
-                    return result.Ok(promocionPorSucursal);
-                }
-                else
-                {
-                    return result.Error($"No se encontró la Promoción por Sucursal con ID {PPSu_Id}");
-                }
+                var list = _promocionPorSucursalRepository.Fill(id);
+
+                return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error($"No se encontró la Promoción por Sucursal con ID {PPSu_Id}");
+                return result.Error(ex);
             }
         }
 
@@ -1260,19 +1341,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _promocionPorSucursalRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _promocionPorSucursalRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Promoción por Sucursal creada con éxito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información de la Promoción por Sucursal");
+                return result.Error(ex.Message);
             }
         }
 
@@ -1288,13 +1369,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe una Promoción por Sucursal con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
 
@@ -1310,7 +1390,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró la Promoción por Sucursal a eliminar" : list.MessageStatus;
+                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Complemento a eliminar" : list.MessageStatus;
                     return result.Error(list);
                 }
             }
@@ -1419,6 +1499,362 @@ namespace Proyecto_BK.BusinessLogic.Services
             catch (Exception ex)
             {
                 return result.Error("Error de capa 8");
+            }
+        }
+        #endregion
+
+        #region PromocionPorAlimentos
+        public ServiceResult InsertarAlimentos(List<int> AlimIds, int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                if(AlimIds.Count > 0)
+                {
+                    foreach (var Alim_Id in AlimIds)
+                    {
+                        var lost = _promocionRepository.InsertarAlimentos(Alim_Id, Prom_Id);
+                        if (lost.CodeStatus > 0)
+                        {
+                            //return result.Ok(lost);
+                        }
+                        else
+                        {
+                            lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                            return result.Error(lost);
+                        }
+                    }
+
+                    return result.Ok(); // Si todo fue exitoso
+                }
+                else
+                {
+                    return result.Ok();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult ListaAlimentosAgregados(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _promocionRepository.List1(Prom_Id);
+                if (lost.Count() > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+
+            }
+        }
+
+        public ServiceResult ListAlimentos(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _promocionRepository.ListAlimentos(Prom_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EliminarAlimentos(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _promocionRepository.EliminarAlimentos(Prom_Id);
+                if (response.CodeStatus > 0)
+                {
+                    return result.Ok("Pantalla por rol eliminada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("No se encontró la pantalla por rol a eliminar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
+
+        #region PromocionPorBebidas
+        public ServiceResult InsertarBebidas(List<int> AlimIds, int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                foreach (var Alim_Id in AlimIds)
+                {
+                    var lost = _promocionRepository.InsertarBebidas(Alim_Id, Prom_Id);
+                    if (lost.CodeStatus > 0)
+                    {
+                        //return result.Ok(lost);
+                    }
+                    else
+                    {
+                        lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                        return result.Error(lost);
+                    }
+                }
+
+                return result.Ok(); // Si todo fue exitoso
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult ListaBebidasAgregados(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _promocionRepository.List2(Prom_Id);
+                if (lost.Count() > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+
+            }
+        }
+
+        public ServiceResult ListBebidas(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _promocionRepository.ListBebidas(Prom_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EliminarBebidas(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _promocionRepository.EliminarBebidas(Prom_Id);
+                if (response.CodeStatus > 0)
+                {
+                    return result.Ok("Pantalla por rol eliminada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("No se encontró la pantalla por rol a eliminar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
+
+        #region PromocionPorPostres
+        public ServiceResult InsertarPostres(List<int> AlimIds, int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                foreach (var Alim_Id in AlimIds)
+                {
+                    var lost = _promocionRepository.InsertarPostres(Alim_Id, Prom_Id);
+                    if (lost.CodeStatus > 0)
+                    {
+                        //return result.Ok(lost);
+                    }
+                    else
+                    {
+                        lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                        return result.Error(lost);
+                    }
+                }
+
+                return result.Ok(); // Si todo fue exitoso
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult ListaPostresAgregados(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _promocionRepository.List3(Prom_Id);
+                if (lost.Count() > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+
+            }
+        }
+
+        public ServiceResult ListPostres(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _promocionRepository.ListPostres(Prom_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EliminarPostres(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _promocionRepository.EliminarPostres(Prom_Id);
+                if (response.CodeStatus > 0)
+                {
+                    return result.Ok("Pantalla por rol eliminada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("No se encontró la pantalla por rol a eliminar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
+
+        #region PromocionPorComplementos
+        public ServiceResult InsertarComplementos(List<int> AlimIds, int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                foreach (var Alim_Id in AlimIds)
+                {
+                    var lost = _promocionRepository.InsertarComplemento(Alim_Id, Prom_Id);
+                    if (lost.CodeStatus > 0)
+                    {
+                        //return result.Ok(lost);
+                    }
+                    else
+                    {
+                        lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                        return result.Error(lost);
+                    }
+                }
+
+                return result.Ok(); // Si todo fue exitoso
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult ListaComplementosAgregados(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _promocionRepository.List4(Prom_Id);
+                if (lost.Count() > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+
+            }
+        }
+
+        public ServiceResult ListComplementos(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _promocionRepository.ListComplentos(Prom_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EliminarComplementos(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _promocionRepository.EliminarComplementos(Prom_Id);
+                if (response.CodeStatus > 0)
+                {
+                    return result.Ok("Pantalla por rol eliminada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("No se encontró la pantalla por rol a eliminar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
             }
         }
         #endregion

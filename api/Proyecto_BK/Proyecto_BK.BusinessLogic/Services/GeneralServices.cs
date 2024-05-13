@@ -1,5 +1,6 @@
 ﻿using Proyecto_BK.DataAccess.Repository;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -155,18 +156,33 @@ namespace Proyecto_BK.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
-        public ServiceResult LlenarMuni(string Muni_Codigo)
+        public ServiceResult ListadoMunicipioDepartamento(string id)
         {
             var result = new ServiceResult();
             try
             {
-                var list = _municipioRepository.Find(Muni_Codigo);
+                var list = _municipioRepository.Lista(id);
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+        public ServiceResult LlenarMuni(string id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _municipioRepository.Fill(id);
 
                 return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
         public ServiceResult CrearMuni(tbMunicipios item)
@@ -174,19 +190,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var reponse = _municipioRepository.Insert(item);
-                if (reponse.CodeStatus == 1)
+                var list = _municipioRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Municipio creado con exito", reponse);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Ya existe un Municipio con ese codigo o con ese nombre");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex.Message);
             }
         }
         public ServiceResult EditarMuni(tbMunicipios item)
@@ -194,19 +210,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var reponse = _municipioRepository.Update(item);
-                if (reponse.CodeStatus == 1)
+                var list = _municipioRepository.Update(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok($"Municipio {item.Muni_Codigo} editado con éxito", reponse);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Ya existe un Municipio con ese nombre");
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
         public ServiceResult Eliminarmuni(string Muni_Codigo)
@@ -214,19 +230,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var reponse = _municipioRepository.Delete(Muni_Codigo);
-                if (reponse.CodeStatus == 1)
+                var list = _municipioRepository.Delete(Muni_Codigo);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok($"Municipio {Muni_Codigo} eliminado con éxito", reponse);
+                    return result.Ok($"La accion ha sido existosa", list);
                 }
                 else
                 {
-                    return result.Error("No se encontró el Municipio a eliminar");
+                    return result.Error("No se pudo realizar la accion");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
         #endregion
@@ -261,18 +277,19 @@ namespace Proyecto_BK.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
-        public ServiceResult LlenarEstado(int Esta_Id)
+
+        public ServiceResult LlenarEstado(int id)
         {
             var result = new ServiceResult();
             try
             {
-                var list = _estadocivilRepository.Find(Esta_Id);
+                var list = _estadocivilRepository.Find(id);
 
                 return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
         public ServiceResult CrearEstado(tbEstadosCiviles item)
@@ -280,19 +297,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var reponse = _estadocivilRepository.Insert(item);
-                if (reponse.CodeStatus == 1)
+                var list = _estadocivilRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Estado Civil creado con exito", reponse);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Ya existe un Estado Civil con ese codigo o con ese nombre");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex.Message);
             }
         }
         public ServiceResult EditarEstado(tbEstadosCiviles item)
@@ -300,39 +317,39 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var reponse = _estadocivilRepository.Update(item);
-                if (reponse.CodeStatus == 1)
+                var list = _estadocivilRepository.Update(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok($"Estado Civil {item.Esta_Id} editado con éxito", reponse);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Ya existe un Estado Civil con ese nombre");
+                    return result.Error("Y existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
-        public ServiceResult EliminarEstado(int Esta_Id)
+        public ServiceResult EliminarEstado(string Esta_Id)
         {
             var result = new ServiceResult();
             try
             {
-                var reponse = _departamentosRepository.Delete(Esta_Id);
-                if (reponse.CodeStatus == 1)
+                var list = _estadocivilRepository.Delete(Esta_Id);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok($"Estado Civil {Esta_Id} eliminado con éxito", reponse);
+                    return result.Ok($"La accion ha sido existosa", list);
                 }
                 else
                 {
-                    return result.Error("No se encontró el Estado Civil a eliminar");
+                    return result.Error("No se pudo realizar la accion");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
         #endregion
@@ -467,24 +484,21 @@ namespace Proyecto_BK.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
-        public ServiceResult LlenarEmpleado(int Empl_Id)
+        
+        public ServiceResult LlenarEmpleado(int id)
         {
-            var result = new ServiceResult();
-            try
             {
-                var votante = _empleadoRepository.Find(Empl_Id);
-                if (votante != null)
+                var result = new ServiceResult();
+                try
                 {
-                    return result.Ok(votante);
+                    var list = _empleadoRepository.Fill(id);
+
+                    return result.Ok(list);
                 }
-                else
+                catch (Exception ex)
                 {
-                    return result.Error($"No se encontró el Empleado con ID {Empl_Id}");
+                    return result.Error(ex);
                 }
-            }
-            catch (Exception ex)
-            {
-                return result.Error($"No se encontró el Empleado con ID {Empl_Id}");
             }
         }
 
@@ -493,19 +507,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var response = _empleadoRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var list = _empleadoRepository.Insert(item);
+                if (list.CodeStatus > 0)
                 {
-                    return result.Ok("Empleado creado con exito", response);
+                    return result.Ok(list);
                 }
                 else
                 {
-                    return result.Error("Por favor rellene todos los campos");
+                    return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la informacion del Empleado");
+                return result.Error(ex.Message);
             }
         }
 
@@ -521,13 +535,12 @@ namespace Proyecto_BK.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Empleado con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un registro con ese nombre");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error(ex);
             }
         }
         public ServiceResult EliminarEmpleado(int Empl_Id)

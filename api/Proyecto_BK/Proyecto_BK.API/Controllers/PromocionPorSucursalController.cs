@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,42 +30,47 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
-        [HttpGet("API/[controller]/Find")]
-        public IActionResult Find(int PPSu_Id)
+        [HttpGet("API/[controller]/Fill/{id}")]
+        public IActionResult Fill(string id)
         {
-            var result = _restauranteServices.LlenarPromocionPorSucursal(PPSu_Id);
-            return Ok(result);
+            var list = _restauranteServices.LlenarPromocionPorSucursal(id);
+            return Json(list.Data);
         }
 
+
         [HttpPost("API/[controller]/Insert")]
-        public IActionResult Create(PromocionPorSucursalViewModel json)
+        public IActionResult Create(PromocionPorSucursalViewModel item)
         {
-            _mapper.Map<tbPromocionesPorSusursales>(json);
+            var model = _mapper.Map<tbPromocionesPorSusursales>(item);
             var modelo = new tbPromocionesPorSusursales()
             {
-                Prom_Id = json.Prom_Id,
-                Sucu_Id = json.Sucu_Id,
+                Prom_Id = item.Prom_Id,
+                Sucu_Id = item.Sucu_Id,
                 PPSu_Usua_Creacion = 1,
                 PPSu_Fecha_Creacion = DateTime.Now
             };
-            var response = _restauranteServices.CrearPromocionPorSucursal(modelo);
-            return Ok(response);
+            var list = _restauranteServices.CrearPromocionPorSucursal(modelo);
+
+            return Ok(new { success = true, message = list.Message });
         }
 
         [HttpPut("API/[controller]/Update")]
-        public IActionResult Update(PromocionPorSucursalViewModel json)
+        public IActionResult Update(PromocionPorSucursalViewModel item)
         {
-            _mapper.Map<tbPromocionesPorSusursales>(json);
-            var modelo = new tbPromocionesPorSusursales()
             {
-                PPSu_Id = json.PPSu_Id,
-                Prom_Id = json.Prom_Id,
-                Sucu_Id = json.Sucu_Id,
-                PPSu_Usua_Modifica = 1,
-                PPSu_Fecha_Modifica = DateTime.Now
-            };
-            var list = _restauranteServices.EditarPromocionPorSucursal(modelo);
-            return Ok(list);
+                var model = _mapper.Map<tbPromocionesPorSusursales>(item);
+                var modelo = new tbPromocionesPorSusursales()
+                {
+                    PPSu_Id = item.PPSu_Id,
+                    Prom_Id = item.Prom_Id,
+                    Sucu_Id = item.Sucu_Id,
+                    PPSu_Usua_Modifica = 1,
+                    PPSu_Fecha_Modifica = DateTime.Now
+                };
+                var list = _restauranteServices.EditarPromocionPorSucursal(modelo);
+
+                return Ok(new { success = true, message = list.Message });
+            }
         }
 
         [HttpDelete("API/[controller]/Delete")]

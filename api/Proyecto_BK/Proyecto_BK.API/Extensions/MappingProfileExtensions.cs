@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Proyecto_BK.API.Extensions
 
             CreateMap<AlimentoViewModel, tbAlimentos>().ReverseMap();
             CreateMap<BebidaViewModel, tbBebidas>().ReverseMap();
-            CreateMap<ComboPersonalViewModel, tbCombosPersonales>().ReverseMap();
+            CreateMap<ComboPersonalViewModel, tbCombo>().ReverseMap();
             CreateMap<ComplementoViewModel, tbComplementos>().ReverseMap();
             CreateMap<PaquetePorComidaViewModel, tbPaquetesPorComidas>().ReverseMap();
             CreateMap<PaqueteViewModel, tbPaquetes>().ReverseMap();

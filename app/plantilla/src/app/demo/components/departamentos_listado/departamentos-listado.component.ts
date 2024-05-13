@@ -102,6 +102,7 @@ export class DepartamentosListadoComponent implements OnInit {
       });
     }
   }
+  
   cancelarEliminar() {
     this.confirmacionVisible = false;
   }
@@ -119,6 +120,7 @@ export class DepartamentosListadoComponent implements OnInit {
 
   editDepartamento(departamento: any) {
     this.selectedDepartamento = departamento;
+  
     this.modalTitle = 'Editar Registro';
     this.modalButtonLabel = 'Actualizar';
     this.formDepartamento.patchValue({

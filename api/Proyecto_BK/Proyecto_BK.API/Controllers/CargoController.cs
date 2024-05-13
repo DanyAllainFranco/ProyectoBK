@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +22,22 @@ namespace Proyecto_BK.API.Controllers
         {
             _accesoServices = AccesoServices;
             _mapper = mapper;
+        }
+
+        [HttpGet("API/[controller]/DropDown")]
+        public IActionResult ListCargoDrop()
+        {
+            var list = _accesoServices.ListCargo();
+            var drop = list.Data as List<tbCargos>;
+            var rol = drop.Select(x => new SelectListItem
+            {
+                Text = x.Carg_Descripcion,
+                Value = x.Carg_Id.ToString()
+            }).ToList();
+
+
+            rol.Insert(0, new SelectListItem { Text = "-- SELECCIONE --", Value = "0" });
+            return Ok(rol.ToList());
         }
 
         [HttpGet("API/[controller]/List")]

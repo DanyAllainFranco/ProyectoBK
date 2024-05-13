@@ -4,12 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
-namespace Proyecto_BK.Entities
+namespace Proyecto_BK.Entities.Entities
 {
     public partial class tbClientes
     {
-
-        public tbClientes()
+    public tbClientes()
         {
             tbFactura = new HashSet<tbFactura>();
         }
@@ -21,10 +20,6 @@ namespace Proyecto_BK.Entities
         public string Clie_Sexo { get; set; }
         public string Clie_Correo { get; set; }
         public int? Esta_Id { get; set; }
-
-        [NotMapped]
-        public string Esta_Descripcion { get; set; }
-
         public string Muni_Codigo { get; set; }
         public int? Carg_Id { get; set; }
         public int? Clie_Usua_Creacion { get; set; }
@@ -32,7 +27,8 @@ namespace Proyecto_BK.Entities
         public int? Clie_Usua_Modifica { get; set; }
         public DateTime? Clie_Fecha_Modifica { get; set; }
         public bool? Clie_Estado { get; set; }
-
+        [NotMapped]
+        public string Esta_Descripcion { get; set; }
         public virtual tbCargos Carg { get; set; }
         public virtual tbUsuarios Clie_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Clie_Usua_ModificaNavigation { get; set; }
@@ -41,5 +37,6 @@ namespace Proyecto_BK.Entities
 
         public virtual ICollection<tbFactura> tbFactura { get; set; }
 
+        public virtual ICollection<tbFactura> tbFactura { get; set; }
     }
 }

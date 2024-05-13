@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,11 @@ namespace Proyecto_BK.Common.Models
         public DateTime? Empl_Fecha_Modifica { get; set; }
         public bool? Empl_Estado { get; set; }
 
-
+        [NotMapped]
         public string Esta_Descripcion { get; set; }
+        [NotMapped]
         public string Muni_Descripcion { get; set; }
+        [NotMapped]
         public string Carg_Descripcion { get; set; }
     }
 }

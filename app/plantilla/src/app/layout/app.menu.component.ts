@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 import { Router } from '@angular/router';
 
-
 @Component({
     selector: 'app-menu',
     templateUrl: './app.menu.component.html'
@@ -66,6 +65,7 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     { label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', routerLink: ['/app/utilities/icons'] },
                     { label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: ['https://www.primefaces.org/primeflex/'], target: '_blank' },
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficosFiltros() }
                 ]
             },
             {
@@ -73,13 +73,15 @@ export class AppMenuComponent implements OnInit {
                 icon: 'pi pi-fw pi-briefcase',
                 items: [
                     {
-                        label: 'Landing',
-                        icon: 'pi pi-fw pi-globe',
-                        routerLink: ['/app/landing']
-                    },{
-                        label: 'Reporte',
+                        label: 'Reportes',
                         icon: 'pi pi-file',
-                        routerLink: ['/app/IndexInforme']
+                        items: [
+                            {
+                                label: 'Reporte Combos',
+                                icon: 'pi pi-palette',
+                                routerLink: ['/app/Index']
+                            },
+                        ]
                     },
                     {
                         label: 'General',
@@ -121,6 +123,11 @@ export class AppMenuComponent implements OnInit {
                                 label: 'Combos Personales',
                                 icon: 'pi pi-user',
                                 routerLink: ['/app/IndexComboPersonal']
+                            },
+                            {
+                                label: 'Alimentos',
+                                icon: 'pi pi-plus-circle',
+                                routerLink: ['/app/IndexAlimentos']
                             },
                             {
                                 label: 'Complementos',
@@ -183,89 +190,25 @@ export class AppMenuComponent implements OnInit {
                                 label: 'Usuarios',
                                 icon: 'pi pi-user-plus',
                                 routerLink: ['/app/IndexUsuarios']
-                            },                        
-                        
+                            },
+                            {
+                                label: 'Roles',
+                                icon: 'pi pi-sitemap',
+                                routerLink: ['/app/IndexRoles']
+                            },                                                   
                         ]
-                    },
-                    {
-                        label: 'Crud',
-                        icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/app/pages/crud']
-                    },
-                    {
-                        label: 'Timeline',
-                        icon: 'pi pi-fw pi-calendar',
-                        routerLink: ['/app/pages/timeline']
-                    },
-                    {
-                        label: 'Not Found',
-                        icon: 'pi pi-fw pi-exclamation-circle',
-                        routerLink: ['/app/notfound']
-                    },
-                    {
-                        label: 'Empty',
-                        icon: 'pi pi-fw pi-circle-off',
-                        routerLink: ['/app/pages/empty']
                     },
                 ]
             },
-            {
-                label: 'Hierarchy',
-                items: [
-                    {
-                        label: 'Submenu 1', icon: 'pi pi-fw pi-bookmark',
-                        items: [
-                            {
-                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark' },
-                                    { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark' },
-                                    { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark' },
-                                ]
-                            },
-                            {
-                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark' }
-                                ]
-                            },
-                        ]
-                    },
-                    {
-                        label: 'Submenu 2', icon: 'pi pi-fw pi-bookmark',
-                        items: [
-                            {
-                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-bookmark' },
-                                    { label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-bookmark' },
-                                ]
-                            },
-                            {
-                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-bookmark',
-                                items: [
-                                    { label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-bookmark' },
-                                ]
-                            },
-                        ]
-                    }
-                ]
-            },
-            {
-                label: 'Get Started',
-                items: [
-                    {
-                        label: 'Documentation', icon: 'pi pi-fw pi-question', routerLink: ['/app/documentation']
-                    },
-                    {
-                        label: 'View Source', icon: 'pi pi-fw pi-search', url: ['https://github.com/primefaces/sakai-ng'], target: '_blank'
-                    }
-                ]
-            }
         ];
     }
     loadGraficos() {
         this.router.navigate(['/app/PrincipalGraficos'], { queryParams: { usuario: this.usuario } });
     }
+    loadGraficosFiltros() {
+        this.router.navigate(['/app/FiltrosGraficos'], { queryParams: { usuario: this.usuario } });
+    }
+
+    
 }
 

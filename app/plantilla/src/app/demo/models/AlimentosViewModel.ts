@@ -9,3 +9,21 @@ export class Alimento {
     Alim__Fecha_Modifica?: Date;
     Alim__Estado?: boolean;
 }
+
+export class Alimentos {
+    alim_Id?: number;
+    alim_Descripcion?: string;
+    code: number;
+}
+
+
+export class CargarAlimentos{
+    alim_Id?: number;
+    alim_Descripcion?: string;
+}
+
+
+export class dropAlimento{
+    value?:String;
+    text?:String;
+}

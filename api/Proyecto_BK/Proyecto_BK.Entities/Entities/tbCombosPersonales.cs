@@ -1,4 +1,6 @@
 ﻿using System;
+using Proyecto_BK.Entities.Entities;
+using System;
 using System.Collections.Generic;
 
 #nullable disable

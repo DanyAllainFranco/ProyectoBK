@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,19 +22,31 @@ namespace Proyecto_BK.Common.Models
         public int? Comb_Usua_Modifica { get; set; }
         public DateTime? Comb_Fecha_Modifica { get; set; }
         public bool? Comb_Estado { get; set; }
-
+        [NotMapped]
+        public string Usua_Creacion { get; set; }
+        [NotMapped]
+        public string Usua_Modifica { get; set; }
+        [NotMapped]
         public string Bebi_Descripcion { get; set; }
+        [NotMapped]
         public string Post_Descripcion { get; set; }
+        [NotMapped]
         public string Comp_Descripcion { get; set; }
+        [NotMapped]
         public string Alim_Descripcion { get; set; }
 
-
+        [NotMapped]
         public string Usua_Usuario { get; set; }
         public int TotalPedidosCombos { get; set; }
+        [NotMapped]
         public int Paqe_Id { get; set; }
+        [NotMapped]
         public string Paqe_Descripcion { get; set; }
+        [NotMapped]
         public int TotalPedidosPaquetes { get; set; }
+        [NotMapped]
         public int TotalPedidosAlimentos { get; set; }
+        [NotMapped]
         public int TotalPedidosPostres { get; set; }
     }
 }

@@ -1,7 +1,9 @@
+<p-toast></p-toast>
 <div class="grid">
     <div class="col-12">
         <div class="card">
             <h5>Promocion</h5>
+            <button  pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" (click)="Nuevo()" [class.hidden]="">Agregar</button>
             <p-table [value]="Promocion" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
                 [paginator]="true" [globalFilterFields]="['prom_Id','prom_Descripcion','prom_Precio','prom_Imagen','prom_Dia']" responsiveLayout="scroll">
                 <ng-template pTemplate="caption">
@@ -38,13 +40,7 @@
                                     placeholder="Buscar por Precio"></p-columnFilter>
                             </div>
                         </th>
-                        <th style="min-width: 12rem">
-                            <div class="flex justify-content-between align-items-center">
-                                Imagen
-                                <p-columnFilter type="text" field="prom_Imagen" display="menu"
-                                    placeholder="Buscar por Imagen"></p-columnFilter>
-                            </div>
-                        </th>
+                       
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Dia
@@ -65,17 +61,12 @@
                         <td>{{prom.prom_Id}}</td>
                         <td>{{prom.prom_Descripcion}}</td>
                         <td>{{prom.prom_Precio}}</td>
-                        <td>
-                            <img [src]="prom.prom_Imagen" alt="Imagen de promoción" style="width: 100px; height: auto;">
-                        </td>
-                        
-                                             
-                        <td>{{prom.prom_Dia}}</td>
-                        <td style="display: grid; justify-content: space-around;">
-                            <button pButton pRipple type="button" label="Editar" class="p-button-raised p-button-success"  (click)="Fill(depto.dept_Codigo)"></button>
-                            <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary" (click)="detalles(depto.dept_Codigo)"></button>
-                            <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"  (click)="deleteSelectedProducts(depto.dept_Codigo)"></button>
-                          
+                                
+                        <td>{{prom.dias_Descripcion}}</td>
+                        <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
+                            <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="Fill(depto.dept_Codigo)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                            <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(depto.dept_Codigo)" severity="secondary" [raised]="true" [plain]="true"></p-button>
+                            <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="deleteSelectedProducts(depto.dept_Codigo)" severity="danger" [raised]="true" [plain]="true"></p-button>
                         </td>
               
                     </tr>

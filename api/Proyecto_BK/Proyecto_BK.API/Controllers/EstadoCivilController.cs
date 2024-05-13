@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,45 +41,68 @@ namespace Proyecto_BK.API.Controllers
         }
         [HttpGet("API/[controller]/Fill")]
 
-        public IActionResult Fill(int Esta_Id)
+        [HttpGet("API/[controller]/DropDown")]
+        public IActionResult ListEstadosDrop()
+        {
+            var list = _generalServices.ListEstado();
+            var drop = list.Data as List<tbEstadosCiviles>;
+            var rol = drop.Select(x => new SelectListItem
+            {
+                Text = x.Esta_Descripcion,
+                Value = x.Esta_Id.ToString()
+            }).ToList();
+
+
+            rol.Insert(0, new SelectListItem { Text = "-- SELECCIONE --", Value = "0" });
+            return Ok(rol.ToList());
+        }
+        [HttpGet("API/[controller]/Fill/{id}")]
+
+        public IActionResult Fill(int id)
         {
 
-            var list = _generalServices.LlenarEstado(Esta_Id);
-            return Ok(list);
+            var list = _generalServices.LlenarEstado(id);
+            return Json(list.Data);
         }
 
-        [HttpPost("API/[controller]/Insert")]
-        public IActionResult Create(EstadoCivilViewModel json)
+
+        [HttpPost("API/[controller]/Create")]
+        public IActionResult Insert(EstadoCivilViewModel item)
         {
-            _mapper.Map<tbEstadosCiviles>(json);
+            var model = _mapper.Map<tbEstadosCiviles>(item);
             var modelo = new tbEstadosCiviles()
             {
-                Esta_Descripcion = json.Esta_Descripcion,
+                Esta_Descripcion = item.Esta_Descripcion
+,
                 Esta_Usua_Creacion = 1,
-                Esta_Fecha_Creacion = DateTime.Now
+                Esta_Fecha_Creacion = DateTime.Now,
             };
-            var response = _generalServices.CrearEstado(modelo);
-            return Ok(response);
+            var list = _generalServices.CrearEstado(modelo);
+            return Ok(new { success = true, message = list.Message });
+
         }
+
+
         [HttpPut("API/[controller]/Update")]
-        public IActionResult Update(EstadoCivilViewModel json)
+        public IActionResult Update(EstadoCivilViewModel item)
         {
-            _mapper.Map<tbEstadosCiviles>(json);
+            _mapper.Map<tbEstadosCiviles>(item);
             var modelo = new tbEstadosCiviles()
             {
-                Esta_Id = json.Esta_Id,
-                Esta_Descripcion = json.Esta_Descripcion,
+                Esta_Id = item.Esta_Id,
+                Esta_Descripcion = item.Esta_Descripcion,
                 Esta_Usua_Modifica = 1,
                 Esta_Fecha_Modifica = DateTime.Now
             };
             var list = _generalServices.EditarEstado(modelo);
-            return Ok(list);
+            return Ok(new { success = true, message = list.Message });
         }
-        [HttpDelete("API/[controller]/Delete")]
-        public IActionResult Delete(int Esta_Id)
+
+        [HttpDelete("API/[controller]/Delete/{id}")]
+        public IActionResult Delete(string id)
         {
-            var list = _generalServices.EliminarEstado(Esta_Id);
-            return Ok(list);
+            var list = _generalServices.EliminarEstado(id);
+            return Ok(new { success = true, message = list.Message });
         }
     }
 }
