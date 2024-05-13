@@ -12,40 +12,46 @@ export class Factura {
      Clie_Identidad?:string;
 }
 
-
-
 export class FacturaDetalle {
-
-    FaDe_Ident?:number;
-    FaDe_Cantidad?:number;
-    FaDe_Subtotal?:number;
-    FaDe_ProdId?:number;
-    Fact_Id?:number;
+     clie_Nombre?:string;
+     FaDe_Ident?:number;
+     FaDe_Cantidad?:number;
+     FaDe_Subtotal?:number;
+     FaDe_ProdId?:number;
+     fact_Id?:number;
+     producto?:string;
+     precio?:string;
+     cantidad?:string; 
+     categoria?:string;
+     total?:string;
  }
  
- 
-
-
  export class FacturaDetalleEnviar {
+    Fact_Id?:number;
     FaDe_Ident?:number;
     FaDe_Cantidad?:number;
     FaDe_Subtotal?:number;
     FaDe_ProdId?:number;
-    Fact_Id?:number;
+    Prod_Producto?:string;
+    Fact_Fecha ?:Date;
+    Fact_Total ?:DecimalPipe;
+    Clie_Id?:number;
+    Clie_Nombre?:String;
+    Clie_Identidad?:string;
  }
  
 
  export class FacturaEnviar {
-    FaDe_Ident?:number;
+    Fact_Id:number;
+     FaDe_Ident?:number;
      Sucu_Id?:number;
      Empl_Id ?:number;
      Empl_Nombre ?:string;
      Fact_Fecha ?:Date;
      Fact_Total ?:DecimalPipe;
-     Clie_Id?:number;
      Clie_Nombre?:String;
      Clie_Identidad?:string;
-     Fact_Id: string;
+     FaDe_ProdId?:number;
      Prod_Nombre?:String;
      FaDe_Cantidad?:number; 
  }
@@ -63,8 +69,7 @@ Post_Descripcion?:string;
 
 export class Bebida{
     Bebi_Id?:number;
-    Bebi_Descripcion?:string;
-        
+    Bebi_Descripcion?:string;     
 }
 
 

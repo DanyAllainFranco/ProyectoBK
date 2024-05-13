@@ -44,6 +44,7 @@ namespace Proyecto_BK.DataAccess.Repository
                 parametro.Add("@FaDe_Ident", item.FaDe_Ident);
                 parametro.Add("@FaDe_ProdId", item.FaDe_ProdId);
                 parametro.Add("@FaDe_Cantidad", item.FaDe_Cantidad);
+                parametro.Add("@FaDe_Subtotal", "200");
                 parametro.Add("@Fact_Id", item.Fact_Id);
            
 
@@ -60,31 +61,24 @@ namespace Proyecto_BK.DataAccess.Repository
                 parametro.Add("@Sucu_Id", 1);
                 parametro.Add("@Empl_Id", 1);
                 parametro.Add("@Fact_Fecha", DateTime.Now);
+                parametro.Add("@Fact_Total", "100");
                 parametro.Add("@Fact_Total", item.Fact_Total);
                 parametro.Add("@Fact_Usua_Creacion", 1);
                 parametro.Add("@Fact_Fecha_Creacion", DateTime.Now);
-                parametro.Add("@Clie_Identidad",item.Clie_Identidad);
+                parametro.Add("@Clie_Identidad", item.Clie_Identidad);
                 parametro.Add("@Clie_Nombre", item.Clie_Nombre);
-                parametro.Add("@Clie_Apellido", "N/D");
-                parametro.Add("@Clie_Sexo", "N");
-                parametro.Add("@Clie_Correo", "N/D");
-                parametro.Add("@Esta_Id", 6);
-                parametro.Add("@Muni_Codigo", "0501");
-                parametro.Add("@Carg_Id", 1);
-                parametro.Add("@Clie_Usua_Creacion",1);
-                parametro.Add("@Clie_Fecha_Creacion", DateTime.Now);
-                parametro.Add("ID", dbType: DbType.Int32, direction: ParameterDirection.Output);
-
+                parametro.Add("@Fact_Id", dbType:DbType.Int32,direction:ParameterDirection.Output);
                 var result = db.Execute(ScriptsBaseDeDatos.FacturaEncabezado_Insertar,
                     parametro,
                      commandType: CommandType.StoredProcedure
                     );
-                int Fact_Id = parametro.Get<int>("ID");
+                int Fact_Id = parametro.Get<int>("Fact_Id");
                 string mensaje = (result == 1) ? "Exito" : "Error";
 
                 return (new RequestStatus { CodeStatus = result, MessageStatus = mensaje }, Fact_Id);
             }
         }
+
         public IEnumerable<FacturaViewModel> ListaDetalles(int Fact_Id)
         {
             const string sql = "[Rest].[SP_FacturaDetalles_Mostrar]";

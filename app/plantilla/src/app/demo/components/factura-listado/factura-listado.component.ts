@@ -1,7 +1,8 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
-import { Factura } from '../../models/FacturaViewModel';
+import { Factura,FacturaDetalle } from '../../models/FacturaViewModel';
 import { FacturaServiceService } from '../../service/factura-service.service';
+import { DatosCompartidosService } from '../../service/compartir-datos.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TableModule } from 'primeng/table';
@@ -17,6 +18,7 @@ import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
+import { Fill } from '../../models/EstadoCivilViewModel';
 
 @Component({
   selector: 'app-factura-listado',
@@ -30,6 +32,12 @@ export class FacturaListadoComponent implements OnInit {
   // display: boolean = false;
   // submitted = false;
   factura: Factura[] = [];
+  clie_Nombre: String;
+  producto: string;
+  precio: string;
+  cantidad: string;
+  fact_Id: number;
+  Detalles: boolean = false;
   // municipios: any[] = [];
   // formSucursal: FormGroup;
   // selectedSucursal: any;
@@ -44,6 +52,7 @@ export class FacturaListadoComponent implements OnInit {
     private fb: FormBuilder,
     private _facturaService: FacturaServiceService,
     private messageService: MessageService,
+    private datosCompartidos: DatosCompartidosService
   ) {
     // this.formSucursal = this.fb.group({
     //   sucursal: ["", Validators.required],
@@ -66,10 +75,39 @@ export class FacturaListadoComponent implements OnInit {
       }
     );
   }
+
   CrearNuevaFactura(): void {
     this.router.navigate(['/app/IndexFacturacion']);
-
   }
+
+
+  detalles(id) {
+    this.Detalles = true;
+    this.service.getFacturasDetalle(id).subscribe({
+      next: (data: FacturaDetalle[]) => {
+       console.log(data)
+        this.datosCompartidos.actualizarDetalleFactura(data);
+        this.router.navigate(['/app/IndexFac']);
+      }
+    });
+  }
+
+//   detalles(id) {
+//     this.Detalles = true;
+//     this.service.getFacturasDetalle(id).subscribe({
+//         next: (data: FacturaDetalle[]) => {
+//           console.log(data)
+//                const primerDetalle = data[0]; // Suponiendo que solo necesitas el primer detalle
+//                this.clie_Nombre = primerDetalle.clie_Nombre;
+//                this.producto = primerDetalle.producto;
+//                this.precio = primerDetalle.precio;
+//                this.cantidad = primerDetalle.cantidad;
+//                this.fact_Id = primerDetalle.fact_Id;
+//                this.router.navigate(['/app/IndexFac']);
+//         }
+//     });
+// }
+
   // MunicipioDDL() {
   //   this.service.MuninicioDDL().subscribe(
   //     (data: DropMunicipios[]) => {
@@ -201,4 +239,4 @@ export class FacturaListadoComponent implements OnInit {
     ],
   declarations: [FacturaListadoComponent]
 })
-export class SucursalListadoModule {}
+export class FacturacionModule {}

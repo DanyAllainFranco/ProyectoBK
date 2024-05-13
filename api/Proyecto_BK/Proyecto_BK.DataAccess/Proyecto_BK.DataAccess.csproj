@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Proyecto_BK.Entities\Proyecto_BK.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Context\" />
-  </ItemGroup>
-
 </Project>

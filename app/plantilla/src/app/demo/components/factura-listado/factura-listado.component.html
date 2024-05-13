@@ -29,13 +29,6 @@
                                     placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
                         </th>    
-                         <th>
-                            <div class="flex justify-content-between align-items-center">
-                                Fecha
-                                <p-columnFilter type="text" field="fact_Precio" display="menu"
-                                placeholder="Buscar por Alimento"></p-columnFilter>
-                            </div>
-                        </th> 
                         <th>
                             <div class="flex justify-content-between align-items-center">
                                 Factura a nombre de
@@ -50,48 +43,7 @@
                                     placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
                         </th> 
-                        <th>
-                            <div class="flex justify-content-between align-items-center">
-                                Alimento
-                                <p-columnFilter type="text" field="fact_Precio" display="menu"
-                                    placeholder="Buscar por Alimento"></p-columnFilter>
-                            </div>
-                        </th> 
-                        <th>
-                            <div class="flex justify-content-between align-items-center">
-                                Sabor de la bebida
-                                <p-columnFilter type="text" field="fact_Precio" display="menu"
-                                    placeholder="Buscar por Alimento"></p-columnFilter>
-                            </div>
-                        </th> 
-                        <th>
-                            <div class="flex justify-content-between align-items-center">
-                                Complemento
-                                <p-columnFilter type="text" field="fact_Precio" display="menu"
-                                    placeholder="Buscar por Alimento"></p-columnFilter>
-                            </div>
-                        </th> 
-                        <th>
-                            <div class="flex justify-content-between align-items-center">
-                                Postre
-                                <p-columnFilter type="text" field="fact_Precio" display="menu"
-                                    placeholder="Buscar por Alimento"></p-columnFilter>
-                            </div>
-                        </th> 
-                        <th>
-                            <div class="flex justify-content-between align-items-center">
-                                Paquete
-                                <p-columnFilter type="text" field="fact_Precio" display="menu"
-                                    placeholder="Buscar por Alimento"></p-columnFilter>
-                            </div>
-                        </th> 
-                        <th>
-                            <div class="flex justify-content-between align-items-center">
-                                Total
-                                <p-columnFilter type="text" field="fact_Precio" display="menu"
-                                    placeholder="Buscar por Alimento"></p-columnFilter>
-                            </div>
-                        </th> 
+                        
                         <th style="text-align: center;">
                             Acciones     
                          </th> 
@@ -100,19 +52,10 @@
                 <ng-template pTemplate="body" let-fact>
                     <tr>
                         <td>{{fact.fact_Id}}</td>
-                        <td>{{fact.fact_Fecha}}</td>
                         <td>{{fact.clie_Nombre}}</td>
                         <td>{{fact.sucu_Descripcion}}</td>
-                        <td>{{fact.alim_Descripcion}}</td>
-                        <td>{{fact.bebi_Descripcion}}</td>
-                        <td>{{fact.comp_Descripcion}}</td>
-                        <td>{{fact.post_Descripcion}}</td>
-                        <td>{{fact.paqe_Descripcion}}</td>
-                        <td>{{fact.fact_Total}} Lps</td>
                         <td style="display: flex; justify-content: space-around; align-items: center;">
-                            <button pButton pRipple type="button" label="Factura" class="p-button-raised p-button-primary"></button>
-                            <button pButton pRipple type="button" label="Detalles" class="p-button-raised p-button-secondary"></button>
-                            <button pButton pRipple type="button" label="Eliminar" class="p-button-raised p-button-danger"></button>            
+                            <button pButton pRipple type="button" label="Factura" class="p-button-raised p-button-primary" (click)="detalles(fact.fact_Id)"></button>            
                         </td>
                         
                     </tr>

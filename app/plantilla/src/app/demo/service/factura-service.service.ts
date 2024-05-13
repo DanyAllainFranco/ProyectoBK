@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Factura,FacturaDetalle,Complemento,Bebida,Combo,Postre,Paquete} from '../models/FacturaViewModel'
 import {HttpClient} from '@angular/common/http'
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 
 
 @Injectable({
@@ -40,31 +40,17 @@ export class FacturaServiceService {
     return this.http.get<FacturaDetalle[]>(`${this.FacturaDetalleURL}/${id}`)
   }
 
- CrearFactura = 'https://localhost:44332/API/Factura/Creat' ;
+  CrearFactura = 'https://localhost:44332/API/Factura/Create';
   EnviarFactura(formData: any): Observable<any> {
     return this.http.post<any>(this.CrearFactura, formData).pipe(
       map(response => {
+        console.log('Respuesta del servidor:', response);
         return response;
       }),
+      catchError(error => {
+        console.error('Error en la llamada al servicio:', error);
+        throw error; // Relanzar el error para que el componente pueda manejarlo
+      })
     );
-  }
-
-
-
-
-//DROPDOWNS
-
-
-
-//DROPDOWNS
-
-  UrlAgregar =  'https://localhost:44332/API/FacturaContoller/Insert' ;
-  agregar(modelo:Factura):Observable<Factura>{
-    return this.http.post<Factura>(this.UrlAgregar,modelo);
-  }
-  
-  UrlFactura = 'https://localhost:44332/API/FacturaContoller/Find';
-    obtener(fact_id:number){
-    return this.http.get<Factura>(`${this.UrlFactura}?Fact_Id=${fact_id}`);
   }
 }

@@ -40,7 +40,6 @@ namespace Proyecto_BK.API.Controllers
                 Text = x.Bebi_Descripcion,
                 Value = x.Bebi_Id.ToString()
             }).ToList();
-
             return Ok(rol.ToList());
         }
 

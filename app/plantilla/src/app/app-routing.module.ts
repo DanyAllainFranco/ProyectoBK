@@ -26,6 +26,7 @@ import { ListDemoComponent } from './demo/components/uikit/list/listdemo.compone
 import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.component';
 import { FacturaListadoComponent } from './demo/components/factura-listado/factura-listado.component';
 import { FacturacionComponent } from './demo/components/facturacion/facturacion.component';
+import { FacturaComponent } from './demo/components/factura/factura.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { FacturacionComponent } from './demo/components/facturacion/facturacion.
                     // { path: 'IndexGraficos', component: GraficosComponent }
                     { path: 'IndexInforme', component: ReporteVentasComponent }, //IndexFactura
                     { path: 'IndexFactura', component: FacturaListadoComponent }, //IndexFactura
-                    { path: 'IndexFacturacion', component: FacturacionComponent } //IndexFactura
+                    { path: 'IndexFacturacion', component: FacturacionComponent }, //Factura
+                    { path: 'IndexFac', component: FacturaComponent } //Factura
 
                                 ]
             },

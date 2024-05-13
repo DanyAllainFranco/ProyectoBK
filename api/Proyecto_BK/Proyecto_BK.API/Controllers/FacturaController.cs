@@ -46,14 +46,13 @@ namespace Proyecto_BK.API.Controllers
         [HttpPost("Create")]
 
         public IActionResult Insert(FacturaViewModel item)
-        {
+            {
             if (item.Fact_Id == 0)
             {
-                var modele = _mapper.Map<FacturaViewModel>(item);
+                var modele = _mapper.Map<tbFactura>(item);
                 var modeloFactura = new FacturaViewModel()
                 {
-                    Sucu_Id = item.Sucu_Id,
-                    Empl_Id = item.Empl_Id,
+                    Fact_Id = item.Fact_Id,
                     Fact_Total = item.Fact_Total,
                     Clie_Identidad = item.Clie_Identidad,
                     Clie_Nombre = item.Clie_Nombre
@@ -62,7 +61,7 @@ namespace Proyecto_BK.API.Controllers
                 var IdFactura = _restauranteServices.CrearFactura(modeloFactura, out int id);
                 IdFactura.Message = id.ToString();
 
-                var model = _mapper.Map<FacturaDetalleViewModel>(item);
+                var model = _mapper.Map<tbFacturaDetalle>(item);
                 var modelo = new FacturaDetalleViewModel()
                 {
                     FaDe_Ident = item.FaDe_Ident,
@@ -75,7 +74,7 @@ namespace Proyecto_BK.API.Controllers
             }
             else
             {
-                var model = _mapper.Map<FacturaDetalleViewModel>(item);
+                var model = _mapper.Map<tbFacturaDetalle>(item);
                 var modelo = new FacturaDetalleViewModel()
                 {
                     FaDe_Ident = item.FaDe_Ident,

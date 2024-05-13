@@ -62,10 +62,6 @@
          "ObjectType": 0
       },
       {
-         "Name": "[Rest].[tbCombosPersonales]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[Rest].[tbComplementos]",
          "ObjectType": 0
       },

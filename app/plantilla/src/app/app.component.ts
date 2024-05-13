@@ -73,5 +73,7 @@ export class AppComponent {
             this.router.navigate(['IndexFactura']);
         }Facturacion (){
             this.router.navigate(['IndexFacturacion']);
+        }Impresion (){
+            this.router.navigate(['IndexFac']);
         }
 }

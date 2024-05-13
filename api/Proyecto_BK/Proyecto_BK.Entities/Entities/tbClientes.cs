@@ -8,6 +8,12 @@ namespace Proyecto_BK.Entities
 {
     public partial class tbClientes
     {
+
+        public tbClientes()
+        {
+            tbFactura = new HashSet<tbFactura>();
+        }
+
         public int Clie_Id { get; set; }
         public string Clie_Identidad { get; set; }
         public string Clie_Nombre { get; set; }
@@ -32,5 +38,8 @@ namespace Proyecto_BK.Entities
         public virtual tbUsuarios Clie_Usua_ModificaNavigation { get; set; }
         public virtual tbEstadosCiviles Esta { get; set; }
         public virtual tbMunicipios Muni_CodigoNavigation { get; set; }
+
+        public virtual ICollection<tbFactura> tbFactura { get; set; }
+
     }
 }
