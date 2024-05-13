@@ -40,6 +40,18 @@ export class FacturaServiceService {
     return this.http.get<FacturaDetalle[]>(`${this.FacturaDetalleURL}/${id}`)
   }
 
+
+  // eliminarFacturaDetalle(id) : Observable<any>{
+  //   return this.http.delete<any>(`${this.url}EliminarD/${id}`);
+  // }
+
+
+  FacturaEliminar = '/https://localhost:44332/API/Factura/DeleteFactura';
+  EliminarFactura(Fact_Id,FaDe_Nombre,FaDe_Ident): Observable<any>{
+    return this.http.put<any>(`${this.FacturaEliminar}/${Fact_Id},${FaDe_Nombre},${FaDe_Ident}`,{})
+  }
+
+
   CrearFactura = 'https://localhost:44332/API/Factura/Create';
   EnviarFactura(formData: any): Observable<any> {
     return this.http.post<any>(this.CrearFactura, formData).pipe(

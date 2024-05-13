@@ -42,7 +42,7 @@ export class FacturaDetalle {
  
 
  export class FacturaEnviar {
-    Fact_Id:number;
+     Fact_Id:number;
      FaDe_Ident?:number;
      Sucu_Id?:number;
      Empl_Id ?:number;
@@ -60,6 +60,12 @@ export class Complemento{
 Comp_Id?:number;
 Comp_Descripcion?:string;
 }
+
+export class FacturaEliminar{
+    FaDe_Ident?:string;
+    Prod_Nombre?:String;
+    Fact_Id:number;
+    }
 
 export class Postre{
 Post_Id?:number;

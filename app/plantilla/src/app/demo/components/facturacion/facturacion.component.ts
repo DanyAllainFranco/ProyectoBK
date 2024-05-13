@@ -33,7 +33,7 @@ import { Factura, FacturaDetalle,FacturaEnviar } from '../../models/FacturaViewM
 
 @Component({
   templateUrl:'./facturacion.component.html',
-  styleUrl: '/facturacion.component.scss',
+  styleUrl: './facturacion.component.scss',
   providers: [ConfirmationService, MessageService]
 })
 export class FacturacionComponent{
@@ -72,6 +72,8 @@ export class FacturacionComponent{
   //   Fact_ID: string = "0";
   selectedRadio: string = '1'; 
   Fact_ID = 0;
+  Prod_Nombre?:string;
+  FaDe_Ident?:string;
   Empl_Id = 0;
   selectedMetodo: string = '1';
    //AUTOCOMPLETADO
@@ -257,36 +259,23 @@ onSelectJoyaList(event) {
   this.FacturaForm.get('Prod_Producto').setValue(event.value.nombre); 
 }
 
-// confirmDelete(id,dif) {
-//   this.service.EliminarDetalles(this.Fact_ID,id,dif).subscribe({
-//     next: (response) => {
-//       this.submitted = false;
-//         if(response.message == "La accion ha sido existosa"){
-//             this.service.getFacturasDetalle(this.Fact_ID).subscribe((data: any)=>{
-//             this.FacturaDetalle = data;
-//             console.log(this.Fact_ID);
-//             console.log(data);
-//             const total = data.reduce((sum, item) => {
-//             const itemTotal = parseFloat(item.total) || 0; 
-//             return sum + itemTotal;
-//                 }, 0);
-//                       const impuestoString = this.FacturaForm.get('Impu_Impuesto').value.replace('%', '');
-//                       const impuesto = parseFloat(impuestoString) / 100 || 0;
-//                       const TotalFinal = (total + (total * impuesto))
-//                       this.Subtotal = total.toFixed(2);
-//                       this.Total = TotalFinal.toFixed(2);
-                      
-//                  });
-//            }else{
-            
-//             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se logro eliminar', life: 3000 });
-//            }
-//         this.submitted = false;
-//     },
-// });
-
-
-// }
+confirmDelete(id,dif) {
+  console.log("hola"+id);
+  console.log("hola"+dif);
+  this.service.EliminarFactura(this.Fact_ID,id,dif).subscribe({
+    next: (response) => {
+      this.submitted = false;
+        if(response.message == "La accion ha sido existosa"){
+            this.service.getFacturasDetalle(this.Fact_ID).subscribe((data: any)=>{
+            this.FacturaDetalle = data;
+            console.log(this.Fact_ID);
+            console.log(data);
+              });
+           }
+        this.submitted = false;
+    },
+});
+}
 
 deleteSelectedProducts(codigo) {
   this.deleteProductDialog = true;
