@@ -1,0 +1,132 @@
+<div class="invoice-1 invoice-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="invoice-inner clearfix">
+                    <div class="invoice-info clearfix" id="invoice_wrapper">
+                        <div class="invoice-headar">
+                            <div class="row g-0">
+                                <div class="col-sm-6">
+                                </div>
+                                <div class="col-sm-6 invoice-id">
+                                    <div class="info">
+                                    
+                                        <h1 class="color-white inv-header-1">Nueva Orden</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="invoice-top">
+                            <form [formGroup]="FacturaForm" (keydown)="handleKeyDown($event)" (ngSubmit)="onSubmit()">
+                                <div class="p-fluid p-formgrid grid">
+                                  <div class="field col-12 md:col-6">
+                                    <!---Cliente nombre-->
+                                    <label for="">Cliente</label>
+                                    <p-inputGroup>
+                                        <p-inputGroupAddon>
+                                            <i class="pi pi-user"></i>
+                                        </p-inputGroupAddon>
+                                        <input pInputText type="text" placeholder="Nombre" formControlName="Clie_Nombre"/>
+                                    </p-inputGroup>     
+                                    <!---Cierre cliente nombre-->
+                           
+                                <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Clie_Nombre'].invalid" style="color: red !important;">Nombre Requerido</small>
+                                  </div>
+                                    <div class="field col-12 md:col-6">                                                                            
+                                     <!---Cliente identidad-->
+                                      <label for="">Identidad</label>
+                                      <p-inputGroup>
+                                        <p-inputGroupAddon>
+                                            <i class="pi pi-user"></i>
+                                        </p-inputGroupAddon>
+                                        <input pInputText type="text" placeholder="Numero de identidad" formControlName="Clie_Identidad"/>
+                                    </p-inputGroup>
+                                      <small class="ng-dirty ng-invalid" *ngIf="submitted && FacturaForm.controls['Clie_Identidad'].invalid" style="color: red !important;">Identidad requerida</small>
+                                    </div>
+                                    <!---Cierre cliente identidad-->
+
+                               </div>
+                                    <p-table [value]="FacturaDetalle" >
+                              <ng-template pTemplate="header">
+                                  <tr>
+                                      <th style="width:45%;">Producto</th>
+                                      <th style="width:10%;">Cantidad</th>
+                                      <th style="width:10%;">Precio</th>
+                                      <th style="width:10%;">Cantidad</th>
+                                      <th style="width:10%;">Total</th>
+                                      <th></th>
+                                  </tr>
+                              </ng-template>
+                              <ng-template pTemplate="body" let-detalle>
+                                  <tr>
+                                      <td style="width:15%;">{{detalle.producto}}</td>
+                                      <td style="width:15%;">{{detalle.cantidad}}</td>
+                                      <td style="width:15%;">{{detalle.precio}}</td>
+                                      <td style="width:15%;">{{detalle.cantidad}}</td>
+                                      <td style="width:15%;">{{detalle.total}}</td>
+                                      <td>
+                                          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" ></button>
+                                      </td>
+                                  </tr>
+                              </ng-template>
+                              <ng-template pTemplate="footer">
+                                  <tr>
+                                      <td style="width:15%;">
+                                          <label>
+                                              <input type="radio" value="N" (change)="onRadioChange($event)" formControlName="FaDe_Ident" />
+                                              C
+                                          </label>
+                                          <!-- <label>
+                                            <input type="radio" value="C" (change)="onRadioChange($event)" formControlName="FaDe_Ident" />
+                                            Combo
+                                        </label> -->
+                                        <label>
+                                            <input type="radio" value="D" (change)="onRadioChange($event)" formControlName="FaDe_Ident" />
+                                            P
+                                        </label>
+                                       
+                                        <label>
+                                            <input type="radio" value="B" (change)="onRadioChange($event)" formControlName="FaDe_Ident" />
+                                            B
+                                        </label>
+                                       
+                                        <label>
+                                            <input type="radio" value="P" (change)="onRadioChange($event)" formControlName="FaDe_Ident" />
+                                            P
+                                        </label>
+                                      </td>
+                                      <td style="width:45%;">
+                                          <p-autoComplete [(ngModel)]="selectedCountryAdvanced"
+                                              [suggestions]="filteredCountries"
+                                              (completeMethod)="filterCountry($event)"
+                                              (onSelect)="onSelectProduct($event)"
+                                              field="text"
+                                              formControlName="Prod_Producto"
+                                              [dropdown]="true"
+                                              appendTo="body">
+                                          </p-autoComplete>
+                                      </td>
+                                      <td style="width:10%;">
+                                          <input pInputText id="FaDe_Cantidad" formControlName="FaDe_Cantidad" type="text" required autofocus 
+                                              [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('FaDe_Cantidad').value === '0' || FacturaForm.get('FaDe_Cantidad').value === ''}"
+                                               />
+                                               <small *ngIf="submitted && FacturaForm.get('FaDe_Cantidad').value === '0'" style="color: red;">Cantidad es 0</small>
+                                      </td>   <small *ngIf="submitted && FacturaForm.get('FaDe_Cantidad').value === ''" style="color: red;">Cantidad es requerida</small>
+                                      <td style="width:10%;">
+                                          0
+                                      </td>
+                                      <td style="width:10%;">0</td>
+                                  </tr>
+                              </ng-template>
+                          </p-table>                
+                           <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+                            <button pButton icon="pi pi-stop" type="button" label="Agregar" (click)="onSubmit()" class="p-button-primary"></button>  
+                            <button pButton icon="pi pi-stop" type="button" label="Facturar" (click)="cancelar()" class="p-button-primary"></button>
+                          </div>
+                          </form>             
+                   </div>               
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
