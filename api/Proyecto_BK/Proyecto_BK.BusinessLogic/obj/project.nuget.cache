@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "V0Khb23ktPG/tp+R3l55xplaG/POAhBgZXkh+DeIFzkBbSUSx/+5oO04JEA9P7JEsfmUbG2Wa4ubKZfjs9JBSw==",
+  "dgSpecHash": "saIAURw6aLS5vkBqFpsgaVEIJGpWMLwMzcR7TeY1a4aTpWK0K4sqwpIFyLkdiT0UgJTq38jlt0kaQt8Af7b0kw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj",
+  "projectFilePath": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAB1\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\LAB1\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

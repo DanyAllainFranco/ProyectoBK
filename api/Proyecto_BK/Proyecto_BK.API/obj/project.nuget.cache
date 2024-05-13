@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Na+ElpfNo75F6s4qKchN1Xfi2HQOPsH7MIq2hrvYB4OTzKX5k10nz9myhoFkQzxKqASFgdm//NJfbM2mFIAmgQ==",
+  "dgSpecHash": "FWNlA5IqTCbG+UzmkDQwvSlpDND6YwzZEXp+RaDB+1FDrgIgy6PwmXGuAd+CAZvZHgeYPukpyVgi4oqgXpXOgw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.API\\Proyecto_BK.API.csproj",
+  "projectFilePath": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.API\\Proyecto_BK.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAB1\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\LAB1\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj": {}
+    "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj": {
+    "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj",
+        "projectUniqueName": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj",
         "projectName": "Proyecto_BK.BusinessLogic",
-        "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj",
+        "projectPath": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj",
         "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\obj\\",
+        "outputPath": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj"
+              "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj"
               }
             }
           }
@@ -62,14 +62,14 @@
         }
       }
     },
-    "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj": {
+    "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj",
         "projectName": "Proyecto_BK.DataAccess",
-        "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj",
+        "projectPath": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj",
         "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -86,8 +86,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
-                "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj"
+              "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
+                "projectPath": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj"
               }
             }
           }
@@ -134,14 +134,14 @@
         }
       }
     },
-    "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
+    "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
         "projectName": "Proyecto_BK.Entities",
-        "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
+        "projectPath": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
         "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\obj\\",
+        "outputPath": "C:\\Users\\LAB1\\Desktop\\Copia\\api\\Proyecto_BK\\Proyecto_BK.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
