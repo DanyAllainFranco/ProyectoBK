@@ -108,8 +108,8 @@ export class FacturacionComponent{
         //FACTURA
                 // Clie_Id: new FormControl(""),
             
-                Clie_Nombre: new FormControl("Dany"),
-                Clie_Identidad: new FormControl("0512" ),
+                Clie_Nombre: new FormControl(""),
+                Clie_Identidad: new FormControl("" ),
                 Prod_Producto: new FormControl("" ),
                 FaDe_Ident: new FormControl("N"),
                 FaDe_ProdId: new FormControl(""),
