@@ -16,9 +16,9 @@ export class Fill{
     rol_Id: number;
     rol_Descripcion: string;
     pant_Descripcion: [];
-    UsuarioCreacion?: string;
+    usuarioCreacion?: string;
     rol_Fecha_Creacion?: string;
-    UsuarioModificacion?: string;
+    usuarioModificacion?: string;
     rol_Fecha_Modifica?: string;
     
 }

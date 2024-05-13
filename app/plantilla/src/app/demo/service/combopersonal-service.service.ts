@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { BASE_URL } from './UrlParaAPI';
-import { ComboPEnviar, ComboPersonal,Fill } from '../models/ComboPersonalViewModel';
+import { ComboPEnviar, ComboPersonal,Fill, Llenar } from '../models/ComboPersonalViewModel';
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
@@ -25,8 +25,12 @@ export class ComboPersonalServiceService {
     return this.http.get<ComboPersonal[]>(this.Url);
   }
 
-
-
+  getDetalles(codigo: string): Observable<Fill> {
+    return this.http.get<Fill>(`${BASE_URL + 'API/Municipio/Fill/' + codigo}`);
+  }
+  actualizar(modelo:ComboPEnviar):Observable<Respuesta>{
+    return this.http.put<Respuesta>(`${BASE_URL}API/ComboPersonal/Update`,modelo);
+  }
 
   urlDropBe = BASE_URL + 'API/Bebida/DropDown'
 
@@ -40,6 +44,9 @@ export class ComboPersonalServiceService {
     return this.http.get<dropPostre[]>(this.urlDropPos)
   }
 
+  eliminar(idDepartamento:number):Observable<void>{
+    return this.http.delete<void>(`${BASE_URL}API/ComboPersonal/Delete/${idDepartamento}`);
+  }
 
 
   urlDropC = BASE_URL + 'API/Complemento/DropDown'
@@ -72,7 +79,10 @@ export class ComboPersonalServiceService {
     );
   }
 
-    
+  obtenerComboPorId(idCombo: number): Observable<Llenar> {
+    return this.http.get<Llenar>(`${BASE_URL}API/ComboPersonal/Fill/${idCombo}`);
+  }
+
   getFill(codigo: string): Observable<Fill> {
     return this.http.get<Fill>(`${BASE_URL + 'API/ComboPersonal/Fill/' + codigo}`);
   }

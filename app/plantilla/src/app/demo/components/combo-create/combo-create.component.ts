@@ -75,7 +75,6 @@
         private rolService: ComboPersonalServiceService) {
           this.form = this.fb.group({
             Comb_Descripcion: ['', Validators.required],
-
             Alim_Id: ['', Validators.required],
             Bebi_Id: ['', Validators.required],
             Comb_Precio: ['', Validators.required],
@@ -92,6 +91,7 @@
   }
 
   onImageSelect(event: any) {
+
     const selectedFile: File = event.files[0];
     this.selectedImageURL = URL.createObjectURL(selectedFile);
     this.imageSelected = true;
@@ -113,7 +113,6 @@
       }
     );
   }
-
 
   cargarPostres(){
     this.postreService.getPostre().subscribe(
@@ -153,15 +152,7 @@
   }
 
 
-  guardar() {
-    console.log("Combo: " + this.form.value.Comb_Descripcion )
-    console.log("Aliemento: " + this.form.value.Alim_Id )
-    console.log("Bebida: " + this.form.value.Bebi_Id )
-    console.log("Prueba: " + this.prueba )
-    console.log("Precio: " + this.form.value.Comb_Precio )
-    console.log("Complemento: " + this.form.value.Comp_Id )
-    console.log("Postre: " + this.form.value.Post_Id )
-    
+  guardar() {    
     if (this.form.valid) {
       const Comb_Descripcion = this.form.value.Comb_Descripcion;
       const Alim_Id = this.form.value.Alim_Id;
@@ -187,7 +178,8 @@
       this.rolService.agregar(NuevoCombo).subscribe(
         (respuesta: Respuesta) => {
           if (respuesta.success) {
-            this.messageService.add({severity:'success', summary:'Éxito', detail:'Combo registrado correctamente!'});
+            // this.messageService.add({severity:'success', summary:'Éxito', detail:'!Combo registrado correctamente!'});
+            this.rolService.successMessage = '¡Combo registrado correctamente!';
             this.router.navigate(['app/IndexComboPersonal']);
           } else {
             this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});

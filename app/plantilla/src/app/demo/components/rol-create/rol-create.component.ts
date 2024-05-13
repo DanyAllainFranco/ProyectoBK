@@ -81,7 +81,7 @@ export class RolCreateComponent implements OnInit{
     this.router.navigate(['app/IndexRol'])
   }
   cargarPantallas() {
-    this.rolService.getPantallas().subscribe(
+    this.rolService.getPantallas2(0).subscribe(
       pantallas => {
       
         this.sourceCities = pantallas.map(pantalla => ({ name: pantalla.pant_Descripcion, code: pantalla.pant_Id }));

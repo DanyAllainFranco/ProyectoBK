@@ -33,6 +33,7 @@ export class ServiceService {
   getDetalles(codigo: string): Observable<Fill> {
     return this.http.get<Fill>(`${BASE_URL + 'API/Municipio/Fill/' + codigo}`);
   }
+  
   EnviarMunicipios(formData){
     return this.http.post(BASE_URL + 'API/Municipio/Insert/', formData)
   }

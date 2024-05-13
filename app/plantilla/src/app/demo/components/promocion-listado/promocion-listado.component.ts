@@ -15,16 +15,18 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-promocion-listado',
   templateUrl: './promocion-listado.component.html',
-  styleUrl: './promocion-listado.component.scss'
+  styleUrl: './promocion-listado.component.scss',
+  providers: [MessageService]
 })
 export class PromocionListadoComponent implements OnInit {
   Promocion!: Promocion[];
 
-  constructor(private service: PromocionServiceService, private router: Router) {}
+  constructor(private service: PromocionServiceService,  private messageService: MessageService, private router: Router) {}
 
   ngOnInit(): void {
     this.service.getPromocion().subscribe(
@@ -37,6 +39,24 @@ export class PromocionListadoComponent implements OnInit {
         console.log(error);
       }
     );
+
+     // Mostrar el mensaje de éxito si está disponible
+     console.log(this.service.successMessage)
+     if (this.service.successMessage) {
+      setTimeout(() => {
+        if(this.service.successMessage == '¡Promocion registrada correctamente!')
+        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Promocion registrada correctamente!' });
+        // Reiniciar el mensaje de éxito después de mostrarlo
+        else{
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Rol actualizado correctamente!' });
+        }
+        this.service.successMessage = '';
+      });
+    }
+  }
+
+  Nuevo(){
+    this.router.navigate(['app/CreatePromocion'])
   }
 }
 

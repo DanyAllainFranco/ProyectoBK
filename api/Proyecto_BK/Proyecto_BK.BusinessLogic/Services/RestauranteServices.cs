@@ -929,6 +929,19 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
         }
 
+        public ServiceResult ListDias()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _promocionRepository.ListDias();
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
         public ServiceResult LlenarPromocion(string id)
         {
             var result = new ServiceResult();
@@ -941,6 +954,31 @@ namespace Proyecto_BK.BusinessLogic.Services
             catch (Exception ex)
             {
                 return result.Error(ex);
+            }
+        }
+        public ServiceResult InsertarPromo(tbPromociones item, out int ingrId)
+        {
+            var result = new ServiceResult();
+            ingrId = 0;
+            try
+            {
+                var (lost, idGenerado) = _promocionRepository.Insertar(item);
+                if (lost.CodeStatus > 0)
+                {
+                    ingrId = idGenerado;
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                    return result.Error(lost);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
             }
         }
 
@@ -1297,6 +1335,362 @@ namespace Proyecto_BK.BusinessLogic.Services
             catch (Exception ex)
             {
                 return result.Error("Error de capa 8");
+            }
+        }
+        #endregion
+
+        #region PromocionPorAlimentos
+        public ServiceResult InsertarAlimentos(List<int> AlimIds, int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                if(AlimIds.Count > 0)
+                {
+                    foreach (var Alim_Id in AlimIds)
+                    {
+                        var lost = _promocionRepository.InsertarAlimentos(Alim_Id, Prom_Id);
+                        if (lost.CodeStatus > 0)
+                        {
+                            return result.Ok(lost);
+                        }
+                        else
+                        {
+                            lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                            return result.Error(lost);
+                        }
+                    }
+
+                    return result.Ok(); // Si todo fue exitoso
+                }
+                else
+                {
+                    return result.Ok();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult ListaAlimentosAgregados(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _promocionRepository.List1(Prom_Id);
+                if (lost.Count() > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+
+            }
+        }
+
+        public ServiceResult ListAlimentos(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _promocionRepository.ListAlimentos(Prom_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EliminarAlimentos(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _promocionRepository.EliminarAlimentos(Prom_Id);
+                if (response.CodeStatus > 0)
+                {
+                    return result.Ok("Pantalla por rol eliminada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("No se encontró la pantalla por rol a eliminar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
+
+        #region PromocionPorBebidas
+        public ServiceResult InsertarBebidas(List<int> AlimIds, int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                foreach (var Alim_Id in AlimIds)
+                {
+                    var lost = _promocionRepository.InsertarBebidas(Alim_Id, Prom_Id);
+                    if (lost.CodeStatus > 0)
+                    {
+                        return result.Ok(lost);
+                    }
+                    else
+                    {
+                        lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                        return result.Error(lost);
+                    }
+                }
+
+                return result.Ok(); // Si todo fue exitoso
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult ListaBebidasAgregados(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _promocionRepository.List2(Prom_Id);
+                if (lost.Count() > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+
+            }
+        }
+
+        public ServiceResult ListBebidas(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _promocionRepository.ListBebidas(Prom_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EliminarBebidas(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _promocionRepository.EliminarBebidas(Prom_Id);
+                if (response.CodeStatus > 0)
+                {
+                    return result.Ok("Pantalla por rol eliminada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("No se encontró la pantalla por rol a eliminar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
+
+        #region PromocionPorPostres
+        public ServiceResult InsertarPostres(List<int> AlimIds, int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                foreach (var Alim_Id in AlimIds)
+                {
+                    var lost = _promocionRepository.InsertarPostres(Alim_Id, Prom_Id);
+                    if (lost.CodeStatus > 0)
+                    {
+                        return result.Ok(lost);
+                    }
+                    else
+                    {
+                        lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                        return result.Error(lost);
+                    }
+                }
+
+                return result.Ok(); // Si todo fue exitoso
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult ListaPostresAgregados(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _promocionRepository.List3(Prom_Id);
+                if (lost.Count() > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+
+            }
+        }
+
+        public ServiceResult ListPostres(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _promocionRepository.ListPostres(Prom_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EliminarPostres(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _promocionRepository.EliminarPostres(Prom_Id);
+                if (response.CodeStatus > 0)
+                {
+                    return result.Ok("Pantalla por rol eliminada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("No se encontró la pantalla por rol a eliminar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
+
+        #region PromocionPorComplementos
+        public ServiceResult InsertarComplementos(List<int> AlimIds, int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                foreach (var Alim_Id in AlimIds)
+                {
+                    var lost = _promocionRepository.InsertarComplemento(Alim_Id, Prom_Id);
+                    if (lost.CodeStatus > 0)
+                    {
+                        return result.Ok(lost);
+                    }
+                    else
+                    {
+                        lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                        return result.Error(lost);
+                    }
+                }
+
+                return result.Ok(); // Si todo fue exitoso
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult ListaComplementosAgregados(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _promocionRepository.List4(Prom_Id);
+                if (lost.Count() > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+
+            }
+        }
+
+        public ServiceResult ListComplementos(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _promocionRepository.ListComplentos(Prom_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EliminarComplementos(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _promocionRepository.EliminarComplementos(Prom_Id);
+                if (response.CodeStatus > 0)
+                {
+                    return result.Ok("Pantalla por rol eliminada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("No se encontró la pantalla por rol a eliminar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
             }
         }
         #endregion

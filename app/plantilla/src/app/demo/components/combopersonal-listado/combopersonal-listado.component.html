@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="grid">
     <div class="col-12">
         <div class="card">
@@ -89,13 +90,15 @@
                         <td>{{comb.comp_Descripcion}}</td>
                         <td>{{comb.alim_Descripcion}}</td>
                         <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
-                            <button pButton pRipple type="button" label="Editar" class="p-button-warning" (click)="editarCombo(comb.comb_Id)"></button>
+                            <p-button label="Editar" icon="pi pi-user-edit" size="small" (click)="editarCombo(comb.comb_Id)"
+                            severity="primary" [raised]="true" [plain]="true"></p-button>
                             <p-button label="Detalles" icon="pi pi-book" size="small"
-                                (click)="detalles(depto.dept_Codigo)" severity="secondary" [raised]="true"
+                            (click)="detalleCombo(comb.comb_Id)" severity="secondary" [raised]="true"
                                 [plain]="true"></p-button>
                             <p-button label="Eliminar" icon="pi pi-trash" size="small"
-                                (click)="deleteSelectedProducts(depto.dept_Codigo)" severity="danger" [raised]="true"
+                            (click)="confirmarEliminarDepartamento(comb)" severity="danger" [raised]="true"
                                 [plain]="true"></p-button>
+
                         </td>
                     </tr>
                 </ng-template>
@@ -111,5 +114,12 @@
                 </ng-template>
             </p-table>
         </div>
+        <p-dialog header="Confirmar Eliminación" [(visible)]="confirmacionVisible" modal="true" [style]="{ width: '300px' }">
+            <p>¿Está seguro de que desea eliminar este registro?</p>
+            <p-footer>
+              <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
+              <button pButton type="button" label="Confirmar" class="p-button-danger" (click)="eliminarDepartamento()"></button>
+            </p-footer>
+          </p-dialog>
     </div>
 </div>

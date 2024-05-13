@@ -20,6 +20,7 @@ export class RolService {
   getPantallas(): Observable<Pantallas[]> {
     return this.http.get<Pantallas[]>( BASE_URL + "API/Rol/ListPantallas");
   }
+  
   getPantallas2(RolId: number): Observable<Pantallas[]> {
     return this.http.get<Pantallas[]>( BASE_URL + "API/Rol/ListPantallas2/" + RolId);
   }

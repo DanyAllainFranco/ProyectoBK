@@ -24,7 +24,6 @@ import {MostrarmensajeService} from 'src/app/demo/service/mostrarmensaje.service
 import { Subscription } from 'rxjs';
 import { MensajeViewModel } from '../../models/MensajeVIewModel';
 import { TimeScale } from 'chart.js';
-import { dA } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-rol-listado',
@@ -77,14 +76,19 @@ ngOnInit(): void {
     // Mostrar el mensaje de éxito si está disponible
     if (this.service.successMessage) {
       setTimeout(() => {
-        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: this.service.successMessage });
+        if(this.service.successMessage == '¡Rol registrado correctamente!')
+        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Rol registrado correctamente!' });
         // Reiniciar el mensaje de éxito después de mostrarlo
+        else{
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Rol actualizado correctamente!' });
+        }
         this.service.successMessage = '';
       });
     }
 }
-
-
+detalleRol(combId: number) {
+  this.router.navigate(['app/DetalleRol', combId]); // Redirige a la ruta de edición con el ID del rol
+}
 detalles(codigo){
   this.Collapse= false;
   this.DataTable = false;
@@ -144,8 +148,8 @@ eliminarDepartamento() {
 cancelarEliminar() {
   this.confirmacionVisible = false;
 }
+
 editarRol(rolId: number) {
-  console.log(rolId)
   this.router.navigate(['app/EditarRol', rolId]); // Redirige a la ruta de edición con el ID del rol
 }
 

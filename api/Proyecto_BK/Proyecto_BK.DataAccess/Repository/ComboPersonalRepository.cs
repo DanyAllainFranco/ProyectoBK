@@ -23,6 +23,30 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+        //public tbCombo Find(int Comb_Id)
+        //{
+        //    tbCombo result = new tbCombo();
+        //    using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+        //    {
+        //        var parameter = new DynamicParameters();
+        //        parameter.Add("Comb_Id", Comb_Id);
+        //        result = db.QueryFirst<tbCombo>(ScriptsBaseDeDatos.Comb_Llenar, parameter, commandType: CommandType.StoredProcedure);
+        //        return result;
+        //    }
+        //}
+
+        public IEnumerable<tbCombo> Find(int Comb_Id)
+        {
+
+            List<tbCombo> result = new List<tbCombo>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameters = new { Comb_Id = Comb_Id };
+                result = db.Query<tbCombo>(ScriptsBaseDeDatos.Comb_Llenar, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
 
         public tbCombo Fill(string id)
         {

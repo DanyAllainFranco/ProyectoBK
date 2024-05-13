@@ -30,6 +30,10 @@ import {RolCreateComponent} from './demo/components/rol-create/rol-create.compon
 import {RolEditarComponent} from './demo/components/rol-editar/rol-editar.component';
 import {ComboCreateComponent} from './demo/components/combo-create/combo-create.component';
 import {ComboEditarComponent} from './demo/components/combo-editar/combo-editar.component';
+import {ComboDetalleComponent} from './demo/components/combo-detalle/combo-detalle.component';
+import {RolDetalleComponent} from './demo/components/rol-detalle/rol-detalle.component';
+import {PromocionCreateComponent} from './demo/components/promocion-create/promocion-create.component';
+
 
 
 
@@ -72,7 +76,10 @@ import {ComboEditarComponent} from './demo/components/combo-editar/combo-editar.
                     {path: 'IndexRoles', component:RolListadoComponent},
                     { path: 'CreateRol', component: RolCreateComponent } , 
                     { path: 'EditarRol/:id', component: RolEditarComponent } ,
+                    { path: 'DetalleRol/:id', component: RolDetalleComponent } ,
+                    { path: 'CreatePromocion', component: PromocionCreateComponent } ,
                     { path: 'EditarCombo/:id', component: ComboEditarComponent } ,
+                    { path: 'DetalleCombo/:id', component: ComboDetalleComponent },
                     // { path: 'IndexGraficos', component: GraficosComponent }
                     { path: 'IndexInforme', component: ReporteVentasComponent }
                                 ]

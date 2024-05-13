@@ -12,6 +12,7 @@ namespace Proyecto_BK.Entities.Entities
         {
             tbCombo = new HashSet<tbCombo>();
             tbPaquetesPorComidas = new HashSet<tbPaquetesPorComidas>();
+            tbPromocionesPorAlimentos = new HashSet<tbPromocionesPorAlimentos>();
             tbPromocionesPorComidas = new HashSet<tbPromocionesPorComidas>();
         }
 
@@ -29,6 +30,7 @@ namespace Proyecto_BK.Entities.Entities
         public virtual tbUsuarios Alim_Usua_ModificaNavigation { get; set; }
         public virtual ICollection<tbCombo> tbCombo { get; set; }
         public virtual ICollection<tbPaquetesPorComidas> tbPaquetesPorComidas { get; set; }
+        public virtual ICollection<tbPromocionesPorAlimentos> tbPromocionesPorAlimentos { get; set; }
         public virtual ICollection<tbPromocionesPorComidas> tbPromocionesPorComidas { get; set; }
     }
 }

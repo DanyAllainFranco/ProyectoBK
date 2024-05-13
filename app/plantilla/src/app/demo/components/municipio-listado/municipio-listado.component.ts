@@ -65,6 +65,7 @@ export class MunicipioListadoComponent implements OnInit {
             this.Municipio = data;
         });
     }
+
     //Abrir collapse
     collapse(){
         this.Collapse= true;
@@ -105,6 +106,7 @@ export class MunicipioListadoComponent implements OnInit {
         this.MunCodigo=true;
         this.Valor = "";
     }
+    
     //Funcionan como regex
     ValidarNumeros(event: KeyboardEvent) {
         if (!/[0-9]/.test(event.key) && event.key !== 'Backspace' && event.key !== 'Tab') {

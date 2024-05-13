@@ -17,6 +17,7 @@ namespace Proyecto_BK.Entities.Entities
         public int? Paro_Usua_Modifica { get; set; }
         public DateTime? Paro_Fecha_Modifica { get; set; }
         public bool? Paro_Estado { get; set; }
+
         [NotMapped]
         public string Pant_Descripcion { get; set; }
         public virtual tbPantallas Pant { get; set; }

@@ -23,6 +23,10 @@ namespace Proyecto_BK.Entities.Entities
         public decimal? Comb_Precio { get; set; }
         public string Comb_Imagen { get; set; }
         [NotMapped]
+        public string Usua_Creacion { get; set; }
+        [NotMapped]
+        public string Usua_Modifica { get; set; }
+        [NotMapped]
         public string Bebi_Descripcion { get; set; }
         [NotMapped]
         public string Post_Descripcion { get; set; }

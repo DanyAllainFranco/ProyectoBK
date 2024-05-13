@@ -5,7 +5,7 @@ export class Pantallas{
 }
 
 export class PantallasAgregadas{
-    pant_Id!: string;
-    pant_Descripcion!:string;   
+    pant_Id: string;
+    pant_Descripcion:string;   
     code: number;
 }

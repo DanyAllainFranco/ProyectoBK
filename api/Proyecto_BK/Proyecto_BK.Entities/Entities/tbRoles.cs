@@ -28,6 +28,7 @@ namespace Proyecto_BK.Entities.Entities
         public string UsuarioCreacion { get; set; }
         [NotMapped]
         public string UsuarioModificacion { get; set; }
+   
         public virtual tbUsuarios Rol_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Rol_Usua_ModificaNavigation { get; set; }
         public virtual ICollection<tbPantallasPorRoles> tbPantallasPorRoles { get; set; }

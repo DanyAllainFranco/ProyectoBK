@@ -9,6 +9,18 @@ export class Bebidas {
     Bebi_Fecha_Modifica?: Date;
     Bebi_Estado?: boolean;
 }
+export class Bebida {
+    bebi_Id?: number;
+    bebi_Descripcion?: string;
+}
+export class Postre {
+    post_Id?: number;
+    post_Descripcion?: string;
+}
+export class Complemento {
+    comp_Id?: number;
+    comp_Descripcion?: string;
+}
 
 export class CargarBebidas{
     bebi_Id?: number;

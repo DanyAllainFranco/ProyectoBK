@@ -14,8 +14,6 @@ namespace Proyecto_BK.Entities.Entities
             tbFactura = new HashSet<tbFactura>();
         }
 
-        [NotMapped]
-        public string Esta_Descripcion { get; set; }
         public int Clie_Id { get; set; }
         public string Clie_Identidad { get; set; }
         public string Clie_Nombre { get; set; }
@@ -30,7 +28,8 @@ namespace Proyecto_BK.Entities.Entities
         public int? Clie_Usua_Modifica { get; set; }
         public DateTime? Clie_Fecha_Modifica { get; set; }
         public bool? Clie_Estado { get; set; }
-
+        [NotMapped]
+        public string Esta_Descripcion { get; set; }
         public virtual tbCargos Carg { get; set; }
         public virtual tbUsuarios Clie_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Clie_Usua_ModificaNavigation { get; set; }

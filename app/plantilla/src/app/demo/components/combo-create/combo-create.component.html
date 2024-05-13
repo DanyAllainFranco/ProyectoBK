@@ -23,33 +23,48 @@
                 <div class="field col-12 md:col-6">
                     <label>Alimento</label>
                     <p-dropdown [options]="alimentos" formControlName="Alim_Id" placeholder="Seleccione" [showClear]="false"></p-dropdown>
+                    <br>
+                    <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                        [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label>Bebida</label>
                     <p-dropdown [options]="bebidas" formControlName="Bebi_Id" placeholder="Seleccione" [showClear]="false"></p-dropdown>
+                    <br>
+                    <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                        [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label>Postre</label>
                     <p-dropdown [options]="postres" formControlName="Post_Id" placeholder="Seleccione" [showClear]="false"></p-dropdown>
+                    <br>
+                    <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                        [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label>Complemento</label>
                     <p-dropdown [options]="complementos" formControlName="Comp_Id" placeholder="Seleccione" [showClear]="false"></p-dropdown>
+                    <br>
+                    <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                        [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
                 </div>
                 <div class="field col-12 md:col-6">
                     <label>Imagen</label>
                     <p-fileUpload #fileUpload name="demo[]" [mode]="'basic'" (onSelect)="onImageSelect($event)"
                     [multiple]="false" accept="image/*" [maxFileSize]="1000000" chooseLabel="{{ showFileUpload ? 'Seleccione' : '' }}">
                 </p-fileUpload>
+                <br>
+                <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                    [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
                 </div>
             </form>
-         
         </div>
         <div class="justify-content-center ms-5">
             <!-- Contenedor para centrar la imagen -->
             <div class="text-center">
                 <p-image *ngIf="selectedImageURL"  [src]="selectedImageURL" alt="Imagen seleccionada"
                 width="250" [preview]="true"></p-image>
+                
             </div>
         </div>
             <div class="grid p-justify-end">

@@ -27,6 +27,7 @@ namespace Proyecto_BK.DataAccess.Context
         public virtual DbSet<tbCombo> tbCombo { get; set; }
         public virtual DbSet<tbComplementos> tbComplementos { get; set; }
         public virtual DbSet<tbDepartamentos> tbDepartamentos { get; set; }
+        public virtual DbSet<tbDias> tbDias { get; set; }
         public virtual DbSet<tbEmpleados> tbEmpleados { get; set; }
         public virtual DbSet<tbEstadosCiviles> tbEstadosCiviles { get; set; }
         public virtual DbSet<tbFactura> tbFactura { get; set; }
@@ -38,7 +39,11 @@ namespace Proyecto_BK.DataAccess.Context
         public virtual DbSet<tbPaquetesPorComidas> tbPaquetesPorComidas { get; set; }
         public virtual DbSet<tbPostres> tbPostres { get; set; }
         public virtual DbSet<tbPromociones> tbPromociones { get; set; }
+        public virtual DbSet<tbPromocionesPorAlimentos> tbPromocionesPorAlimentos { get; set; }
+        public virtual DbSet<tbPromocionesPorBebidas> tbPromocionesPorBebidas { get; set; }
         public virtual DbSet<tbPromocionesPorComidas> tbPromocionesPorComidas { get; set; }
+        public virtual DbSet<tbPromocionesPorComplementos> tbPromocionesPorComplementos { get; set; }
+        public virtual DbSet<tbPromocionesPorPostres> tbPromocionesPorPostres { get; set; }
         public virtual DbSet<tbPromocionesPorSusursales> tbPromocionesPorSusursales { get; set; }
         public virtual DbSet<tbRoles> tbRoles { get; set; }
         public virtual DbSet<tbSucursales> tbSucursales { get; set; }
@@ -317,6 +322,18 @@ namespace Proyecto_BK.DataAccess.Context
                     .WithMany(p => p.tbDepartamentosDept_Usua_ModificaNavigation)
                     .HasForeignKey(d => d.Dept_Usua_Modifica)
                     .HasConstraintName("Fk_tbDepartamentos_Usua_Modifica");
+            });
+
+            modelBuilder.Entity<tbDias>(entity =>
+            {
+                entity.HasKey(e => e.Dias_Id)
+                    .HasName("PK__tbDias__47F74176C4711F87");
+
+                entity.ToTable("tbDias", "Gral");
+
+                entity.Property(e => e.Dias_Descripcion)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<tbEmpleados>(entity =>
@@ -694,10 +711,6 @@ namespace Proyecto_BK.DataAccess.Context
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Prom_Dia)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
                 entity.Property(e => e.Prom_Estado).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Prom_Fecha_Creacion).HasColumnType("date");
@@ -708,6 +721,10 @@ namespace Proyecto_BK.DataAccess.Context
 
                 entity.Property(e => e.Prom_Precio).HasColumnType("money");
 
+                entity.HasOne(d => d.Dias)
+                    .WithMany(p => p.tbPromociones)
+                    .HasForeignKey(d => d.Dias_Id);
+
                 entity.HasOne(d => d.Prom_Usua_CreacionNavigation)
                     .WithMany(p => p.tbPromocionesProm_Usua_CreacionNavigation)
                     .HasForeignKey(d => d.Prom_Usua_Creacion)
@@ -717,6 +734,38 @@ namespace Proyecto_BK.DataAccess.Context
                     .WithMany(p => p.tbPromocionesProm_Usua_ModificaNavigation)
                     .HasForeignKey(d => d.Prom_Usua_Modifica)
                     .HasConstraintName("Fk_tbPromociones_Usua_Modifica");
+            });
+
+            modelBuilder.Entity<tbPromocionesPorAlimentos>(entity =>
+            {
+                entity.HasKey(e => e.Pali_Id)
+                    .HasName("PK__tbPromoc__34FC4D465D9BA3B1");
+
+                entity.ToTable("tbPromocionesPorAlimentos", "Rest");
+
+                entity.HasOne(d => d.Alim)
+                    .WithMany(p => p.tbPromocionesPorAlimentos)
+                    .HasForeignKey(d => d.Alim_Id);
+
+                entity.HasOne(d => d.Prom)
+                    .WithMany(p => p.tbPromocionesPorAlimentos)
+                    .HasForeignKey(d => d.Prom_Id);
+            });
+
+            modelBuilder.Entity<tbPromocionesPorBebidas>(entity =>
+            {
+                entity.HasKey(e => e.Pbeb_Id)
+                    .HasName("PK__tbPromoc__D8FE6B2EDDB6226E");
+
+                entity.ToTable("tbPromocionesPorBebidas", "Rest");
+
+                entity.HasOne(d => d.Bebi)
+                    .WithMany(p => p.tbPromocionesPorBebidas)
+                    .HasForeignKey(d => d.Bebi_Id);
+
+                entity.HasOne(d => d.Prom)
+                    .WithMany(p => p.tbPromocionesPorBebidas)
+                    .HasForeignKey(d => d.Prom_Id);
             });
 
             modelBuilder.Entity<tbPromocionesPorComidas>(entity =>
@@ -766,6 +815,38 @@ namespace Proyecto_BK.DataAccess.Context
                     .WithMany(p => p.tbPromocionesPorComidas)
                     .HasForeignKey(d => d.Prom_Id)
                     .HasConstraintName("Fk_tbPromocionesPorComidas_Prom_Id");
+            });
+
+            modelBuilder.Entity<tbPromocionesPorComplementos>(entity =>
+            {
+                entity.HasKey(e => e.Pcom_Id)
+                    .HasName("PK__tbPromoc__D8FE6B2E87E7CD5B");
+
+                entity.ToTable("tbPromocionesPorComplementos", "Rest");
+
+                entity.HasOne(d => d.Comp)
+                    .WithMany(p => p.tbPromocionesPorComplementos)
+                    .HasForeignKey(d => d.Comp_Id);
+
+                entity.HasOne(d => d.Prom)
+                    .WithMany(p => p.tbPromocionesPorComplementos)
+                    .HasForeignKey(d => d.Prom_Id);
+            });
+
+            modelBuilder.Entity<tbPromocionesPorPostres>(entity =>
+            {
+                entity.HasKey(e => e.Ppos_Id)
+                    .HasName("PK__tbPromoc__D8FE6B2EE74C8DA9");
+
+                entity.ToTable("tbPromocionesPorPostres", "Rest");
+
+                entity.HasOne(d => d.Post)
+                    .WithMany(p => p.tbPromocionesPorPostres)
+                    .HasForeignKey(d => d.Post_Id);
+
+                entity.HasOne(d => d.Prom)
+                    .WithMany(p => p.tbPromocionesPorPostres)
+                    .HasForeignKey(d => d.Prom_Id);
             });
 
             modelBuilder.Entity<tbPromocionesPorSusursales>(entity =>

@@ -1,5 +1,5 @@
 export class ComboPersonal {
-    Comb_Id?: string;
+    comb_Id?: number;
     Comb_Descripcion?: string;
     Comb_Precio?: string;
     Comb_Imagen?: string;
@@ -26,6 +26,26 @@ export class ComboPEnviar {
     ComB_Usua_Creacion?: number;
 }
 
+export class Llenar{
+    comb_Id: number;
+    alim_Id: number;
+    bebi_Id: number;
+    comp_Id: number;
+    post_Id: number;
+    usua_Creacion: string;
+    usua_Modifica: string;
+    comb_Usua_Creacion: number;
+    comb_Fecha_Creacion: string;
+    comb_Fecha_Modificacion: string;
+    comb_Descripcion: string;
+    comb_Precio: string;
+    comb_Imagen: string;
+    bebi_Descripcion: string;
+    post_Descripcion: string;
+    comp_Descripcion: string;
+    alim_Descripcion: string;
+}
+
 export class Fill {
     comb_Id?: string;
     comb_Descripcion?: string;
@@ -41,6 +61,8 @@ export class Fill {
     comp_Descripcion?: string;
     alim_Descripcion?: string;
 
+    usua_Creacion: string;
+    usua_Modifica: string;
     comb_Usua_Creacion?: string;
     comb_Fecha_Creacion?: string;
     comb_Usua_Modifica?: string;

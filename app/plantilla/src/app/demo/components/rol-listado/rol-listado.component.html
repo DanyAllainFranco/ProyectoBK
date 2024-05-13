@@ -44,10 +44,14 @@
             <td>{{rol.rol_Id}}</td>
             <td>{{rol.rol_Descripcion}}</td>
             <td  style="display: flex; grid-gap:10px">
-                <button pButton pRipple type="button" label="Editar" class="p-button-warning" (click)="editarRol(rol.rol_Id)"></button>
-                <button pButton pRipple type="button" label="Detalles" class="p-button-info" (click)="detalles(rol.rol_Id)"></button>
-                <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" (click)="confirmarEliminarDepartamento(rol)"></button>
-
+                <p-button label="Editar" icon="pi pi-user-edit" size="small" (click)="editarRol(rol.rol_Id)"
+                severity="primary" [raised]="true" [plain]="true"></p-button>
+                <p-button label="Detalles" icon="pi pi-book" size="small"
+                (click)="detalleRol(rol.rol_Id)" severity="secondary" [raised]="true"
+                    [plain]="true"></p-button>
+                <p-button label="Eliminar" icon="pi pi-trash" size="small"
+                (click)="confirmarEliminarDepartamento(rol)" severity="danger" [raised]="true"
+                [plain]="true"></p-button>
             </td>
         </tr>
     </ng-template>

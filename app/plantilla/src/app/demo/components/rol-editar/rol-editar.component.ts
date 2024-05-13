@@ -28,6 +28,7 @@ import { Pantallas, PantallasAgregadas } from 'src/app/demo/models/PantallaViewM
 import { Rol } from 'src/app/demo/models/RolesViewModel';
 import { Respuesta } from 'src/app/demo/models/ServiceResult';
 import { MessageService } from 'primeng/api';
+import { dA } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-rol-editar',
@@ -63,6 +64,7 @@ export class RolEditarComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private rolService: RolService,
     private formBuilder: FormBuilder,
   ) { }
@@ -78,6 +80,7 @@ export class RolEditarComponent implements OnInit {
     this.form = this.formBuilder.group({
       nombreRol: ['', Validators.required]
     });
+
   }
  
 
@@ -130,6 +133,8 @@ export class RolEditarComponent implements OnInit {
                        } else {
                          console.error('Error al agregar las pantallas al rol:', respuestaPantallas.message);
                        }
+                       this.rolService.successMessage = '¡Rol actualizado correctamente!';
+                       this.router.navigate(['app/IndexRoles']);
                    },
                    error => {
                        console.error('Error en la solicitud HTTP:', error);
@@ -162,6 +167,7 @@ export class RolEditarComponent implements OnInit {
     this.rolService.obtenerRolPorId(id).subscribe(
       (data: Rol) => {
         this.rol = data;
+        console.log(data)
         console.log("Este es el rol: " + this.rol.rol_Descripcion)
         this.form.patchValue({
           nombreRol: this.rol.rol_Descripcion

@@ -10,6 +10,13 @@ export class Alimento {
     Alim__Estado?: boolean;
 }
 
+export class Alimentos {
+    alim_Id?: number;
+    alim_Descripcion?: string;
+    code: number;
+}
+
+
 export class CargarAlimentos{
     alim_Id?: number;
     alim_Descripcion?: string;

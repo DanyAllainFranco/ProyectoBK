@@ -96,6 +96,7 @@ namespace Proyecto_BK.API.Controllers
             prueba.Message = rolId.ToString();
             return Ok(prueba);
         }
+
         [HttpPut("API/[controller]/Update")]
         public IActionResult Update(RolViewModel item)
         {

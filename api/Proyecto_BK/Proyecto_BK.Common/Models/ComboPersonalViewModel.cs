@@ -23,6 +23,10 @@ namespace Proyecto_BK.Common.Models
         public DateTime? Comb_Fecha_Modifica { get; set; }
         public bool? Comb_Estado { get; set; }
         [NotMapped]
+        public string Usua_Creacion { get; set; }
+        [NotMapped]
+        public string Usua_Modifica { get; set; }
+        [NotMapped]
         public string Bebi_Descripcion { get; set; }
         [NotMapped]
         public string Post_Descripcion { get; set; }

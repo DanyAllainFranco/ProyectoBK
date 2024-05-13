@@ -37,7 +37,7 @@ namespace Proyecto_BK.API.Controllers
         {
 
             var list = _restauranteServices.LlenarComboPersonal(id);
-            return Json(list.Data);
+            return Ok(list.Data);
         }
 
         [HttpGet("API/[controller]/GrafiCombos")]
@@ -141,7 +141,7 @@ namespace Proyecto_BK.API.Controllers
         }
 
 
-        [HttpDelete("API/[controller]/Delete")]
+        [HttpDelete("API/[controller]/Delete/{Comb_Id}")]
         public IActionResult Delete(int Comb_Id)
         {
             var response = _restauranteServices.EliminarComboPersonal(Comb_Id);
