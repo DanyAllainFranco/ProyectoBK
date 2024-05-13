@@ -49,4 +49,19 @@ export class PromocionServiceService {
     console.log("PRUEBA2: " + AlimIds + " " + PromId)
     return this.http.post<Respuesta>(`${BASE_URL}API/Promocion/AgregarAlimentos`, { AlimIds, PromId});
 }
+
+agregarBebidas(BebiIds: number[], PromId: number): Observable<Respuesta> {
+  console.log("PRUEBA2: " + BebiIds + " " + PromId)
+  return this.http.post<Respuesta>(`${BASE_URL}API/Promocion/AgregarBebidas`, { BebiIds, PromId});
+}
+
+agregarPostres(PostIds: number[], PromId: number): Observable<Respuesta> {
+  console.log("PRUEBA2: " + PostIds + " " + PromId)
+  return this.http.post<Respuesta>(`${BASE_URL}API/Promocion/AgregarPostres`, { PostIds, PromId});
+}
+
+agregarComplementos(CompIds: number[], PromId: number): Observable<Respuesta> {
+  console.log("PRUEBA2: " + CompIds + " " + PromId)
+  return this.http.post<Respuesta>(`${BASE_URL}API/Promocion/AgregarComplementos`, { CompIds, PromId});
+}
 }

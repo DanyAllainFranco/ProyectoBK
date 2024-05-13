@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using Proyecto_BK.BusinessLogic.Services;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Sistema_Votaciones.API
 {
@@ -66,6 +68,12 @@ namespace Sistema_Votaciones.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                  Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads")),
+                RequestPath = "/uploads"
+            });
 
             app.UseAuthorization();
 

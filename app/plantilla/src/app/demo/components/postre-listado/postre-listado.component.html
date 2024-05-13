@@ -1,10 +1,11 @@
+<p-toast></p-toast>
 <div class="grid">
     <div class="col-12">
         <div class="card">
             <h5>Postres</h5>
-            <p-dialog header="{{modalTitle}}" [(visible)]="display" [modal]="true" showEffect="fade"
-                [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}" (onHide)="recargarPagina()">
-                <form [formGroup]="formDepartamento" (ngSubmit)="guardarDepartamento()">
+            <p-dialog header="{{modalTitle}}" [(visible)]="display" (onHide)="recargarPagina()" [modal]="true"
+                showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+                <form [formGroup]="formDepartamento">
                     <div class="p-fluid">
                         <div class="p-formgrid grid">
                             <div class="field col">
@@ -13,7 +14,7 @@
                                     type="text" />
                             </div>
                             <div class="field col">
-                                     <label htmlFor="email2">Precio</label>
+                                <label htmlFor="email2">Precio</label>
                                 <input pInputText formControlName="post_Precio" autocomplete="off" id="email2"
                                     type="text" />
 
@@ -25,33 +26,34 @@
                         <div class="p-formgrid grid">
                             <div class="field col">
                                 <label>Imagen:</label>
-                                <p-fileUpload #fileUpload name="demo[]" [mode]="'basic'" (onSelect)="onImageSelect($event)"
-                                    [multiple]="false" accept="image/*"  [maxFileSize]="1000000" chooseLabel="{{ showFileUpload ? 'Seleccione' : '' }}">
+                                <p-fileUpload #fileUpload name="demo[]" [mode]="'basic'" (onSelect)="onUpload($event)"
+                                    [multiple]="false" accept="image/*" [maxFileSize]="1000000"
+                                    chooseLabel="{{ showFileUpload ? 'Seleccione' : '' }}">
                                 </p-fileUpload>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="justify-content-center ms-5">
                         <!-- Contenedor para centrar la imagen -->
                         <div class="text-center">
                             <p-image *ngIf="selectedImageURL" [src]="selectedImageURL" alt="Imagen seleccionada"
-                            width="250" [preview]="true"></p-image>
+                                width="250" [preview]="true"></p-image>
                         </div>
                     </div>
                 </form>
                 <ng-template pTemplate="footer">
                     <button pButton icon="pi pi-times" (click)="recargarPagina()" label="Cerrar"
                         class="p-button-outlined p-button-danger mr-2"></button>
-                        <button pButton icon="pi pi-check" label="{{modalButtonLabel}}"
-                        class="p-button-outlined" (click)="guardarDepartamento()"></button>
+                    <button pButton icon="pi pi-check" label="{{modalButtonLabel}}" class="p-button-outlined"
+                        (click)="NuevoDepartamento()"></button>
                 </ng-template>
-          
+
             </p-dialog>
             <div class="grid">
                 <div class="col-12">
-                    <button type="reset" (click)="displayNuevoDepartamento()" pButton icon="pi pi-plus-circle" label="Nuevo"
-                    class="mr-2"></button>
+                    <button (click)="displayNuevoDepartamento()" pButton icon="pi pi-plus-circle" label="Nuevo"
+                        class="mr-2"></button>
 
                 </div>
             </div>
@@ -92,6 +94,11 @@
                                     placeholder="Buscar por Precio"></p-columnFilter>
                             </div>
                         </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Imagen
+                            </div>
+                        </th>
                         <!-- <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Imagen
@@ -113,18 +120,22 @@
                         <td>{{post.post_id}}</td>
                         <td>{{post.post_Descripcion}}</td>
                         <td>{{post.post_Precio}}</td>
+
+                        <td>
+                            <img src="https://localhost:44332/uploads/{{post.post_Imagen}}" alt="" width="100">
+                        </td>
                         <!-- <td>
                             <img [src]="post.post_Imagen" alt="Imagen de promoción" style="width: 100px; height: auto;">
                         </td>     -->
                         <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
                             <p-button label="Editar" icon="pi pi-user-edit" size="small"
-                                (click)="Fill(depto.dept_Codigo)" severity="primary" [raised]="true"
+                                (click)="editDepartamento(post)" severity="primary" [raised]="true"
                                 [plain]="true"></p-button>
                             <p-button label="Detalles" icon="pi pi-book" size="small"
                                 (click)="detalles(depto.dept_Codigo)" severity="secondary" [raised]="true"
                                 [plain]="true"></p-button>
                             <p-button label="Eliminar" icon="pi pi-trash" size="small"
-                                (click)="deleteSelectedProducts(depto.dept_Codigo)" severity="danger" [raised]="true"
+                                (click)="confirmarEliminarDepartamento(post)" severity="danger" [raised]="true"
                                 [plain]="true"></p-button>
                         </td>
 
@@ -142,5 +153,14 @@
                 </ng-template>
             </p-table>
         </div>
+        <p-dialog header="Confirmar Eliminación" [(visible)]="confirmacionVisible" modal="true"
+            [style]="{ width: '300px' }">
+            <p>¿Está seguro de que desea eliminar este registro?</p>
+            <p-footer>
+                <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
+                <button pButton type="button" label="Confirmar" class="p-button-danger"
+                    (click)="eliminarDepartamento()"></button>
+            </p-footer>
+        </p-dialog>
     </div>
 </div>

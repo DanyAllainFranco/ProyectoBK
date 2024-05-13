@@ -58,6 +58,7 @@ export class PromocionListadoComponent implements OnInit {
   Nuevo(){
     this.router.navigate(['app/CreatePromocion'])
   }
+  
 }
 
 @NgModule({

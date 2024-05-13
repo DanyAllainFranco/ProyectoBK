@@ -21,6 +21,16 @@ export class ComboPersonalServiceService {
   constructor(private http: HttpClient) { }
   Url = 'https://localhost:44332/API/ComboPersonal/List';
 
+
+  EnviarImagen(file : any): Observable<any>{
+    return this.http.post<ComboPEnviar[]>(BASE_URL + 'API/ComboPersonal/Subir/', file).pipe(
+      map(response => {
+        return response;
+      }),
+    );
+  }
+  
+
   getComboPersonal (){
     return this.http.get<ComboPersonal[]>(this.Url);
   }

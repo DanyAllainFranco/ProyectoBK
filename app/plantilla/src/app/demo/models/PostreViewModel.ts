@@ -16,11 +16,19 @@ export class CargarPostres{
 }
 
 export class Postre2{
-    post_Id: number;
+    post_id: number;
     post_Descripcion: string;
     post_Precio: string;
     post_Imagen: string;
     post_Usua_Creacion: number;
+}
+
+export class PostreActualizar{
+    post_id: number;
+    post_Descripcion: string;
+    post_Precio: string;
+    post_Imagen: string;
+    post_Usua_Modifica: number;
 }
 
 export class dropPostre{

@@ -138,7 +138,7 @@ cargarComplementos() {
 cargarPostres() {
   this.rolService.getPostres(0).subscribe(
     postres => {
-      this.sourcePostres = postres.map(postre => ({ name: postre.post_Descripcion, code: postre.post_Id }));
+      this.sourcePostres = postres.map(postre => ({ name: postre.post_Descripcion, code: postre.post_id }));
     },
     error => {
       console.error('Error al cargar las pantallas:', error);
@@ -175,8 +175,14 @@ guardar() {
       const Prom_Precio = this.form.value.Prom_Precio;
       const Dias_Id = this.form.value.Dias_Id;
       const prom_Imagen = this.prueba;
-      const nuevasPantallas = this.targetCities.map(objeto => objeto.code); // Obtener IDs de las pantallas seleccionadas
-      console.log("alimentos: " + nuevasPantallas)
+      const alimentosAgregados = this.targetCities.map(objeto => objeto.code);
+      const bebidasAgregadas = this.targetBebida.map(bebida => bebida.code);
+      const postresAgregados = this.targetPostre.map(postre => postre.code);
+      const complementosAgregados = this.targetComplemento.map(complemento => complemento.code);
+      console.log("alimentos: " + alimentosAgregados)
+      console.log("bebidas: " + bebidasAgregadas)
+      console.log("postres: " + postresAgregados)
+      console.log("complementos: " + complementosAgregados)
       const nuevoRol: Promociones = {
           prom_Id: 0,
           prom_Descripcion: Prom_Descripcion,
@@ -190,24 +196,59 @@ guardar() {
               if (respuesta.success) {
                   // Guardar el ID del rol creado
                   this.PromId = parseInt(respuesta.message);
-                 console.log("VERIFICANDO: " + nuevasPantallas)
-                  this.rolService.agregarAlimentos(nuevasPantallas, this.PromId).subscribe(
-                      (respuestaPantallas: Respuesta) => {
-                          if (respuestaPantallas.success) {
-     
-                            
+                 console.log("VERIFICANDO: " + alimentosAgregados)
+                  this.rolService.agregarAlimentos(alimentosAgregados, this.PromId).subscribe(
+                      (respuesta: Respuesta) => {
+                          if (respuesta.success) {
+                            console.log("alimentos agregados con exito")
                           } else {
-                              console.error('Error al agregar las pantallas al rol:', respuestaPantallas.message);
+                              console.error('Error al agregar las pantallas al rol:', respuesta.message);
                           }
                       },
                       error => {
                           console.error('Error en la solicitud HTTP:', error);
                       }
                   );
+                  this.rolService.agregarBebidas(bebidasAgregadas, this.PromId).subscribe(
+                    (respuesta: Respuesta) => {
+                        if (respuesta.success) {
+                          console.log("Bebidas agregadas con exito")
+                        } else {
+                            console.error('Error al agregar las pantallas al rol:', respuesta.message);
+                        }
+                    },
+                    error => {
+                        console.error('Error en la solicitud HTTP:', error);
+                    }
+                );
+                this.rolService.agregarPostres(postresAgregados, this.PromId).subscribe(
+                  (respuesta: Respuesta) => {
+                      if (respuesta.success) {
+                        console.log("postres agregadas con exito")
+                      } else {
+                          console.error('Error al agregar las pantallas al rol:', respuesta.message);
+                      }
+                  },
+                  error => {
+                      console.error('Error en la solicitud HTTP:', error);
+                  }
+              );
+              this.rolService.agregarComplementos(complementosAgregados, this.PromId).subscribe(
+                (respuesta: Respuesta) => {
+                    if (respuesta.success) {
+                      console.log("Complementos agregadas con exito")
+                    } else {
+                        console.error('Error al agregar las pantallas al rol:', respuesta.message);
+                    }
+                },
+                error => {
+                    console.error('Error en la solicitud HTTP:', error);
+                }
+            );
                   
                   this.rolService.successMessage = '¡Promocion registrada correctamente!';
               this.router.navigate(['app/IndexPromocion']);
-                  // Resto de la lógica de éxito (como mostrar mensajes, redireccionar, etc.)
+              
               } else {
                   console.error('Error al crear el rol:', respuesta.message);
               }

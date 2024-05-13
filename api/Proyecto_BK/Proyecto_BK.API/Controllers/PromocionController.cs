@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Dapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
@@ -12,6 +13,7 @@ using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -114,9 +116,48 @@ namespace Proyecto_BK.API.Controllers
             return Ok(response);
         }
 
+        //[HttpPost("Subir")]
+        //public async Task<IActionResult> UploadImage(IFormFile file)
+        //{
+
+        //    var allowedExtensions = new HashSet<string> { ".png", ".jpeg", ".svg", ".jpg", ".gif" };
+        //    var fileExtension = Path.GetExtension(file.FileName).ToLower();
+        //    if (!allowedExtensions.Contains(fileExtension))
+        //    {
+        //        return Ok(new { message = "Error", detail = "Extensión de archivo no permitida." });
+        //    }
+
+
+        //    var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+
+
+        //    if (!Directory.Exists(uploadsFolderPath))
+        //    {
+        //        Directory.CreateDirectory(uploadsFolderPath);
+        //    }
+        //    var filePath = Path.Combine(uploadsFolderPath, file.FileName);
+
+        //    try
+        //    {
+
+        //        using (var stream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            await file.CopyToAsync(stream);
+        //        }
+
+        //        return Ok(new { message = "Exito" });
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        return StatusCode(500, $"General error: {e.ToString()}");
+        //    }
+        //}
+
+
         #region Alimentos
 
-            [HttpPost("API/[controller]/AgregarAlimentos")]
+        [HttpPost("API/[controller]/AgregarAlimentos")]
             public IActionResult AgregarAlim([FromBody] AgregarAlimentosViewModel request)
             {
                 var result = _restauranteServices.InsertarAlimentos(request.AlimIds, request.PromId);

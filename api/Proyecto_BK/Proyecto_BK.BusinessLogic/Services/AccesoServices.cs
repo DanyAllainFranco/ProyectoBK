@@ -536,7 +536,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                     var lost = _rolRepository.InsertarPor(Pant_Id, Rol_Id, usuaModifica);
                     if (lost.CodeStatus > 0)
                     {
-                        // Realizar algún tipo de lógica si es necesario
+                       
                     }
                     else
                     {

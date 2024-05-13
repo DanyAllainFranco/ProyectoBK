@@ -156,6 +156,7 @@ editarRol(rolId: number) {
   Nuevo(){
     this.router.navigate(['app/CreateRol'])
   }
+  
 getRoles() {
   this.service.getRol().subscribe(
     (data: any) => {

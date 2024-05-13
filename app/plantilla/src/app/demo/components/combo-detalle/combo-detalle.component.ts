@@ -61,6 +61,7 @@ export class ComboDetalleComponent implements OnInit{
   complementos: SelectItem[] = [];
   Imagen: string;
   staticData = [{}];
+  selectedImageURL: string | null = null;
   constructor(
     private route: ActivatedRoute,
     private rolService: ComboPersonalServiceService,
@@ -144,6 +145,7 @@ obtenerRol(id: number) {
       this.EditarCombo = data;
 
       this.Imagen = this.EditarCombo.comb_Imagen;
+      this.selectedImageURL = "https://localhost:44332/uploads/" + this.Imagen;
       
       this.cargarPostres();
       this.cargarAlimentos();

@@ -1352,7 +1352,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                         var lost = _promocionRepository.InsertarAlimentos(Alim_Id, Prom_Id);
                         if (lost.CodeStatus > 0)
                         {
-                            return result.Ok(lost);
+                            //return result.Ok(lost);
                         }
                         else
                         {
@@ -1445,7 +1445,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                     var lost = _promocionRepository.InsertarBebidas(Alim_Id, Prom_Id);
                     if (lost.CodeStatus > 0)
                     {
-                        return result.Ok(lost);
+                        //return result.Ok(lost);
                     }
                     else
                     {
@@ -1532,7 +1532,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                     var lost = _promocionRepository.InsertarPostres(Alim_Id, Prom_Id);
                     if (lost.CodeStatus > 0)
                     {
-                        return result.Ok(lost);
+                        //return result.Ok(lost);
                     }
                     else
                     {
@@ -1619,7 +1619,7 @@ namespace Proyecto_BK.BusinessLogic.Services
                     var lost = _promocionRepository.InsertarComplemento(Alim_Id, Prom_Id);
                     if (lost.CodeStatus > 0)
                     {
-                        return result.Ok(lost);
+                        //return result.Ok(lost);
                     }
                     else
                     {

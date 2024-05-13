@@ -71,6 +71,11 @@
                                     placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
                         </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Imagen
+                            </div>
+                        </th>
                         <th style="text-align: center; min-width: 12rem">
 
                             Acciones
@@ -84,19 +89,24 @@
                         <td>{{comb.comb_Id}}</td>
                         <td>{{comb.comb_Descripcion}}</td>
                         <td>{{comb.comb_Precio}}</td>
-                       
+
                         <td>{{comb.bebi_Descripcion}}</td>
                         <td>{{comb.post_Descripcion}}</td>
                         <td>{{comb.comp_Descripcion}}</td>
                         <td>{{comb.alim_Descripcion}}</td>
+
+                        <td>
+                            <img src="https://localhost:44332/uploads/{{comb.comb_Imagen}}" alt="" width="100">
+                        </td>
                         <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
-                            <p-button label="Editar" icon="pi pi-user-edit" size="small" (click)="editarCombo(comb.comb_Id)"
-                            severity="primary" [raised]="true" [plain]="true"></p-button>
+                            <p-button label="Editar" icon="pi pi-user-edit" size="small"
+                                (click)="editarCombo(comb.comb_Id)" severity="primary" [raised]="true"
+                                [plain]="true"></p-button>
                             <p-button label="Detalles" icon="pi pi-book" size="small"
-                            (click)="detalleCombo(comb.comb_Id)" severity="secondary" [raised]="true"
+                                (click)="detalleCombo(comb.comb_Id)" severity="secondary" [raised]="true"
                                 [plain]="true"></p-button>
                             <p-button label="Eliminar" icon="pi pi-trash" size="small"
-                            (click)="confirmarEliminarDepartamento(comb)" severity="danger" [raised]="true"
+                                (click)="confirmarEliminarDepartamento(comb)" severity="danger" [raised]="true"
                                 [plain]="true"></p-button>
 
                         </td>
@@ -114,12 +124,14 @@
                 </ng-template>
             </p-table>
         </div>
-        <p-dialog header="Confirmar Eliminación" [(visible)]="confirmacionVisible" modal="true" [style]="{ width: '300px' }">
+        <p-dialog header="Confirmar Eliminación" [(visible)]="confirmacionVisible" modal="true"
+            [style]="{ width: '300px' }">
             <p>¿Está seguro de que desea eliminar este registro?</p>
             <p-footer>
-              <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
-              <button pButton type="button" label="Confirmar" class="p-button-danger" (click)="eliminarDepartamento()"></button>
+                <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
+                <button pButton type="button" label="Confirmar" class="p-button-danger"
+                    (click)="eliminarDepartamento()"></button>
             </p-footer>
-          </p-dialog>
+        </p-dialog>
     </div>
 </div>

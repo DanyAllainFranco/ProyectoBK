@@ -59,6 +59,7 @@ export class ComboEditarComponent implements OnInit{
   alimentos: SelectItem[] = [];
   bebidas: SelectItem[] = [];
   complementos: SelectItem[] = [];
+  selectedImageURL: string | null = null;
   Imagen: string;
   constructor(
     private route: ActivatedRoute,
@@ -133,7 +134,31 @@ export class ComboEditarComponent implements OnInit{
     );
   }
 
-
+  onUpload(event) {
+    const file: File = event.files[0];
+    this.selectedImageURL = URL.createObjectURL(file);
+    if (file) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      const uniqueFileName = uniqueSuffix + '-' + file.name;
+      this.Imagen = uniqueFileName;
+      const formData: FormData = new FormData();
+  
+      formData.append('file', file, uniqueFileName);
+      this.rolService.EnviarImagen(formData).subscribe(
+        response => {
+          console.log('Upload successful', response);
+          if (response.message === "Exito") {
+            // this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Imagen Subida', life: 3000 });
+          } else {
+            this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Suba una imagen', life: 3000 });
+          }
+        },
+        error => {
+          console.error('Error uploading image', error);
+        }
+      );
+    }
+  }
 
 
   obtenerRol(id: number) {
@@ -142,7 +167,9 @@ export class ComboEditarComponent implements OnInit{
         this.EditarCombo = data;
 
         this.Imagen = this.EditarCombo.comb_Imagen;
-        
+        this.selectedImageURL = "https://localhost:44332/uploads/" + this.Imagen;
+
+        console.log("Esta es la imagen: " + this.Imagen)
         this.cargarPostres();
         this.cargarAlimentos();
         this.cargarBebidas();

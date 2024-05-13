@@ -14,7 +14,7 @@ export class Bebida {
     bebi_Descripcion?: string;
 }
 export class Postre {
-    post_Id?: number;
+    post_id?: number;
     post_Descripcion?: string;
 }
 export class Complemento {

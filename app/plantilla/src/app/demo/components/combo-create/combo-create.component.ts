@@ -90,15 +90,41 @@
     this.cargarComplementos();
   }
 
-  onImageSelect(event: any) {
+   onImageSelect(event: any) {
 
-    const selectedFile: File = event.files[0];
-    this.selectedImageURL = URL.createObjectURL(selectedFile);
+   const selectedFile: File = event.files[0];
+   this.selectedImageURL = URL.createObjectURL(selectedFile);
     this.imageSelected = true;
     this.showFileUpload = true;
 
-    this.prueba = selectedFile.name;
-    console.log("Imagen: " + this.prueba)
+   this.prueba = selectedFile.name;
+     console.log("Imagen: " + this.prueba)
+   }
+
+  onUpload(event) {
+    const file: File = event.files[0];
+    this.selectedImageURL = URL.createObjectURL(file);
+    if (file) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      const uniqueFileName = uniqueSuffix + '-' + file.name;
+      this.prueba = uniqueFileName;
+      const formData: FormData = new FormData();
+  
+      formData.append('file', file, uniqueFileName);
+      this.rolService.EnviarImagen(formData).subscribe(
+        response => {
+          console.log('Upload successful', response);
+          if (response.message === "Exito") {
+            // this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Imagen Subida', life: 3000 });
+          } else {
+            this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Suba una imagen', life: 3000 });
+          }
+        },
+        error => {
+          console.error('Error uploading image', error);
+        }
+      );
+    }
   }
 
 
