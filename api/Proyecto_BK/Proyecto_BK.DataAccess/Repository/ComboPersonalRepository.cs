@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Proyecto_BK.Entities;
-using Proyecto_BK.Entities.Entities;
+//using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -201,7 +201,7 @@ namespace Proyecto_BK.DataAccess.Repository
         }
 
         
-        public RequestStatus Update(tbCombosPersonales item)
+        public RequestStatus Update(tbCombo item)
         {
             string sql = ScriptsBaseDeDatos.Comb_Editar;
 
@@ -230,6 +230,5 @@ namespace Proyecto_BK.DataAccess.Repository
         {
             throw new NotImplementedException();
         }
-    
     }
 }

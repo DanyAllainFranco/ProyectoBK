@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ACER\\.nuget\\packages\\": {}
+    "C:\\Users\\LAB1\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
+      "projectUniqueName": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
       "projectName": "Proyecto_BK.Entities",
-      "projectPath": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
-      "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\obj\\",
+      "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
+      "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

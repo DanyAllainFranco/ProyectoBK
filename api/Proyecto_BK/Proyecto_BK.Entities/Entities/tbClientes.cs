@@ -37,6 +37,6 @@ namespace Proyecto_BK.Entities.Entities
 
         public virtual ICollection<tbFactura> tbFactura { get; set; }
 
-        public virtual ICollection<tbFactura> tbFactura { get; set; }
+        //public virtual ICollection<tbFactura> tbFactura { get; set; }
     }
 }

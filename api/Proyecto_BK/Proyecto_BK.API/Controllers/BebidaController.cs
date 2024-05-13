@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
-using Proyecto_BK.Entities.Entities;
+//using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +35,16 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult AutoCompletado()
         {
             var list = _restauranteServices.BebidasAutocompletado();
+            var drop = list.Data as List<tbBebidas>;
+            var rol = drop.Select(x => new SelectListItem
+            {
+                Text = x.Bebi_Descripcion,
+                Value = x.Bebi_Id.ToString()
+            }).ToList();
+
+            return Ok(rol.ToList());
+        }
+         
         [HttpGet("API/[controller]/DropDown")]
         public IActionResult ListBebidaDrop()
         {

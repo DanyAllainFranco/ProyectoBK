@@ -7466,19 +7466,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ACER\\.nuget\\packages\\": {}
+    "C:\\Users\\LAB1\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.API\\Proyecto_BK.API.csproj",
+      "projectUniqueName": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.API\\Proyecto_BK.API.csproj",
       "projectName": "Proyecto_BK.API",
-      "projectPath": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.API\\Proyecto_BK.API.csproj",
-      "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.API\\obj\\",
+      "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.API\\Proyecto_BK.API.csproj",
+      "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7492,11 +7492,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj": {
-              "projectPath": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj"
+            "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj": {
+              "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj"
             },
-            "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj": {
-              "projectPath": "C:\\Users\\ACER\\OneDrive\\Escritorio\\proyect_bk\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj"
+            "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj": {
+              "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj"
             }
           }
         }
