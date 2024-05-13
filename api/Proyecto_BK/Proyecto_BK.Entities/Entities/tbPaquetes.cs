@@ -4,13 +4,12 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Proyecto_BK.Entities
+namespace Proyecto_BK.Entities.Entities
 {
     public partial class tbPaquetes
     {
         public tbPaquetes()
         {
-            tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
             tbPaquetesPorComidas = new HashSet<tbPaquetesPorComidas>();
         }
 
@@ -26,7 +25,6 @@ namespace Proyecto_BK.Entities
 
         public virtual tbUsuarios Paqe_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Paqe_Usua_ModificaNavigation { get; set; }
-        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
         public virtual ICollection<tbPaquetesPorComidas> tbPaquetesPorComidas { get; set; }
     }
 }

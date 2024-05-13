@@ -1,11 +1,19 @@
 ﻿using AutoMapper;
+using Dapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
+using Proyecto_BK.DataAccess;
+using Proyecto_BK.DataAccess.Repository;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,6 +35,13 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult List()
         {
             var list = _restauranteServices.ListPromocion();
+            return Ok(list.Data);
+        }
+
+        [HttpGet("API/[controller]/ListDias")]
+        public IActionResult ListDia()
+        {
+            var list = _restauranteServices.ListDias();
             return Ok(list.Data);
         }
 
@@ -63,13 +78,14 @@ namespace Proyecto_BK.API.Controllers
                 Prom_Descripcion = item.Prom_Descripcion,
                 Prom_Precio = item.Prom_Precio,
                 Prom_Imagen = item.Prom_Imagen,
-                Prom_Dia = item.Prom_Dia,
+                Dias_Id = item.Dias_Id,
                 Prom_Usua_Creacion = 1,
                 Prom_Fecha_Creacion = DateTime.Now
             };
-            var list = _restauranteServices.CrearPromocion(modelo);
-
-            return Ok(new { success = true, message = list.Message });
+            int rolId;
+            var prueba = _restauranteServices.InsertarPromo(modelo, out rolId);
+            prueba.Message = rolId.ToString();
+            return Ok(prueba);
         }
 
         [HttpPut("API/[controller]/Update")]
@@ -83,7 +99,7 @@ namespace Proyecto_BK.API.Controllers
                     Prom_Descripcion = item.Prom_Descripcion,
                     Prom_Precio = item.Prom_Precio,
                     Prom_Imagen = item.Prom_Imagen,
-                    Prom_Dia = item.Prom_Dia,
+                    Dias_Id = item.Dias_Id,
                     Prom_Usua_Modifica = 1,
                     Prom_Fecha_Modifica = DateTime.Now
                 };
@@ -99,5 +115,212 @@ namespace Proyecto_BK.API.Controllers
             var response = _restauranteServices.EliminarPromocion(Prom_Id);
             return Ok(response);
         }
+
+        //[HttpPost("Subir")]
+        //public async Task<IActionResult> UploadImage(IFormFile file)
+        //{
+
+        //    var allowedExtensions = new HashSet<string> { ".png", ".jpeg", ".svg", ".jpg", ".gif" };
+        //    var fileExtension = Path.GetExtension(file.FileName).ToLower();
+        //    if (!allowedExtensions.Contains(fileExtension))
+        //    {
+        //        return Ok(new { message = "Error", detail = "Extensión de archivo no permitida." });
+        //    }
+
+
+        //    var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+
+
+        //    if (!Directory.Exists(uploadsFolderPath))
+        //    {
+        //        Directory.CreateDirectory(uploadsFolderPath);
+        //    }
+        //    var filePath = Path.Combine(uploadsFolderPath, file.FileName);
+
+        //    try
+        //    {
+
+        //        using (var stream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            await file.CopyToAsync(stream);
+        //        }
+
+        //        return Ok(new { message = "Exito" });
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        return StatusCode(500, $"General error: {e.ToString()}");
+        //    }
+        //}
+
+
+        #region Alimentos
+
+        [HttpPost("API/[controller]/AgregarAlimentos")]
+            public IActionResult AgregarAlim([FromBody] AgregarAlimentosViewModel request)
+            {
+                var result = _restauranteServices.InsertarAlimentos(request.AlimIds, request.PromId);
+                return Ok(result);
+            }
+
+
+        [HttpDelete("API/[controller]/EliminarAlimentos/{Prom_Id}")]
+        public IActionResult EliminarAlime(int Prom_Id)
+        {
+            var response = _restauranteServices.EliminarAlimentos(Prom_Id);
+
+            return Ok(response);
+
+        }
+
+        [HttpGet("API/[controller]/ListAlimentos/{PromId}")]
+        public IActionResult ListAlimen(int PromId)
+        {
+            var list = _restauranteServices.ListAlimentos(PromId);
+            return Ok(list.Data);
+        }
+
+
+        [HttpGet("API/[controller]/AlimentosAgregados/{PromId}")]
+        public IActionResult AlimentAgregadas(int PromId)
+        {
+            var listado = _restauranteServices.ListaAlimentosAgregados(PromId);
+            if (listado.Success == true)
+            {
+                return Ok(listado.Data);
+            }
+            else
+            {
+                return Problem();
+            }
+        }
+        #endregion
+
+        #region Bebidas
+
+        [HttpPost("API/[controller]/AgregarBebidas")]
+        public IActionResult AgregarBebi([FromBody] AgregarBebidaViewModel request)
+        {
+            var result = _restauranteServices.InsertarBebidas(request.BebiIds, request.PromId);
+            return Ok(result);
+        }
+
+
+        [HttpDelete("API/[controller]/EliminarBebidas/{Prom_Id}")]
+        public IActionResult EliminarBebi(int Prom_Id)
+        {
+            var response = _restauranteServices.EliminarBebidas(Prom_Id);
+
+            return Ok(response);
+
+        }
+
+        [HttpGet("API/[controller]/ListBebidas/{PromId}")]
+        public IActionResult ListBebi(int PromId)
+        {
+            var list = _restauranteServices.ListBebidas(PromId);
+            return Ok(list.Data);
+        }
+
+
+        [HttpGet("API/[controller]/BebidasAgregadas/{PromId}")]
+        public IActionResult BebiAgregadas(int PromId)
+        {
+            var listado = _restauranteServices.ListaBebidasAgregados(PromId);
+            if (listado.Success == true)
+            {
+                return Ok(listado.Data);
+            }
+            else
+            {
+                return Problem();
+            }
+        }
+        #endregion
+
+        #region Postres
+
+        [HttpPost("API/[controller]/AgregarPostres")]
+        public IActionResult AgregarPost([FromBody] AgregarPostreViewModel request)
+        {
+            var result = _restauranteServices.InsertarPostres(request.PostIds, request.PromId);
+            return Ok(result);
+        }
+
+
+        [HttpDelete("API/[controller]/EliminarPostres/{Prom_Id}")]
+        public IActionResult EliminarPost(int Prom_Id)
+        {
+            var response = _restauranteServices.EliminarPostres(Prom_Id);
+
+            return Ok(response);
+
+        }
+
+        [HttpGet("API/[controller]/ListPostres/{PromId}")]
+        public IActionResult ListPost(int PromId)
+        {
+            var list = _restauranteServices.ListPostres(PromId);
+            return Ok(list.Data);
+        }
+
+
+        [HttpGet("API/[controller]/PostresAgregados/{PromId}")]
+        public IActionResult PostAgregadas(int PromId)
+        {
+            var listado = _restauranteServices.ListaPostresAgregados(PromId);
+            if (listado.Success == true)
+            {
+                return Ok(listado.Data);
+            }
+            else
+            {
+                return Problem();
+            }
+        }
+        #endregion
+
+        #region Complementos
+
+        [HttpPost("API/[controller]/AgregarComplementos")]
+        public IActionResult AgregarComple([FromBody] AgregarComplementoViewModel request)
+        {
+            var result = _restauranteServices.InsertarComplementos(request.CompIds, request.PromId);
+            return Ok(result);
+        }
+
+
+        [HttpDelete("API/[controller]/EliminarComplementos/{Prom_Id}")]
+        public IActionResult EliminarComp(int Prom_Id)
+        {
+            var response = _restauranteServices.EliminarComplementos(Prom_Id);
+
+            return Ok(response);
+
+        }
+
+        [HttpGet("API/[controller]/ListComplementos/{PromId}")]
+        public IActionResult ListComple(int PromId)
+        {
+            var list = _restauranteServices.ListComplementos(PromId);
+            return Ok(list.Data);
+        }
+
+
+        [HttpGet("API/[controller]/ComplementosAgregados/{PromId}")]
+        public IActionResult ComplAgregadas(int PromId)
+        {
+            var listado = _restauranteServices.ListaComplementosAgregados(PromId);
+            if (listado.Success == true)
+            {
+                return Ok(listado.Data);
+            }
+            else
+            {
+                return Problem();
+            }
+        }
+        #endregion
     }
 }

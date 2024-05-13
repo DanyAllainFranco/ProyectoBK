@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -100,7 +101,7 @@ namespace Proyecto_BK.DataAccess.Repository
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Muni_Codigo", id);
+                parameter.Add("Muni_Id", id);
                 result = db.QueryFirst<tbMunicipios>(ScriptsBaseDeDatos.Muni_Llenar, parameter, commandType: CommandType.StoredProcedure);
                 return result;
             }

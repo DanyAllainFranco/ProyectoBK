@@ -5,9 +5,9 @@
    "DefaultDacpacSchema": null,
    "FilterSchemas": false,
    "IncludeConnectionString": false,
-   "ModelNamespace": null,
+   "ModelNamespace": "Entities",
    "OutputContextPath": null,
-   "OutputPath": null,
+   "OutputPath": "Entities",
    "ProjectRootNamespace": "Proyecto_BK.Entities",
    "Schemas": null,
    "SelectedHandlebarsLanguage": 0,
@@ -42,6 +42,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[Gral].[tbDias]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[Gral].[tbEmpleados]",
          "ObjectType": 0
       },
@@ -62,7 +66,7 @@
          "ObjectType": 0
       },
       {
-         "Name": "[Rest].[tbCombosPersonales]",
+         "Name": "[Rest].[tbCombo]",
          "ObjectType": 0
       },
       {
@@ -94,7 +98,23 @@
          "ObjectType": 0
       },
       {
+         "Name": "[Rest].[tbPromocionesPorAlimentos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbPromocionesPorBebidas]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[Rest].[tbPromocionesPorComidas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbPromocionesPorComplementos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Rest].[tbPromocionesPorPostres]",
          "ObjectType": 0
       },
       {

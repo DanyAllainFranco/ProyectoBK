@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +21,15 @@ namespace Proyecto_BK.Common.Models
         public DateTime? PrSe_Fecha_Modifica { get; set; }
         public bool? PrSe_Estado { get; set; }
 
+        [NotMapped]
         public string Bebi_Descripcion { get; set; }
+        [NotMapped]
         public string Post_Descripcion { get; set; }
+        [NotMapped]
         public string Comp_Descripcion { get; set; }
+        [NotMapped]
         public string Alim_Descripcion { get; set; }
+        [NotMapped]
         public string Prom_Descripcion { get; set; }
     }
 }

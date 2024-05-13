@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Proyecto_BK.Entities
+namespace Proyecto_BK.Entities.Entities
 {
     public partial class tbAlimentos
     {
         public tbAlimentos()
         {
-            tbCombosPersonales = new HashSet<tbCombosPersonales>();
-            tbFacturaDetalle = new HashSet<tbFacturaDetalle>();
+            tbCombo = new HashSet<tbCombo>();
             tbPaquetesPorComidas = new HashSet<tbPaquetesPorComidas>();
+            tbPromocionesPorAlimentos = new HashSet<tbPromocionesPorAlimentos>();
             tbPromocionesPorComidas = new HashSet<tbPromocionesPorComidas>();
         }
 
@@ -28,9 +28,9 @@ namespace Proyecto_BK.Entities
 
         public virtual tbUsuarios Alim_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Alim_Usua_ModificaNavigation { get; set; }
-        public virtual ICollection<tbCombosPersonales> tbCombosPersonales { get; set; }
-        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
+        public virtual ICollection<tbCombo> tbCombo { get; set; }
         public virtual ICollection<tbPaquetesPorComidas> tbPaquetesPorComidas { get; set; }
+        public virtual ICollection<tbPromocionesPorAlimentos> tbPromocionesPorAlimentos { get; set; }
         public virtual ICollection<tbPromocionesPorComidas> tbPromocionesPorComidas { get; set; }
     }
 }

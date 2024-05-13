@@ -71,11 +71,11 @@ namespace Proyecto_BK.DataAccess.Repository
         #endregion
 
         #region CombosPersonales
-        public static string Comb_Listar = "[Rest].SP_CombosPersonales_Mostrar";
-        public static string Comb_Llenar = "[Rest].SP_CombosPersonales_Llenar";
-        public static string Comb_Insertar = "[Rest].SP_CombosPersonales_Insertar";
-        public static string Comb_Editar = "[Rest].SP_CombosPersonales_Editar";
-        public static string Comb_Eliminar = "[Rest].SP_CombosPersonales_Eliminar";
+        public static string Comb_Listar = "[Rest].SP_Combos_Mostrar";
+        public static string Comb_Llenar = "[Rest].SP_Combos_Llenar";
+        public static string Comb_Insertar = "[Rest].SP_Combos_Insertar";
+        public static string Comb_Editar = "[Rest].SP_Combos_Editar";
+        public static string Comb_Eliminar = "[Rest].SP_Combos_Eliminar";
         #endregion
 
         #region Complementos
@@ -119,11 +119,37 @@ namespace Proyecto_BK.DataAccess.Repository
         #endregion
 
         #region Promociones por Comidas
+
+        public static string Dias_Mostrar = "[Gral].SP_Dias_Mostrar";
         public static string PrSe_Listar = "[Rest].SP_PromocionesPorComidas_Mostrar";
         public static string PrSe_Llenar = "[Rest].SP_PromocionesPorComidas_Llenar";
         public static string PrSe_Insertar = "[Rest].SP_PromocionesPorComidas_Insertar";
         public static string PrSe_Editar = "[Rest].SP_PromocionesPorComidas_Editar";
         public static string PrSe_Eliminar = "[Rest].SP_PromocionesPorComidas_Eliminar";
+
+        public static string Bebi_Mostrar2 = "[Rest].SP_Bebidas_Mostrar2";
+        public static string Post_Mostrar2 = "[Rest].SP_Postres_Mostrar2";
+        public static string Comp_Mostrar2 = "[Rest].SP_Complementos_Mostrar2";
+        public static string Alim_Mostrar2 = "[Rest].SP_Alimentos_Mostrar2";
+
+        public static string Pali_Mostrar = "[Rest].SP_PromocionesPorAlimentos_Mostrar";
+        public static string Pali_Insertar = "[Rest].SP_PromocionesPorAlimentos_Insertar";
+        public static string Pali_Eliminar = "[Rest].SP_PromocionesPorAlimentos_Eliminar";
+
+
+        public static string Pbeb_Mostrar = "[Rest].SP_PromocionesPorBebidas_Mostrar";
+        public static string Pbeb_Insertar = "[Rest].SP_PromocionesPorBebidas_Insertar";
+        public static string Pbeb_Eliminar = "[Rest].SP_PromocionesPorBebidas_Eliminar";
+
+        public static string Ppos_Mostrar = "[Rest].SP_PromocionesPorPostres_Mostrar";
+        public static string Ppos_Insertar = "[Rest].SP_PromocionesPorPostres_Insertar";
+        public static string Ppos_Eliminar = "[Rest].SP_PromocionesPorPostres_Eliminar";
+
+        public static string Pcom_Mostrar = "[Rest].SP_PromocionesPorComplementos_Mostrar";
+        public static string Pcom_Insertar = "[Rest].SP_PromocionesPorComplementos_Insertar";
+        public static string Pcom_Eliminar = "[Rest].SP_PromocionesPorComplementos_Eliminar";
+
+
         #endregion
 
         #region Promociones por Sucursales
@@ -152,6 +178,7 @@ namespace Proyecto_BK.DataAccess.Repository
 
         #region Pantallas
         public static string Pant_Listar = "[Acce].SP_Pantallas_Mostrar";
+        public static string Pant_Listar2 = "[Acce].SP_Pantallas_Mostrar2";
         public static string Pant_Llenar = "[Acce].SP_Pantallas_Llenar";
         public static string Pant_Insertar = "[Acce].SP_Pantallas_Insertar";
         public static string Pant_Editar = "[Acce].SP_Pantallas_Editar";
@@ -190,6 +217,10 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Grafi_Paquetes = "Rest.SP_ObtenerPaqueteMasPedidoPorUsuario";
         public static string Grafi_Alimento = "Rest.SP_ObtenerAlimentoMasPedidoPorUsuario";
         public static string Grafi_Postre = "Rest.SP_ObtenerPostreMasPedidoPorUsuario";
+        public static string Grafi_AlimentoFiltro = "[Rest].[SP_ObtenerAlimentoMasPedidoPorUsuarioFiltro]";
+        public static string Grafi_PostreFiltro = "[Rest].[SP_ObtenerPostreMasPedidoPorUsuarioFiltro]";
+        public static string Grafi_PaquetesFiltro = "[Rest].[SP_ObtenerPaqueteMasPedidoPorUsuarioFiltro]";
+        public static string Grafi_CombosFiltro = "[Rest].[SP_ObtenerComboMasPedidoPorUsuarioFiltro]";
         #endregion
 
     }
