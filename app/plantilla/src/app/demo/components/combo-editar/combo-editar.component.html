@@ -1,0 +1,85 @@
+<div class="grid">
+    <div class="col-12">
+        <p-toast></p-toast>
+        <div class="card">
+
+            <div class=" grid">
+                <form [formGroup]="form" class="grid col-12 p-fluid p-formgrid">
+
+                    <div class="field col-12 md:col-6">
+                        <label>Nombre:</label>
+                        <input type="text" class="p-inputtext" formControlName="nombreRol">
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Precio:</label>
+                        <input type="text" class="p-inputtext" formControlName="Comb_Precio">
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Alimento</label>
+                        <p-dropdown [options]="alimentos" formControlName="Alim_Id" placeholder="Seleccione"
+                            [showClear]="false"></p-dropdown>
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Bebida</label>
+                        <p-dropdown [options]="bebidas" formControlName="Bebi_Id" placeholder="Seleccione"
+                            [showClear]="false"></p-dropdown>
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Postre</label>
+                        <p-dropdown formControlName="postre" [options]="postres" placeholder="Seleccione"
+                            [showClear]="false"></p-dropdown>
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Complemento</label>
+                        <p-dropdown [options]="complementos" formControlName="Comp_Id" placeholder="Seleccione"
+                            [showClear]="false"></p-dropdown>
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Imagen</label>
+                        <p-fileUpload #fileUpload name="demo[]" [mode]="'basic'" (onSelect)="onUpload($event)"
+                            [multiple]="false" accept="image/*" [maxFileSize]="1000000" chooseLabel="Seleccione">
+                        </p-fileUpload>
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+                </form>
+            </div>
+            <div class="justify-content-center ms-5">
+
+                <div class="text-center">
+                    <p-image *ngIf="selectedImageURL" [src]="selectedImageURL" alt="Imagen seleccionada" width="250"
+                        [preview]="true"></p-image>
+
+                </div>
+            </div>
+            <div class="grid p-justify-end">
+                <div class="col">
+                    <button pButton pRipple type="button" label="Volver" icon="pi pi-times"
+                        class="p-button-rounded p-button-secondary mt-4" (click)="Volver()"></button>
+
+                    <button pButton pRipple type="button" label="Guardar" icon="pi pi-check"
+                        class="p-button-rounded ms-6" (click)="guardar()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
