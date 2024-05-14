@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -64,7 +64,7 @@ namespace Proyecto_BK.API.Controllers
         }
 
         [HttpGet("API/[controller]/Fill/{id}")]
-        public IActionResult Fill(string id)
+        public IActionResult Fill(int id)
         {
             var list = _restauranteServices.LlenarPostre(id);
             return Json(list.Data);

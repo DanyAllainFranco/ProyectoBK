@@ -116,6 +116,6 @@ namespace Proyecto_BK.Entities.Entities
         public virtual ICollection<tbRoles> tbRolesRol_Usua_ModificaNavigation { get; set; }
         public virtual ICollection<tbSucursales> tbSucursalesSucu_Usua_CreacionNavigation { get; set; }
         public virtual ICollection<tbSucursales> tbSucursalesSucu_Usua_ModificaNavigation { get; set; }
-        public virtual ICollection<tbFactura> tbFactura { get; set; }
+        //public virtual ICollection<tbFactura> tbFactura { get; set; }
     }
 }

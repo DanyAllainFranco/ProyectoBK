@@ -3,6 +3,8 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Proyecto_BK.Entities;
+using Proyecto_BK.Entities.Entities;
+using tbFacturaDetalle = Proyecto_BK.Entities.Entities.tbFacturaDetalle;
 
 #nullable disable
 
@@ -640,9 +642,6 @@ namespace Proyecto_BK.DataAccess
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Prom_Dia)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.Prom_Estado).HasDefaultValueSql("((1))");
 
