@@ -1,7 +1,7 @@
 ﻿using Proyecto_BK.Common.Models;
 using Proyecto_BK.DataAccess.Repository;
+//using Proyecto_BK.Entities.Entities;
 using Proyecto_BK.Entities;
-using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,26 +60,26 @@ namespace Proyecto_BK.BusinessLogic.Services
         #region Factura
 
 
-        public ServiceResult ElimnarFacturaDetalle(string Fact_Id, string prod_nombre, int dif)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _facturaRepository.Delete(Fact_Id, prod_nombre, dif);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok($"La accion ha sido existosa", list);
-                }
-                else
-                {
-                    return result.Error("No se pudo realizar la accion");
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex);
-            }
-        }
+        //public ServiceResult ElimnarFacturaDetalle(string Fact_Id, string prod_nombre, int dif)
+        //{
+        //    var result = new ServiceResult();
+        //    try
+        //    {
+        //        var list = _facturaRepository.Delete(Fact_Id, prod_nombre, dif);
+        //        if (list.CodeStatus > 0)
+        //        {
+        //            return result.Ok($"La accion ha sido existosa", list);
+        //        }
+        //        else
+        //        {
+        //            return result.Error("No se pudo realizar la accion");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return result.Error(ex);
+        //    }
+        //}
 
         public ServiceResult ListadoFacturaDetalles(int Fact_Id)
         {
@@ -675,7 +675,7 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var list = _complementoRepository.Fill(id);
+                var list = _complementoRepository.Fill(Comp_Id.ToString());
 
                 return result.Ok(list);
             }
@@ -1003,7 +1003,7 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var list = _postreRepository.Fill(id);
+                var list = _postreRepository.Fill(Post_id.ToString());
 
                 return result.Ok(list);
             }

@@ -22,13 +22,12 @@ namespace Proyecto_BK.Entities
         public int? Fact_Usua_Creacion { get; set; }
         public DateTime? Fact_Fecha_Creacion { get; set; }
         public bool? Fact_Estado { get; set; }
-        public int? Clie_Id { get; set; }
+        public string Clie_Identidad { get; set; }
+        public string Clie_Nombre { get; set; }
 
-
-        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
-        public virtual tbClientes Clie { get; set; }
-        public virtual tbUsuarios Fact_Usua_CreacionNavigation { get; set; }
         public virtual tbEmpleados Empl { get; set; }
+        public virtual tbUsuarios Fact_Usua_CreacionNavigation { get; set; }
         public virtual tbSucursales Sucu { get; set; }
+        public virtual ICollection<tbFacturaDetalle> tbFacturaDetalle { get; set; }
     }
 }
