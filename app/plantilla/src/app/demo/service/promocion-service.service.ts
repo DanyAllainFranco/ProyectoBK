@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {CargarDias, Promocion, Promociones} from '../models/PromocionViewModel'
+import {AlimentosAgregados, BebidasAgregadas, CargarDias, ComplementosAgregados, LlenarPromocion, PostresAgregados, Promocion, Promociones} from '../models/PromocionViewModel'
 import {HttpClient} from '@angular/common/http'
 import { Alimento, Alimentos } from '../models/AlimentosViewModel';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { BASE_URL } from './UrlParaAPI';
 import { Respuesta } from '../models/ServiceResult';
 import { Rol } from '../models/RolesViewModel';
@@ -17,6 +17,18 @@ export class PromocionServiceService {
   constructor(private http: HttpClient) { }
   Url = 'https://localhost:44332/API/Promocion/List';
 
+
+  actualizar(modelo:Promociones):Observable<Respuesta>{
+    return this.http.put<Respuesta>(`${BASE_URL}API/Promocion/Update`,modelo);
+  }
+
+  EnviarImagen(file : any): Observable<any>{
+    return this.http.post<Promocion[]>(BASE_URL + 'API/Promocion/Subir/', file).pipe(
+      map(response => {
+        return response;
+      }),
+    );
+  }
   getPromocion (){
     return this.http.get<Promocion[]>(this.Url);
   }
@@ -24,6 +36,22 @@ export class PromocionServiceService {
     return this.http.get<CargarDias[]>(BASE_URL + "API/Promocion/ListDias");
   }
   
+
+  eliminarAlimentos(RolId: number): Observable<Respuesta> {
+    return this.http.delete<Respuesta>(`${BASE_URL}API/Promocion/EliminarAlimentos/${RolId}`);
+  }
+  eliminarBebidas(RolId: number): Observable<Respuesta> {
+    return this.http.delete<Respuesta>(`${BASE_URL}API/Promocion/EliminarBebidas/${RolId}`);
+  }
+  eliminarPostres(RolId: number): Observable<Respuesta> {
+    return this.http.delete<Respuesta>(`${BASE_URL}API/Promocion/EliminarPostres/${RolId}`);
+  }
+  eliminarComplementos(RolId: number): Observable<Respuesta> {
+    return this.http.delete<Respuesta>(`${BASE_URL}API/Promocion/EliminarComplementos/${RolId}`);
+  }
+
+
+
   getAlimentos(RolId: number): Observable<Alimentos[]> {
     return this.http.get<Alimentos[]>( BASE_URL + "API/Promocion/ListAlimentos/" + RolId);
   }
@@ -43,6 +71,22 @@ export class PromocionServiceService {
   agregar(modelo: Promociones): Observable<Respuesta> {
     console.log(modelo)
     return this.http.post<Respuesta>(`${BASE_URL}API/Promocion/Insert`, modelo);
+  }
+  obtenerPromoPorId(idRol: number): Observable<LlenarPromocion> {
+    return this.http.get<LlenarPromocion>(`${BASE_URL}API/Promocion/Fill/${idRol}`);
+  }
+  getPostresAgregadas(Rol_Id: number): Observable<PostresAgregados[]> {
+    return this.http.get<PostresAgregados[]>( BASE_URL + "API/Promocion/PostresAgregados/" + Rol_Id);
+  }
+  getComplementosAgregadas(Rol_Id: number): Observable<ComplementosAgregados[]> {
+    return this.http.get<ComplementosAgregados[]>( BASE_URL + "API/Promocion/ComplementosAgregados/" + Rol_Id);
+  }
+  getBebidasAgregadas(Rol_Id: number): Observable<BebidasAgregadas[]> {
+    return this.http.get<BebidasAgregadas[]>( BASE_URL + "API/Promocion/BebidasAgregadas/" + Rol_Id);
+  }
+
+  getAlimentosAgregadas(Rol_Id: number): Observable<AlimentosAgregados[]> {
+    return this.http.get<AlimentosAgregados[]>( BASE_URL + "API/Promocion/AlimentosAgregados/" + Rol_Id);
   }
 
   agregarAlimentos(AlimIds: number[], PromId: number): Observable<Respuesta> {

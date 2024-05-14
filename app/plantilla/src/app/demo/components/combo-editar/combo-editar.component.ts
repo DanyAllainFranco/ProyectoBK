@@ -76,6 +76,7 @@ export class ComboEditarComponent implements OnInit{
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.ComboId = +params['id'];
+      console.log("ID COBO: " + this.ComboId)
       this.obtenerRol(this.ComboId);
 
     });

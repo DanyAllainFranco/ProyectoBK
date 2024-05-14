@@ -17,12 +17,13 @@ import { ToastModule } from 'primeng/toast';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { MessageService } from 'primeng/api';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-departamentos-listado',
   templateUrl:'./departamentos-listado.component.html',
   styleUrls: ['./departamentos-listado.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService,CookieService]
 })
 export class DepartamentosListadoComponent implements OnInit {
   
@@ -34,13 +35,14 @@ export class DepartamentosListadoComponent implements OnInit {
   modalButtonLabel: string = 'Guardar';
   confirmacionVisible: boolean = false;
   departamentoAEliminar: Departamento | null = null;
-
+  Usua_Id: string;
   constructor(
     private service: DepartamentoServiceService,
     private router: Router,
     private fb: FormBuilder,
     private _departamentoServicio: DepartamentoServiceService,
     private messageService: MessageService,
+    private cookieService: CookieService
    
   ) {
     this.formDepartamento = this.fb.group({
@@ -51,6 +53,8 @@ export class DepartamentosListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDepartamentos();
+    this.Usua_Id = this.cookieService.get('Usua_Id');
+
   }
 
   getDepartamentos() {

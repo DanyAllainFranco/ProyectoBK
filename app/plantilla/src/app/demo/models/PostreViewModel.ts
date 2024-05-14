@@ -10,6 +10,17 @@ export class Postre {
     Post_Estado?: string;
 }
 
+export class LlenarPostres{
+    post_id: number;
+    post_Descripcion: string;
+    post_Precio: string;
+    post_Imagen: string;
+    usua_Creacion: string;
+    usua_Modifica: string;
+    post_Fecha_Creacion: string;
+    post_Fecha_Modifica: string;
+}
+
 export class CargarPostres{
     post_id?: number;
     post_Descripcion?: string;

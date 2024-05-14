@@ -36,6 +36,9 @@ import {ComboEditarComponent} from './demo/components/combo-editar/combo-editar.
 import {ComboDetalleComponent} from './demo/components/combo-detalle/combo-detalle.component';
 import {RolDetalleComponent} from './demo/components/rol-detalle/rol-detalle.component';
 import {PromocionCreateComponent} from './demo/components/promocion-create/promocion-create.component';
+import { PromocionEditarComponent } from './demo/components/promocion-editar/promocion-editar.component';
+import { PromocionDetalleComponent } from './demo/components/promocion-detalle/promocion-detalle.component';
+import { PostreDetalleComponent } from './demo/components/postre-detalle/postre-detalle.component';
 
 
 
@@ -79,10 +82,13 @@ import {PromocionCreateComponent} from './demo/components/promocion-create/promo
                     {path: 'IndexRoles', component:RolListadoComponent},
                     { path: 'CreateRol', component: RolCreateComponent } , 
                     { path: 'EditarRol/:id', component: RolEditarComponent } ,
+                    { path: 'EditarPromocion/:id', component: PromocionEditarComponent } ,
                     { path: 'DetalleRol/:id', component: RolDetalleComponent } ,
                     { path: 'CreatePromocion', component: PromocionCreateComponent } ,
                     { path: 'EditarCombo/:id', component: ComboEditarComponent } ,
                     { path: 'DetalleCombo/:id', component: ComboDetalleComponent },
+                    { path: 'DetallePromocion/:id', component: PromocionDetalleComponent},
+                    { path: 'DetallePostre/:id', component: PostreDetalleComponent},
                     // { path: 'IndexGraficos', component: GraficosComponent }
                     { path: 'IndexInforme', component: ReporteVentasComponent }, //IndexFactura
                     { path: 'IndexFactura', component: FacturaListadoComponent }, //IndexFactura

@@ -20,6 +20,18 @@ namespace Proyecto_BK.Common.Models
         public DateTime? Prom_Fecha_Modifica { get; set; }
         public bool? Prom_Estado { get; set; }
         [NotMapped]
+        public string Bebi_Descripcion { get; set; }
+        [NotMapped]
+        public string Alim_Descripcion { get; set; }
+        [NotMapped]
         public string Dias_Descripcion { get; set; }
+        [NotMapped]
+        public string Post_Descripcion { get; set; }
+        [NotMapped]
+        public string Comp_Descripcion { get; set; }
+        [NotMapped]
+        public string Usua_Creacion { get; set; }
+        [NotMapped]
+        public string Usua_Modifica { get; set; }
     }
 }

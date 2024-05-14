@@ -23,15 +23,17 @@ import { GalleriaModule } from 'primeng/galleria';
 import { CarouselModule } from 'primeng/carousel';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-postre-listado',
   templateUrl: './postre-listado.component.html',
-  styleUrl: './postre-listado.component.scss',
+  styleUrls: ['./postre-listado.component.scss'],
   providers: [MessageService]
 })
 export class PostreListadoComponent implements OnInit {
   Postre!: Postre[];
+
   display: boolean = false;
   departamento: Postre[] = [];
   formDepartamento: FormGroup;
@@ -42,43 +44,49 @@ export class PostreListadoComponent implements OnInit {
   departamentoAEliminar: Postre2 | null = null;
   uploadedFiles: any[] = [];
   selectedImageURL: string | null = null;
-   imageSelected: boolean = false;
-   showFileUpload: boolean = true;
-prueba: string = "";
-  
+  imageSelected: boolean = false;
+  showFileUpload: boolean = true;
+  prueba: string = "";
+
   constructor(
     private service: PostreServiceService, 
     private router: Router,
     private fb: FormBuilder,
+    private cookieService: CookieService,
     private _postreServices: PostreServiceService,
     private messageService: MessageService,
     private http: HttpClient
-  )
-     {
-      this.formDepartamento = this.fb.group({
-        // post_Id: ["", Validators.required],
-        post_Descripcion: ["", Validators.required],
-        post_Precio: ["", Validators.required],
-        //  post_Imagen: ["", Validators.required],
-      });
-     }
+  ) {
+    this.formDepartamento = this.fb.group({
+      // post_Id: ["", Validators.required],
+      post_Descripcion: ["", Validators.required],
+      post_Precio: ["", Validators.required],
+      //  post_Imagen: ["", Validators.required],
+    });
+  }
 
   ngOnInit(): void {
- this.getPostres();
-
- console.log("Mnesaje: " + this.service.successMessage)
- if (this.service.successMessage) {
-  setTimeout(() => {
-    if(this.service.successMessage == '¡Postre registrada correctamente!')
-    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Promocion registrada correctamente!' });
-    // Reiniciar el mensaje de éxito después de mostrarlo
-    else{
-      this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Rol actualizado correctamente!' });
+    this.getPostres();
+    // const  = localStorage.getItem('showSuccessMessage');
+    const showSuccessMessage = this.cookieService.get('showSuccessMessage');
+    const tipo =  this.cookieService.get('Mensaje');
+    console.log("SDAS: " + showSuccessMessage)
+    if (showSuccessMessage) {
+      setTimeout(() => {  
+        if(tipo == 'Nuevo'){
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Postre agregado correctamente' });
+        }
+        else{
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Postre editado correctamente' });
+        }
+      });
+      this.cookieService.delete('showSuccessMessage');
+      this.cookieService.delete('Mensaje');
     }
-    this.service.successMessage = '';
-  });
-}
-
+  }
+  
+  detallePostre(combId: number) {
+    this.router.navigate(['app/DetallePostre', combId]); // Redirige a la ruta de edición con el ID del rol
   }
 
   getPostres() {
@@ -88,159 +96,159 @@ prueba: string = "";
         this.Postre = data;
         console.log(this.Postre);
       },
-       error => {
+      error => {
         console.log(error);
       }
     );
   }
- // Función para mostrar el modal y limpiar el formulario y la imagen seleccionada
- displayNuevoDepartamento() {
-  this.formDepartamento.reset(); // Resetear el formulario
-  this.selectedImageURL = null; // Limpiar la URL de la imagen seleccionada
-  this.showFileUpload = true; // Restaurar el botón de carga de archivos
-  this.modalTitle = 'Nuevo Registro';
-  this.modalButtonLabel = 'Guardar';
-  this.display = true;
-}
 
-editDepartamento(departamento: any) {
-  this.selectedDepartamento = departamento.post_id;
-
-  console.log("ID: " + this.selectedDepartamento),
-  this.selectedImageURL = "https://localhost:44332/uploads/" + departamento.post_Imagen;
-  this.modalTitle = 'Editar Registro';
-  this.modalButtonLabel = 'Actualizar';
-  this.formDepartamento.patchValue({
-    
-    post_Descripcion: departamento.post_Descripcion,
-    post_Precio: departamento.post_Precio,
-    
-    // post_Imagen: this.prueba,
-    // post_Usua_Modifica: 1,
-  });
-  this.display = true;
-}
-
-guardarDepartamento() {
-  if (this.formDepartamento.invalid) {
-    return;
-  }
-  if (this.modalTitle === 'Nuevo Registro') {
-    this.NuevoDepartamento();
-  } else {
-    this.actualizarDepartamento();
-  }
-}
-
-
-actualizarDepartamento() {
-  const idDepartamento = this.selectedDepartamento;
-  const modelo: PostreActualizar = {
-    // dept_Codigo: this.formDepartamento.value.codigo,
-    // dept_Descripcion: this.formDepartamento.value.departamento,
-    post_id: idDepartamento,
-    post_Descripcion: this.formDepartamento.value.post_Descripcion,
-    post_Precio: this.formDepartamento.value.post_Precio,
-    post_Imagen: this.selectedImageURL,
-    post_Usua_Modifica: 1,
+  displayNuevoDepartamento() {
+    this.formDepartamento.reset();
+    this.selectedImageURL = null; 
+    this.modalTitle = 'Nuevo Registro';
+    this.modalButtonLabel = 'Guardar';
+    this.display = true;
   }
 
-  this._postreServices.actualizar(modelo).subscribe({
-    next: (data) => {
-      this.getPostres();
-      this.display = false;
-      console.log(idDepartamento);
-      this.messageService.add({severity:'success', summary:'Éxito', detail:'¡Departamento editado correctamente!'});
-    },
-    error: (e) => {
-      console.log(e);
-      this.messageService.add({severity:'error', summary:'Error', detail:'Departamento ya existente.'});
+  editDepartamento(departamento: any) {
+    this.selectedDepartamento = departamento.post_id;
+    console.log("ID: " + this.selectedDepartamento),
+    this.selectedImageURL = "https://localhost:44332/uploads/" + departamento.post_Imagen;
+    this.prueba = departamento.post_Imagen;
+    this.modalTitle = 'Editar Registro';
+    this.modalButtonLabel = 'Actualizar';
+    this.formDepartamento.patchValue({
+      post_Descripcion: departamento.post_Descripcion,
+      post_Precio: departamento.post_Precio,
+    });
+    this.display = true;
+  }
+
+  guardarDepartamento() {
+    if (this.formDepartamento.invalid) {
+      return;
     }
-  })
-}
-
-recargarPagina() {
-  location.reload();
-}
-
-onUpload(event) {
-  const file: File = event.files[0];
-  this.selectedImageURL = URL.createObjectURL(file);
-  if (file) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    const uniqueFileName = uniqueSuffix + '-' + file.name;
-    this.prueba = uniqueFileName;
-    const formData: FormData = new FormData();
-
-    formData.append('file', file, uniqueFileName);
-    this.service.EnviarImagen(formData).subscribe(
-      response => {
-        console.log('Upload successful', response);
-        if (response.message === "Exito") {
-          // this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Imagen Subida', life: 3000 });
-        } else {
-          this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Suba una imagen', life: 3000 });
-        }
-      },
-      error => {
-        console.error('Error uploading image', error);
-      }
-    );
-  }
-}
-
-
-
-NuevoDepartamento() {
-  const modelo: Postre2 = {
-    post_id: 0,
-    post_Descripcion: this.formDepartamento.value.post_Descripcion,
-    post_Precio: this.formDepartamento.value.post_Precio,
-    post_Imagen: this.prueba,
-    post_Usua_Creacion: 1,
-  };
-
-  // Enviar los datos del formulario a tu API para agregar el registro
-  this._postreServices.agregar(modelo).subscribe({
-    next: () => {
-      this.service.successMessage = '¡Postre registrada correctamente!';
-      this.display = false;
-    
-    },
-    error: (error) => {
-      console.error('Error al agregar el departamento:', error);
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al agregar el departamento.' });
+    if (this.modalTitle === 'Nuevo Registro') {
+      this.NuevoDepartamento();
+    } else {
+      this.actualizarDepartamento();
     }
-  });
-}
+  }
 
-confirmarEliminarDepartamento(departamento: Postre2) {
-  this.departamentoAEliminar = departamento;
-  this.confirmacionVisible = true;
-}
+  actualizarDepartamento() {
+    const idDepartamento = this.selectedDepartamento;
+    const modelo: PostreActualizar = {
+      post_id: idDepartamento,
+      post_Descripcion: this.formDepartamento.value.post_Descripcion,
+      post_Precio: this.formDepartamento.value.post_Precio,
+      post_Imagen: this.prueba,
+      post_Usua_Modifica: 1,
+    }
 
-eliminarDepartamento() {
-  if (this.departamentoAEliminar) {
-    const idDepartamento = this.departamentoAEliminar.post_id;
-    this.service.eliminar(idDepartamento).subscribe({
+    this._postreServices.actualizar(modelo).subscribe({
       next: (data) => {
         this.getPostres();
-        this.confirmacionVisible = false;
-        console.log(idDepartamento);
-        this.messageService.add({severity:'success', summary:'Éxito', detail:'¡Departamento eliminado correctamente!'});
+        this.cookieService.set('Mensaje', 'Editado');
+        this.cookieService.set('showSuccessMessage', 'true');
+        // localStorage.setItem('', '');
+        location.reload();
+        // this.display = false;
+        // this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Postre editado correctamente!' });
+        // setTimeout(() => {
+        //   location.reload();
+        // }, 2000);
       },
       error: (e) => {
         console.log(e);
-        this.messageService.add({severity:'error', summary:'Error', detail:'Este Departamento no se puede eliminar.'});
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Departamento ya existente.' });
       }
     });
   }
-}
 
-cancelarEliminar() {
-  this.confirmacionVisible = false;
-}
+  recargarPagina() {
+    location.reload();
+  }
 
+  onUpload(event) {
+    const file: File = event.files[0];
+    this.selectedImageURL = URL.createObjectURL(file);
+    if (file) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      const uniqueFileName = uniqueSuffix + '-' + file.name;
+      this.prueba = uniqueFileName;
+      const formData: FormData = new FormData();
+
+      formData.append('file', file, uniqueFileName);
+      this.service.EnviarImagen(formData).subscribe(
+        response => {
+          console.log('Upload successful', response);
+          if (response.message === "Exito") {
+            // this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Imagen Subida', life: 3000 });
+          } else {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Formato de imagen incorrecto', life: 3000 });
+          }
+        },
+        error => {
+          console.error('Error uploading image', error);
+        }
+      );
+    }
+  }
+
+  NuevoDepartamento() {
+    const modelo: Postre2 = {
+      post_id: 0,
+      post_Descripcion: this.formDepartamento.value.post_Descripcion,
+      post_Precio: this.formDepartamento.value.post_Precio,
+      post_Imagen: this.prueba,
+      post_Usua_Creacion: 1,
+    };
+
+    // Enviar los datos del formulario a tu API para agregar el registro
+    this._postreServices.agregar(modelo).subscribe({
+      next: () => {
+        this.getPostres();
+        this.cookieService.set('showSuccessMessage', 'true');
+        this.cookieService.set('Mensaje', 'Nuevo');
+        // localStorage.setItem('showSuccessMessage', 'true');
+        location.reload();
+        // this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Postre registrada correctamente!' });
+        // setTimeout(() => {
+        //   location.reload();
+        // }, 2000);
+      },
+      error: (error) => {
+        console.error('Error al agregar el departamento:', error);
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al agregar el departamento.' });
+      }
+    });
+  }
+
+  confirmarEliminarDepartamento(departamento: Postre2) {
+    this.departamentoAEliminar = departamento;
+    this.confirmacionVisible = true;
+  }
+
+  eliminarDepartamento() {
+    if (this.departamentoAEliminar) {
+      const idDepartamento = this.departamentoAEliminar.post_id;
+      this.service.eliminar(idDepartamento).subscribe({
+        next: (data) => {
+          this.getPostres();
+          this.confirmacionVisible = false;
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Postre eliminado correctamente!' });
+        },
+        error: (e) => {
+          console.log(e);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Este Departamento no se puede eliminar.' });
+        }
+      });
+    }
+  }
+
+  cancelarEliminar() {
+    this.confirmacionVisible = false;
+  }
 }
 
 @NgModule({

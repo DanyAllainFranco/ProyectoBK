@@ -10,6 +10,19 @@ export class Promocion {
     Prom_Fecha_Modifica?: string;
     Prom_Estado?: string;
 }
+
+export class LlenarPromocion{
+    prom_Id: number;
+    prom_Descripcion: number;
+    prom_Precio: string;
+    prom_Imagen: string;
+    dias_Id: number;
+    prom_Fecha_Creacion: string;
+    prom_Fecha_Modifica: string;
+    dias_Descripcion: string;
+    usua_Creacion: string;
+    usua_Modifica: string;
+}
 export class dropPromocion{
     value?:String;
     text?:String;
@@ -19,6 +32,26 @@ export class CargarDias{
     dias_Descripcion?: string;
 }
 
+export class AlimentosAgregados{
+    alim_Id: string;
+    alim_Descripcion:string;   
+    code: number;
+}
+export class BebidasAgregadas{
+    bebi_Id: string;
+    bebi_Descripcion:string;   
+    code: number;
+}
+export class PostresAgregados{
+    post_id: string;
+    post_Descripcion:string;   
+    code: number;
+}
+export class ComplementosAgregados{
+    comp_Id: string;
+    comp_Descripcion:string;   
+    code: number;
+}
 export class Promociones {
     prom_Id?: number;
     prom_Descripcion?: string;

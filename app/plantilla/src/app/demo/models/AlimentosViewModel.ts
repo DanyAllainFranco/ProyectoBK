@@ -16,6 +16,13 @@ export class Alimentos {
     code: number;
 }
 
+export class Alimento2{
+    alim_Id: number;
+    alim_Descripcion: string;
+    alim_Precio: string;
+    alim_Imagen: string;
+    alim_Usua_Creacion: number;
+}
 
 export class CargarAlimentos{
     alim_Id?: number;

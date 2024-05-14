@@ -63,7 +63,7 @@
           </div>
           <div class="field col-12 md:col-6">
             <label>Imagen</label>
-            <p-fileUpload #fileUpload name="demo[]" [mode]="'basic'" (onSelect)="onImageSelect($event)"
+            <p-fileUpload #fileUpload name="demo[]" [mode]="'basic'" (onSelect)="onUpload($event)"
               [multiple]="false" accept="image/*" [maxFileSize]="1000000"
               chooseLabel="{{ showFileUpload ? 'Seleccione' : '' }}">
             </p-fileUpload>
