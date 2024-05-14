@@ -1,5 +1,5 @@
 
-import { Alimento, Alimento2 } from '../../models/AlimentosViewModel';
+import { Alimento, Alimento2, AlimentoActualizar } from '../../models/AlimentosViewModel';
 import { AlimentosServiceService } from '../../service/alimento-service.service';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -36,7 +36,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 
 export class AlimentosListadoComponent implements OnInit {
-  alimentos!: Alimento[];
+  alimentos!: Alimento2[];
 
 
   display: boolean = false;
@@ -46,7 +46,7 @@ export class AlimentosListadoComponent implements OnInit {
   modalTitle: string = 'Nuevo Registro';
   modalButtonLabel: string = 'Guardar';
   confirmacionVisible: boolean = false;
-  departamentoAEliminar: Postre2 | null = null;
+  departamentoAEliminar: Alimento2 | null = null;
   uploadedFiles: any[] = [];
   selectedImageURL: string | null = null;
   imageSelected: boolean = false;
@@ -58,14 +58,13 @@ export class AlimentosListadoComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private cookieService: CookieService,
-    private _postreServices: PostreServiceService,
     private messageService: MessageService,
     private http: HttpClient
   ) {
     this.formDepartamento = this.fb.group({
       // post_Id: ["", Validators.required],
-      post_Descripcion: ["", Validators.required],
-      post_Precio: ["", Validators.required],
+      alim_Descripcion: ["", Validators.required],
+      alim_Precio: ["", Validators.required],
       //  post_Imagen: ["", Validators.required],
     });
   }
@@ -79,10 +78,10 @@ export class AlimentosListadoComponent implements OnInit {
     if (showSuccessMessage) {
       setTimeout(() => {  
         if(tipo == 'Nuevo'){
-          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Postre agregado correctamente' });
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Alimento agregado correctamente' });
         }
         else{
-          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Postre editado correctamente' });
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Alimento editado correctamente' });
         }
       });
       this.cookieService.delete('showSuccessMessage');
@@ -94,6 +93,7 @@ export class AlimentosListadoComponent implements OnInit {
    detalleAlimento(combId: number) {
     this.router.navigate(['app/DetallePostre', combId]);
   }
+
 getAlimentos(){
   this.service.getAlimento().subscribe(
     (data: any) => {
@@ -117,133 +117,133 @@ displayNuevoDepartamento() {
 }
 
 editDepartamento(departamento: any) {
-  this.selectedDepartamento = departamento.post_id;
+  this.selectedDepartamento = departamento.alim_Id;
+  console.log("DSADSA: " + this.selectedDepartamento)
   console.log("ID: " + this.selectedDepartamento),
-  this.selectedImageURL = "https://localhost:44332/uploads/" + departamento.post_Imagen;
-  this.prueba = departamento.post_Imagen;
+  this.selectedImageURL = "https://localhost:44332/uploads/" + departamento.alim_Imagen;
+  this.prueba = departamento.alim_Imagen;
   this.modalTitle = 'Editar Registro';
   this.modalButtonLabel = 'Actualizar';
   this.formDepartamento.patchValue({
-    post_Descripcion: departamento.post_Descripcion,
-    post_Precio: departamento.post_Precio,
+    alim_Descripcion: departamento.alim_Descripcion,
+    alim_Precio: departamento.alim_Precio,
   });
   this.display = true;
 }
 
-// guardarDepartamento() {
-//   if (this.formDepartamento.invalid) {
-//     return;
-//   }
-//   if (this.modalTitle === 'Nuevo Registro') {
-//     this.NuevoDepartamento();
-//   } else {
-//     this.actualizarDepartamento();
-//   }
-// }
+guardarDepartamento() 
+{   if (this.formDepartamento.invalid) {
+     return;
+   }
+   if (this.modalTitle === 'Nuevo Registro') {
+     this.NuevoDepartamento();
+   } else {
+     this.actualizarDepartamento();
+   }
+ }
 
-// actualizarDepartamento() {
-//   const idDepartamento = this.selectedDepartamento;
-//   const modelo: PostreActualizar = {
-//     post_id: idDepartamento,
-//     post_Descripcion: this.formDepartamento.value.post_Descripcion,
-//     post_Precio: this.formDepartamento.value.post_Precio,
-//     post_Imagen: this.prueba,
-//     post_Usua_Modifica: 1,
-//   }
+ actualizarDepartamento() {
+   const idDepartamento = this.selectedDepartamento;
+   const modelo: AlimentoActualizar = {
+     alim_Id: idDepartamento,
+     alim_Descripcion: this.formDepartamento.value.alim_Descripcion,
+     alim_Precio: this.formDepartamento.value.alim_Precio,
+     alim_Imagen: this.prueba,
+     alim_Usua_Modifica: 1,
+   }
 
-//   this.service.actualizar(modelo).subscribe({
-//     next: (data) => {
-//       this.getAlimentos();
-//       this.cookieService.set('Mensaje', 'Editado');
-//       this.cookieService.set('showSuccessMessage', 'true');
-//       // localStorage.setItem('', '');
-//       location.reload();
-//       // this.display = false;
-//       // this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Postre editado correctamente!' });
-//       // setTimeout(() => {
-//       //   location.reload();
-//       // }, 2000);
-//     },
-//     error: (e) => {
-//       console.log(e);
-//       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Departamento ya existente.' });
-//     }
-//   });
-// }
+   this.service.actualizar(modelo).subscribe({
+     next: (data) => {
+       this.getAlimentos();
+       this.cookieService.set('Mensaje', 'Editado');
+       this.cookieService.set('showSuccessMessage', 'true');
+       // localStorage.setItem('', '');
+       location.reload();
+       // this.display = false;
+       // this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Postre editado correctamente!' });
+       // setTimeout(() => {
+       //   location.reload();
+       // }, 2000);
+     },
+     error: (e) => {
+       console.log(e);
+       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Departamento ya existente.' });
+     }
+   });
+ }
 
 recargarPagina() {
   location.reload();
 }
 
-// onUpload(event) {
-//   const file: File = event.files[0];
-//   this.selectedImageURL = URL.createObjectURL(file);
-//   if (file) {
-//     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-//     const uniqueFileName = uniqueSuffix + '-' + file.name;
-//     this.prueba = uniqueFileName;
-//     const formData: FormData = new FormData();
+ onUpload(event) {
+   const file: File = event.files[0];
+  this.selectedImageURL = URL.createObjectURL(file);
+   if (file) {
+     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+     const uniqueFileName = uniqueSuffix + '-' + file.name;
+     this.prueba = uniqueFileName;
+     const formData: FormData = new FormData();
 
-//     formData.append('file', file, uniqueFileName);
-//     this.service.EnviarImagen(formData).subscribe(
-//       response => {
-//         console.log('Upload successful', response);
-//         if (response.message === "Exito") {
-//           // this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Imagen Subida', life: 3000 });
-//         } else {
-//           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Formato de imagen incorrecto', life: 3000 });
-//         }
-//       },
-//       error => {
-//         console.error('Error uploading image', error);
-//       }
-//     );
-//   }
-// }
+     formData.append('file', file, uniqueFileName);
+     this.service.EnviarImagen(formData).subscribe(
+       response => {
+         console.log('Upload successful', response);
+         if (response.message === "Exito") {
+           // this.messageService.add({ severity: 'success', summary: 'Exito', detail: 'Imagen Subida', life: 3000 });
+         } else {
+           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Formato de imagen incorrecto', life: 3000 });
+         }
+       },
+       error => {
+         console.error('Error uploading image', error);
+       }
+     );
+   }
+ }
 
 
-// NuevoDepartamento() {
-//   const modelo: Alimento2 = {
-//     post_id: 0,
-//     post_Descripcion: this.formDepartamento.value.post_Descripcion,
-//     post_Precio: this.formDepartamento.value.post_Precio,
-//     post_Imagen: this.prueba,
-//     post_Usua_Creacion: 1,
-//   };
+ NuevoDepartamento() {
+   const modelo: Alimento2 = {
+     alim_Id: 0,
+      alim_Descripcion: this.formDepartamento.value.alim_Descripcion,
+     alim_Precio: this.formDepartamento.value.alim_Precio,
+     alim_Imagen: this.prueba,
+     alim_Usua_Creacion: 1,
+   };
 
-//   // Enviar los datos del formulario a tu API para agregar el registro
-//   this.service.agregar(modelo).subscribe({
-//     next: () => {
-//       this.getAlimentos();
-//       this.cookieService.set('showSuccessMessage', 'true');
-//       this.cookieService.set('Mensaje', 'Nuevo');
-//       // localStorage.setItem('showSuccessMessage', 'true');
-//       location.reload();
-//       // this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Postre registrada correctamente!' });
-//       // setTimeout(() => {
-//       //   location.reload();
-//       // }, 2000);
-//     },
-//     error: (error) => {
-//       console.error('Error al agregar el departamento:', error);
-//       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al agregar el departamento.' });
-//     }
-//   });
-// }
+   // Enviar los datos del formulario a tu API para agregar el registro
+   this.service.agregar(modelo).subscribe({
+     next: () => {
+       this.getAlimentos();
+       this.cookieService.set('showSuccessMessage', 'true');
+       this.cookieService.set('Mensaje', 'Nuevo');
+       location.reload();
+     },
+     error: (error) => {
+       console.error('Error al agregar el departamento:', error);
+       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al agregar el departamento.' });
+     }
+   });
+  }
 
-confirmarEliminarDepartamento(departamento: Postre2) {
+confirmarEliminarDepartamento(departamento: Alimento2) {
   this.departamentoAEliminar = departamento;
   this.confirmacionVisible = true;
 }
 
+detallePostre(combId: number) {
+  this.router.navigate(['app/DetalleAlimento', combId]); // Redirige a la ruta de edición con el ID del rol
+}
+
 eliminarDepartamento() {
   if (this.departamentoAEliminar) {
-    const idDepartamento = this.departamentoAEliminar.post_id;
+    const idDepartamento = this.departamentoAEliminar.alim_Id;
     this.service.eliminar(idDepartamento).subscribe({
       next: (data) => {
         this.getAlimentos();
         this.confirmacionVisible = false;
-        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Postre eliminado correctamente!' });
+        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Alimento eliminado correctamente!' });
       },
       error: (e) => {
         console.log(e);

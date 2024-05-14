@@ -39,6 +39,8 @@ import {PromocionCreateComponent} from './demo/components/promocion-create/promo
 import { PromocionEditarComponent } from './demo/components/promocion-editar/promocion-editar.component';
 import { PromocionDetalleComponent } from './demo/components/promocion-detalle/promocion-detalle.component';
 import { PostreDetalleComponent } from './demo/components/postre-detalle/postre-detalle.component';
+import { AlimentoDetalleComponent } from './demo/components/alimento-detalle/alimento-detalle.component';
+import { BebidaDetalleComponent } from './demo/components/bebida-detalle/bebida-detalle.component';
 
 
 
@@ -89,6 +91,8 @@ import { PostreDetalleComponent } from './demo/components/postre-detalle/postre-
                     { path: 'DetalleCombo/:id', component: ComboDetalleComponent },
                     { path: 'DetallePromocion/:id', component: PromocionDetalleComponent},
                     { path: 'DetallePostre/:id', component: PostreDetalleComponent},
+                    { path: 'DetalleAlimento/:id', component: AlimentoDetalleComponent},
+                    { path: 'DetalleBebida/:id', component: BebidaDetalleComponent},
                     // { path: 'IndexGraficos', component: GraficosComponent }
                     { path: 'IndexInforme', component: ReporteVentasComponent }, //IndexFactura
                     { path: 'IndexFactura', component: FacturaListadoComponent }, //IndexFactura

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,10 @@ namespace Proyecto_BK.Common.Models
 {
     public class AlimentoViewModel
     {
+        [NotMapped]
+        public string Usua_Creacion { get; set; }
+        [NotMapped]
+        public string Usua_Modifica { get; set; }
         public int Alim_Id { get; set; }
         public string Alim_Descripcion { get; set; }
         public decimal? Alim_Precio { get; set; }
@@ -17,5 +22,6 @@ namespace Proyecto_BK.Common.Models
         public int? Alim_Usua_Modifica { get; set; }
         public DateTime? Alim_Fecha_Modifica { get; set; }
         public bool? Alim_Estado { get; set; }
+       
     }
 }

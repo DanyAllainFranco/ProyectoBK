@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Alimento, Alimento2, CargarAlimentos} from '../models/AlimentosViewModel'
+import {Alimento, Alimento2, AlimentoActualizar, CargarAlimentos, LlenarAlimentos} from '../models/AlimentosViewModel'
 import {HttpClient} from '@angular/common/http'
 import { Observable, map } from 'rxjs';
 import { BASE_URL } from './UrlParaAPI';
@@ -18,7 +18,11 @@ export class AlimentosServiceService {
     return this.http.get<CargarAlimentos[]>(this.Url);
   }
 
-  
+  obtenerPostrePorId(idCombo: number): Observable<LlenarAlimentos> {
+    return this.http.get<LlenarAlimentos>(`${BASE_URL}API/Alimento/Find/${idCombo}`);
+  }
+
+
   EnviarImagen(file : any): Observable<any>{
     return this.http.post<Alimento2[]>(BASE_URL + 'API/Alimento/Subir/', file).pipe(
       map(response => {
@@ -35,7 +39,7 @@ export class AlimentosServiceService {
   eliminar(Dept_Codigo:number):Observable<void>{
     return this.http.delete<void>(BASE_URL + 'API/Alimento/Delete/' + Dept_Codigo	);
   }
-  // actualizar(modelo:PostreActualizar):Observable<PostreActualizar>{
-  //   return this.http.put<PostreActualizar>(BASE_URL + 'API/Postre/Update',modelo);
-  // }
+  actualizar(modelo:AlimentoActualizar):Observable<AlimentoActualizar>{
+   return this.http.put<AlimentoActualizar>(BASE_URL + 'API/Alimento/Update',modelo);
+  }
 }
