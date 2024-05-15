@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto_BK.BusinessLogic.Services;
@@ -7,6 +8,7 @@ using Proyecto_BK.Entities;
 //using Proyecto_BK.Entities.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -65,8 +67,10 @@ namespace Proyecto_BK.API.Controllers
                 Paqe_Usua_Creacion = 1,
                 Paqe_Fecha_Creacion = DateTime.Now
             };
-            var response = _restauranteServices.CrearPaquete(modelo);
-            return Ok(response);
+            int rolId;
+            var prueba = _restauranteServices.InsertarPaquete(modelo, out rolId);
+            prueba.Message = rolId.ToString();
+            return Ok(prueba);
         }
 
         [HttpPut("API/[controller]/Update")]
@@ -91,6 +95,44 @@ namespace Proyecto_BK.API.Controllers
         {
             var response = _restauranteServices.EliminarPaquete(Paqe_Id);
             return Ok(response);
+        }
+
+        [HttpPost("API/[controller]/Subir")]
+        public async Task<IActionResult> UploadImage(IFormFile file)
+        {
+
+            var allowedExtensions = new HashSet<string> { ".png", ".jpeg", ".svg", ".jpg", ".gif" };
+            var fileExtension = Path.GetExtension(file.FileName).ToLower();
+            if (!allowedExtensions.Contains(fileExtension))
+            {
+                return Ok(new { message = "Error", detail = "Extensión de archivo no permitida." });
+            }
+
+
+            var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+
+
+            if (!Directory.Exists(uploadsFolderPath))
+            {
+                Directory.CreateDirectory(uploadsFolderPath);
+            }
+            var filePath = Path.Combine(uploadsFolderPath, file.FileName);
+
+            try
+            {
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                return Ok(new { message = "Exito" });
+            }
+            catch (Exception e)
+            {
+
+                return StatusCode(500, $"General error: {e.ToString()}");
+            }
         }
     }
 }

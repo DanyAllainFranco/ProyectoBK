@@ -35,7 +35,7 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
-        public RequestStatus Insert(tbPaquetes item)
+        public (RequestStatus, int) Insertar(tbPaquetes item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
@@ -45,9 +45,21 @@ namespace Proyecto_BK.DataAccess.Repository
                 parameter.Add("Paqe_Imagen", item.Paqe_Imagen);
                 parameter.Add("Paqe_Usua_Creacion", item.Paqe_Usua_Creacion);
                 parameter.Add("Paqe_Fecha_Creacion", item.Paqe_Fecha_Creacion);
+                parameter.Add("Paqe_Id", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Paqe_Insertar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Éxito" : "Error" };
+                var result = db.Execute(ScriptsBaseDeDatos.Paqe_Insertar,
+                 parameter,
+                  commandType: CommandType.StoredProcedure
+                 );
+
+                int proyId = 0;
+                if (result > 0)
+                {
+                    proyId = parameter.Get<int>("Paqe_Id");
+                }
+
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return (new RequestStatus { CodeStatus = result, MessageStatus = mensaje }, proyId);
             }
         }
 
@@ -85,6 +97,11 @@ namespace Proyecto_BK.DataAccess.Repository
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Paqe_Editar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Éxito" : "Error" };
             }
+        }
+
+        RequestStatus IRepository<tbPaquetes>.Insert(tbPaquetes item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

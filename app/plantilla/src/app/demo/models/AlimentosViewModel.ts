@@ -10,6 +10,12 @@ export class Alimento {
     Alim__Estado?: boolean;
 }
 
+export class Alimento3{
+    Alim_Id?: number;
+    Alim_Descripcion?: string;
+    Alim_Precio?: number;
+    Alim_Imagen?: string;
+}
 export class Alimentos {
     alim_Id?: number;
     alim_Descripcion?: string;

@@ -54,12 +54,16 @@ form: FormGroup;
     sourceBebidas: any[] = [];
     sourcePostres: any[] = [];
     sourceComplemetos: any[] = [];
+    sourceSucursal: any[] = [];
+
     pantallas: Pantallas[] = [];
     activeTab: string = 'Alimentos'; 
     targetCities: any[] = [];
     targetBebida: any[] = [];
     targetPostre: any[] = [];
     targetComplemento: any[] = [];
+    targetSucursal: any[] = [];
+
     orderCities: any[] = [];
     alimentosActivo: boolean = true;
     bebidasActivo: boolean = false;
@@ -96,11 +100,13 @@ prueba: string = "";
           this.cargarDias();
           this.cargarBebidas();
           this.cargarPostres();
+          this.cargarSucursales();
           this.cargarComplementos();
           this.cargarAlimentosAgregados();
           this.cargarBebidasAgregados();
           this.cargarPostresAgregados();
           this.cargarComplementosAgregados();
+          this.cargarSucursalesAgregados();
 
           this.form = this.formBuilder.group({
             prom_Descripcion: ['', Validators.required],
@@ -199,6 +205,21 @@ prueba: string = "";
             }
           );
         }
+        cargarSucursalesAgregados() {
+          this.rolService.getSucursalesAgregadas(this.PromId).subscribe(
+            sucursales => {
+              if (sucursales && sucursales.length > 0) {
+                this.targetSucursal = sucursales.map(sucursal => ({ name: sucursal.sucu_Descripcion, code: sucursal.sucu_Id }));
+              } else {
+                this.targetSucursal = [];
+              }
+            },
+            error => {
+              console.error('Error al cargar las pantallas agregadas:', error);
+            }
+          );
+        }
+
         cargarComplementos() {
           this.rolService.getComplementos(this.PromId).subscribe(
             complementos => {
@@ -237,6 +258,18 @@ prueba: string = "";
             objetos => {
               console.log("Prueba: " + objetos)
               this.sourceAlimentos = objetos.map(objeto => ({ name: objeto.alim_Descripcion, code: objeto.alim_Id }));
+            },
+            error => {
+              console.error('Error al cargar las pantallas:', error);
+            }
+          );
+        }
+
+        cargarSucursales() {
+          this.rolService.getSucursales(this.PromId).subscribe(
+            sucursales => {
+              console.log("Prueba: " + sucursales)
+              this.sourceSucursal = sucursales.map(sucursal => ({ name: sucursal.sucu_Descripcion, code: sucursal.sucu_Id }));
             },
             error => {
               console.error('Error al cargar las pantallas:', error);
@@ -307,11 +340,13 @@ prueba: string = "";
               const Prom_Descripcion = this.form.value.prom_Descripcion;
               const Prom_Precio = this.form.value.prom_Precio;
               const Dias_Id = this.form.value.dias_Id;
+              const Usua_Id = 1;
               const prom_Imagen = this.Imagen;
               const alimentosAgregados = this.targetCities.map(objeto => objeto.code);
               const bebidasAgregadas = this.targetBebida.map(bebida => bebida.code);
               const postresAgregados = this.targetPostre.map(postre => postre.code);
               const complementosAgregados = this.targetComplemento.map(complemento => complemento.code);
+              const sucursalesAgregados = this.targetSucursal.map(sucursal => sucursal.code);
               console.log("alimentos: " + alimentosAgregados)
               console.log("bebidas: " + bebidasAgregadas)
               console.log("postres: " + postresAgregados)
@@ -406,6 +441,26 @@ prueba: string = "";
                            console.error('Error en la solicitud HTTP:', error);
                        }  
                        );
+
+                       this.rolService.eliminarSucursales(this.PromId).subscribe(
+                        (respuestaPantallas: Respuesta) => {
+                          this.rolService.agregarSucursales(sucursalesAgregados, this.PromId, Usua_Id).subscribe(
+                            (respuesta: Respuesta) => {
+                                if (respuesta.success) {
+                                  console.log("Sucursales agregadas con exito")
+                                } else {
+                                    console.error('Error al agregar las pantallas al rol:', respuesta.message);
+                                }
+                            },
+                            error => {
+                                console.error('Error en la solicitud HTTP:', error);
+                            }
+                        );
+                             
+                        },error => {
+                          console.error('Error en la solicitud HTTP:', error);
+                      }  
+                      );
                      
                           this.rolService.successMessage = '¡Promocion actualizada correctamente!';
                       this.router.navigate(['app/IndexPromocion']);

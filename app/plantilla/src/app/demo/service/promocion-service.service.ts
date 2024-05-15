@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {AlimentosAgregados, BebidasAgregadas, CargarDias, ComplementosAgregados, LlenarPromocion, PostresAgregados, Promocion, Promociones} from '../models/PromocionViewModel'
+import {AlimentosAgregados, BebidasAgregadas, CargarDias, ComplementosAgregados, LlenarPromocion, PostresAgregados, Promocion, Promociones, SucursalesAgregados} from '../models/PromocionViewModel'
 import {HttpClient} from '@angular/common/http'
 import { Alimento, Alimentos } from '../models/AlimentosViewModel';
 import { Observable, map } from 'rxjs';
 import { BASE_URL } from './UrlParaAPI';
 import { Respuesta } from '../models/ServiceResult';
 import { Rol } from '../models/RolesViewModel';
-import { Bebida, Bebidas, Complemento, Postre } from '../models/BebidasViewModel';
+import { Bebida, Bebidas, Complemento, Postre, SucursalesPromocion } from '../models/BebidasViewModel';
 
 
 @Injectable({
@@ -50,6 +50,9 @@ export class PromocionServiceService {
     return this.http.delete<Respuesta>(`${BASE_URL}API/Promocion/EliminarComplementos/${RolId}`);
   }
 
+  eliminarSucursales(RolId: number): Observable<Respuesta> {
+    return this.http.delete<Respuesta>(`${BASE_URL}API/Promocion/EliminarSucursales/${RolId}`);
+  }
 
 
   getAlimentos(RolId: number): Observable<Alimentos[]> {
@@ -68,10 +71,15 @@ export class PromocionServiceService {
     return this.http.get<Complemento[]>( BASE_URL + "API/Promocion/ListComplementos/" + RolId);
   }
 
+  getSucursales(RolId: number): Observable<SucursalesPromocion[]> {
+    return this.http.get<SucursalesPromocion[]>( BASE_URL + "API/Promocion/ListSucursales/" + RolId);
+  }
+
   agregar(modelo: Promociones): Observable<Respuesta> {
     console.log(modelo)
     return this.http.post<Respuesta>(`${BASE_URL}API/Promocion/Insert`, modelo);
   }
+  
   obtenerPromoPorId(idRol: number): Observable<LlenarPromocion> {
     return this.http.get<LlenarPromocion>(`${BASE_URL}API/Promocion/Fill/${idRol}`);
   }
@@ -87,6 +95,10 @@ export class PromocionServiceService {
 
   getAlimentosAgregadas(Rol_Id: number): Observable<AlimentosAgregados[]> {
     return this.http.get<AlimentosAgregados[]>( BASE_URL + "API/Promocion/AlimentosAgregados/" + Rol_Id);
+  }
+
+  getSucursalesAgregadas(Rol_Id: number): Observable<SucursalesAgregados[]> {
+    return this.http.get<SucursalesAgregados[]>( BASE_URL + "API/Promocion/SucursalesAgregadas/" + Rol_Id);
   }
 
   agregarAlimentos(AlimIds: number[], PromId: number): Observable<Respuesta> {
@@ -108,4 +120,10 @@ agregarComplementos(CompIds: number[], PromId: number): Observable<Respuesta> {
   console.log("PRUEBA2: " + CompIds + " " + PromId)
   return this.http.post<Respuesta>(`${BASE_URL}API/Promocion/AgregarComplementos`, { CompIds, PromId});
 }
+
+agregarSucursales(SucuIds: number[], PromId: number, Usua_Id): Observable<Respuesta> {
+  console.log("PRUEBA2: " + SucuIds + " " + PromId)
+  return this.http.post<Respuesta>(`${BASE_URL}API/Promocion/AgregarSucursales`, { SucuIds, PromId, Usua_Id});
+}
+
 }

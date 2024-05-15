@@ -37,6 +37,12 @@ export class AlimentosAgregados{
     alim_Descripcion:string;   
     code: number;
 }
+
+export class SucursalesAgregados{
+    sucu_Id: string;
+    sucu_Descripcion:string;   
+    code: number;
+}
 export class BebidasAgregadas{
     bebi_Id: string;
     bebi_Descripcion:string;   

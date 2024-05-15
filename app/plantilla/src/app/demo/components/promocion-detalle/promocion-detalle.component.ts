@@ -28,7 +28,7 @@ import { Pantallas } from 'src/app/demo/models/PantallaViewMode';
 import { Rol } from 'src/app/demo/models/RolesViewModel';
 import { Respuesta } from 'src/app/demo/models/ServiceResult';
 import { MessageService } from 'primeng/api';
-import { AlimentosAgregados, BebidasAgregadas, ComplementosAgregados, LlenarPromocion, PostresAgregados, Promociones } from '../../models/PromocionViewModel';
+import { AlimentosAgregados, BebidasAgregadas, ComplementosAgregados, LlenarPromocion, PostresAgregados, Promociones, SucursalesAgregados } from '../../models/PromocionViewModel';
 import { ImageModule } from 'primeng/image';
 import { GalleriaModule } from 'primeng/galleria';
 import { TabMenuModule } from 'primeng/tabmenu';
@@ -81,6 +81,7 @@ Imagen: string;
   bebidas: BebidasAgregadas[] = [];
   postres: PostresAgregados[] = [];
   complementos: ComplementosAgregados[] = [];
+  sucursales: SucursalesAgregados[] = [];
   staticData = [{}];
   constructor(private productService: ProductService,
     private router: Router,
@@ -102,6 +103,7 @@ Imagen: string;
         this.cargarBebidasAgregados();
         this.cargarPostresAgregados();
         this.cargarComplementosAgregados();
+        this.cargarSucursalesAgregados();
 
         this.form = this.formBuilder.group({
           prom_Descripcion: ['', Validators.required],
@@ -160,6 +162,18 @@ Imagen: string;
       (data: any[]) => {
       
         this.postres = data
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  cargarSucursalesAgregados() {
+    this.rolService.getSucursalesAgregadas(this.PromId).subscribe(
+      (data: any[]) => {
+      
+        this.sucursales = data
       },
       error => {
         console.log(error);

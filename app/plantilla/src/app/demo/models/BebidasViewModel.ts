@@ -14,6 +14,14 @@ export class Bebida {
     bebi_Descripcion?: string;
 }
 
+export class Bebida3 {
+    bebi_Id?: number;
+    bebi_Descripcion?: string;
+    bebi_Precio?: number;
+    bebi_Imagen?: string;
+}
+
+
 export class LlenarBebidas{
     bebi_Id: number;
     bebi_Descripcion: string;
@@ -46,9 +54,30 @@ export class Postre {
     post_id?: number;
     post_Descripcion?: string;
 }
+
+export class Postre2 {
+    post_id?: number;
+    post_Descripcion?: string;
+    post_Precio: string;
+    post_Imagen: string;
+}
+
+
 export class Complemento {
     comp_Id?: number;
     comp_Descripcion?: string;
+}
+
+export class Complemento2 {
+    comp_Id?: number;
+    comp_Descripcion?: string;
+    comp_Precio: string;
+    comp_Imagen: string;
+}
+
+export class SucursalesPromocion {
+    sucu_Id?: number;
+    sucu_Descripcion?: string;
 }
 
 export class CargarBebidas{

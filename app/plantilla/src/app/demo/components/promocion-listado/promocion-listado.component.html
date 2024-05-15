@@ -3,7 +3,7 @@
     <div class="col-12">
         <div class="card">
             <h5>Promocion</h5>
-            <button  pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" (click)="Nuevo()" [class.hidden]="">Agregar</button>
+            <button  pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" (click)="Nuevo()" [class.hidden]="">Nuevo</button>
             <p-table [value]="Promocion" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
                 [paginator]="true" [globalFilterFields]="['prom_Id','prom_Descripcion','prom_Precio','prom_Imagen','prom_Dia']" responsiveLayout="scroll">
                 <ng-template pTemplate="header">

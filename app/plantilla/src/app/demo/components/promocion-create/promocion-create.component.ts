@@ -53,6 +53,7 @@ export class PromocionCreateComponent implements OnInit{
     sourceBebidas: any[] = [];
     sourcePostres: any[] = [];
     sourceComplemetos: any[] = [];
+    sourceSucursales: any[] = [];
 
     pantallas: Pantallas[] = [];
     activeTab: string = 'Alimentos'; 
@@ -60,11 +61,12 @@ export class PromocionCreateComponent implements OnInit{
     targetBebida: any[] = [];
     targetPostre: any[] = [];
     targetComplemento: any[] = [];
+    targetSucursales: any[] = [];
     orderCities: any[] = [];
     alimentosActivo: boolean = true;
     bebidasActivo: boolean = false;
     PromId: number;
-
+    Usua_Id: number;
     routeItems: MenuItem[] = [];
     selectedImageURL: string | null = null;
     imageSelected: boolean = false;
@@ -95,6 +97,7 @@ ngOnInit(): void {
   this.cargarBebidas();
   this.cargarPostres();
   this.cargarComplementos();
+  this.cargarSucursales();
 }
 onImageSelect(event: any) {
     
@@ -196,20 +199,36 @@ cargarAlimentos() {
   );
 }
 
+cargarSucursales() {
+  this.rolService.getSucursales(0).subscribe(
+    sucursales => {
+      console.log("Prueba: " + sucursales)
+      this.sourceSucursales = sucursales.map(sucursal => ({ name: sucursal.sucu_Descripcion, code: sucursal.sucu_Id }));
+      console.log("SUCRUSAL: " + this.sourceSucursales);
+    },
+    error => {
+      console.error('Error al cargar las pantallas:', error);
+    }
+  );
+}
+
 guardar() {
   if (this.form.valid) {
       const Prom_Descripcion = this.form.value.Prom_Descripcion;
       const Prom_Precio = this.form.value.Prom_Precio;
       const Dias_Id = this.form.value.Dias_Id;
+      const Usua_Id = 1
       const prom_Imagen = this.prueba;
       const alimentosAgregados = this.targetCities.map(objeto => objeto.code);
       const bebidasAgregadas = this.targetBebida.map(bebida => bebida.code);
       const postresAgregados = this.targetPostre.map(postre => postre.code);
       const complementosAgregados = this.targetComplemento.map(complemento => complemento.code);
+      const sucursalesAgregados = this.targetSucursales.map(sucursal => sucursal.code);
       console.log("alimentos: " + alimentosAgregados)
       console.log("bebidas: " + bebidasAgregadas)
       console.log("postres: " + postresAgregados)
       console.log("complementos: " + complementosAgregados)
+      console.log("sucursales: " + sucursalesAgregados)
       const nuevoRol: Promociones = {
           prom_Id: 0,
           prom_Descripcion: Prom_Descripcion,
@@ -272,6 +291,18 @@ guardar() {
                     console.error('Error en la solicitud HTTP:', error);
                 }
             );
+            this.rolService.agregarSucursales(sucursalesAgregados, this.PromId, Usua_Id).subscribe(
+              (respuesta: Respuesta) => {
+                  if (respuesta.success) {
+                    console.log("Sucursales agregadas con exito")
+                  } else {
+                      console.error('Error al agregar las pantallas al rol:', respuesta.message);
+                  }
+              },
+              error => {
+                  console.error('Error en la solicitud HTTP:', error);
+              }
+          );
                   
                   this.rolService.successMessage = '¡Promocion registrada correctamente!';
               this.router.navigate(['app/IndexPromocion']);

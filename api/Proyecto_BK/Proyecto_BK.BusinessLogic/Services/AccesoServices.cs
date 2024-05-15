@@ -586,7 +586,7 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
             catch (Exception ex)
             {
-                return result.Error("Error en la capa de servicio al listar usuarios");
+                return result.Error(ex.Message);
             }
         }
 
@@ -670,7 +670,7 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
             catch (Exception ex)
             {
-                return result.Error("Error al actualizar el usuario");
+                return result.Error(ex.Message);
             }
         }
 

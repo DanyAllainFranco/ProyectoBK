@@ -36,4 +36,12 @@ namespace Proyecto_BK.Common.Models
         public List<int> CompIds { get; set; }
         public int PromId { get; set; }
     }
+
+    public class AgregarSucursalViewModel
+    {
+        public List<int> SucuIds { get; set; }
+        public int PromId { get; set; }
+
+        public int Usua_Id { get; set; }
+    }
 }

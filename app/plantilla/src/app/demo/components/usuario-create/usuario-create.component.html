@@ -1,0 +1,53 @@
+<div class="grid">
+    <div class="col-12">
+        <p-toast></p-toast>
+        <div class="card">
+
+            <div class=" grid">
+                <form [formGroup]="form" class="grid col-12 p-fluid p-formgrid">
+
+                    <div class="field col-12 md:col-6">
+                        <label>Usuario:</label>
+                        <input type="text" class="p-inputtext" formControlName="Usua_Usuario">
+                        
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Contrasena:</label>
+                        <input type="text" class="p-inputtext" formControlName="Usua_Contra">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Empleado:</label>
+                        <p-dropdown [options]="empleados" formControlName="Empl_Id" placeholder="Seleccione"
+                            [showClear]="false"></p-dropdown>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Rol:</label>
+                        <p-dropdown [options]="complementos" formControlName="Rol_Id" placeholder="Seleccione"
+                            [showClear]="false"></p-dropdown>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Admin</label>
+                        <br>
+                        <div class="justify-content-center ms-5">
+                            <div class="text-center">
+                                <p-checkbox class="mt-2" formControlName="Usua_Admin" binary="true"></p-checkbox>
+            
+                            </div>
+                        </div>
+                       
+						
+                    </div>
+                </form>
+            </div>
+            <div class="grid p-justify-end">
+                <div class="col">
+                    <button pButton pRipple type="button" label="Volver" icon="pi pi-times"
+                        class="p-button-rounded p-button-secondary mt-4" (click)="Volver()"></button>
+
+                    <button pButton pRipple type="button" label="Guardar" icon="pi pi-check"
+                        class="p-button-rounded ms-6" (click)="guardar()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

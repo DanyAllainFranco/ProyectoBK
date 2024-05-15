@@ -60,7 +60,7 @@
             <p-table [value]="Complemento" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
                 [paginator]="true" [globalFilterFields]="['comp_Id','comp_Descripcion','comp_Precio','comp_Imagen']"
                 responsiveLayout="scroll">
-                <ng-template pTemplate="caption">
+                <ng-template pTemplate="header">
                     <div class="flex justify-content-between flex-column sm:flex-row">
                         <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash"
                             (click)="clear()"></button>

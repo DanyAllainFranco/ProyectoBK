@@ -89,7 +89,7 @@ export class ComplementoListadoComponent implements OnInit {
   }
    
   detallePostre(combId: number) {
-    this.router.navigate(['app/DetalleBebida', combId]); // Redirige a la ruta de edición con el ID del rol
+    this.router.navigate(['app/DetalleComplemento', combId]); // Redirige a la ruta de edición con el ID del rol
   }
   getComplementos(){
     this.service.getComplemento().subscribe(

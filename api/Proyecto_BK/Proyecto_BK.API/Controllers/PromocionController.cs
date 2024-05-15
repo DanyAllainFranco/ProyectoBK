@@ -322,5 +322,47 @@ namespace Proyecto_BK.API.Controllers
             }
         }
         #endregion
+
+        #region Sucursales
+
+        [HttpPost("API/[controller]/AgregarSucursales")]
+        public IActionResult AgregarSucu([FromBody] AgregarSucursalViewModel request)
+        {
+            var result = _restauranteServices.InsertarSucursales(request.SucuIds, request.PromId, request.Usua_Id);
+            return Ok(result);
+        }
+
+
+        [HttpDelete("API/[controller]/EliminarSucursales/{Prom_Id}")]
+        public IActionResult EliminarSucu(int Prom_Id)
+        {
+            var response = _restauranteServices.EliminarSucursales(Prom_Id);
+
+            return Ok(response);
+
+        }
+
+        [HttpGet("API/[controller]/ListSucursales/{PromId}")]
+        public IActionResult ListSucu(int PromId)
+        {
+            var list = _restauranteServices.ListSucursales(PromId);
+            return Ok(list.Data);
+        }
+
+
+        [HttpGet("API/[controller]/SucursalesAgregadas/{PromId}")]
+        public IActionResult SucuAgregados(int PromId)
+        {
+            var listado = _restauranteServices.ListaSucursalesAgregados(PromId);
+            if (listado.Success == true)
+            {
+                return Ok(listado.Data);
+            }
+            else
+            {
+                return Problem();
+            }
+        }
+        #endregion
     }
 }

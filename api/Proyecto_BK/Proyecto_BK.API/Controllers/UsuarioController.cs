@@ -73,7 +73,6 @@ namespace Proyecto_BK.API.Controllers
                 Rol_Id = json.Rol_Id,
                 Usua_Usua_Creacion = 1,
                 Usua_Fecha_Creacion = DateTime.Now,
-                Usua_Activo = json.Usua_Activo
             };
             var response = _accesoServices.CrearUsuario(modelo);
             return Ok(response);
@@ -87,19 +86,17 @@ namespace Proyecto_BK.API.Controllers
             {
                 Usua_Id = Convert.ToInt32(json.Usua_Id),
                 Usua_Usuario = json.Usua_Usuario,
-                Usua_Contra = json.Usua_Contra,
                 Usua_Admin = json.Usua_Admin,
                 Empl_Id = json.Empl_Id,
                 Rol_Id = json.Rol_Id,
                 Usua_Usua_Modifica = 1,
                 Usua_Fecha_Modifica = DateTime.Now,
-                Usua_Activo = json.Usua_Activo
             };
             var list = _accesoServices.EditarUsuario(modelo);
             return Ok(list);
         }
 
-        [HttpDelete("API/[controller]/Delete")]
+        [HttpDelete("API/[controller]/Delete/{Usua_Id}")]
         public IActionResult Delete(int Usua_Id)
         {
             var response = _accesoServices.EliminarUsuario(Usua_Id);

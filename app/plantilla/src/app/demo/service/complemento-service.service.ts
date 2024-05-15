@@ -17,7 +17,7 @@ export class ComplementoServiceService {
     return this.http.get<CargarComplementos[]>(this.Url);
   }
 
-  obtenerBebidaPorId(idCombo: number): Observable<LlenarComplementos> {
+  obtenerCoplementoPorId(idCombo: number): Observable<LlenarComplementos> {
     return this.http.get<LlenarComplementos>(`${BASE_URL}API/Complemento/Fill/${idCombo}`);
   }
 

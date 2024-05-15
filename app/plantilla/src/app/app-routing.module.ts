@@ -41,6 +41,9 @@ import { PromocionDetalleComponent } from './demo/components/promocion-detalle/p
 import { PostreDetalleComponent } from './demo/components/postre-detalle/postre-detalle.component';
 import { AlimentoDetalleComponent } from './demo/components/alimento-detalle/alimento-detalle.component';
 import { BebidaDetalleComponent } from './demo/components/bebida-detalle/bebida-detalle.component';
+import { ComplementoDetalleComponent } from './demo/components/complemento-detalle/complemento-detalle.component';
+import { UsuarioCreateComponent } from './demo/components/usuario-create/usuario-create.component';
+import { PaqueteCreateComponent } from './demo/components/paquete-create/paquete-create.component';
 
 
 
@@ -83,6 +86,7 @@ import { BebidaDetalleComponent } from './demo/components/bebida-detalle/bebida-
                     { path: 'IndexSucursales', component: SucursalListadoComponent },
                     {path: 'IndexRoles', component:RolListadoComponent},
                     { path: 'CreateRol', component: RolCreateComponent } , 
+                    { path: 'CreatePaquete', component: PaqueteCreateComponent } , 
                     { path: 'EditarRol/:id', component: RolEditarComponent } ,
                     { path: 'EditarPromocion/:id', component: PromocionEditarComponent } ,
                     { path: 'DetalleRol/:id', component: RolDetalleComponent } ,
@@ -93,6 +97,8 @@ import { BebidaDetalleComponent } from './demo/components/bebida-detalle/bebida-
                     { path: 'DetallePostre/:id', component: PostreDetalleComponent},
                     { path: 'DetalleAlimento/:id', component: AlimentoDetalleComponent},
                     { path: 'DetalleBebida/:id', component: BebidaDetalleComponent},
+                    { path: 'CreateUsuario', component: UsuarioCreateComponent},
+                    { path: 'DetalleComplemento/:id', component: ComplementoDetalleComponent},
                     // { path: 'IndexGraficos', component: GraficosComponent }
                     { path: 'IndexInforme', component: ReporteVentasComponent }, //IndexFactura
                     { path: 'IndexFactura', component: FacturaListadoComponent }, //IndexFactura

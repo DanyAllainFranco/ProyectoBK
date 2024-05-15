@@ -133,6 +133,16 @@
           </p-pickList>
         </div>
   
+        <div *ngIf="activeTab === 'Sucursales'" class="mt-3">
+          <p-pickList [source]="sourceSucursal" [target]="targetSucursal" sourceHeader="Sucursales"
+            targetHeader="Sucursales Agregadas" [dragdrop]="true" [responsive]="true" [sourceStyle]="{'height':'250px'}"
+            [targetStyle]="{'height':'250px'}">
+            <ng-template let-sucursal pTemplate="item">
+              <div>{{ sucursal.name }}</div>
+            </ng-template>
+          </p-pickList>
+        </div>
+
         <div class="grid p-justify-end">
           <div class="col">
             <button pButton pRipple type="button" label="Volver" icon="pi pi-times"

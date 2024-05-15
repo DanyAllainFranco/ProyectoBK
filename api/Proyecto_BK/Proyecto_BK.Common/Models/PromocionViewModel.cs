@@ -30,6 +30,8 @@ namespace Proyecto_BK.Common.Models
         [NotMapped]
         public string Comp_Descripcion { get; set; }
         [NotMapped]
+        public string Sucu_Descripcion { get; set; }
+        [NotMapped]
         public string Usua_Creacion { get; set; }
         [NotMapped]
         public string Usua_Modifica { get; set; }
