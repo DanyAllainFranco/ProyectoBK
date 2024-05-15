@@ -113,18 +113,5 @@ namespace Proyecto_BK.DataAccess.Repository
         {
             throw new NotImplementedException();
         }
-
-        public RequestStatus Delete(string Fact_Id, string Prod_Nombre, int dif)
-        {
-            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
-            {
-                var parameter = new DynamicParameters();
-                parameter.Add("Fact_Id", Fact_Id);
-                parameter.Add("Prod_Nombre", Prod_Nombre);
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Eliminar, parameter, commandType: CommandType.StoredProcedure);
-
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
-            }
-        }
     }
 }

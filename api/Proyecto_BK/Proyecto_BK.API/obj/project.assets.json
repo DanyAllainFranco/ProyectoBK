@@ -7471,11 +7471,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.API\\Proyecto_BK.API.csproj",
+      "projectUniqueName": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.API\\Proyecto_BK.API.csproj",
       "projectName": "Proyecto_BK.API",
-      "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.API\\Proyecto_BK.API.csproj",
+      "projectPath": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.API\\Proyecto_BK.API.csproj",
       "packagesPath": "C:\\Users\\informatica\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.API\\obj\\",
+      "outputPath": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\informatica\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7492,11 +7492,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj": {
-              "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj"
+            "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj": {
+              "projectPath": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.BusinessLogic\\Proyecto_BK.BusinessLogic.csproj"
             },
-            "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj": {
-              "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj"
+            "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj": {
+              "projectPath": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj"
             }
           }
         }
