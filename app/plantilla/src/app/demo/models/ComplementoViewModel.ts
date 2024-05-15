@@ -15,6 +15,34 @@ export class CargarComplementos{
     comp_Descripcion?: string;
 }
 
+export class LlenarComplementos{
+    comp_Id: number;
+    comp_Descripcion: string;
+    comp_Precio: string;
+    comp_Imagen: string;
+    usua_Creacion: string;
+    usua_Modifica: string;
+    comp_Fecha_Creacion: string;
+    comp_Fecha_Modifica: string;
+}
+
+export class ComplementoActualizar{
+    comp_Id: number;
+    comp_Descripcion: string;
+    comp_Precio: string;
+    comp_Imagen: string;
+    comp_Usua_Modifica: number;
+}
+
+export class Complemento2{
+    comp_Id: number;
+    comp_Descripcion: string;
+    comp_Precio: string;
+    comp_Imagen: string;
+    comp_Usua_Creacion: number;
+}
+
+
 export class dropComplemento{
     value?:String;
     text?:String;

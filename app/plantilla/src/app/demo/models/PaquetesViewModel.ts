@@ -9,3 +9,13 @@ export class Paquetes {
     Paqe__Fecha_Modifica?: Date;
     Paqe__Estado?: boolean;
 }
+
+
+export class PaquetesEnviar {
+    paqe_Id?: number;
+    paqe_Descripcion?: string;
+    paqe_Precio?: string;
+    paqe_Imagen?: string;
+    Usua_Id: number;
+}
+

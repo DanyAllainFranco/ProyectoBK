@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
 import { dropDepartamento } from '../models/DepartamentosViewModel';
-import { dropMunicipio } from '../models/MunicipioViewModel';
+import { CargarMunicipios, dropMunicipio } from '../models/MunicipioViewModel';
 import { dropEstadoCivil } from '../models/EstadoCivilViewModel';
 import { dropCargo } from '../models/CargosViewModel';
 
@@ -28,6 +28,9 @@ export class ServiceService {
     return this.http.get<dropMunicipio[]>(BASE_URL + 'API/Municipio/Lista/' + codigo )
   }
 
+  getMunicipiosPorDepartamento(codigo){
+    return this.http.get<CargarMunicipios[]>(BASE_URL + 'API/Municipio/MunicipioPorDepartamento/' + codigo )
+  }
 
 
   urlDropC = BASE_URL + 'API/Cargo/DropDown'

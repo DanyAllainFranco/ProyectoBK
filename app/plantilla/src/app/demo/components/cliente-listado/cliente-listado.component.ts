@@ -39,6 +39,10 @@ export class ClientesListadoComponent implements OnInit {
       }
     );
   }
+
+  Nuevo(){
+    this.router.navigate(['app/CreateCliente'])
+  }
 }
 @NgModule({
   imports: [

@@ -147,6 +147,7 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Bebi_Mostrar2 = "[Rest].SP_Bebidas_Mostrar2";
         public static string Post_Mostrar2 = "[Rest].SP_Postres_Mostrar2";
         public static string Comp_Mostrar2 = "[Rest].SP_Complementos_Mostrar2";
+        public static string Sucu_Mostrar2 = "[Rest].SP_Sucursales_Mostrar2";
         public static string Alim_Mostrar2 = "[Rest].SP_Alimentos_Mostrar2";
 
         public static string Pali_Mostrar = "[Rest].SP_PromocionesPorAlimentos_Mostrar";
@@ -166,7 +167,9 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Pcom_Insertar = "[Rest].SP_PromocionesPorComplementos_Insertar";
         public static string Pcom_Eliminar = "[Rest].SP_PromocionesPorComplementos_Eliminar";
 
-
+        public static string Psucu_Mostrar = "[Rest].SP_PromocionesPorSucursales_Mostrar";
+        public static string Psucu_Insertar = "[Rest].SP_PromocionesPorSucursales_Insertar";
+        public static string Psucu_Eliminar = "[Rest].SP_PromocionesPorSucursales_Eliminar";
         #endregion
 
         #region Promociones por Sucursales

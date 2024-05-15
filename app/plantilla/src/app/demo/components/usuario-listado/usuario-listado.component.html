@@ -1,68 +1,66 @@
 <div class="grid">
+    <p-toast></p-toast>
     <div class="col-12">
         <div class="card">
             <h1>Usuarios</h1>
-            <!-- Modal para agregar/editar cargo -->
-            <p-toast></p-toast>
-            <p-dialog header="{{modalTitle}}" [(visible)]="display" [modal]="true" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
-                <form [formGroup]="formusuario">
-                    <div class="p-fluid">
-                        <div class="p-formgrid grid">         
-                            <div class="field col">
-                                <div class="grid">
-                                    <!-- Columna 1 -->
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="email2">Usuario</label>
-                                            <br>
-                                            <input pInputText formControlName="id" autocomplete="off" id="test" type="text" class="form-control" hidden />
-                                            <input pInputText formControlName="usuario" autocomplete="off" id="email2" type="text" class="form-control" />
-                                            <input pInputText formControlName="contraseña" autocomplete="off" id="email2" type="text" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <!-- Columna 2 -->
-                                    <div class="form-group">
-                                    <div class="col-6">
-                                            <label for="rol">Roles</label>
-                                            <br>
-                                            <select formControlName="Rol_Id" pInputText id="rol" required class="form-control" [ngClass]="{'ng-invalid ng-dirty': submitted && formusuario.get('Rol_Id').value === '0'}">
-                                                <option *ngFor="let rol of roles" [value]="rol.rol_Id">{{ rol.rol_Descripcion }}</option>
-                                            </select>
 
-                                            <label for="rol">Empleados</label>
-                                            <select formControlName="Empl_Id" pInputText id="empleado" required class="form-control" [ngClass]="{'ng-invalid ng-dirty': submitted && formusuario.get('Empl_Id').value === '0'}">
-                                                <option *ngFor="let empleado of empleados " [value]="empleado.empl_Id">{{ empleado.empl_Nombre}}</option>
-                                            </select>
-
-                                            <input pSwitch formControlName="admin" class="form-control" />
-
-                                        </div>
-                                    </div>
-                                </div>
-                                                               <input pInputText formControlName="id" autocomplete="off" id="email" type="text" hidden />
-                                <small *ngIf="campoVacio('usuario')" class="text-danger">El campo es requerido.</small>
-                            </div>
+            <p-dialog header="{{modalTitle}}" [(visible)]="display" [modal]="true" showEffect="fade"
+                [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+                <div class="grid">
+                    <form [formGroup]="formDepartamento" class="grid col-12 p-fluid p-formgrid">
+                        <div class="field col-12 md:col-6">
+                            <label htmlFor="name2">Usuario:</label>
+                            <input formControlName="usuario" class="p-inputtext" type="text" />
                         </div>
-                    </div>
-                </form>
+                        <div class="field col-12 md:col-6">
+                            <label htmlFor="email2">Admin:</label>
+                            <br>
+                            <div class="justify-content-center ms-5">
+                                <div class="text-center">
+                                    <p-checkbox class="mt-2" formControlName="admin" binary="true"></p-checkbox>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="field col">
+                            <label htmlFor="email2">Empleado:</label>
+                            <p-dropdown [options]="empleados" formControlName="empl_Id" placeholder="Seleccione"
+                                [showClear]="false"></p-dropdown>
+
+                        </div>
+                        <div class="field col">
+                            <label htmlFor="email2">Rol:</label>
+                            <p-dropdown [options]="complementos" formControlName="rol_Id" placeholder="Seleccione"
+                                [showClear]="false"></p-dropdown>
+
+                        </div>
+
+
+                    </form>
+                </div>
+
                 <ng-template pTemplate="footer">
-                    <button pButton icon="pi pi-times" (click)="display=false" label="Cerrar" class="p-button-outlined p-button-danger mr-2"></button>
-                    <button pButton icon="pi pi-check" (click)="guardarusuario()"  label="{{modalButtonLabel}}" class="p-button-outlined"></button>
+                    <button pButton icon="pi pi-times" (click)="cerrar()" label="Cerrar"
+                        class="p-button-outlined p-button-danger mr-2"></button>
+                    <button pButton icon="pi pi-check" label="{{modalButtonLabel}}" class="p-button-outlined"
+                        (click)="guardarDepartamento()"></button>
                 </ng-template>
+
             </p-dialog>
 
-            <!-- Botón para abrir el modal de nuevo cargo -->
             <div class="grid">
                 <div class="col-12">
-                    <button (click)="displayNuevausuario()" pButton icon="pi pi-plus-circle" label="Nuevo" class="mr-2"></button>
+                    <button (click)="Nuevo()" pButton icon="pi pi-plus-circle" label="Nuevo" class="mr-2"></button>
                 </div>
             </div>
-    
+
+
             <!-- Tabla de cargos -->
             <p-table [value]="usuario" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
                 [paginator]="true" [globalFilterFields]="['usua_Usuario']" responsiveLayout="scroll">
                 <ng-template pTemplate="header">
-                    <tr>                        
+                    <tr>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Usuario
@@ -92,6 +90,11 @@
                             </div>
                         </th>
                         <th style="min-width: 12rem">
+                            Estado
+                            <p-columnFilter type="text" field="muni_Codigo" display="menu"
+                                placeholder="Buscar por descripción"></p-columnFilter>
+                        </th>
+                        <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Acciones
                             </div>
@@ -101,21 +104,24 @@
                 <ng-template pTemplate="body" let-usuario>
                     <tr>
                         <td>{{usuario.usua_Usuario}}</td>
-                        <td>{{usuario.rol_Id}}</td>
-                        <td>{{usuario.empl_Id}}</td>
-                        <td>{{usuario.usua_Admin}}</td>
-
-                        <!-- <td  style="display: flex; grid-gap:10px">
-                             <!-- Botón para editar cargo  -->
-                            <!-- <button pButton pRipple type="button" label="Editar" class="p-button-primary" (click)="editusuario(usuario)"></button> -->
-                            <!-- Botón para eliminar cargo -->
-                            <!-- <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" (click)="confirmarEliminarusuario(usuario)"></button> -->
-                        <!-- </td> --> 
-
+                        <td>{{usuario.rol_Descripcion}}</td>
+                        <td>{{usuario.empleado}}</td>
+                        <td>{{usuario.usuaAdmin}}</td>
+                        <td>
+                            <p-badge value="{{usuario.estado}}" size="large"
+                                severity="{{usuario.estado === 'Activo' ? 'success' : 'danger'}}"></p-badge>
+                        </td>
                         <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
-                            <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="editusuario(usuario)" severity="primary" [raised]="true" [plain]="true"></p-button>
-                            <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(depto.dept_Codigo)" severity="secondary" [raised]="true" [plain]="true"></p-button>
-                            <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="confirmarEliminarusuario(depto.usuario)" severity="danger" [raised]="true" [plain]="true"></p-button>
+                            <p-button label="Editar" icon="pi pi-user-edit" size="small"
+                                (click)="editDepartamento(usuario)" severity="primary" [raised]="true"
+                                [plain]="true"></p-button>
+                            <p-button label="Detalles" icon="pi pi-book" size="small"
+                                (click)="detalleRol(usuario.usua_Id)" severity="secondary" [raised]="true"
+                                [plain]="true"></p-button>
+                            <p-button label="{{ getBotonEliminarLabel(usuario) }}" icon="{{ getBotonIcono(usuario) }}"
+                                size="small" (click)="confirmarEliminarUsuario(usuario)"
+                                [severity]="getBotonSeverity(usuario)">
+                            </p-button>
                         </td>
                     </tr>
                 </ng-template>
@@ -131,14 +137,17 @@
                 </ng-template>
             </p-table>
 
-            <!-- Modal de confirmación de eliminación -->
-            <p-dialog header="Confirmar Eliminación" [(visible)]="confirmacionVisible" modal="true" [style]="{ width: '300px' }">
-                <p>¿Está seguro de que desea eliminar este registro?</p>
+
+            <p-dialog [header]="confirmacionTitulo" [(visible)]="confirmacionVisible" modal="true"
+                [style]="{ width: '300px' }">
+                <p>{{ confirmacionMensaje }}</p>
                 <p-footer>
                     <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
-                    <button pButton type="button" label="Confirmar" class="p-button-danger" (click)="eliminarusuario()"></button>
+                    <button pButton type="button" label="{{ confirmacionBotonLabel }}"
+                        class="{{ confirmacionBotonClase }}" (click)="eliminarusuario()"></button>
                 </p-footer>
             </p-dialog>
+
         </div>
     </div>
 </div>

@@ -43,6 +43,7 @@ export class GraficosComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    
       this.route.queryParams.subscribe(params => {
           this.usuario = params['usuario'];
           if (this.usuario) {

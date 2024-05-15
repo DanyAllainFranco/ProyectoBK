@@ -120,7 +120,7 @@ export class AppMenuComponent implements OnInit {
                         icon: 'pi pi-shopping-bag',
                         items: [
                             {
-                                label: 'Combos Personales',
+                                label: 'Combos',
                                 icon: 'pi pi-user',
                                 routerLink: ['/app/IndexComboPersonal']
                             },
@@ -150,26 +150,9 @@ export class AppMenuComponent implements OnInit {
                                 routerLink: ['/app/IndexPromocion']
                             },
                             {
-                                label: 'Promociones Por Comidas',
-                                icon: 'pi pi-plus-circle',
-                                routerLink: ['/app/IndexPromocionPorComida']
-                            },
-                          
-                          
-                            {
                                 label: 'Paquetes',
                                 icon: 'pi pi-users',
                                 routerLink: ['/app/IndexPaquetes']
-                            },
-                            {
-                                label: 'Paquetes por alimento',
-                                icon: 'pi pi-users',
-                                routerLink: ['/app/IndexPaquetesporAlimento']
-                            },
-                            {
-                                label: 'Promociones Por Sucursales',
-                                icon: 'pi pi-building',
-                                routerLink: ['/app/IndexPromocionPorSucursal']
                             },
                             {
                                 label: 'Sucursales',

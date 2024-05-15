@@ -31,6 +31,11 @@ namespace Proyecto_BK.Entities
         public bool? Prom_Estado { get; set; }
         [NotMapped]
         public string Dias_Descripcion { get; set; }
+
+        [NotMapped]
+        public string Usua_Creacion { get; set; }
+        [NotMapped]
+        public string Usua_Modifica { get; set; }
         public virtual tbDias Dias { get; set; }
         public virtual tbUsuarios Prom_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Prom_Usua_ModificaNavigation { get; set; }

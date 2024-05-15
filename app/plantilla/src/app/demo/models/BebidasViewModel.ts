@@ -13,13 +13,71 @@ export class Bebida {
     bebi_Id?: number;
     bebi_Descripcion?: string;
 }
+
+export class Bebida3 {
+    bebi_Id?: number;
+    bebi_Descripcion?: string;
+    bebi_Precio?: number;
+    bebi_Imagen?: string;
+}
+
+
+export class LlenarBebidas{
+    bebi_Id: number;
+    bebi_Descripcion: string;
+    bebi_Precio: string;
+    bebi_Imagen: string;
+    usua_Creacion: string;
+    usua_Modifica: string;
+    bebi_Fecha_Creacion: string;
+    bebi_Fecha_Modifica: string;
+}
+
+export class BebidaActualizar{
+    bebi_Id: number;
+    bebi_Descripcion: string;
+    bebi_Precio: string;
+    bebi_Imagen: string;
+    bebi_Usua_Modifica: number;
+}
+
+export class Bebida2{
+    bebi_Id: number;
+    bebi_Descripcion: string;
+    bebi_Precio: string;
+    bebi_Imagen: string;
+    bebi_Usua_Creacion: number;
+}
+
+
 export class Postre {
     post_id?: number;
     post_Descripcion?: string;
 }
+
+export class Postre2 {
+    post_id?: number;
+    post_Descripcion?: string;
+    post_Precio: string;
+    post_Imagen: string;
+}
+
+
 export class Complemento {
     comp_Id?: number;
     comp_Descripcion?: string;
+}
+
+export class Complemento2 {
+    comp_Id?: number;
+    comp_Descripcion?: string;
+    comp_Precio: string;
+    comp_Imagen: string;
+}
+
+export class SucursalesPromocion {
+    sucu_Id?: number;
+    sucu_Descripcion?: string;
 }
 
 export class CargarBebidas{

@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
-import { Sucursales } from '../../models/SucursalesViewModel';
+import { Sucursales, SucursalesMostrar } from '../../models/SucursalesViewModel';
 import { DropMunicipios } from '../../models/MunicipioViewModel';
 import { SucursalServiceService } from '../../service/sucursal-service.service';
 import { CommonModule } from '@angular/common';
@@ -30,7 +30,7 @@ import { DialogModule } from 'primeng/dialog';
 export class SucursalListadoComponent implements OnInit {
   display: boolean = false;
   submitted = false;
-  sucursal: Sucursales[] = [];
+  sucursal: SucursalesMostrar[] = [];
   municipios: any[] = [];
   formSucursal: FormGroup;
   selectedSucursal: any;

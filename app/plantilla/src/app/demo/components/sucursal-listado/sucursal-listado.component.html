@@ -4,10 +4,11 @@
             <h1>Sucursales</h1>
             <!-- Modal para agregar/editar cargo -->
             <p-toast></p-toast>
-            <p-dialog header="{{modalTitle}}" [(visible)]="display" [modal]="true" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+            <p-dialog header="{{modalTitle}}" [(visible)]="display" [modal]="true" showEffect="fade"
+                [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
                 <form [formGroup]="formSucursal">
                     <div class="p-fluid">
-                        <div class="p-formgrid grid">         
+                        <div class="p-formgrid grid">
                             <div class="field col">
                                 <div class="grid">
                                     <!-- Columna 1 -->
@@ -15,8 +16,10 @@
                                         <div class="form-group">
                                             <label for="email2">Sucursal</label>
                                             <br>
-                                            <input pInputText formControlName="id" autocomplete="off" id="test" type="text" class="form-control" hidden />
-                                            <input pInputText formControlName="sucursal" autocomplete="off" id="email2" type="text" class="form-control" />
+                                            <input pInputText formControlName="id" autocomplete="off" id="test"
+                                                type="text" class="form-control" hidden />
+                                            <input pInputText formControlName="sucursal" autocomplete="off" id="email2"
+                                                type="text" class="form-control" />
                                         </div>
                                     </div>
                                     <!-- Columna 2 -->
@@ -24,8 +27,12 @@
                                         <div class="form-group">
                                             <label for="municipio">Municipio</label>
                                             <br>
-                                            <select formControlName="Muni_Codigo" pInputText id="municipio" required class="form-control" [ngClass]="{'ng-invalid ng-dirty': submitted && formSucursal.get('Muni_Codigo').value === '0'}">
-                                                <option *ngFor="let municipio of municipios" [value]="municipio.muni_Codigo">{{ municipio.muni_Descripcion }}</option>
+                                            <select formControlName="Muni_Codigo" pInputText id="municipio" required
+                                                class="form-control"
+                                                [ngClass]="{'ng-invalid ng-dirty': submitted && formSucursal.get('Muni_Codigo').value === '0'}">
+                                                <option *ngFor="let municipio of municipios"
+                                                    [value]="municipio.muni_Codigo">{{ municipio.muni_Descripcion }}
+                                                </option>
                                             </select>
                                             <!-- <label for="admin">Admin</label>
                                             <p-inputSwitch formControlName="admin"></p-inputSwitch> -->
@@ -33,31 +40,35 @@
                                         </div>
                                     </div>
                                 </div>
-                      
-                                <input pInputText formControlName="id" autocomplete="off" id="email" type="text" hidden />
+
+                                <input pInputText formControlName="id" autocomplete="off" id="email" type="text"
+                                    hidden />
                                 <small *ngIf="campoVacio('sucursal')" class="text-danger">El campo es requerido.</small>
                             </div>
                         </div>
                     </div>
                 </form>
                 <ng-template pTemplate="footer">
-                    <button pButton icon="pi pi-times" (click)="display=false" label="Cerrar" class="p-button-outlined p-button-danger mr-2"></button>
-                    <button pButton icon="pi pi-check" (click)="guardarSucursal()"  label="{{modalButtonLabel}}" class="p-button-outlined"></button>
+                    <button pButton icon="pi pi-times" (click)="display=false" label="Cerrar"
+                        class="p-button-outlined p-button-danger mr-2"></button>
+                    <button pButton icon="pi pi-check" (click)="guardarSucursal()" label="{{modalButtonLabel}}"
+                        class="p-button-outlined"></button>
                 </ng-template>
             </p-dialog>
 
             <!-- Botón para abrir el modal de nuevo cargo -->
             <div class="grid">
                 <div class="col-12">
-                    <button (click)="displayNuevaSucursal()" pButton icon="pi pi-plus-circle" label="Nuevo" class="mr-2"></button>
+                    <button (click)="displayNuevaSucursal()" pButton icon="pi pi-plus-circle" label="Nuevo"
+                        class="mr-2"></button>
                 </div>
             </div>
-    
+
             <!-- Tabla de cargos -->
             <p-table [value]="sucursal" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
                 [paginator]="true" [globalFilterFields]="['sucu_Descripcion','muni_Codigo']" responsiveLayout="scroll">
                 <ng-template pTemplate="header">
-                    <tr>                        
+                    <tr>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Sucursal
@@ -68,7 +79,14 @@
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Municipio
-                                <p-columnFilter type="text" field="muni_Codigo" display="menu"
+                                <p-columnFilter type="text" field="muni_Descripcion" display="menu"
+                                    placeholder="Buscar por descripción"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
+                                Departamento
+                                <p-columnFilter type="text" field="dept_Descripcion" display="menu"
                                     placeholder="Buscar por descripción"></p-columnFilter>
                             </div>
                         </th>
@@ -82,19 +100,25 @@
                 <ng-template pTemplate="body" let-sucursal>
                     <tr>
                         <td>{{sucursal.sucu_Descripcion}}</td>
-                        <td>{{sucursal.muni_Codigo}}</td>
-
+                        <td>{{sucursal.muni_Descripcion}}</td>
+                        <td>{{sucursal.dept_Descripcion}}</td>
                         <!-- <td  style="display: flex; grid-gap:10px"> -->
-                            <!-- Botón para editar cargo -->
-                            <!-- <button pButton pRipple type="button" label="Editar" class="p-button-primary" (click)="editSucursal(sucursal)"></button> -->
-                            <!-- Botón para eliminar cargo -->
-                            <!-- <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" (click)="confirmarEliminarSucursal(sucursal)"></button>
+                        <!-- Botón para editar cargo -->
+                        <!-- <button pButton pRipple type="button" label="Editar" class="p-button-primary" (click)="editSucursal(sucursal)"></button> -->
+                        <!-- Botón para eliminar cargo -->
+                        <!-- <button pButton pRipple type="button" label="Eliminar" class="p-button-danger" (click)="confirmarEliminarSucursal(sucursal)"></button>
                         </td> -->
 
                         <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
-                            <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="editSucursal(sucursal)" severity="primary" [raised]="true" [plain]="true"></p-button>
-                            <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(depto.dept_Codigo)" severity="secondary" [raised]="true" [plain]="true"></p-button>
-                            <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="confirmarEliminarSucursal(sucursal)" severity="danger" [raised]="true" [plain]="true"></p-button>
+                            <p-button label="Editar" icon="pi pi-user-edit" size="small"
+                                (click)="editSucursal(sucursal)" severity="primary" [raised]="true"
+                                [plain]="true"></p-button>
+                            <p-button label="Detalles" icon="pi pi-book" size="small"
+                                (click)="detalles(depto.dept_Codigo)" severity="secondary" [raised]="true"
+                                [plain]="true"></p-button>
+                            <p-button label="Eliminar" icon="pi pi-trash" size="small"
+                                (click)="confirmarEliminarSucursal(sucursal)" severity="danger" [raised]="true"
+                                [plain]="true"></p-button>
                         </td>
                     </tr>
                 </ng-template>
@@ -111,11 +135,13 @@
             </p-table>
 
             <!-- Modal de confirmación de eliminación -->
-            <p-dialog header="Confirmar Eliminación" [(visible)]="confirmacionVisible" modal="true" [style]="{ width: '300px' }">
+            <p-dialog header="Confirmar Eliminación" [(visible)]="confirmacionVisible" modal="true"
+                [style]="{ width: '300px' }">
                 <p>¿Está seguro de que desea eliminar este registro?</p>
                 <p-footer>
                     <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
-                    <button pButton type="button" label="Confirmar" class="p-button-danger" (click)="eliminarSucursal()"></button>
+                    <button pButton type="button" label="Confirmar" class="p-button-danger"
+                        (click)="eliminarSucursal()"></button>
                 </p-footer>
             </p-dialog>
         </div>

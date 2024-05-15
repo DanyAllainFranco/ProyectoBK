@@ -116,43 +116,43 @@ namespace Proyecto_BK.API.Controllers
             return Ok(response);
         }
 
-        //[HttpPost("Subir")]
-        //public async Task<IActionResult> UploadImage(IFormFile file)
-        //{
+        [HttpPost("API/[controller]/Subir")]
+        public async Task<IActionResult> UploadImage(IFormFile file)
+        {
 
-        //    var allowedExtensions = new HashSet<string> { ".png", ".jpeg", ".svg", ".jpg", ".gif" };
-        //    var fileExtension = Path.GetExtension(file.FileName).ToLower();
-        //    if (!allowedExtensions.Contains(fileExtension))
-        //    {
-        //        return Ok(new { message = "Error", detail = "Extensión de archivo no permitida." });
-        //    }
-
-
-        //    var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+           var allowedExtensions = new HashSet<string> { ".png", ".jpeg", ".svg", ".jpg", ".gif" };
+            var fileExtension = Path.GetExtension(file.FileName).ToLower();
+            if (!allowedExtensions.Contains(fileExtension))
+            {
+                return Ok(new { message = "Error", detail = "Extensión de archivo no permitida." });
+            }
 
 
-        //    if (!Directory.Exists(uploadsFolderPath))
-        //    {
-        //        Directory.CreateDirectory(uploadsFolderPath);
-        //    }
-        //    var filePath = Path.Combine(uploadsFolderPath, file.FileName);
+           var uploadsFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
 
-        //    try
-        //    {
 
-        //        using (var stream = new FileStream(filePath, FileMode.Create))
-        //        {
-        //            await file.CopyToAsync(stream);
-        //        }
+            if (!Directory.Exists(uploadsFolderPath))
+            {
+                Directory.CreateDirectory(uploadsFolderPath);
+            }
+            var filePath = Path.Combine(uploadsFolderPath, file.FileName);
 
-        //        return Ok(new { message = "Exito" });
-        //    }
-        //    catch (Exception e)
-        //    {
+            try
+            {
 
-        //        return StatusCode(500, $"General error: {e.ToString()}");
-        //    }
-        //}
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                return Ok(new { message = "Exito" });
+            }
+            catch (Exception e)
+            {
+
+                return StatusCode(500, $"General error: {e.ToString()}");
+            }
+        }
 
 
         #region Alimentos
@@ -312,6 +312,48 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult ComplAgregadas(int PromId)
         {
             var listado = _restauranteServices.ListaComplementosAgregados(PromId);
+            if (listado.Success == true)
+            {
+                return Ok(listado.Data);
+            }
+            else
+            {
+                return Problem();
+            }
+        }
+        #endregion
+
+        #region Sucursales
+
+        [HttpPost("API/[controller]/AgregarSucursales")]
+        public IActionResult AgregarSucu([FromBody] AgregarSucursalViewModel request)
+        {
+            var result = _restauranteServices.InsertarSucursales(request.SucuIds, request.PromId, request.Usua_Id);
+            return Ok(result);
+        }
+
+
+        [HttpDelete("API/[controller]/EliminarSucursales/{Prom_Id}")]
+        public IActionResult EliminarSucu(int Prom_Id)
+        {
+            var response = _restauranteServices.EliminarSucursales(Prom_Id);
+
+            return Ok(response);
+
+        }
+
+        [HttpGet("API/[controller]/ListSucursales/{PromId}")]
+        public IActionResult ListSucu(int PromId)
+        {
+            var list = _restauranteServices.ListSucursales(PromId);
+            return Ok(list.Data);
+        }
+
+
+        [HttpGet("API/[controller]/SucursalesAgregadas/{PromId}")]
+        public IActionResult SucuAgregados(int PromId)
+        {
+            var listado = _restauranteServices.ListaSucursalesAgregados(PromId);
             if (listado.Success == true)
             {
                 return Ok(listado.Data);

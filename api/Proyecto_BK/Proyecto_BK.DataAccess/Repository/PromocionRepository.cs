@@ -391,5 +391,71 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
         #endregion
+
+
+        #region Sucursales
+        public RequestStatus InsertarSucursal(int Sucu_Id, int Prom_Id,int Usua_Id)
+        {
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("Prom_Id", Prom_Id);
+                parametro.Add("Sucu_Id", Sucu_Id);
+                parametro.Add("@PPSu_Usua_Creacion", Usua_Id);
+                parametro.Add("@PPSu_Fecha_Creacion",DateTime.Now);
+                var result = db.Execute(ScriptsBaseDeDatos.Psucu_Insertar,
+                    parametro,
+                     commandType: CommandType.StoredProcedure
+                    );
+
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+        }
+
+        public RequestStatus EliminarSucursales(int? id)
+        {
+            string sql = ScriptsBaseDeDatos.Psucu_Eliminar;
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Prom_Id", id);
+                var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
+
+                return new RequestStatus { CodeStatus = result, MessageStatus = "" };
+
+            }
+        }
+
+        public IEnumerable<tbSucursales> ListSucursales(int PromId)
+        {
+            List<tbSucursales> result = new List<tbSucursales>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("Prom_Id", PromId);
+
+                result = db.Query<tbSucursales>(ScriptsBaseDeDatos.Sucu_Mostrar2, parametro, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
+        public IEnumerable<tbPromocionesPorSusursales> List5(int Prom_Id)
+        {
+            string sql = ScriptsBaseDeDatos.Psucu_Mostrar;
+
+            List<tbPromocionesPorSusursales> result = new List<tbPromocionesPorSusursales>();
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Prom_Id", Prom_Id);
+                result = db.Query<tbPromocionesPorSusursales>(sql, parametro, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+        #endregion
     }
 }

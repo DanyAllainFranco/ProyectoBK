@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,5 +19,9 @@ namespace Proyecto_BK.Common.Models
         public int? Post_Usua_Modifica { get; set; }
         public DateTime? Post_Fecha_Modifica { get; set; }
         public bool? Post_Estado { get; set; }
+        [NotMapped]
+        public string Usua_Creacion { get; set; }
+        [NotMapped]
+        public string Usua_Modifica { get; set; }
     }
 }

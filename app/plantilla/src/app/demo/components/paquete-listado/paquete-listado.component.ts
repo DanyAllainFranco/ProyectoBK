@@ -28,6 +28,9 @@ export class PaqueteListadoComponent implements OnInit {
   constructor(private service: PaquetesServiceService, private router: Router) {}
 
   ngOnInit(): void {
+  this.getPaquete();
+  }
+  getPaquete(){
     this.service.getPaquete().subscribe(
       (data: any) => {
         console.log(data);
@@ -38,6 +41,10 @@ export class PaqueteListadoComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  Nuevo(){
+    this.router.navigate(['app/CreatePaquete'])
   }
 }
 @NgModule({

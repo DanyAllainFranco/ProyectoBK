@@ -1,0 +1,91 @@
+<div class="grid">
+    <div class="col-12">
+        <p-toast></p-toast>
+        <div class="card">
+
+            <div class=" grid">
+                <form [formGroup]="form" class="grid col-12 p-fluid p-formgrid">
+
+                    <div class="field col-12 md:col-6">
+                        <label>Identidad:</label>
+                        <input type="text" class="p-inputtext" formControlName="Clie_Identidad">
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Nombre:</label>
+                        <input type="text" class="p-inputtext" formControlName="Clie_Nombre">
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Apellido:</label>
+                        <input type="text" class="p-inputtext" formControlName="Clie_Apellido">
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+
+
+                    <div class="field col-12 md:col-6">
+                        <label>Sexo:</label>
+
+                        <input type="radio" class="form-check-input" name="Clie_Sexo" value="M" checked
+                            formControlName="Clie_Sexo">
+
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+
+
+                    <div class="field col-12 md:col-6">
+                        <label>Correo:</label>
+                        <input type="email" class="p-inputtext" formControlName="Clie_Correo">
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <label>Estado Civil:</label>
+                        <p-dropdown [options]="estadosciviles" formControlName="Esta_Id" placeholder="Seleccione"
+                            [showClear]="false"></p-dropdown>
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Departamento: </label>
+                        <p-dropdown (onChange)="onDepartmentChange(departamentos)" [options]="departamentos"
+                            placeholder="Seleccione" [showClear]="false"></p-dropdown>
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <label>Municipio: </label>
+                        <p-dropdown [options]="municipios" formControlName="Muni_Codigo" placeholder="Seleccione"
+                            [showClear]="false"></p-dropdown>
+                        <br>
+                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
+                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    </div>
+
+                </form>
+            </div>
+            <div class="grid p-justify-end">
+                <div class="col">
+                    <button pButton pRipple type="button" label="Volver" icon="pi pi-times"
+                        class="p-button-rounded p-button-secondary mt-4" (click)="Volver()"></button>
+
+                    <button pButton pRipple type="button" label="Guardar" icon="pi pi-check"
+                        class="p-button-rounded ms-6" (click)="guardar()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

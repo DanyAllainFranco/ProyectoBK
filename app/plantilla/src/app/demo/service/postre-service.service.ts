@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BASE_URL } from './UrlParaAPI';
-import {Postre,Fill, Postre2, CargarPostres, PostreActualizar } from '../models/PostreViewModel'
+import {Postre,Fill, Postre2, CargarPostres, PostreActualizar, LlenarPostres } from '../models/PostreViewModel'
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
@@ -16,6 +16,11 @@ export class PostreServiceService {
 
   constructor(private http: HttpClient) { }
   Url = 'https://localhost:44332/API/Postre/List';
+
+  obtenerPostrePorId(idCombo: number): Observable<LlenarPostres> {
+    return this.http.get<LlenarPostres>(`${BASE_URL}API/Postre/Fill/${idCombo}`);
+  }
+
 
   getPostre (){
     return this.http.get<CargarPostres[]>(this.Url);

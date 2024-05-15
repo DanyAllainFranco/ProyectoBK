@@ -15,7 +15,10 @@ namespace Proyecto_BK.Common.Models
         public string Muni_Codigo { get; set; }
 
         [NotMapped]
+
         public string Muni_Descripcion { get; set; }
+        [NotMapped]
+        public string Dept_Descripcion { get; set; }
         public int? Empl_Id { get; set; }
         public int? Sucu_Usua_Creacion { get; set; }
         public DateTime? Sucu_Fecha_Creacion { get; set; }

@@ -26,6 +26,8 @@ namespace Proyecto_BK.Entities
         public bool? Sucu_Estado { get; set; }
         [NotMapped]
         public string Muni_Descripcion { get; set; }
+        [NotMapped]
+        public string Dept_Descripcion { get; set; }
         public virtual tbEmpleados Empl { get; set; }
         public virtual tbMunicipios Muni_CodigoNavigation { get; set; }
         public virtual tbUsuarios Sucu_Usua_CreacionNavigation { get; set; }

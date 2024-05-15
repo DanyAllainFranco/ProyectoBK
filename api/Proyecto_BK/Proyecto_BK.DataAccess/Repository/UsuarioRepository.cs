@@ -76,7 +76,6 @@ namespace Proyecto_BK.DataAccess.Repository
                 parameter.Add("Rol_Id", item.Rol_Id);
                 parameter.Add("Usua_Usua_Creacion", item.Usua_Usua_Creacion);
                 parameter.Add("Usua_Fecha_Creacion", item.Usua_Fecha_Creacion);
-                parameter.Add("Usua_Activo", item.Usua_Activo);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Usua_Insertar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
@@ -100,16 +99,14 @@ namespace Proyecto_BK.DataAccess.Repository
                 var parameter = new DynamicParameters();
                 parameter.Add("Usua_Id", item.Usua_Id);
                 parameter.Add("Usua_Usuario", item.Usua_Usuario);
-                parameter.Add("Usua_Contra", item.Usua_Contra);
                 parameter.Add("Usua_Admin", item.Usua_Admin);
                 parameter.Add("Empl_Id", item.Empl_Id);
                 parameter.Add("Rol_Id", item.Rol_Id);
                 parameter.Add("Usua_Usua_Modifica", item.Usua_Usua_Modifica);
                 parameter.Add("Usua_Fecha_Modifica", item.Usua_Fecha_Modifica);
-                parameter.Add("Usua_Activo", item.Usua_Activo);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Usua_Editar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+                return new RequestStatus { CodeStatus = result.RESULTADO, MessageStatus = (result.RESULTADO == 1) ? "Exito" : "Error" };
             }
         }
     }

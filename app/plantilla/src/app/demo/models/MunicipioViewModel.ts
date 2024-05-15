@@ -20,6 +20,11 @@ export class Fill {
     muni_Fecha_Modifica?: string;
     
 }
+export class CargarMunicipios{
+    muni_Codigo?:String;
+    muni_Descripcion?:String;
+}
+
 
 export class dropMunicipio{
     value?:String;

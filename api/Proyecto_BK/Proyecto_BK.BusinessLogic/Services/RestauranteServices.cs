@@ -799,25 +799,29 @@ namespace Proyecto_BK.BusinessLogic.Services
                 return result.Error($"No se encontró el Paquete con ID {Paqe_Id}");
             }
         }
-
-        public ServiceResult CrearPaquete(tbPaquetes item)
+        public ServiceResult InsertarPaquete(tbPaquetes item, out int ingrId)
         {
             var result = new ServiceResult();
+            ingrId = 0;
             try
             {
-                var response = _paqueteRepository.Insert(item);
-                if (response.CodeStatus == 1)
+                var (lost, idGenerado) = _paqueteRepository.Insertar(item);
+                if (lost.CodeStatus > 0)
                 {
-                    return result.Ok("Paquete creado con éxito", response);
+                    ingrId = idGenerado;
+                    return result.Ok(lost);
                 }
                 else
                 {
-                    return result.Error("Por favor, rellene todos los campos");
+                    lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                    return result.Error(lost);
                 }
+
             }
             catch (Exception ex)
             {
-                return result.Error("Error al guardar la información del Paquete");
+
+                return result.Error(ex.Message);
             }
         }
 
@@ -1843,6 +1847,93 @@ namespace Proyecto_BK.BusinessLogic.Services
             try
             {
                 var response = _promocionRepository.EliminarComplementos(Prom_Id);
+                if (response.CodeStatus > 0)
+                {
+                    return result.Ok("Pantalla por rol eliminada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("No se encontró la pantalla por rol a eliminar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
+
+        #region PromocionPorSucursales
+        public ServiceResult InsertarSucursales(List<int> AlimIds, int Prom_Id, int Usua_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                foreach (var Alim_Id in AlimIds)
+                {
+                    var lost = _promocionRepository.InsertarSucursal(Alim_Id, Prom_Id, Usua_Id);
+                    if (lost.CodeStatus > 0)
+                    {
+                        //return result.Ok(lost);
+                    }
+                    else
+                    {
+                        lost.MessageStatus = (lost.CodeStatus == 0) ? "401 Error de Consulta" : lost.MessageStatus;
+                        return result.Error(lost);
+                    }
+                }
+
+                return result.Ok(); // Si todo fue exitoso
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult ListaSucursalesAgregados(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _promocionRepository.List5(Prom_Id);
+                if (lost.Count() > 0)
+                {
+                    return result.Ok(lost);
+                }
+                else
+                {
+                    return result.Error();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+
+            }
+        }
+
+        public ServiceResult ListSucursales(int Prom_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _promocionRepository.ListSucursales(Prom_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+        public ServiceResult EliminarSucursales(int Prom_Id)        
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _promocionRepository.EliminarSucursales(Prom_Id);
                 if (response.CodeStatus > 0)
                 {
                     return result.Ok("Pantalla por rol eliminada con éxito", response);

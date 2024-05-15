@@ -48,15 +48,21 @@ export class PromocionListadoComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Promocion registrada correctamente!' });
         // Reiniciar el mensaje de éxito después de mostrarlo
         else{
-          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Rol actualizado correctamente!' });
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Promocion actualizada correctamente!' });
         }
         this.service.successMessage = '';
       });
     }
   }
-
+  editarPromo(rolId: number) {
+    this.router.navigate(['app/EditarPromocion', rolId]); // Redirige a la ruta de edición con el ID del rol
+  }
   Nuevo(){
     this.router.navigate(['app/CreatePromocion'])
+  }
+
+  detallePromo(combId: number) {
+    this.router.navigate(['app/DetallePromocion', combId]); // Redirige a la ruta de edición con el ID del rol
   }
   
 }

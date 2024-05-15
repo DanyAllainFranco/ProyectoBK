@@ -36,6 +36,18 @@ import {ComboEditarComponent} from './demo/components/combo-editar/combo-editar.
 import {ComboDetalleComponent} from './demo/components/combo-detalle/combo-detalle.component';
 import {RolDetalleComponent} from './demo/components/rol-detalle/rol-detalle.component';
 import {PromocionCreateComponent} from './demo/components/promocion-create/promocion-create.component';
+import { PromocionEditarComponent } from './demo/components/promocion-editar/promocion-editar.component';
+import { PromocionDetalleComponent } from './demo/components/promocion-detalle/promocion-detalle.component';
+import { PostreDetalleComponent } from './demo/components/postre-detalle/postre-detalle.component';
+import { AlimentoDetalleComponent } from './demo/components/alimento-detalle/alimento-detalle.component';
+import { BebidaDetalleComponent } from './demo/components/bebida-detalle/bebida-detalle.component';
+import { ComplementoDetalleComponent } from './demo/components/complemento-detalle/complemento-detalle.component';
+import { UsuarioCreateComponent } from './demo/components/usuario-create/usuario-create.component';
+import { PaqueteCreateComponent } from './demo/components/paquete-create/paquete-create.component';
+import { UsuarioDetalleComponent } from './demo/components/usuario-detalle/usuario-detalle.component';
+import { CargoDetalleComponent } from './demo/components/cargo-detalle/cargo-detalle.component';
+import { DepartamentoDetalleComponent } from './demo/components/departamento-detalle/departamento-detalle.component';
+import { ClienteCreateComponent } from './demo/components/cliente-create/cliente-create.component';
 
 
 
@@ -78,11 +90,23 @@ import {PromocionCreateComponent} from './demo/components/promocion-create/promo
                     { path: 'IndexSucursales', component: SucursalListadoComponent },
                     {path: 'IndexRoles', component:RolListadoComponent},
                     { path: 'CreateRol', component: RolCreateComponent } , 
+                    { path: 'CreatePaquete', component: PaqueteCreateComponent } , 
                     { path: 'EditarRol/:id', component: RolEditarComponent } ,
+                    { path: 'EditarPromocion/:id', component: PromocionEditarComponent } ,
                     { path: 'DetalleRol/:id', component: RolDetalleComponent } ,
                     { path: 'CreatePromocion', component: PromocionCreateComponent } ,
                     { path: 'EditarCombo/:id', component: ComboEditarComponent } ,
+                    { path: 'CreateCliente', component: ClienteCreateComponent } ,
                     { path: 'DetalleCombo/:id', component: ComboDetalleComponent },
+                    { path: 'DetalleUsuario/:id', component: UsuarioDetalleComponent },
+                    { path: 'DetallePromocion/:id', component: PromocionDetalleComponent},
+                    { path: 'DetalleCargo/:id', component: CargoDetalleComponent},
+                    { path: 'DetalleDepartamento/:id', component: DepartamentoDetalleComponent},
+                    { path: 'DetallePostre/:id', component: PostreDetalleComponent},
+                    { path: 'DetalleAlimento/:id', component: AlimentoDetalleComponent},
+                    { path: 'DetalleBebida/:id', component: BebidaDetalleComponent},
+                    { path: 'CreateUsuario', component: UsuarioCreateComponent},
+                    { path: 'DetalleComplemento/:id', component: ComplementoDetalleComponent},
                     // { path: 'IndexGraficos', component: GraficosComponent }
                     { path: 'IndexInforme', component: ReporteVentasComponent }, //IndexFactura
                     { path: 'IndexFactura', component: FacturaListadoComponent }, //IndexFactura
