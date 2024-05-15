@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Departamento} from '../models/DepartamentosViewModel'
+import {Departamento, LlenarDepartamento} from '../models/DepartamentosViewModel'
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { BASE_URL } from './UrlParaAPI';
 
 
 @Injectable({
@@ -14,6 +15,10 @@ export class DepartamentoServiceService {
 
   getDepartamento (){
     return this.http.get<Departamento[]>(this.Url);
+  }
+
+  obtenerDepaPorId(idCombo: string): Observable<LlenarDepartamento> {
+    return this.http.get<LlenarDepartamento>(`${BASE_URL}API/Departamento/Fill/${idCombo}`);
   }
 
   UrlAgregar =  'https://localhost:44332/API/Departamento/Insert' ;

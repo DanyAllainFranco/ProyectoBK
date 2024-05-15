@@ -30,11 +30,11 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
-        [HttpGet("API/[controller]/Find")]
+        [HttpGet("API/[controller]/Find/{Usua_Id}")]
         public IActionResult Find(int Usua_Id)
         {
             var result = _accesoServices.LlenarUsuario(Usua_Id);
-            return Ok(result);
+            return Ok(result.Data);
         }
 
         [HttpGet("API/[controller]/Login")]

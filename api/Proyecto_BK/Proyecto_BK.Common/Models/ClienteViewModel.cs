@@ -17,8 +17,6 @@ namespace Proyecto_BK.Common.Models
         public string Clie_Correo { get; set; }
         public int? Esta_Id { get; set; }
         
-        [NotMapped]
-        public string Esta_Descripcion { get; set; }
 
         public string Muni_Codigo { get; set; }
         public int? Carg_Id { get; set; }
@@ -27,5 +25,15 @@ namespace Proyecto_BK.Common.Models
         public int? Clie_Usua_Modifica { get; set; }
         public DateTime? Clie_Fecha_Modifica { get; set; }
         public bool? Clie_Estado { get; set; }
+        [NotMapped]
+        public string Esta_Descripcion { get; set; }
+
+        [NotMapped]
+
+        public string Muni_Descripcion { get; set; }
+        [NotMapped]
+        public string Dept_Codigo { get; set; }
+        [NotMapped]
+        public string Dept_Descripcion { get; set; }
     }
 }

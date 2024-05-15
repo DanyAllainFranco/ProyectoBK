@@ -44,6 +44,10 @@ import { BebidaDetalleComponent } from './demo/components/bebida-detalle/bebida-
 import { ComplementoDetalleComponent } from './demo/components/complemento-detalle/complemento-detalle.component';
 import { UsuarioCreateComponent } from './demo/components/usuario-create/usuario-create.component';
 import { PaqueteCreateComponent } from './demo/components/paquete-create/paquete-create.component';
+import { UsuarioDetalleComponent } from './demo/components/usuario-detalle/usuario-detalle.component';
+import { CargoDetalleComponent } from './demo/components/cargo-detalle/cargo-detalle.component';
+import { DepartamentoDetalleComponent } from './demo/components/departamento-detalle/departamento-detalle.component';
+import { ClienteCreateComponent } from './demo/components/cliente-create/cliente-create.component';
 
 
 
@@ -92,8 +96,12 @@ import { PaqueteCreateComponent } from './demo/components/paquete-create/paquete
                     { path: 'DetalleRol/:id', component: RolDetalleComponent } ,
                     { path: 'CreatePromocion', component: PromocionCreateComponent } ,
                     { path: 'EditarCombo/:id', component: ComboEditarComponent } ,
+                    { path: 'CreateCliente', component: ClienteCreateComponent } ,
                     { path: 'DetalleCombo/:id', component: ComboDetalleComponent },
+                    { path: 'DetalleUsuario/:id', component: UsuarioDetalleComponent },
                     { path: 'DetallePromocion/:id', component: PromocionDetalleComponent},
+                    { path: 'DetalleCargo/:id', component: CargoDetalleComponent},
+                    { path: 'DetalleDepartamento/:id', component: DepartamentoDetalleComponent},
                     { path: 'DetallePostre/:id', component: PostreDetalleComponent},
                     { path: 'DetalleAlimento/:id', component: AlimentoDetalleComponent},
                     { path: 'DetalleBebida/:id', component: BebidaDetalleComponent},

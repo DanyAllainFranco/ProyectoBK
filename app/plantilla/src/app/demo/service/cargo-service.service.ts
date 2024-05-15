@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Cargos} from '../models/CargosViewModel'
+import {Cargos, LlenarCargo} from '../models/CargosViewModel'
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
+import { BASE_URL } from './UrlParaAPI';
 
 
 @Injectable({
@@ -13,6 +14,10 @@ export class CargosServiceService {
   Url = 'https://localhost:44332/API/Cargo/List';
   getCargo (){
     return this.http.get<Cargos[]>(this.Url);
+  }
+
+  obtenerCargoPorId(idCombo: number): Observable<LlenarCargo> {
+    return this.http.get<LlenarCargo>(`${BASE_URL}API/Cargo/Find/${idCombo}`);
   }
 
   UrlAgregar =  'https://localhost:44332/API/Cargo/Insert' ;

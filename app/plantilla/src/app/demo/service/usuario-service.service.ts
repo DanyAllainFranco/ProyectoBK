@@ -25,6 +25,10 @@ export class UsuariosServiceService {
     console.log(modelo)
     return this.http.post<Respuesta>(this.prueba, modelo);
   }
+
+  obtenerPostrePorId(idCombo: number): Observable<LlenarUsuario> {
+    return this.http.get<LlenarUsuario>(`${BASE_URL}API/Usuario/Find/${idCombo}`);
+  }
   
   actualizar(modelo:UsuarioActualizar):Observable<Respuesta>{
     return this.http.put<Respuesta>(`${BASE_URL}API/Usuario/Update`,modelo);

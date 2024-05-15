@@ -51,7 +51,6 @@ namespace Proyecto_BK.API.Controllers
                 Clie_Correo = json.Clie_Correo,
                 Esta_Id = json.Esta_Id,
                 Muni_Codigo = json.Muni_Codigo,
-                Carg_Id = json.Carg_Id,
                 Clie_Usua_Creacion = 1,
                 Clie_Fecha_Creacion = DateTime.Now
             };
@@ -73,7 +72,6 @@ namespace Proyecto_BK.API.Controllers
                 Clie_Correo = json.Clie_Correo,
                 Esta_Id = json.Esta_Id,
                 Muni_Codigo = json.Muni_Codigo,
-                Carg_Id = json.Carg_Id,
                 Clie_Usua_Modifica = 1,
                 Clie_Fecha_Modifica = DateTime.Now
             };

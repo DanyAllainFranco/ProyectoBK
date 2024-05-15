@@ -52,6 +52,10 @@ export class CargoListadoComponent implements OnInit {
     this.getCargos();
   }
 
+  detalleRol(combId: number) {
+    this.router.navigate(['app/DetalleCargo', combId]); 
+  }
+
   getCargos() {
     this.service.getCargo().subscribe(
       (data: any) => {

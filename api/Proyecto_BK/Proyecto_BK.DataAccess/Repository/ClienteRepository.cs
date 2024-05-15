@@ -47,7 +47,6 @@ namespace Proyecto_BK.DataAccess.Repository
                 parameter.Add("Clie_Correo", item.Clie_Correo);
                 parameter.Add("Esta_Id", item.Esta_Id);
                 parameter.Add("Muni_Codigo", item.Muni_Codigo);
-                parameter.Add("Carg_Id", item.Carg_Id);
                 parameter.Add("Clie_Usua_Creacion", item.Clie_Usua_Creacion);
                 parameter.Add("Clie_Fecha_Creacion", item.Clie_Fecha_Creacion);
 
@@ -79,7 +78,6 @@ namespace Proyecto_BK.DataAccess.Repository
                 parameter.Add("Clie_Correo", item.Clie_Correo);
                 parameter.Add("Esta_Id", item.Esta_Id);
                 parameter.Add("Muni_Codigo", item.Muni_Codigo);
-                parameter.Add("Carg_Id", item.Carg_Id);
                 parameter.Add("Clie_Usua_Modifica", item.Clie_Usua_Modifica);
                 parameter.Add("Clie_Fecha_Modifica", item.Clie_Fecha_Modifica);
 

@@ -41,13 +41,13 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
-        [HttpGet("API/[controller]/Fill")]
+        [HttpGet("API/[controller]/Fill/{Dept_Codigo}")]
 
         public IActionResult Fill(string Dept_Codigo)
         {
 
             var list = _generalServices.LlenarDepto(Dept_Codigo);
-            return Ok(list);
+            return Ok(list.Data);
         }
         [HttpGet("API/[controller]/DropDown")]
         public IActionResult ListDepaDrop()

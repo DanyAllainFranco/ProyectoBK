@@ -35,6 +35,10 @@ namespace Proyecto_BK.Common.Models
         public int Pant_Id { get; set; }
         [NotMapped]
         public string Pant_Descripcion { get; set; }
+        [NotMapped]
+        public string Usua_Creacion { get; set; }
+        [NotMapped]
+        public string Usua_Modifica { get; set; }
 
     }
 }

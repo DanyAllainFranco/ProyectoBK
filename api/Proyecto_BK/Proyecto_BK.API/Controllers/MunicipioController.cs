@@ -43,6 +43,14 @@ namespace Proyecto_BK.API.Controllers
             return Json(list.Data);
         }
 
+        [HttpGet("API/[controller]/MunicipioPorDepartamento/{id}")]
+        public IActionResult DepaPorMuni(string id)
+        {
+
+            var list = _generalServices.ListadoMunicipioDepartamento(id);
+            return Ok(list.Data);
+        }
+
         [HttpGet("API/[controller]/Lista/{id}")]
         public IActionResult IndexPorMunicipio(string id)
         {

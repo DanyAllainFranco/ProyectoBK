@@ -75,6 +75,18 @@ export class UsuariosListadoComponent implements OnInit {
     this.getUsuarios();
     this.EmpleDLL();
     this.cargarRoles();
+
+    if (this.service.successMessage) {
+      setTimeout(() => {
+        if(this.service.successMessage == '¡Usuario registrado correctamente!')
+        this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Usuario registrado correctamente!' });
+        // Reiniciar el mensaje de éxito después de mostrarlo
+        else{
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Rol actualizado correctamente!' });
+        }
+        this.service.successMessage = '';
+      });
+    }
   }
 
   EmpleDLL() {
@@ -100,7 +112,13 @@ export class UsuariosListadoComponent implements OnInit {
       }
     );
   }
+  detalleRol(combId: number) {
+    this.router.navigate(['app/DetalleUsuario', combId]); 
+  }
 
+  cerrar(){
+    this.display = false;
+  }
   Nuevo() {
     this.router.navigate(['app/CreateUsuario']);
   }
@@ -179,7 +197,8 @@ actualizarDepartamento() {
   this._usuarioServicio.actualizar(modelo).subscribe({
     next: (data) => {
       this.getUsuarios();
-      this.messageService.add({ severity: 'succes', summary: 'Error', detail: 'Usuario editaro correctamente.' });
+      this.display = false;
+      this.messageService.add({ severity: 'success', summary: 'Error', detail: 'Usuario editado correctamente.' });
     },
     error: (e) => {
       console.log(e);
@@ -196,11 +215,11 @@ actualizarDepartamento() {
           this.getUsuarios();
           this.confirmacionVisible = false;
           console.log(idusuario);
-          this.messageService.add({severity:'success', summary:'Éxito', detail:'¡usuario eliminada correctamente!'});
+          this.messageService.add({severity:'success', summary:'Éxito', detail:'¡Operacion realizada correctamente!'});
         },
         error: (e) => {
           console.log(e);
-          this.messageService.add({severity:'error', summary:'Error', detail:'Esta usuario no se puede eliminar.'});
+          this.messageService.add({severity:'error', summary:'Error', detail:'¡Operacion no realizada.'});
         }
       });
     }

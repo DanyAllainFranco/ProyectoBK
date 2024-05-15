@@ -1,46 +1,47 @@
 <div class="grid">
+    <p-toast></p-toast>
     <div class="col-12">
         <div class="card">
             <h1>Usuarios</h1>
 
-            <p-dialog header="{{modalTitle}}" [(visible)]="display" [modal]="true" showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+            <p-dialog header="{{modalTitle}}" [(visible)]="display" [modal]="true" showEffect="fade"
+                [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
                 <div class="grid">
                     <form [formGroup]="formDepartamento" class="grid col-12 p-fluid p-formgrid">
                         <div class="field col-12 md:col-6">
                             <label htmlFor="name2">Usuario:</label>
-                            <input  formControlName="usuario" class="p-inputtext"
-                                type="text" />
+                            <input formControlName="usuario" class="p-inputtext" type="text" />
                         </div>
                         <div class="field col-12 md:col-6">
                             <label htmlFor="email2">Admin:</label>
                             <br>
-                        <div class="justify-content-center ms-5">
-                            <div class="text-center">
-                                <p-checkbox class="mt-2" formControlName="admin" binary="true"></p-checkbox>
-            
+                            <div class="justify-content-center ms-5">
+                                <div class="text-center">
+                                    <p-checkbox class="mt-2" formControlName="admin" binary="true"></p-checkbox>
+
+                                </div>
                             </div>
-                        </div>
 
                         </div>
                         <div class="field col">
                             <label htmlFor="email2">Empleado:</label>
                             <p-dropdown [options]="empleados" formControlName="empl_Id" placeholder="Seleccione"
-                        [showClear]="false"></p-dropdown>
+                                [showClear]="false"></p-dropdown>
 
                         </div>
                         <div class="field col">
                             <label htmlFor="email2">Rol:</label>
                             <p-dropdown [options]="complementos" formControlName="rol_Id" placeholder="Seleccione"
-                            [showClear]="false"></p-dropdown>
+                                [showClear]="false"></p-dropdown>
 
                         </div>
-                   
-             
-            </form>
+
+
+                    </form>
                 </div>
-              
+
                 <ng-template pTemplate="footer">
-                    <button pButton icon="pi pi-times" (click)="recargarPagina()" label="Cerrar"
+                    <button pButton icon="pi pi-times" (click)="cerrar()" label="Cerrar"
                         class="p-button-outlined p-button-danger mr-2"></button>
                     <button pButton icon="pi pi-check" label="{{modalButtonLabel}}" class="p-button-outlined"
                         (click)="guardarDepartamento()"></button>
@@ -54,12 +55,12 @@
                 </div>
             </div>
 
-    
+
             <!-- Tabla de cargos -->
             <p-table [value]="usuario" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
                 [paginator]="true" [globalFilterFields]="['usua_Usuario']" responsiveLayout="scroll">
                 <ng-template pTemplate="header">
-                    <tr>                        
+                    <tr>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
                                 Usuario
@@ -91,7 +92,7 @@
                         <th style="min-width: 12rem">
                             Estado
                             <p-columnFilter type="text" field="muni_Codigo" display="menu"
-                            placeholder="Buscar por descripción"></p-columnFilter>
+                                placeholder="Buscar por descripción"></p-columnFilter>
                         </th>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
@@ -107,14 +108,20 @@
                         <td>{{usuario.empleado}}</td>
                         <td>{{usuario.usuaAdmin}}</td>
                         <td>
-                            <p-badge value="{{usuario.estado}}" size="large" severity="{{usuario.estado === 'Activo' ? 'success' : 'danger'}}"></p-badge>
+                            <p-badge value="{{usuario.estado}}" size="large"
+                                severity="{{usuario.estado === 'Activo' ? 'success' : 'danger'}}"></p-badge>
                         </td>
                         <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
-                            <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="editDepartamento(usuario)" severity="primary" [raised]="true" [plain]="true"></p-button>
-                            <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(depto.dept_Codigo)" severity="secondary" [raised]="true" [plain]="true"></p-button>
-                            <p-button label="{{ getBotonEliminarLabel(usuario) }}" icon="{{ getBotonIcono(usuario) }}" size="small" 
-                            (click)="confirmarEliminarUsuario(usuario)" [severity]="getBotonSeverity(usuario)">
-                        </p-button>
+                            <p-button label="Editar" icon="pi pi-user-edit" size="small"
+                                (click)="editDepartamento(usuario)" severity="primary" [raised]="true"
+                                [plain]="true"></p-button>
+                            <p-button label="Detalles" icon="pi pi-book" size="small"
+                                (click)="detalleRol(usuario.usua_Id)" severity="secondary" [raised]="true"
+                                [plain]="true"></p-button>
+                            <p-button label="{{ getBotonEliminarLabel(usuario) }}" icon="{{ getBotonIcono(usuario) }}"
+                                size="small" (click)="confirmarEliminarUsuario(usuario)"
+                                [severity]="getBotonSeverity(usuario)">
+                            </p-button>
                         </td>
                     </tr>
                 </ng-template>
@@ -130,15 +137,17 @@
                 </ng-template>
             </p-table>
 
-           
-            <p-dialog [header]="confirmacionTitulo" [(visible)]="confirmacionVisible" modal="true" [style]="{ width: '300px' }">
+
+            <p-dialog [header]="confirmacionTitulo" [(visible)]="confirmacionVisible" modal="true"
+                [style]="{ width: '300px' }">
                 <p>{{ confirmacionMensaje }}</p>
                 <p-footer>
                     <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
-                    <button pButton type="button" label="{{ confirmacionBotonLabel }}" class="{{ confirmacionBotonClase }}" (click)="eliminarusuario()"></button>
+                    <button pButton type="button" label="{{ confirmacionBotonLabel }}"
+                        class="{{ confirmacionBotonClase }}" (click)="eliminarusuario()"></button>
                 </p-footer>
             </p-dialog>
-            
+
         </div>
     </div>
 </div>

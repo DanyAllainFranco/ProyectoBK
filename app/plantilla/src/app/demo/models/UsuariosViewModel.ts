@@ -18,6 +18,9 @@ export class Usuario {
 
 export class LlenarUsuario{
     usua_Id: number;
+    usua_Usuario: string;
+    usuaAdmin: string;
+    estado: string;
     usua_Admin: string;
     empl_Id: number;
     rol_Id: number;
@@ -25,7 +28,7 @@ export class LlenarUsuario{
     usua_Modifica: string;
     usua_Usua_Creacion: number;
     usua_Fecha_Creacion: string;
-    usua_Fecha_Modificacion: string;
+    usua_Fecha_Modifica: string;
     rol_Descripcion: string;
     empleado: string;
 }
@@ -39,6 +42,7 @@ export class UsuarioEnviar {
     Rol_Id?: string;
     Usua_Usua_Creacion?: number;
 }
+
 
 export class UsuarioActualizar {
     Usua_Id: number;

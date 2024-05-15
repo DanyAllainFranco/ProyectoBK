@@ -106,7 +106,7 @@ namespace Proyecto_BK.DataAccess.Repository
                 parameter.Add("Usua_Fecha_Modifica", item.Usua_Fecha_Modifica);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Usua_Editar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+                return new RequestStatus { CodeStatus = result.RESULTADO, MessageStatus = (result.RESULTADO == 1) ? "Exito" : "Error" };
             }
         }
     }

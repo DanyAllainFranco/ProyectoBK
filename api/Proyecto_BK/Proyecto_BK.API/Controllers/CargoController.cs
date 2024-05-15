@@ -47,11 +47,11 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
-        [HttpGet("API/[controller]/Find")]
+        [HttpGet("API/[controller]/Find/{Carg_Id}")]
         public IActionResult Find(int Carg_Id)
         {
             var result = _accesoServices.LlenarCargo(Carg_Id);
-            return Ok(result);
+            return Ok(result.Data);
         }
 
         [HttpPost("API/[controller]/Insert")]

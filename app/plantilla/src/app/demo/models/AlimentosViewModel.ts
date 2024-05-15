@@ -42,6 +42,7 @@ export class CargarAlimentos{
     alim_Id?: number;
     alim_Descripcion?: string;
 }
+
 export class LlenarAlimentos{
     alim_Id: number;
     alim_Descripcion: string;

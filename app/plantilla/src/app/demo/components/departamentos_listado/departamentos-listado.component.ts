@@ -57,6 +57,11 @@ export class DepartamentosListadoComponent implements OnInit {
 
   }
 
+  detalleRol(combId: string) {
+    console.log(combId)
+   this.router.navigate(['app/DetalleDepartamento', combId]); 
+  }
+
   getDepartamentos() {
     this.service.getDepartamento().subscribe(
       (data: any) => {

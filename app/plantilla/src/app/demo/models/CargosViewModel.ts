@@ -13,6 +13,15 @@ export class Cargo{
     Carg_Descripcion?:String;
 }
 
+export class LlenarCargo{
+    carg_Id: number;
+    carg_Descripcion: string;;
+    usua_Creacion: string;
+    usua_Modifica: string;
+    carg_Fecha_Creacion: string;
+    carg_Fecha_Modifica: string;
+}
+
 
 export class CargoEnviar {
     Carg_Id: string;
