@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Proyecto_BK.DataAccess.Context;
+using Proyecto_BK.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;

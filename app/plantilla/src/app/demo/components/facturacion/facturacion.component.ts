@@ -1,4 +1,5 @@
 import { Component, OnInit, NgModule, ElementRef, ViewChild } from '@angular/core';
+import { DataViewModule } from 'primeng/dataview';
 import { Router } from '@angular/router';
 import { Sucursales } from '../../models/SucursalesViewModel';
 import { DropMunicipios } from '../../models/MunicipioViewModel';
@@ -85,12 +86,14 @@ export class FacturacionComponent{
   selectedCountryAdvanced: any[] = [];
   selectedListJoya: any[] = [];
   filteredCountries: any[] = [];
+  products: any[];
   constructor(private service: FacturaServiceService, private router: Router,
     private messageService: MessageService,private countryService: CountryService,private fb: FormBuilder,
   ) { }
 
 
   ngOnInit(): void {
+    this.loadProducts('N');
       this.service.getFacturas().subscribe((data: any)=>{
           console.log(data);
           this.Factura = data;
@@ -115,64 +118,75 @@ export class FacturacionComponent{
                 FaDe_ProdId: new FormControl(""),
                 FaDe_Cantidad: new FormControl("")
     });  
-
-
+    }
       //AUTOCOMPLETADO
-      this.service.getBebida().subscribe(countries => {
-        this.countries = countries;
-    });
-    this.service.getComplemento().subscribe(countries => {
-      this.countries = countries;
-    });
-    this.service.getPaquete().subscribe(countries => {
-      this.countries = countries;
-   });
-   this.service.getPostre().subscribe(countries => {
-    this.countries = countries;
-    });
-   } 
-   
-   onRadioChange(event: Event) {
-    const target = event.target as HTMLInputElement;
-    const value = target.value;
-    this.selectedRadio = target.value;
-    this.submitted = false;
-    if (value === "N") {
-            this.service.getComplemento().subscribe(countries => {
-            this.countries = countries;
-            console.log(this.countries);
-            this.FacturaForm.get('FaDe_Ident').setValue(value); 
-            this.FacturaForm.get('FaDe_ProdId').setValue(""); 
-            this.FacturaForm.get('Prod_Producto').setValue(""); 
-            this.FacturaForm.get('FaDe_Cantidad').setValue(""); 
+      loadProducts(value: string) {
+        if (value === 'N') {
+          this.service.getComplemento().subscribe(products => {
+            this.products = products;
           });
-          } else if(value == "D") {
-            this.service.getPostre().subscribe(countries => {
-              this.countries = countries;
-            this.FacturaForm.get('FaDe_Ident').setValue(value); 
-            this.FacturaForm.get('FaDe_ProdId').setValue(""); 
-            this.FacturaForm.get('Prod_Producto').setValue(""); 
-            this.FacturaForm.get('FaDe_Cantidad').setValue(""); 
+        } else if (value === 'D') {
+          this.service.getPostre().subscribe(products => {
+            this.products = products;
           });
-          } else if(value == "B") {
-            this.service.getBebida().subscribe(countries => {
-              this.countries = countries;
-            this.FacturaForm.get('FaDe_Ident').setValue(value); 
-            this.FacturaForm.get('FaDe_ProdId').setValue(""); 
-            this.FacturaForm.get('Prod_Producto').setValue(""); 
-            this.FacturaForm.get('FaDe_Cantidad').setValue(""); 
+        } else if (value === 'B') {
+          this.service.getBebida().subscribe(products => {
+            this.products = products;
           });
-          } else if(value == "P") {
-            this.service.getPaquete().subscribe(countries => {
-              this.countries = countries;
-            this.FacturaForm.get('FaDe_Ident').setValue(value); 
-            this.FacturaForm.get('FaDe_ProdId').setValue("");
-            this.FacturaForm.get('Prod_Producto').setValue(""); 
-            this.FacturaForm.get('FaDe_Cantidad').setValue(""); 
+        } else if (value === 'P') {
+          this.service.getPaquete().subscribe(products => {
+            this.products = products;
           });
-          }
         }
+      }
+   
+   onRadioChange(value: string) {
+    this.products = [];
+    if (value === 'N') {
+      this.service.getComplemento().subscribe(products => {
+        this.products = products;
+        this.resetForm(value);
+      });
+    } else if (value === 'D') {
+      this.service.getPostre().subscribe(products => {
+        this.products = products;
+        this.resetForm(value);
+      });
+    } else if (value === 'B') {
+      this.service.getBebida().subscribe(products => {
+        this.products = products;
+        this.resetForm(value);
+      });
+    } else if (value === 'P') {
+      this.service.getPaquete().subscribe(products => {
+        this.products = products;
+        this.resetForm(value);
+      });
+    }
+  }
 
+  resetForm(value: string) {
+    this.FacturaForm.get('FaDe_Ident').setValue(value);
+    this.FacturaForm.get('FaDe_ProdId').setValue('');
+    this.FacturaForm.get('Prod_Producto').setValue('');
+    this.FacturaForm.get('FaDe_Cantidad').setValue('');
+  }
+
+  addProductToInvoice(selectedProduct: any) {
+    // Verifica si se ha seleccionado un producto
+    if (selectedProduct) {
+        // Agrega el producto a la tabla de detalles
+        this.FacturaDetalle.push({
+            producto: selectedProduct.nombre,
+            cantidad: '1', // Puedes establecer una cantidad inicial aquí
+            precio: selectedProduct.precio,
+            total: selectedProduct.precio // El total inicial será igual al precio del producto
+        });
+    } else {
+        // Si no se ha seleccionado ningún producto, muestra un mensaje de error o realiza la acción correspondiente
+        console.error("No se ha seleccionado ningún producto");
+    }
+}
         filterCountry(event: any) {
               const filtered: any[] = [];
               const query = event.query;
@@ -189,7 +203,21 @@ export class FacturacionComponent{
               this.filteredCountries = filtered;
             }
           
-
+            agregarProductoDesdeDataview(producto: any) {
+              // Verificar si se ha seleccionado un producto
+              if (producto) {
+                // Agregar el producto a la tabla de detalles
+                this.FacturaDetalle.push({
+                  producto: producto.nombre,
+                  cantidad: '1', // Puedes establecer una cantidad inicial aquí
+                  precio: producto.precio,
+                  total: producto.precio // El total inicial será igual al precio del producto
+                });
+              } else {
+                // Si no se ha seleccionado ningún producto, muestra un mensaje de error o realiza la acción correspondiente
+                console.error("No se ha seleccionado ningún producto desde el dataview");
+              }
+            }
 // filterJoyaList(event: any) {
 //   const filtered: any[] = [];
 //   const query = event.query;
@@ -436,6 +464,7 @@ onSubmit() {
 		ConfirmDialogModule,
 		SidebarModule,
 		RippleModule,
+    DataViewModule,
 		ConfirmPopupModule,
 		ReactiveFormsModule,
 		AutoCompleteModule,
