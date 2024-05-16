@@ -246,7 +246,7 @@ namespace Proyecto_BK.DataAccess.Repository
         #region Factura
         public static string Factura_Mostrar = "[Rest].[SP_FacturaDetalles_Mostrar]";
         public static string Factura_Listar = "[Rest].[SP_FacturaDetalles_Listar]";
-        public static string FacturaEncabezado_Insertar = "[Rest].[SP_FacturaEncabezado_Insertar]";
+        public static string FacturaEncabezado_Insertar = "[Rest].SP_FacturaEncabezado_Insertar";
         public static string FacturaDetalle_Insertar = "[Rest].[SP_FacturaDetalle_Insertar]";
         #endregion
 

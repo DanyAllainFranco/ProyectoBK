@@ -44,7 +44,6 @@
                                             <th style="width:45%;">Producto</th>
                                             <th style="width:10%;">Cantidad</th>
                                             <th style="width:10%;">Precio</th>
-                                            <th style="width:10%;">Cantidad</th>
                                             <th style="width:10%;">Total</th>
                                             <th></th>
                                         </tr>
@@ -54,7 +53,6 @@
                                             <td style="width:15%;">{{detalle.producto}}</td>
                                             <td style="width:15%;">{{detalle.cantidad}}</td>
                                             <td style="width:15%;">{{detalle.precio}}</td>
-                                            <td style="width:15%;">{{detalle.cantidad}}</td>
                                             <td style="width:15%;">{{detalle.total}}</td>
                                             <td>
                                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="confirmDelete(detalle.producto, detalle.productId)"></button>
@@ -63,7 +61,7 @@
                                     </ng-template>
                                     <ng-template pTemplate="footer">
                                         <tr>
-                                            <td style="width:15%;">
+                                            <td style="width:25%;">
                                                 <label>
                                                     <input type="radio" value="N" (change)="onRadioChange($event.target.value)" formControlName="FaDe_Ident" />
                                                     Complemento
@@ -81,7 +79,7 @@
                                                     Paquete
                                                 </label>
                                             </td>
-                                            <td style="width:45%;">
+                                            <!-- <td style="width:45%;">
                                                 <p-autoComplete [(ngModel)]="selectedCountryAdvanced"
                                                     [suggestions]="filteredCountries"
                                                     (completeMethod)="filterCountry($event)"
@@ -91,7 +89,7 @@
                                                     [dropdown]="true"
                                                     appendTo="body">
                                                 </p-autoComplete>
-                                            </td>
+                                            </td> -->
                                             <td style="width:10%;">
                                                 <input pInputText id="FaDe_Cantidad" formControlName="FaDe_Cantidad" type="text" required autofocus 
                                                     [ngClass]="{'ng-invalid ng-dirty': submitted && (FacturaForm.get('FaDe_Cantidad').value === '0' || FacturaForm.get('FaDe_Cantidad').value === '')}" />
@@ -99,8 +97,6 @@
                                                     Cantidad es requerida
                                                 </small>
                                             </td>
-                                            <td style="width:10%;">0</td>
-                                            <td style="width:10%;">0</td>
                                         </tr>
                                     </ng-template>
                                 </p-table>
@@ -110,9 +106,8 @@
                                             <img [src]="product.imageUrl" alt="{{product.name}}">
                                         </div>
                                         <div class="product-info">
-                                            <h3>{{product.name}}</h3>
-                                            <p>{{product.description}}</p>
-                                            <p>{{product.price | currency}}</p>
+                                            <h5>{{ product.text }}</h5>
+                                            <p>Codigo: {{ product.value }}</p>
                                             <button pButton type="button" (click)="addProductToInvoice(product)" label="Añadir"></button>
                                         </div>
                                     </div>
@@ -136,6 +131,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    margin-top: 10px;
 }
 .product-card {
     border: 1px solid #ccc;

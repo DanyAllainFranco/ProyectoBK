@@ -124,18 +124,22 @@ export class FacturacionComponent{
         if (value === 'N') {
           this.service.getComplemento().subscribe(products => {
             this.products = products;
+            console.log(products);
           });
         } else if (value === 'D') {
           this.service.getPostre().subscribe(products => {
             this.products = products;
+            console.log(products);
           });
         } else if (value === 'B') {
           this.service.getBebida().subscribe(products => {
             this.products = products;
+            console.log(products);
           });
         } else if (value === 'P') {
           this.service.getPaquete().subscribe(products => {
             this.products = products;
+            console.log(products);
           });
         }
       }
@@ -145,21 +149,25 @@ export class FacturacionComponent{
     if (value === 'N') {
       this.service.getComplemento().subscribe(products => {
         this.products = products;
+        console.log(products);
         this.resetForm(value);
       });
     } else if (value === 'D') {
       this.service.getPostre().subscribe(products => {
         this.products = products;
+        console.log(products);
         this.resetForm(value);
       });
     } else if (value === 'B') {
       this.service.getBebida().subscribe(products => {
         this.products = products;
+        console.log(products);
         this.resetForm(value);
       });
     } else if (value === 'P') {
       this.service.getPaquete().subscribe(products => {
         this.products = products;
+        console.log(products);
         this.resetForm(value);
       });
     }
@@ -175,18 +183,32 @@ export class FacturacionComponent{
   addProductToInvoice(selectedProduct: any) {
     // Verifica si se ha seleccionado un producto
     if (selectedProduct) {
-        // Agrega el producto a la tabla de detalles
-        this.FacturaDetalle.push({
-            producto: selectedProduct.nombre,
-            cantidad: '1', // Puedes establecer una cantidad inicial aquí
-            precio: selectedProduct.precio,
-            total: selectedProduct.precio // El total inicial será igual al precio del producto
-        });
+        // Obtiene la cantidad del formulario
+        const cantidad = this.FacturaForm.get('FaDe_Cantidad').value;
+
+        // Verifica si la cantidad es válida
+        if (cantidad > 0) {
+            // Agrega el producto a la tabla de detalles con la cantidad especificada
+            this.FacturaDetalle.push({
+                producto: selectedProduct.text,
+                cantidad: cantidad,
+                precio: selectedProduct.precio,
+                total: selectedProduct.precio * cantidad // El total será el precio del producto multiplicado por la cantidad
+            });
+
+            // Llama a onSelectedProduct con el producto seleccionado
+            this.onSelectProduct(selectedProduct);
+            console.log(selectedProduct);
+        } else {
+            // Muestra un mensaje de error si la cantidad no es válida
+            console.error("La cantidad debe ser mayor que cero");
+        }
     } else {
         // Si no se ha seleccionado ningún producto, muestra un mensaje de error o realiza la acción correspondiente
         console.error("No se ha seleccionado ningún producto");
     }
 }
+
         filterCountry(event: any) {
               const filtered: any[] = [];
               const query = event.query;
@@ -204,20 +226,29 @@ export class FacturacionComponent{
             }
           
             agregarProductoDesdeDataview(producto: any) {
-              // Verificar si se ha seleccionado un producto
+              // Verifica si se ha seleccionado un producto
               if (producto) {
-                // Agregar el producto a la tabla de detalles
-                this.FacturaDetalle.push({
-                  producto: producto.nombre,
-                  cantidad: '1', // Puedes establecer una cantidad inicial aquí
-                  precio: producto.precio,
-                  total: producto.precio // El total inicial será igual al precio del producto
-                });
+                  // Obtiene la cantidad del formulario
+                  const cantidad = this.FacturaForm.get('FaDe_Cantidad').value;
+          
+                  // Verifica si la cantidad es válida
+                  if (cantidad > 0) {
+                      // Agrega el producto a la tabla de detalles con la cantidad especificada
+                      this.FacturaDetalle.push({
+                          producto: producto.text,
+                          cantidad: cantidad, // Utiliza la cantidad del formulario
+                          precio: producto.precio,
+                          total: producto.precio * cantidad // El total será el precio del producto multiplicado por la cantidad
+                      });
+                  } else {
+                      // Muestra un mensaje de error si la cantidad no es válida
+                      console.error("La cantidad debe ser mayor que cero");
+                  }
               } else {
-                // Si no se ha seleccionado ningún producto, muestra un mensaje de error o realiza la acción correspondiente
-                console.error("No se ha seleccionado ningún producto desde el dataview");
+                  // Si no se ha seleccionado ningún producto, muestra un mensaje de error o realiza la acción correspondiente
+                  console.error("No se ha seleccionado ningún producto desde el dataview");
               }
-            }
+          }
 // filterJoyaList(event: any) {
 //   const filtered: any[] = [];
 //   const query = event.query;
@@ -272,12 +303,17 @@ handleKeyDown(event: KeyboardEvent) {
  
 //   this.filteredClientes = filtered;
 // }
-onSelectProduct(event) {
-  this.FacturaForm.get('FaDe_Cantidad').setValue(1); 
-  this.FacturaForm.get('FaDe_ProdId').setValue(event.value.value);
-  console.log(this.FacturaForm.get('FaDe_ProdId').value);
-  // this.FacturaForm.get('Prod_Nombre').setValue(event.value.nombre);  
+onSelectProduct(product: any) {
+console.log("entras")
+  this.FacturaForm.patchValue({
+    FaDe_ProdId: product.value,
+    Prod_Producto: product.text,
+    FaDe_Cantidad: 1
+  });
+  console.log("ID del producto seleccionado:", product.value);
+  console.log("Nombre del producto seleccionado:", product.text);
 }
+
 
 onSelectJoyaList(event) {
   console.log(event);

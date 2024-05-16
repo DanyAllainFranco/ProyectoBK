@@ -23,7 +23,7 @@ export class FacturaDetalle {
      precio?:string;
      cantidad?:string; 
      categoria?:string;
-     total?:string;
+     total?:number;
  }
  
  export class FacturaDetalleEnviar {
@@ -31,7 +31,7 @@ export class FacturaDetalle {
     FaDe_Ident?:number;
     FaDe_Cantidad?:number;
     FaDe_Subtotal?:number;
-    FaDe_ProdId?:number;
+    FaDe_ProdId:number;
     Prod_Producto?:string;
     Fact_Fecha ?:Date;
     Fact_Total ?:DecimalPipe;
@@ -51,7 +51,7 @@ export class FacturaDetalle {
      Fact_Total ?:DecimalPipe;
      Clie_Nombre?:String;
      Clie_Identidad?:string;
-     FaDe_ProdId?:number;
+     FaDe_ProdId:number;
      Prod_Nombre?:String;
      FaDe_Cantidad?:number; 
  }
