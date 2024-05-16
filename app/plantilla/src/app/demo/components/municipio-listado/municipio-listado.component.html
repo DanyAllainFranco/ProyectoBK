@@ -4,52 +4,56 @@
         <h3 class="card-title">Municipios</h3>
     </div>
     <div class="card-body">
-        <p-dialog header="{{modalTitle}}" [(visible)]="display" [modal]="true"
-                showEffect="fade" [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
-                <form [formGroup]="formDepartamento" class="grid col-12 p-fluid p-formgrid">
-                    <div class="field col-12 md:col-6">
-                        <label htmlFor="name2">Codigo:</label>
-                        <input  (keydown)="ValidarNumeros($event)" maxlength="4" [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['muni_Codigo'].invalid}" formControlName="muni_Codigo" class="p-inputtext" type="text" />
-                        <small class="ng-dirty ng-invalid"
+        <p-dialog header="{{modalTitle}}" [(visible)]="display" [modal]="true" showEffect="fade"
+            [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+            <form [formGroup]="formDepartamento" class="grid col-12 p-fluid p-formgrid">
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="name2">Codigo:</label>
+                    <input (keydown)="ValidarNumeros($event)" maxlength="4"
+                        [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['muni_Codigo'].invalid}"
+                        formControlName="muni_Codigo" class="p-inputtext" type="text" />
+                    <small class="ng-dirty ng-invalid"
                         *ngIf="submitted && formDepartamento.controls['muni_Codigo'].invalid"
                         style="color: red !important;">Codigo Requerido</small>
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label htmlFor="name2">Municipio:</label>
-                        <input [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['muni_Descripcion'].invalid}" formControlName="muni_Descripcion" class="p-inputtext" type="text" />
-                        <small class="ng-dirty ng-invalid"
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="name2">Municipio:</label>
+                    <input
+                        [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['muni_Descripcion'].invalid}"
+                        formControlName="muni_Descripcion" class="p-inputtext" type="text" />
+                    <small class="ng-dirty ng-invalid"
                         *ngIf="submitted && formDepartamento.controls['muni_Descripcion'].invalid"
                         style="color: red !important;">Municipio Requerido</small>
-                    </div>
+                </div>
 
-                    <div class="field col">
-                        <label htmlFor="email2">Departamento:</label>
-                        <select formControlName="dept_Codigo" pInputText id="municipio" required autofocus
+                <div class="field col">
+                    <label htmlFor="email2">Departamento:</label>
+                    <select formControlName="dept_Codigo" pInputText id="municipio" required autofocus
                         [ngClass]="{'ng-invalid ng-dirty': submitted && municipioForm.get('dept_Codigo').value === '0'}">
                         <option *ngFor="let departamento of departamentos" [value]="departamento.value">{{
                             departamento.text }}</option>
                     </select>
-                            <small class="ng-dirty ng-invalid"
-                            *ngIf="submitted && formDepartamento.controls['dept_Codigo'].invalid"
-                            style="color: red !important;">Empleado Requerido</small>
-                    </div>
-                </form>
-                <ng-template pTemplate="footer">
-                    <button pButton icon="pi pi-times" (click)="cerrar()" label="Cerrar"
-                        class="p-button-outlined p-button-danger mr-2"></button>
-                    <button pButton icon="pi pi-check" label="{{modalButtonLabel}}" class="p-button-outlined"
-                        (click)="guardarDepartamento()"></button>
-                </ng-template>
+                    <small class="ng-dirty ng-invalid"
+                        *ngIf="submitted && formDepartamento.controls['dept_Codigo'].invalid"
+                        style="color: red !important;">Departamento Requerido</small>
+                </div>
+            </form>
+            <ng-template pTemplate="footer">
+                <button pButton icon="pi pi-times" (click)="cerrar()" label="Cerrar"
+                    class="p-button-outlined p-button-danger mr-2"></button>
+                <button pButton icon="pi pi-check" label="{{modalButtonLabel}}" class="p-button-outlined"
+                    (click)="guardarDepartamento()"></button>
+            </ng-template>
 
-            </p-dialog>
+        </p-dialog>
 
-    <div class="grid">
-        <div class="col-12">
-            <button (click)="displayNuevoDepartamento()" [class.hidden]="!Agregar" pButton icon="pi pi-plus-circle" label="Nuevo"
-                class="mr-2"></button>
+        <div class="grid">
+            <div class="col-12">
+                <button (click)="displayNuevoDepartamento()" [class.hidden]="!Agregar" pButton icon="pi pi-plus-circle"
+                    label="Nuevo" class="mr-2"></button>
 
+            </div>
         </div>
-    </div>
         <p-table #dt1 [value]="Municipio" dataKey="muni_Codigo" [rows]="10" [loading]="loading"
             [class.hidden]="!DataTable" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true"
             [globalFilterFields]="['muni_Codigo,muni_Descripcion,departamento']" responsiveLayout="scroll">
@@ -83,7 +87,7 @@
                     </th>
                     <th style="min-width: 12rem">
                         <div class="flex justify-content-between align-items-center">
-                        Departamento
+                            Departamento
                             <p-columnFilter type="text" field="dept_Descripcion" display="menu"
                                 placeholder="Search by country"></p-columnFilter>
                         </div>
@@ -107,7 +111,7 @@
                         <p-button label="Detalles" icon="pi pi-book" size="small" (click)="detalles(muni.muni_Codigo)"
                             severity="secondary" [raised]="true" [plain]="true"></p-button>
                         <p-button label="Eliminar" icon="pi pi-trash" size="small"
-                        (click)="confirmarEliminarDepartamento(muni)" severity="danger" [raised]="true"
+                            (click)="confirmarEliminarDepartamento(muni)" severity="danger" [raised]="true"
                             [plain]="true"></p-button>
                     </td>
 
@@ -193,13 +197,13 @@
         </div>
 
         <p-dialog header="Confirmar Eliminación" [(visible)]="confirmacionVisible" modal="true"
-        [style]="{ width: '300px' }">
-        <p>¿Está seguro de que desea eliminar este registro?</p>
-        <p-footer>
-            <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
-            <button pButton type="button" label="Confirmar" class="p-button-danger"
-                (click)="eliminarDepartamento()"></button>
-        </p-footer>
-    </p-dialog>
+            [style]="{ width: '300px' }">
+            <p>¿Está seguro de que desea eliminar este registro?</p>
+            <p-footer>
+                <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
+                <button pButton type="button" label="Confirmar" class="p-button-danger"
+                    (click)="eliminarDepartamento()"></button>
+            </p-footer>
+        </p-dialog>
     </div>
 </div>

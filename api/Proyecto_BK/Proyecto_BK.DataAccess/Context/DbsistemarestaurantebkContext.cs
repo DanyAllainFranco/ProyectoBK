@@ -907,10 +907,6 @@ namespace Proyecto_BK.DataAccess.Context
 
                 entity.Property(e => e.Sucu_Fecha_Modifica).HasColumnType("date");
 
-                entity.HasOne(d => d.Empl)
-                    .WithMany(p => p.tbSucursales)
-                    .HasForeignKey(d => d.Empl_Id)
-                    .HasConstraintName("Fk_tbSucursales_Empl_Id");
 
                 entity.HasOne(d => d.Muni_CodigoNavigation)
                     .WithMany(p => p.tbSucursales)

@@ -105,6 +105,7 @@ export class EmpleadoListadoComponent {
         console.log(error);
       });
    }
+   
    onDepartmentChange(departmentId) {
     if (departmentId !== '0') {
       this.service.getMunicipios(departmentId).subscribe(
@@ -120,6 +121,19 @@ export class EmpleadoListadoComponent {
       this.municipios = []; // Clear municipios if the department is invalid or reset
     }
   }
+
+  detalleCombo(combId: number) {
+    this.router.navigate(['app/DetalleEmpleado', combId]); // Redirige a la ruta de edición con el ID del rol
+  }
+
+  editarCombo(combId: number) {
+    this.router.navigate(['app/EditarEmpleado', combId]); // Redirige a la ruta de edición con el ID del rol
+  }
+
+  Nuevo(){
+    this.router.navigate(['app/CreateEmpleado'])
+  }
+
    collapse(){
     this.Collapse= true;
     this.DataTable = false;

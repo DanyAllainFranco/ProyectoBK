@@ -15,6 +15,17 @@ export class Usuario {
     usua_Estado?: boolean;
 }
 
+export class LlenarSucursal{
+    sucu_Id: number;
+    sucu_Descripcion: string;
+    muni_Codigo: string;
+    muni_Descripcion: string;
+    dept_Descripcion: string;
+    usua_Creacion: string;
+    usua_Modifica: string;
+    sucu_Fecha_Creacion: string;
+    sucu_Fecha_Modifica: string;
+}
 
 export class LlenarUsuario{
     usua_Id: number;

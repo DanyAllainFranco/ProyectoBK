@@ -42,7 +42,6 @@ namespace Proyecto_BK.DataAccess.Repository
                 var parameter = new DynamicParameters();
                 parameter.Add("Sucu_Descripcion", item.Sucu_Descripcion);
                 parameter.Add("Muni_Codigo", item.Muni_Codigo);
-                parameter.Add("Empl_Id", item.Empl_Id);
                 parameter.Add("Sucu_Usua_Creacion", item.Sucu_Usua_Creacion);
                 parameter.Add("Sucu_Fecha_Creacion", item.Sucu_Fecha_Creacion);
 
@@ -69,7 +68,7 @@ namespace Proyecto_BK.DataAccess.Repository
                 parameter.Add("Sucu_Id", item.Sucu_Id);
                 parameter.Add("Sucu_Descripcion", item.Sucu_Descripcion);
                 parameter.Add("Muni_Codigo", item.Muni_Codigo);
-                parameter.Add("Empl_Id", item.Empl_Id);
+           
                 parameter.Add("Sucu_Usua_Modifica", item.Sucu_Usua_Modifica);
                 parameter.Add("Sucu_Fecha_Modifica", item.Sucu_Fecha_Modifica);
 

@@ -67,19 +67,20 @@ namespace Proyecto_BK.API.Controllers
         }
 
         [HttpPost("API/[controller]/Insert")]
-        public IActionResult Insert(EmpleadoViewModel item)
+        public IActionResult Insert(EmpleadoViewModel json)
         {
-            var model = _mapper.Map<tbEmpleados>(item);
+            var model = _mapper.Map<tbEmpleados>(json);
             var modelo = new tbEmpleados()
             {
-                Empl_Identidad = item.Empl_Identidad,
-                Empl_Nombre = item.Empl_Nombre,
-                Empl_Apellido = item.Empl_Apellido,
-                Empl_Sexo = item.Empl_Sexo,
-                Empl_Correo = item.Empl_Correo,
-                Esta_Id = item.Esta_Id,
-                Muni_Codigo = item.Muni_Codigo,
-                Carg_Id = item.Carg_Id,
+                Empl_Identidad = json.Empl_Identidad,
+                Empl_Nombre = json.Empl_Nombre,
+                Empl_Apellido = json.Empl_Apellido,
+                Empl_Sexo = json.Empl_Sexo,
+                Empl_Correo = json.Empl_Correo,
+                Esta_Id = json.Esta_Id,
+                Muni_Codigo = json.Muni_Codigo,
+                Carg_Id = json.Carg_Id,
+                Sucu_Id = json.Sucu_Id,
                 Empl_Usua_Creacion = 1,
                 Empl_Fecha_Creacion = DateTime.Now
 
@@ -101,6 +102,7 @@ namespace Proyecto_BK.API.Controllers
                 Empl_Sexo = item.Empl_Sexo,
                 Empl_Correo = item.Empl_Correo,
                 Esta_Id = item.Esta_Id,
+                Sucu_Id = item.Sucu_Id,
                 Muni_Codigo = item.Muni_Codigo,
                 Carg_Id = item.Carg_Id,
                 Empl_Usua_Modifica = 1,

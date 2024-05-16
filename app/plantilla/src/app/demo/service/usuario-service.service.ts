@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Login} from '../models/LoginViewModel';
-import {LlenarUsuario, Usuario, UsuarioActualizar, UsuarioEnviar} from '../models/UsuariosViewModel'
+import {LlenarSucursal, LlenarUsuario, Usuario, UsuarioActualizar, UsuarioEnviar} from '../models/UsuariosViewModel'
 import {EmpleadoDDL} from '../models/EmpleadoViewModel'
 import {RolesDLL} from '../models/RolesViewModel'
 import {HttpClient} from '@angular/common/http'
@@ -28,6 +28,10 @@ export class UsuariosServiceService {
 
   obtenerPostrePorId(idCombo: number): Observable<LlenarUsuario> {
     return this.http.get<LlenarUsuario>(`${BASE_URL}API/Usuario/Find/${idCombo}`);
+  }
+
+  obtenerSucuPorId(idCombo: number): Observable<LlenarSucursal> {
+    return this.http.get<LlenarSucursal>(`${BASE_URL}API/Sucursal/Find/${idCombo}`);
   }
   
   actualizar(modelo:UsuarioActualizar):Observable<Respuesta>{

@@ -50,6 +50,11 @@ import { DepartamentoDetalleComponent } from './demo/components/departamento-det
 import { ClienteCreateComponent } from './demo/components/cliente-create/cliente-create.component';
 import { ClienteEditarComponent } from './demo/components/cliente-editar/cliente-editar.component';
 import { ClienteDetalleComponent } from './demo/components/cliente-detalle/cliente-detalle.component';
+import { SucursalDetalleComponent } from './demo/components/sucursal-detalle/sucursal-detalle.component';
+import { EmpleadoCreateComponent } from './demo/components/empleado-create/empleado-create.component';
+import { EmpleadoEditarComponent } from './demo/components/empleado-editar/empleado-editar.component';
+import { EmpleadoDemoModule } from './demo/components/empleado-listado/empleadodemo.module';
+import { EmpleadoDetalleComponent } from './demo/components/empleado-detalle/empleado-detalle.component';
 
 
 
@@ -92,11 +97,15 @@ import { ClienteDetalleComponent } from './demo/components/cliente-detalle/clien
                     { path: 'IndexSucursales', component: SucursalListadoComponent },
                     {path: 'IndexRoles', component:RolListadoComponent},
                     { path: 'CreateRol', component: RolCreateComponent } , 
-                    { path: 'CreatePaquete', component: PaqueteCreateComponent } , 
+                    { path: 'CreatePaquete', component: PaqueteCreateComponent } ,
+                    { path: 'CreateEmpleado', component: EmpleadoCreateComponent } ,  
                     { path: 'EditarRol/:id', component: RolEditarComponent } ,
+                    { path: 'EditarEmpleado/:id', component: EmpleadoEditarComponent } ,
+                    { path: 'DetalleEmpleado/:id', component: EmpleadoDetalleComponent } ,
                     { path: 'EditarCliente/:id', component: ClienteEditarComponent, } ,
                     { path: 'EditarPromocion/:id', component: PromocionEditarComponent } ,
                     { path: 'DetalleRol/:id', component: RolDetalleComponent } ,
+                    { path: 'DetalleSucursal/:id', component: SucursalDetalleComponent } ,
                     { path: 'DetalleCliente/:id', component: ClienteDetalleComponent } ,
                     { path: 'CreatePromocion', component: PromocionCreateComponent } ,
                     { path: 'EditarCombo/:id', component: ComboEditarComponent } ,

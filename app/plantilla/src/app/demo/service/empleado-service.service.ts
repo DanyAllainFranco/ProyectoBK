@@ -8,6 +8,8 @@ import { dropDepartamento } from '../models/DepartamentosViewModel';
 import { CargarMunicipios, dropMunicipio } from '../models/MunicipioViewModel';
 import { dropEstadoCivil } from '../models/EstadoCivilViewModel';
 import { dropCargo } from '../models/CargosViewModel';
+import { EmpleadosEnviar, LlenarEmpleados } from '../models/ClientesViewModel';
+import { Respuesta } from '../models/ServiceResult';
 
 
 @Injectable({
@@ -16,6 +18,35 @@ import { dropCargo } from '../models/CargosViewModel';
 export class ServiceService {
   constructor(private http:HttpClient) { }
   url = BASE_URL + 'API/Empleado/List'
+  successMessage: string = '';
+
+  agregarEmpleados(modelo: EmpleadosEnviar): Observable<Respuesta> {
+    console.log(modelo)
+    return this.http.post<Respuesta>(BASE_URL + 'API/Empleado/Insert', modelo);
+  }
+  obtenerClientePorId(idCombo: number): Observable<LlenarEmpleados> {
+    return this.http.get<LlenarEmpleados>(`${BASE_URL}API/Empleado/Fill/${idCombo}`);
+  }
+
+  
+  eliminar(idDepartamento:number):Observable<void>{
+    return this.http.delete<void>(`${BASE_URL}API/Cliente/Delete/${idDepartamento}`);
+  }
+
+  actualizar(modelo:EmpleadosEnviar):Observable<Respuesta>{
+    return this.http.put<Respuesta>(`${BASE_URL}API/Empleado/Update`,modelo);
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 
   urlDrop = BASE_URL + 'API/Departamento/DropDown'

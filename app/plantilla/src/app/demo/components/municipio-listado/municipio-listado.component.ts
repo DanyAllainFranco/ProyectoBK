@@ -74,6 +74,7 @@ export class MunicipioListadoComponent implements OnInit {
         this.cargarDepartamentos();
      this.getMunicipios();
     }
+    
     getMunicipios(){
         this.service.getMunicipios().subscribe((data: Municipio[]) => {
             console.log(data);
