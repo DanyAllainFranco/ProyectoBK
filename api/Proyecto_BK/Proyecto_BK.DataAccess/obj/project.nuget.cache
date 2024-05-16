@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EInO8+1Z0OVKSnunibMGP6IzAhDNTu0au5XTyssCZIhqStET/7iN0nOtSsROmGMnUSlqBcn3PHPskdQC7T0d1g==",
+  "dgSpecHash": "wiaLqAJatp1md7joh6U2CvwZs9yhFNruX9WL1jx3gMxrq3d6Z3YXukkSNPn8Px/TkbD/x3AE57H45oAFSzduSA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj",
+  "projectFilePath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.DataAccess\\Proyecto_BK.DataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\informatica\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\informatica\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

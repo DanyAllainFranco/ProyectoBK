@@ -13,6 +13,7 @@ export class Factura {
 }
 
 export class FacturaDetalle {
+     faDe_Id?:number;
      clie_Nombre?:string;
      FaDe_Ident?:number;
      FaDe_Cantidad?:number;

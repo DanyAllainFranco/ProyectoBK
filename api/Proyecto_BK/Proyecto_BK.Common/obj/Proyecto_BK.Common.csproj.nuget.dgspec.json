@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj": {}
+    "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj": {
+    "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj",
+        "projectUniqueName": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj",
         "projectName": "Proyecto_BK.Common",
-        "projectPath": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj",
+        "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj",
         "packagesPath": "C:\\Users\\informatica\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Common\\obj\\",
+        "outputPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\informatica\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
-                "projectPath": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj"
+              "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
+                "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj"
               }
             }
           }
@@ -62,14 +62,14 @@
         }
       }
     },
-    "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
+    "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
         "projectName": "Proyecto_BK.Entities",
-        "projectPath": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
+        "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
         "packagesPath": "C:\\Users\\informatica\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Entities\\obj\\",
+        "outputPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\informatica\\AppData\\Roaming\\NuGet\\NuGet.Config",

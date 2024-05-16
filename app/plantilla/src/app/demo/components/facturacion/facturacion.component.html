@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="invoice-1 invoice-content">
     <div class="container">
         <div class="row">
@@ -31,7 +32,7 @@
                                         <label for="">Identidad</label>
                                         <p-inputGroup>
                                             <p-inputGroupAddon>
-                                                <i class="pi pi-user"></i>
+                                                <i class="pi pi-credit-card"></i>
                                             </p-inputGroupAddon>
                                             <input pInputText type="text" placeholder="Numero de identidad" formControlName="Clie_Identidad"/>
                                         </p-inputGroup>
@@ -41,6 +42,7 @@
                                 <p-table [value]="FacturaDetalle">
                                     <ng-template pTemplate="header">
                                         <tr>
+                                            <th style="width:45%;">Id</th>
                                             <th style="width:45%;">Producto</th>
                                             <th style="width:10%;">Cantidad</th>
                                             <th style="width:10%;">Precio</th>
@@ -50,18 +52,19 @@
                                     </ng-template>
                                     <ng-template pTemplate="body" let-detalle>
                                         <tr>
+                                            <td style="width:15%;">{{detalle.fact_Id}}</td>
                                             <td style="width:15%;">{{detalle.producto}}</td>
                                             <td style="width:15%;">{{detalle.cantidad}}</td>
                                             <td style="width:15%;">{{detalle.precio}}</td>
                                             <td style="width:15%;">{{detalle.total}}</td>
                                             <td>
-                                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="confirmDelete(detalle.producto, detalle.productId)"></button>
+                                                <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-warning" (click)="confirmDelete(detalle)"></button>
                                             </td>
                                         </tr>
                                     </ng-template>
                                     <ng-template pTemplate="footer">
                                         <tr>
-                                            <td style="width:25%;">
+                                            <td style="width:40px;">
                                                 <label>
                                                     <input type="radio" value="N" (change)="onRadioChange($event.target.value)" formControlName="FaDe_Ident" />
                                                     Complemento
@@ -79,23 +82,16 @@
                                                     Paquete
                                                 </label>
                                             </td>
-                                            <!-- <td style="width:45%;">
-                                                <p-autoComplete [(ngModel)]="selectedCountryAdvanced"
-                                                    [suggestions]="filteredCountries"
-                                                    (completeMethod)="filterCountry($event)"
-                                                    (onSelect)="onSelectProduct($event)"
-                                                    field="text"
-                                                    formControlName="Prod_Producto"
-                                                    [dropdown]="true"
-                                                    appendTo="body">
-                                                </p-autoComplete>
-                                            </td> -->
                                             <td style="width:10%;">
                                                 <input pInputText id="FaDe_Cantidad" formControlName="FaDe_Cantidad" type="text" required autofocus 
                                                     [ngClass]="{'ng-invalid ng-dirty': submitted && (FacturaForm.get('FaDe_Cantidad').value === '0' || FacturaForm.get('FaDe_Cantidad').value === '')}" />
                                                 <small *ngIf="submitted && (FacturaForm.get('FaDe_Cantidad').value === '0' || FacturaForm.get('FaDe_Cantidad').value === '')" style="color: red;">
                                                     Cantidad es requerida
                                                 </small>
+                                            </td>
+                                            <td style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+                                                <button pButton icon="pi pi-plus" type="button" label="Agregar" (click)="onSubmit()" class="p-button-primary"></button>
+                                                <button pButton icon="pi pi-shopping-cart" type="button" label="Facturar" (click)="cancelar()" class="p-button-primary"></button>
                                             </td>
                                         </tr>
                                     </ng-template>
@@ -108,13 +104,10 @@
                                         <div class="product-info">
                                             <h5>{{ product.text }}</h5>
                                             <p>Codigo: {{ product.value }}</p>
+                                            <p>Precio: {{ product.precio }}</p>
                                             <button pButton type="button" (click)="addProductToInvoice(product)" label="Añadir"></button>
                                         </div>
                                     </div>
-                                </div>
-                                <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
-                                    <button pButton icon="pi pi-stop" type="button" label="Agregar" (click)="onSubmit()" class="p-button-primary"></button>
-                                    <button pButton icon="pi pi-stop" type="button" label="Facturar" (click)="cancelar()" class="p-button-primary"></button>
                                 </div>
                             </form>
                         </div>
@@ -138,7 +131,8 @@
     border-radius: 8px;
     padding: 1rem;
     width: calc(25% - 1rem);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);    
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);   
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; 
 }
 .product-image img {
     max-width: 100%;

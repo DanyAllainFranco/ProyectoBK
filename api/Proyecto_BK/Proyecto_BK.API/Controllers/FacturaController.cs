@@ -23,22 +23,12 @@ namespace Proyecto_BK.API.Controllers
             _mapper = mapper;
         }
 
-        //[HttpPut("DeleteFactura/{id},{nombre},{dif}")]
-        //public IActionResult DeleteFactura(string id, string nombre, string dif)
-        //{
-        //    int difEnd = 0;
-        //    if (dif == "Complementento")
-        //    {
-        //        difEnd = 1;
-        //    }
-        //    else
-        //    {
-        //        difEnd = 0;
-        //    }
-        //    var list = _restauranteServices.ElimnarFacturaDetalle(id, nombre, difEnd);
-        //    return Ok(new { success = true, message = list.Message });
-        //}
-
+        [HttpDelete("DeleteFactura/{FaDe_Id}")]
+        public IActionResult DeleteFactura(int FaDe_Id)
+        {
+            var list = _restauranteServices.ElimnarFacturaDetalle(FaDe_Id);
+            return Ok(list);
+        }
 
         [HttpGet("List")]
         public IActionResult Index()

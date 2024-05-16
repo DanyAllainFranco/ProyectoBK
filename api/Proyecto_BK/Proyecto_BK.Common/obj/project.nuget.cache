@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4MiXrVgtvWGQGijzEYAEh9n0biplEiKfOBIq8hPLsOGU2bAiphbOEJR7QjZc/FXE+c4RtnYRbAXF/rVKEm5psQ==",
+  "dgSpecHash": "1H+KoT8V/xYSuyN/xwIz9gGenoTCNB/7GhZ0kHRJ/2gnufodSkuBUN9+a28QeSph74TeFBspWfiTdvA/g8oytw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\informatica\\Desktop\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj",
+  "projectFilePath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Common\\Proyecto_BK.Common.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
