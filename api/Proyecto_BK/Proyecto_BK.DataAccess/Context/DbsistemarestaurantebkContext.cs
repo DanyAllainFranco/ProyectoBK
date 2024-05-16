@@ -635,20 +635,6 @@ namespace Proyecto_BK.DataAccess.Context
 
                 entity.Property(e => e.PaCo_Fecha_Modifica).HasColumnType("date");
 
-                entity.HasOne(d => d.Alim)
-                    .WithMany(p => p.tbPaquetesPorComidas)
-                    .HasForeignKey(d => d.Alim_Id)
-                    .HasConstraintName("Fk_tbPaquetesPorComidas_Alim_Id");
-
-                entity.HasOne(d => d.Bebi)
-                    .WithMany(p => p.tbPaquetesPorComidas)
-                    .HasForeignKey(d => d.Bebi_Id)
-                    .HasConstraintName("Fk_tbPaquetesPorComidas_Bebi_Id");
-
-                entity.HasOne(d => d.Comp)
-                    .WithMany(p => p.tbPaquetesPorComidas)
-                    .HasForeignKey(d => d.Comp_Id)
-                    .HasConstraintName("Fk_tbPaquetesPorComidas_Comp_Id");
 
                 entity.HasOne(d => d.PaCo_Usua_CreacionNavigation)
                     .WithMany(p => p.tbPaquetesPorComidasPaCo_Usua_CreacionNavigation)
@@ -665,10 +651,6 @@ namespace Proyecto_BK.DataAccess.Context
                     .HasForeignKey(d => d.Paqe_Id)
                     .HasConstraintName("Fk_tbPaquetesPorComidas_Paqe_Id");
 
-                entity.HasOne(d => d.Post)
-                    .WithMany(p => p.tbPaquetesPorComidas)
-                    .HasForeignKey(d => d.Post_id)
-                    .HasConstraintName("Fk_tbPaquetesPorComidas_Post_id");
             });
 
             modelBuilder.Entity<tbPostres>(entity =>

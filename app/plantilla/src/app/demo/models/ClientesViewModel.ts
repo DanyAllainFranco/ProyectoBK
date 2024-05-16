@@ -18,8 +18,29 @@ export class Clientes {
     Clie_Estado?: boolean;
 }
 
+export class LlenarClientes{
+    clie_Id: number;
+    clie_Identidad: string;
+    clie_Nombre: string;
+    clie_Apellido: string;
+    clie_Sexo: string;
+    clie_Correo: string;
+    usua_Creacion: string;
+    usua_Modifica: string;
+    esta_Id: number;
+    muni_Codigo?: string;
+    muni_Descripcion: string;
+    esta_Descripcion: string;
+    dept_Descripcion: string;
+    dept_Codigo: string;
+    clie_Usua_Creacion?: number;
+    clie_Fecha_Creacion?: string;
+    clie_Usua_Modifica?: number;
+    clie_Fecha_Modifica?: string;
+}
 
 export class ClientesEnviar {
+    Clie_Id: number;
     Clie_Identidad?: number;
     Clie_Nombre?: string;
     Clie_Apellido?: string;

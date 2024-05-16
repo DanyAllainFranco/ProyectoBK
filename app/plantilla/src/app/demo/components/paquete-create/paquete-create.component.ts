@@ -41,10 +41,12 @@ import { PostreServiceService } from '../../service/postre-service.service';
 import { ComplementoServiceService } from '../../service/complemento-service.service';
 import { Bebida, Bebida3, Complemento, Complemento2, Postre, Postre2 } from '../../models/BebidasViewModel';
 import { Alimento, Alimento3 } from '../../models/AlimentosViewModel';
-import { PaquetesEnviar } from '../../models/PaquetesViewModel';
+import { PaquetesDetalles, PaquetesEnviar } from '../../models/PaquetesViewModel';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { CountryService } from '../../service/country.service';
 import { DataView } from 'primeng/dataview';
+import {CookieService} from 'ngx-cookie-service'
+import { cA } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-paquete-create',
@@ -87,6 +89,16 @@ export class PaqueteCreateComponent implements OnInit{
 
   orderCities: any[] = [];
 
+  creado: boolean = false;
+
+  Detalle: PaquetesDetalles[];
+  cantidadSeleccionadaPorAlimento: { [key: number]: number } = {};
+  cantidad: number;
+
+  identificador: string = 'A';
+  cantidadSeleccionada: number = 0;
+  initialValues: number[] = [];
+
     constructor(private productService: ProductService,
       private router: Router,
       private fb: FormBuilder,
@@ -100,6 +112,9 @@ export class PaqueteCreateComponent implements OnInit{
         this.form = this.fb.group({
           paqe_Descripcion: ['', Validators.required],
           paqe_Precio: ['', Validators.required],
+          // prod_Id: ['',Validators.required],
+            // paCo_Cantidad: [''],
+          // paCo_Identificador: ['',Validators.required]
         });
         }
 
@@ -129,6 +144,7 @@ export class PaqueteCreateComponent implements OnInit{
    this.cargarBebidas();
    this.cargarComplementos();
    this.cargarPostres();
+
   }
 
   onSortChange(event: any) {
@@ -148,8 +164,10 @@ onFilter(dv: DataView, event: Event) {
 }
 
 
-  onTabClick(tab: string) {
+  onTabClick(tab: string, identi: string) {
     this.activeTab = tab;
+    this.identificador = identi;
+    console.log("OPCION: " + this.activeTab + " " + "IDENTIFICADOR: " + this.identificador)
   }
 
   cargarComplementos(){
@@ -164,10 +182,15 @@ onFilter(dv: DataView, event: Event) {
     );
   }
 
+  probando(id: number){
+    console.log("ID PRODUCTO: " + id )
+    console.log("IDENTIFICADOR: " + this.identificador)
+  }
+
   cargarPostres(){
     this.postreService.getPostre().subscribe(
       (data: any[]) => {
-        console.log(data)
+        
         this.postres = data
       },
       error => {
@@ -198,6 +221,20 @@ onFilter(dv: DataView, event: Event) {
     );
   }
 
+  incrementarCantidad(alimId: number) {
+    if (!this.cantidadSeleccionadaPorAlimento[alimId]) {
+        this.cantidadSeleccionadaPorAlimento[alimId] = 0;
+    }
+    this.cantidadSeleccionadaPorAlimento[alimId]++;
+}
+
+decrementarCantidad(alimId: number) {
+    if (this.cantidadSeleccionadaPorAlimento[alimId] && this.cantidadSeleccionadaPorAlimento[alimId] > 0) {
+        this.cantidadSeleccionadaPorAlimento[alimId]--;
+    }
+}
+
+
 
   onUpload(event) {
     const file: File = event.files[0];
@@ -225,12 +262,15 @@ onFilter(dv: DataView, event: Event) {
     }
   }
 
-  guardar() {
-    if (this.form.valid) {
+  guardar(id: number) {
+    if (this.form.valid && this.prueba != "") {
         const paqe_Descripcion = this.form.value.paqe_Descripcion;
         const paqe_Precio = this.form.value.paqe_Precio;
         const Usua_Id = 1
         const paqe_Imagen = this.prueba;
+        const prod_Id = id;
+        const paCo_Identificador = this.identificador;
+        const cantidad = this.cantidadSeleccionadaPorAlimento[prod_Id];
         const nuevoRol: PaquetesEnviar = {
             paqe_Id: 0,
             paqe_Descripcion: paqe_Descripcion,
@@ -238,27 +278,78 @@ onFilter(dv: DataView, event: Event) {
             paqe_Precio: paqe_Precio,
             Usua_Id: Usua_Id,
         };
+
+        
+        
+        if(this.creado == false){ 
+          if(cantidad > 0){
+            this.rolService.agregar(nuevoRol).subscribe(
+              (respuesta: Respuesta) => {
+                  if (respuesta.success) {
+                      // Guardar el ID del rol creado
+                      this.PromId = parseInt(respuesta.message);
+                      this.creado = true;
+                      const Detalle: PaquetesDetalles = {
+                        paqe_Id: this.PromId,
+                        PaCo_Cantidad: cantidad,
+                        Prod_Id: prod_Id,
+                        PaCo_Identificador: paCo_Identificador,
+                        Usua_Id: 1
+                      }
+                     
+                        this.rolService.agregarDetalle(Detalle).subscribe(
+                          (respuesta: Respuesta) =>{
+                            if(respuesta.success){
+                              console.log("EXITOO");
+                            }
+                          }
+                        );
+                    
+                    
+                     
   
-        this.rolService.agregar(nuevoRol).subscribe(
-            (respuesta: Respuesta) => {
-                if (respuesta.success) {
-                    // Guardar el ID del rol creado
-                    this.PromId = parseInt(respuesta.message);
+                      
+          
+                     this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Agregado correctamente!' });
+                  // this.router.navigate(['app/IndexPaquetes']);
                   
-                    this.mostrar = 'Exito';
-                  
-                    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Paquete registrada correctamente!' });
-                // this.router.navigate(['app/IndexPaquetes']);
-                
-                } else {
-                    console.error('Error al crear el rol:', respuesta.message);
+                  } else {
+                      console.error('Error al crear el rol:', respuesta.message);
+                  }
+              },
+              error => {
+                  console.error('Error al crear el rol:', error);
+              }
+          );
+          }
+         else{
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: '¡Ingrese una cantidad!' });
+         }
+        }
+        else{
+          const Detalle: PaquetesDetalles = {
+            paqe_Id: this.PromId,
+            PaCo_Cantidad: cantidad,
+            Prod_Id: prod_Id,
+            PaCo_Identificador: paCo_Identificador,
+            Usua_Id: 1
+          }
+          if(cantidad > 0){
+            this.rolService.agregarDetalle(Detalle).subscribe(
+              (respuesta: Respuesta) =>{
+                if(respuesta.success){
+                  console.log("EXITOO");
                 }
-            },
-            error => {
-                console.error('Error al crear el rol:', error);
-            }
-        );
+              }
+            );
+          }
+         else{
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: '¡Ingrese una cantidad!' });
+         }
+        }
+        
     } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: '¡Ingrese todos los campos!' });
         console.log("Ingrese los campos")
       
     }

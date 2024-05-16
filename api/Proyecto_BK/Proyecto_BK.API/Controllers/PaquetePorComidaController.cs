@@ -44,10 +44,9 @@ namespace Proyecto_BK.API.Controllers
             var modelo = new tbPaquetesPorComidas()
             {
                 Paqe_Id = json.Paqe_Id,
-                Bebi_Id = json.Bebi_Id,
-                Post_id = json.Post_id,
-                Comp_Id = json.Comp_Id,
-                Alim_Id = json.Alim_Id,
+                Prod_Id = json.Prod_Id,
+                PaCo_Cantidad = json.PaCo_Cantidad,
+                PaCo_Identificador = json.PaCo_Identificador,
                 PaCo_Usua_Creacion = 1,
                 PaCo_Fecha_Creacion = DateTime.Now
             };
@@ -63,10 +62,9 @@ namespace Proyecto_BK.API.Controllers
             {
                 PaCo_Id = Convert.ToInt32(json.PaCo_Id),
                 Paqe_Id = json.Paqe_Id,
-                Bebi_Id = json.Bebi_Id,
-                Post_id = json.Post_id,
-                Comp_Id = json.Comp_Id,
-                Alim_Id = json.Alim_Id,
+                Prod_Id = json.Prod_Id,
+                PaCo_Cantidad = json.PaCo_Cantidad,
+                PaCo_Identificador = json.PaCo_Identificador,
                 PaCo_Usua_Modifica = 1,
                 PaCo_Fecha_Modifica = DateTime.Now
             };

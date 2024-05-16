@@ -31,11 +31,11 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
-        [HttpGet("API/[controller]/Find")]
+        [HttpGet("API/[controller]/Find/{Clie_Id}")]
         public IActionResult Find(int Clie_Id)
         {
             var result = _generalServices.LlenarCliente(Clie_Id);
-            return Ok(result);
+            return Ok(result.Data);
         }
 
         [HttpPost("API/[controller]/Insert")]
@@ -79,7 +79,7 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list);
         }
 
-        [HttpDelete("API/[controller]/Delete")]
+        [HttpDelete("API/[controller]/Delete/{Clie_Id}")]
         public IActionResult Delete(int Clie_Id)
         {
             var response = _generalServices.EliminarCliente(Clie_Id);

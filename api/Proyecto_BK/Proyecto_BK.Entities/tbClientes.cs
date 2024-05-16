@@ -34,6 +34,10 @@ namespace Proyecto_BK.Entities
         public string Dept_Codigo { get; set; }
         [NotMapped]
         public string Dept_Descripcion { get; set; }
+        [NotMapped]
+        public string Usua_Creacion { get; set; }
+        [NotMapped]
+        public string Usua_Modifica { get; set; }
         public virtual tbCargos Carg { get; set; }
         public virtual tbUsuarios Clie_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Clie_Usua_ModificaNavigation { get; set; }

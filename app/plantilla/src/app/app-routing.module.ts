@@ -48,6 +48,8 @@ import { UsuarioDetalleComponent } from './demo/components/usuario-detalle/usuar
 import { CargoDetalleComponent } from './demo/components/cargo-detalle/cargo-detalle.component';
 import { DepartamentoDetalleComponent } from './demo/components/departamento-detalle/departamento-detalle.component';
 import { ClienteCreateComponent } from './demo/components/cliente-create/cliente-create.component';
+import { ClienteEditarComponent } from './demo/components/cliente-editar/cliente-editar.component';
+import { ClienteDetalleComponent } from './demo/components/cliente-detalle/cliente-detalle.component';
 
 
 
@@ -92,8 +94,10 @@ import { ClienteCreateComponent } from './demo/components/cliente-create/cliente
                     { path: 'CreateRol', component: RolCreateComponent } , 
                     { path: 'CreatePaquete', component: PaqueteCreateComponent } , 
                     { path: 'EditarRol/:id', component: RolEditarComponent } ,
+                    { path: 'EditarCliente/:id', component: ClienteEditarComponent, } ,
                     { path: 'EditarPromocion/:id', component: PromocionEditarComponent } ,
                     { path: 'DetalleRol/:id', component: RolDetalleComponent } ,
+                    { path: 'DetalleCliente/:id', component: ClienteDetalleComponent } ,
                     { path: 'CreatePromocion', component: PromocionCreateComponent } ,
                     { path: 'EditarCombo/:id', component: ComboEditarComponent } ,
                     { path: 'CreateCliente', component: ClienteCreateComponent } ,

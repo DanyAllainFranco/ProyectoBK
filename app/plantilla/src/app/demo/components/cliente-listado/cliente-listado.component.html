@@ -1,4 +1,5 @@
 <div class="grid">
+    <p-toast></p-toast>
     <div class="col-12">
         <div class="card">
             <h5>Clientes</h5>
@@ -96,13 +97,13 @@
                         <td>{{clie.dept_Descripcion}}</td>
                         <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
                             <p-button label="Editar" icon="pi pi-user-edit" size="small"
-                                (click)="Fill(depto.dept_Codigo)" severity="primary" [raised]="true"
+                            (click)="editarCombo(clie.clie_Id)" severity="primary" [raised]="true"
                                 [plain]="true"></p-button>
                             <p-button label="Detalles" icon="pi pi-book" size="small"
-                                (click)="detalles(depto.dept_Codigo)" severity="secondary" [raised]="true"
+                            (click)="detalleCombo(clie.clie_Id)" severity="secondary" [raised]="true"
                                 [plain]="true"></p-button>
                             <p-button label="Eliminar" icon="pi pi-trash" size="small"
-                                (click)="deleteSelectedProducts(depto.dept_Codigo)" severity="danger" [raised]="true"
+                            (click)="confirmarEliminarDepartamento(clie)" severity="danger" [raised]="true"
                                 [plain]="true"></p-button>
                         </td>
                     </tr>
@@ -119,5 +120,14 @@
                 </ng-template>
             </p-table>
         </div>
+        <p-dialog header="Confirmar Eliminación" [(visible)]="confirmacionVisible" modal="true"
+        [style]="{ width: '300px' }">
+        <p>¿Está seguro de que desea eliminar este registro?</p>
+        <p-footer>
+            <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
+            <button pButton type="button" label="Confirmar" class="p-button-danger"
+                (click)="eliminarDepartamento()"></button>
+        </p-footer>
+    </p-dialog>
     </div>
 </div>

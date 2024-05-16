@@ -81,7 +81,7 @@ export class ClienteCreateComponent implements OnInit{
           Clie_Sexo: ['', Validators.required],
           Clie_Correo: ['', Validators.required],
           Esta_Id: ['', Validators.required],
-          // Muni_Codigo: ['', Validators.required]
+           Muni_Codigo: ['', Validators.required]
         });
         }
 
@@ -103,21 +103,22 @@ cargarDepartamentos(){
   );
 }
 
-onDepartmentChange(departmentId: any) {
-  console.log("CODIGO: " + departmentId.values)
-  // if (departmentId !== '0') {
-  //   this.municipioService.getMunicipiosPorDepartamento(departmentId).subscribe(
-  //     (data: any) => {
-  //       this.municipios =data.map(item => ({ label: item.muni_Descripcion, value: item.muni_Codigo })); 
-  //     },
-  //     error => {
-  //       console.error('Error fetching municipios:', error);
-  //     }
-  //   );
-  // } else {
-  //   this.municipios = []; 
-  // }
+onDepartmentChange(event: any) {
+  const departmentId = event.value;
+  if (departmentId) {
+    this.municipioService.getMunicipiosPorDepartamento(departmentId).subscribe(
+      (data: any[]) => {
+        this.municipios = data.map(item => ({ label: item.muni_Descripcion, value: item.muni_Codigo }));
+      },
+      error => {
+        console.error('Error fetching municipios:', error);
+      }
+    );
+  } else {
+    this.municipios = [];
+  }
 }
+
 
 
 cargarEstados(){
@@ -150,7 +151,7 @@ guardar() {
     const Muni_Codigo = this.form.value.Muni_Codigo;
 
     const NuevoCombo: ClientesEnviar = {
-    
+      Clie_Id: 0,
       Clie_Identidad: Clie_Identidad,
       Clie_Nombre: Clie_Nombre,
       Clie_Apellido: Clie_Apellido,
@@ -166,7 +167,7 @@ guardar() {
         if (respuesta.success) {
           // this.messageService.add({severity:'success', summary:'Éxito', detail:'!Combo registrado correctamente!'});
           this.clienteService.successMessage = '¡Cliente registrado correctamente!';
-          this.router.navigate(['app/IndexComboPersonal']);
+          this.router.navigate(['app/IndexClientes']);
         } else {
           this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});
           console.error('Error al crear el combo:', respuesta.message);

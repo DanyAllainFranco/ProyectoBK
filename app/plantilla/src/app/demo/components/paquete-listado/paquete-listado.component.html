@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <h5>Paquetes</h5>
-            <button (click)="Nuevo()"  pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" [class.hidden]="">Nuevo</button>
+            <button (click)="Nuevo()"  pButton icon="pi pi-plus-circle" label="Nuevo" style="margin-bottom: 10px;" [class.hidden]=""></button>
             <p-table [value]="paquete" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines"
                 [paginator]="true" [globalFilterFields]="['paqe_Id,paqe_Descripcion,paqe_Imagen,paqe_Precio']" responsiveLayout="scroll">
                 <ng-template pTemplate="caption">
@@ -49,12 +49,11 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-paqe>
                     <tr>
-                        <td>{{paqe.paqe_Descripcion}}</td>
-                        <td>
-                            <img [src]="paqe.paqe_Imagen" alt="Imagen de Paquete" style="width: 100px; height: auto;">
-                        </td>  
+                        <td>{{paqe.paqe_Descripcion}}</td> 
                         <td>{{paqe.paqe_Precio}}</td>
-                     
+                        <td>
+                            <img *ngIf="paqe.paqe_Imagen" [src]="'https://localhost:44332/uploads/' + paqe.paqe_Imagen" alt="Imagen de postre" width="100">
+                          </td>
 
                         <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
                             <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="Fill(depto.dept_Codigo)" severity="primary" [raised]="true" [plain]="true"></p-button>

@@ -19,3 +19,11 @@ export class PaquetesEnviar {
     Usua_Id: number;
 }
 
+
+export class PaquetesDetalles{
+    paqe_Id?: number;
+    Prod_Id?: number;
+    PaCo_Cantidad?: number;
+    PaCo_Identificador?: string;
+    Usua_Id: number;
+}

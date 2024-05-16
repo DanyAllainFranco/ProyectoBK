@@ -44,8 +44,13 @@ export class InicioDeSesionComponent {
             this.authService.setUserId(loginData.Usua_Id);
             localStorage.setItem('usuario', loginData.Usua_Usuario); 
              this.cookieService.set('Usua_Id', response[0].usua_Id);
-            // const valor = this.cookieService.get('Usua_Id');
-             this.router.navigate(['/app/PrincipalGraficos'], { queryParams: { usuario: loginData.Usua_Usuario } });
+             this.cookieService.set('Rol_Id', response[0].rol_Id);
+             this.cookieService.set('Usua_Admin', response[0].usua_Admin);
+            const valor = this.cookieService.get('Usua_Id');
+            console.log("PRUEBA: " + valor)
+            console.log("ROL: " + this.cookieService.get("Rol_Id"))
+            console.log("Admin: " + this.cookieService.get("Usua_Admin"))
+            this.router.navigate(['/app/PrincipalGraficos'], { queryParams: { usuario: loginData.Usua_Usuario } });
           }
         },
         error => {

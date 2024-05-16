@@ -11,7 +11,7 @@ export class Alimento {
 }
 
 export class Alimento3{
-    Alim_Id?: number;
+    alim_Id?: number;
     Alim_Descripcion?: string;
     Alim_Precio?: number;
     Alim_Imagen?: string;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Paquetes, PaquetesEnviar} from '../models/PaquetesViewModel'
+import {Paquetes, PaquetesDetalles, PaquetesEnviar} from '../models/PaquetesViewModel'
 import {HttpClient} from '@angular/common/http'
 import { Respuesta } from '../models/ServiceResult';
 import { BASE_URL } from './UrlParaAPI';
@@ -19,6 +19,11 @@ export class PaquetesServiceService {
   agregar(modelo: PaquetesEnviar): Observable<Respuesta> {
     console.log(modelo)
     return this.http.post<Respuesta>(`${BASE_URL}API/Paquete/Insert`, modelo);
+  }
+
+  agregarDetalle(modelo: PaquetesDetalles): Observable<Respuesta> {
+    console.log(modelo)
+    return this.http.post<Respuesta>(`${BASE_URL}API/PaquetePorComida/Insert`, modelo);
   }
 
   actualizar(modelo:PaquetesEnviar):Observable<Respuesta>{
