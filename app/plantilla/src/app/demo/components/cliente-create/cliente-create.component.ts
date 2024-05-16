@@ -65,6 +65,7 @@ export class ClienteCreateComponent implements OnInit{
     municipios: SelectItem[] = [];
     estadosciviles: SelectItem[] = [];
     DepartamentoId: string;
+    submitted: boolean = false;
     constructor(private productService: ProductService,
       private router: Router,
       private fb: FormBuilder,
@@ -179,8 +180,7 @@ guardar() {
       }
     );
   } else {
-    console.log("Ingrese los campos")
-    this.invalid = true;
+   this.submitted = true;
   }
 }
 

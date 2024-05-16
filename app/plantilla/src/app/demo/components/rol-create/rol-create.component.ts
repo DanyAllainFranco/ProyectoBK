@@ -42,7 +42,7 @@ export class RolCreateComponent implements OnInit{
     sortOptions: SelectItem[] = [];
 
     sortOrder: number = 0;
-
+    submitted = false;
     sortField: string = '';
 
     sourceCities: any[] = [];
@@ -134,8 +134,7 @@ export class RolCreateComponent implements OnInit{
             }
         );
     } else {
-        console.log("Ingrese los campos")
-        this.invalid = true;
+      this.submitted = true;
     }
 }
 

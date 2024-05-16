@@ -10,15 +10,18 @@
                         <div class="p-formgrid grid">
                             <div class="field col">
                                 <label htmlFor="name2">Codigo</label>
-                                <input pInputText formControlName="codigo" autocomplete="off" id="name2" type="text" />
-                                <small *ngIf="campoVacio('codigo')" class="text-danger">El campo es requerido.</small>
+                                <input pInputText formControlName="codigo" autocomplete="off" id="name2" type="text" [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['codigo'].invalid}"/>
+                                <small class="ng-dirty ng-invalid"
+                                *ngIf="submitted && formDepartamento.controls['codigo'].invalid"
+                                style="color: red !important;">Codigo Requerido</small>
                             </div>
                             <div class="field col">
                                 <label htmlFor="email2">Departamento</label>
                                 <input pInputText formControlName="departamento" autocomplete="off" id="email2"
-                                    type="text" />
-                                <small *ngIf="campoVacio('departamento')" class="text-danger">El campo es
-                                    requerido.</small>
+                                    type="text" [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['departamento'].invalid}"/>
+                                    <small class="ng-dirty ng-invalid"
+                                    *ngIf="submitted && formDepartamento.controls['departamento'].invalid"
+                                    style="color: red !important;">Departamento Requerido</small>
                             </div>
                         </div>
                     </div>

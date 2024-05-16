@@ -11,13 +11,18 @@
                             <div class="field col">
                                 <label htmlFor="name2">Alimento:</label>
                                 <input pInputText formControlName="alim_Descripcion" autocomplete="off" id="name2"
-                                    type="text" />
+                                    type="text" [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['alim_Descripcion'].invalid}"/>
+                                    <small class="ng-dirty ng-invalid"
+                                    *ngIf="submitted && formDepartamento.controls['alim_Descripcion'].invalid"
+                                    style="color: red !important;">Alimento Requerido</small>
                             </div>
                             <div class="field col">
                                 <label htmlFor="email2">Precio</label>
                                 <input pInputText formControlName="alim_Precio" autocomplete="off" id="email2"
-                                    type="number" />
-
+                                    type="number" [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['alim_Precio'].invalid}"/>
+                                    <small class="ng-dirty ng-invalid"
+                                    *ngIf="submitted && formDepartamento.controls['alim_Precio'].invalid"
+                                    style="color: red !important;">Precio Requerido</small>
                             </div>
 
                         </div>

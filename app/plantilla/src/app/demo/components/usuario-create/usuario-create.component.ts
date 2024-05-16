@@ -48,6 +48,7 @@ export class UsuarioCreateComponent implements OnInit{
   form: FormGroup;
       empleados: any[] = [];
 valCheck: string[] = [];
+submitted = false;
     complementos: SelectItem[] = [];
     constructor(
       private router: Router,
@@ -117,7 +118,7 @@ valCheck: string[] = [];
         }
       );
     } else {
-      console.log("Ingrese los campos")
+      this.submitted = true;
     }
   }
 }

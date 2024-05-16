@@ -3,9 +3,9 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Product } from 'src/app/demo/api/product';
 import {Router} from '@angular/router';
 import { Table } from 'primeng/table';
-import { Estado, EstadoCivilEnviar,Fill } from 'src/app/demo/models/EstadoCivilViewModel';
+import { Estado, Estado2, EstadoCivilEnviar,Fill } from 'src/app/demo/models/EstadoCivilViewModel';
 import { EstadoCivilServiceService } from '../../service/estadocivil-service.service';
-import { FormGroup, FormControl,  Validators  } from '@angular/forms';
+import { FormGroup, FormControl,  Validators, FormBuilder  } from '@angular/forms';
 import { MensajeViewModel } from 'src/app/demo/models/MensajeVIewModel';
 
 
@@ -22,7 +22,9 @@ import { MensajeViewModel } from 'src/app/demo/models/MensajeVIewModel';
 })
 export class EstadocivilListadoComponent implements OnInit {
     Estado!:Estado[];
-
+    formCargo: FormGroup;
+    confirmacionVisible: boolean = false;
+    cargoAEliminar: Estado2 | null = null;
     MensajeViewModel!: MensajeViewModel[];
     submitted: boolean = false;
     loading: boolean = false;
@@ -38,8 +40,10 @@ export class EstadocivilListadoComponent implements OnInit {
     MunCodigo: boolean = true;
     Valor: string = "";
     staticData = [{}];
-  
-  
+    selectedCargo: any;
+    modalTitle: string = 'Nuevo Registro';
+    modalButtonLabel: string = 'Guardar';
+    display: boolean = false;
     deleteProductDialog: boolean = false;
     //Detalle
     Esta: String = "";
@@ -53,6 +57,7 @@ export class EstadocivilListadoComponent implements OnInit {
     constructor(
         private service: EstadoCivilServiceService, 
         private router: Router,
+        private fb: FormBuilder,
         private confirmationService: ConfirmationService, 
         private messageService: MessageService
     ) { 
@@ -65,12 +70,15 @@ export class EstadocivilListadoComponent implements OnInit {
   
 
     ngOnInit(): void {
-        this.estadocivilForm = new FormGroup({
-            Esta_Descripcion: new FormControl("", Validators.required),
+        this.formCargo = this.fb.group({
+            esta_Descripcion: ["", Validators.required],
           });
 
+          this.getEstados();
+     }
+    
 
-
+     getEstados(){
         this.service.getEstadoCivil().subscribe((data: any)=>{
             console.log(data);
             this.Estado = data;
@@ -79,7 +87,103 @@ export class EstadocivilListadoComponent implements OnInit {
         });
      }
     
+     confirmarEliminarCargo(cargo: Estado2) {
+        this.cargoAEliminar = cargo;
+        this.confirmacionVisible = true;
+      }
+      
+      eliminarCargo() {
+        if (this.cargoAEliminar) {
+          const idCargo = this.cargoAEliminar.esta_Id;
+          this.service.eliminar(idCargo).subscribe({
+            next: (data) => {
+              this.getEstados();
+              this.confirmacionVisible = false;
+              console.log(idCargo);
+              this.messageService.add({severity:'success', summary:'Éxito', detail:'¡Estado Civil eliminado correctamente!'});
+            },
+            error: (e) => {
+              console.log(e);
+              this.messageService.add({severity:'error', summary:'Error', detail:'Este Estado Civil no se puede eliminar.'});
+            }
+          });
+        }
+      }
+      cancelarEliminar() {
+        this.confirmacionVisible = false;
+      }
+
+      displayNuevoCargo() {
+        this.formCargo.reset();
+        this.modalTitle = 'Nuevo Registro';
+        this.modalButtonLabel = 'Guardar';
+        this.display = true;
+      }
     
+      editCargo(cargo: any) {
+        this.selectedCargo = cargo.esta_Id;
+        console.log("ID: " + this.selectedCargo)
+        this.modalTitle = 'Editar Registro';
+        this.modalButtonLabel = 'Actualizar';
+        this.formCargo.patchValue({
+          esta_Descripcion: cargo.esta_Descripcion,
+        });
+        this.display = true;
+      }
+      guardarCargo() {
+        if (this.formCargo.valid) {
+          if (this.modalTitle === 'Nuevo Registro') {
+            this.nuevoCargo();
+          } else {
+            this.actualizarCargo();
+          }
+        }
+       else{
+        this.submitted = true;
+       }
+      }
+
+      nuevoCargo() {
+        const modelo: Estado2 = {
+            esta_Id: 0,
+            esta_Descripcion: this.formCargo.value.esta_Descripcion,
+              Usua_Id: 1
+        }
+        this.service.agregar(modelo).subscribe({
+          next: (data) => {  
+            this.getEstados();
+            this.display = false;
+            this.messageService.add({severity:'success', summary:'Éxito', detail:'¡Estado Civil creado correctamente!'});
+          },
+          error: (e) => {
+            console.log(e);
+            this.messageService.add({severity:'error', summary:'Error', detail:'Estado Civil ya existente.'});
+          }
+        })
+      }
+    
+      actualizarCargo() {
+        const idCargo = this.selectedCargo;
+        const modelo: Estado2 = {
+        esta_Id: idCargo,
+        esta_Descripcion: this.formCargo.value.esta_Descripcion,
+          Usua_Id: 1
+        }
+        this.service.actualizar(modelo).subscribe({
+          next: (data) => {
+            this.getEstados();
+            this.display = false;
+            console.log(idCargo);
+            this.messageService.add({severity:'success', summary:'Éxito', detail:'¡Estado Civil editado correctamente!'});
+          },
+          error: (e) => {
+            console.log(e);
+            this.messageService.add({severity:'error', summary:'Error', detail:'Estado Civil ya existente.'});
+          }
+        })
+      }
+    
+      
   //Abrir collapse
   collapse(){
     this.Collapse= true;

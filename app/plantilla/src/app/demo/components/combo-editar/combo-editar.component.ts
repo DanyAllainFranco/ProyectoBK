@@ -61,6 +61,7 @@ export class ComboEditarComponent implements OnInit{
   complementos: SelectItem[] = [];
   selectedImageURL: string | null = null;
   Imagen: string;
+  submitted: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private rolService: ComboPersonalServiceService,
@@ -232,8 +233,7 @@ export class ComboEditarComponent implements OnInit{
         }
       );
     } else {
-      console.log("Ingrese los campos")
-      this.invalid = true;
+     this.submitted = true;
     }
   }
 }

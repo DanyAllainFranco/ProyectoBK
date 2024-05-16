@@ -50,6 +50,7 @@ export class ComplementoListadoComponent implements OnInit {
   selectedImageURL: string | null = null;
   imageSelected: boolean = false;
   showFileUpload: boolean = true;
+  submitted: boolean = false;
   prueba: string = "";
   constructor(
     private service: ComplementoServiceService,
@@ -71,7 +72,7 @@ export class ComplementoListadoComponent implements OnInit {
   ngOnInit(): void {
    this.getComplementos();
 
-   const showSuccessMessage = this.cookieService.get('showSuccessMessage');
+   const showSuccessMessage = this.cookieService.get('showSuccessMessageComplemento');
    const tipo =  this.cookieService.get('Mensaje');
    console.log("SDAS: " + showSuccessMessage)
    if (showSuccessMessage) {
@@ -82,9 +83,9 @@ export class ComplementoListadoComponent implements OnInit {
        else{
          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Complemento editado correctamente' });
        }
+       this.cookieService.delete('showSuccessMessageComplemento');
      });
-     this.cookieService.delete('showSuccessMessage');
-     this.cookieService.delete('Mensaje');
+ 
    }
   }
    
@@ -127,14 +128,17 @@ export class ComplementoListadoComponent implements OnInit {
   }
 
   guardarDepartamento() {
-    if (this.formDepartamento.invalid) {
-      return;
+    if (this.formDepartamento.valid) {
+      if (this.modalTitle === 'Nuevo Registro') {
+        this.NuevoDepartamento();
+      } else {
+        this.actualizarDepartamento();
+      }
     }
-    if (this.modalTitle === 'Nuevo Registro') {
-      this.NuevoDepartamento();
-    } else {
-      this.actualizarDepartamento();
+    else{
+      this.submitted = true;
     }
+   
   }
 
 
@@ -152,7 +156,7 @@ export class ComplementoListadoComponent implements OnInit {
       next: (data) => {
         this.getComplementos();
         this.cookieService.set('Mensaje', 'Editado');
-        this.cookieService.set('showSuccessMessage', 'true');
+        this.cookieService.set('showSuccessMessageComplemento', 'true');
         // localStorage.setItem('', '');
         location.reload();
         // this.display = false;
@@ -211,7 +215,7 @@ export class ComplementoListadoComponent implements OnInit {
     this.service.agregar(modelo).subscribe({
       next: () => {
         this.getComplementos();
-        this.cookieService.set('showSuccessMessage', 'true');
+        this.cookieService.set('showSuccessMessageComplemento', 'true');
         this.cookieService.set('Mensaje', 'Nuevo');
         location.reload();
       },

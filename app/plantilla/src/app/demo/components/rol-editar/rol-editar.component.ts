@@ -43,7 +43,7 @@ export class RolEditarComponent implements OnInit {
   sortOptions: SelectItem[] = [];
 
   sortOrder: number = 0;
-
+  submitted = false;
   sortField: string = '';
 
   sourceCities: any[] = [];
@@ -154,6 +154,9 @@ export class RolEditarComponent implements OnInit {
           // Puedes mostrar un mensaje de error al usuario aquí
         }
       );
+    }
+    else{
+      this.submitted = true;
     }
   }
 

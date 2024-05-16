@@ -51,6 +51,9 @@ export class BebidaListadoComponent implements OnInit {
   imageSelected: boolean = false;
   showFileUpload: boolean = true;
   prueba: string = "";
+  mensaje: string;
+  submitted: boolean = false;
+  mostrarmensaje: string;
   constructor(private service: BebidasServiceService, 
     private router: Router ,
     private fb: FormBuilder,
@@ -70,20 +73,24 @@ export class BebidaListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBebidas();
-    const showSuccessMessage = this.cookieService.get('showSuccessMessage');
-    const tipo =  this.cookieService.get('Mensaje');
-    console.log("SDAS: " + showSuccessMessage)
-    if (showSuccessMessage) {
+    this.mostrarmensaje = this.cookieService.get('showSuccessMessageBebida');
+    this.mensaje =  this.cookieService.get('MensajeBebida');
+
+    if (this.mostrarmensaje) {
       setTimeout(() => {  
-        if(tipo == 'Nuevo'){
+        if(this.mensaje == 'Nuevo'){
           this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Bebida agregado correctamente' });
+          this.mensaje = '';
         }
         else{
           this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Bebida editado correctamente' });
+          this.cookieService.delete('MensajeBebida');
         }
+       
+      this.cookieService.delete('showSuccessMessageBebida');
       });
-      this.cookieService.delete('showSuccessMessage');
-      this.cookieService.delete('Mensaje');
+   
+      
     }
   }
 
@@ -128,14 +135,17 @@ export class BebidaListadoComponent implements OnInit {
   }
 
   guardarDepartamento() {
-    if (this.formDepartamento.invalid) {
-      return;
+    if (this.formDepartamento.valid) {
+      if (this.modalTitle === 'Nuevo Registro') {
+        this.NuevoDepartamento();
+      } else {
+        this.actualizarDepartamento();
+      }
     }
-    if (this.modalTitle === 'Nuevo Registro') {
-      this.NuevoDepartamento();
-    } else {
-      this.actualizarDepartamento();
+    else{
+      this.submitted = true
     }
+   
   }
 
   actualizarDepartamento() {
@@ -151,8 +161,8 @@ export class BebidaListadoComponent implements OnInit {
     this.service.actualizar(modelo).subscribe({
       next: (data) => {
         this.getBebidas();
-        this.cookieService.set('Mensaje', 'Editado');
-        this.cookieService.set('showSuccessMessage', 'true');
+        this.cookieService.set('MensajeBebida', 'Editado');
+        this.cookieService.set('showSuccessMessageBebida', 'true');
         // localStorage.setItem('', '');
         location.reload();
         // this.display = false;
@@ -211,8 +221,8 @@ export class BebidaListadoComponent implements OnInit {
     this.service.agregar(modelo).subscribe({
       next: () => {
         this.getBebidas();
-        this.cookieService.set('showSuccessMessage', 'true');
-        this.cookieService.set('Mensaje', 'Nuevo');
+        this.cookieService.set('showSuccessMessageBebida', 'true');
+        this.cookieService.set('MensajeBebida', 'Nuevo');
         location.reload();
       },
       error: (error) => {

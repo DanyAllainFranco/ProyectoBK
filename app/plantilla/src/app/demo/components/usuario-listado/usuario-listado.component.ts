@@ -112,6 +112,7 @@ export class UsuariosListadoComponent implements OnInit {
       }
     );
   }
+  
   detalleRol(combId: number) {
     this.router.navigate(['app/DetalleUsuario', combId]); 
   }
@@ -177,10 +178,13 @@ editDepartamento(departamento: any) {
 }
 
 guardarDepartamento() {
-  if (this.formDepartamento.invalid) {
-    return;
+  if (this.formDepartamento.valid) {
+    this.actualizarDepartamento();
   }
-   this.actualizarDepartamento();
+  else{
+    this.submitted = true;
+  }
+  
 }
 
 actualizarDepartamento() {

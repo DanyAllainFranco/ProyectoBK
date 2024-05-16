@@ -10,7 +10,10 @@
                     <form [formGroup]="formDepartamento" class="grid col-12 p-fluid p-formgrid">
                         <div class="field col-12 md:col-6">
                             <label htmlFor="name2">Usuario:</label>
-                            <input formControlName="usuario" class="p-inputtext" type="text" />
+                            <input [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['usuario'].invalid}" formControlName="usuario" class="p-inputtext" type="text" />
+                            <small class="ng-dirty ng-invalid"
+                            *ngIf="submitted && formDepartamento.controls['usuario'].invalid"
+                            style="color: red !important;">Usuario Requerido</small>
                         </div>
                         <div class="field col-12 md:col-6">
                             <label htmlFor="email2">Admin:</label>
@@ -25,15 +28,19 @@
                         </div>
                         <div class="field col">
                             <label htmlFor="email2">Empleado:</label>
-                            <p-dropdown [options]="empleados" formControlName="empl_Id" placeholder="Seleccione"
+                            <p-dropdown [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['empl_Id'].invalid}" [options]="empleados" formControlName="empl_Id" placeholder="Seleccione"
                                 [showClear]="false"></p-dropdown>
-
+                                <small class="ng-dirty ng-invalid"
+                                *ngIf="submitted && formDepartamento.controls['empl_Id'].invalid"
+                                style="color: red !important;">Empleado Requerido</small>
                         </div>
                         <div class="field col">
                             <label htmlFor="email2">Rol:</label>
-                            <p-dropdown [options]="complementos" formControlName="rol_Id" placeholder="Seleccione"
+                            <p-dropdown [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['rol_Id'].invalid}"[options]="complementos" formControlName="rol_Id" placeholder="Seleccione"
                                 [showClear]="false"></p-dropdown>
-
+                                <small class="ng-dirty ng-invalid"
+                                *ngIf="submitted && formDepartamento.controls['rol_Id'].invalid"
+                                style="color: red !important;">Rol Requerido</small>
                         </div>
 
 

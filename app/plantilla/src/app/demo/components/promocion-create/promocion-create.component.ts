@@ -48,6 +48,7 @@ export class PromocionCreateComponent implements OnInit{
     sortOrder: number = 0;
 
     sortField: string = '';
+    submitted: boolean = false;
 
     sourceAlimentos: any[] = [];
     sourceBebidas: any[] = [];
@@ -316,8 +317,7 @@ guardar() {
           }
       );
   } else {
-      console.log("Ingrese los campos")
-      this.invalid = true;
+      this.submitted = true;
   }
 }
 

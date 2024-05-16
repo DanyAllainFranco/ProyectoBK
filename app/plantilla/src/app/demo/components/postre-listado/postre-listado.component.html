@@ -10,13 +10,19 @@
                         <div class="p-formgrid grid">
                             <div class="field col">
                                 <label htmlFor="name2">Postre</label>
-                                <input pInputText formControlName="post_Descripcion" autocomplete="off" id="name2"
-                                    type="text" />
+                                <input pInputText formControlName="post_Descripcion" required autofocus id="name2"
+                                    type="text"    [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['post_Descripcion'].invalid}" />
+                                    <small class="ng-dirty ng-invalid"
+                                    *ngIf="submitted && formDepartamento.controls['post_Descripcion'].invalid"
+                                    style="color: red !important;">Postre Requerido</small>
                             </div>
                             <div class="field col">
                                 <label htmlFor="email2">Precio</label>
                                 <input pInputText formControlName="post_Precio" autocomplete="off" id="email2"
-                                    type="text" />
+                                    type="text" [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['post_Precio'].invalid}" />
+                                    <small class="ng-dirty ng-invalid"
+                                    *ngIf="submitted && formDepartamento.controls['post_Precio'].invalid"
+                                    style="color: red !important;">Precio Requerido</small>
 
                             </div>
 
@@ -30,8 +36,9 @@
                                     [multiple]="false" accept="image/*" [maxFileSize]="1000000"
                                     chooseLabel="{{ showFileUpload ? 'Seleccione' : '' }}">
                                 </p-fileUpload>
+                             
                             </div>
-
+                          
                         </div>
                     </div>
                     <div class="justify-content-center ms-5">
@@ -39,6 +46,8 @@
                         <div class="text-center">
                             <p-image *ngIf="selectedImageURL" [src]="selectedImageURL" alt="Imagen seleccionada"
                                 width="250" [preview]="true"></p-image>
+
+                               
                         </div>
                     </div>
                 </form>

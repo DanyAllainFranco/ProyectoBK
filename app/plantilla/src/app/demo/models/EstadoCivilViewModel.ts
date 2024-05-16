@@ -13,11 +13,18 @@ export class dropEstadoCivil{
     text?:String;
 }
 
+export class Estado2{
+    esta_Id: number;
+    esta_Descripcion: string;
+    Usua_Id: number;
+}
+
 export class Fill {
     esta_Id: string;
     esta_Descripcion: string;
     esta_Usua_Creacion: string;
     esta_Fecha_Creacion: string;
     esta_Usua_Modifica : string;
+    usua_Creacion: string;
     esta_Fecha_Modifica : string;
 }

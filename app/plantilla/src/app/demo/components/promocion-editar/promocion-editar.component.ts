@@ -49,7 +49,7 @@ form: FormGroup;
     sortOrder: number = 0;
 
     sortField: string = '';
-
+    submitted: boolean = false;
     sourceAlimentos: any[] = [];
     sourceBebidas: any[] = [];
     sourcePostres: any[] = [];
@@ -472,8 +472,7 @@ prueba: string = "";
                   }
               );
           } else {
-              console.log("Ingrese los campos")
-              this.invalid = true;
+            this.submitted = true;
           }
         }
 

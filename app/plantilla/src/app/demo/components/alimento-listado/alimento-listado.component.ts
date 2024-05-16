@@ -52,7 +52,7 @@ export class AlimentosListadoComponent implements OnInit {
   imageSelected: boolean = false;
   showFileUpload: boolean = true;
   prueba: string = "";
-
+  submitted: boolean = false;
   constructor(
     private service: AlimentosServiceService, 
     private router: Router,
@@ -72,7 +72,7 @@ export class AlimentosListadoComponent implements OnInit {
   ngOnInit(): void {
     this.getAlimentos();
 
-    const showSuccessMessage = this.cookieService.get('showSuccessMessage');
+    const showSuccessMessage = this.cookieService.get('showSuccessMessageAlimento');
     const tipo =  this.cookieService.get('Mensaje');
     console.log("SDAS: " + showSuccessMessage)
     if (showSuccessMessage) {
@@ -83,9 +83,9 @@ export class AlimentosListadoComponent implements OnInit {
         else{
           this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Alimento editado correctamente' });
         }
+        this.cookieService.delete('showSuccessMessageAlimento');
       });
-      this.cookieService.delete('showSuccessMessage');
-      this.cookieService.delete('Mensaje');
+    
     }
  
   }
@@ -132,14 +132,16 @@ editDepartamento(departamento: any) {
 }
 
 guardarDepartamento() 
-{   if (this.formDepartamento.invalid) {
-     return;
+{   if (this.formDepartamento.valid) {
+  if (this.modalTitle === 'Nuevo Registro') {
+    this.NuevoDepartamento();
+  } else {
+    this.actualizarDepartamento();
+  }
+   }else{
+    this.submitted = true;
    }
-   if (this.modalTitle === 'Nuevo Registro') {
-     this.NuevoDepartamento();
-   } else {
-     this.actualizarDepartamento();
-   }
+
  }
 
  actualizarDepartamento() {
@@ -156,7 +158,7 @@ guardarDepartamento()
      next: (data) => {
        this.getAlimentos();
        this.cookieService.set('Mensaje', 'Editado');
-       this.cookieService.set('showSuccessMessage', 'true');
+       this.cookieService.set('showSuccessMessageAlimento', 'true');
        // localStorage.setItem('', '');
        location.reload();
        // this.display = false;

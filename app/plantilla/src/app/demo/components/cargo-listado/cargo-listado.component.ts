@@ -34,7 +34,7 @@ export class CargoListadoComponent implements OnInit {
   modalButtonLabel: string = 'Guardar';
   confirmacionVisible: boolean = false;
   cargoAEliminar: Cargos | null = null;
-
+  submitted = false;
   constructor(
     private service: CargosServiceService,
     private router: Router,
@@ -116,14 +116,16 @@ export class CargoListadoComponent implements OnInit {
   }
 
   guardarCargo() {
-    if (this.formCargo.invalid) {
-      return;
+    if (this.formCargo.valid) {
+      if (this.modalTitle === 'Nuevo Registro') {
+        this.nuevoCargo();
+      } else {
+        this.actualizarCargo();
+      }
     }
-    if (this.modalTitle === 'Nuevo Registro') {
-      this.nuevoCargo();
-    } else {
-      this.actualizarCargo();
-    }
+   else{
+    this.submitted = true;
+   }
   }
 
   nuevoCargo() {

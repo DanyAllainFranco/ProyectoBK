@@ -5,9 +5,11 @@
             <h3>Rol:</h3>
             <form [formGroup]="form">
                 <div class="field">
-                    <input type="text" class="p-inputtext col-6" required autofocus formControlName="rolNombre">
+                    <input [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['rolNombre'].invalid}" type="text" class="p-inputtext col-6"   formControlName="rolNombre">
                     <br>
-                    <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;" [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                    <small class="ng-dirty ng-invalid"
+                    *ngIf="submitted && form.controls['rolNombre'].invalid"
+                    style="color: red !important;">Rol Requerido</small>
                 </div>
              
             </form>

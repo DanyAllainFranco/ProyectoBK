@@ -9,15 +9,20 @@
                     <div class="p-fluid">
                         <div class="p-formgrid grid">
                             <div class="field col">
-                                <label htmlFor="name2">Bebida:</label>
+                                <label htmlFor="name2">Complemento:</label>
                                 <input pInputText formControlName="comp_Descripcion" autocomplete="off" id="name2"
-                                    type="text" />
+                                    type="text" [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['comp_Descripcion'].invalid}"/>
+                                    <small class="ng-dirty ng-invalid"
+                                    *ngIf="submitted && formDepartamento.controls['comp_Descripcion'].invalid"
+                                    style="color: red !important;">Complemento Requerido</small>
                             </div>
                             <div class="field col">
                                 <label htmlFor="email2">Precio:</label>
                                 <input pInputText formControlName="comp_Precio" autocomplete="off" id="email2"
-                                    type="text" />
-
+                                    type="text" [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['comp_Precio'].invalid}"/>
+                                    <small class="ng-dirty ng-invalid"
+                                    *ngIf="submitted && formDepartamento.controls['comp_Precio'].invalid"
+                                    style="color: red !important;">Precio Requerido</small>
                             </div>
 
                         </div>

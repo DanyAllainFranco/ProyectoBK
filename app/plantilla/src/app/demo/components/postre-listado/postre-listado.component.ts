@@ -47,6 +47,7 @@ export class PostreListadoComponent implements OnInit {
   imageSelected: boolean = false;
   showFileUpload: boolean = true;
   prueba: string = "";
+  submitted: boolean = false;
 
   constructor(
     private service: PostreServiceService, 
@@ -68,7 +69,7 @@ export class PostreListadoComponent implements OnInit {
   ngOnInit(): void {
     this.getPostres();
     // const  = localStorage.getItem('showSuccessMessage');
-    const showSuccessMessage = this.cookieService.get('showSuccessMessage');
+    const showSuccessMessage = this.cookieService.get('showSuccessMessagePostre');
     const tipo =  this.cookieService.get('Mensaje');
     console.log("SDAS: " + showSuccessMessage)
     if (showSuccessMessage) {
@@ -79,9 +80,9 @@ export class PostreListadoComponent implements OnInit {
         else{
           this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Postre editado correctamente' });
         }
+        this.cookieService.delete('showSuccessMessagePostre');
       });
-      this.cookieService.delete('showSuccessMessage');
-      this.cookieService.delete('Mensaje');
+    
     }
   }
   
@@ -125,14 +126,18 @@ export class PostreListadoComponent implements OnInit {
   }
 
   guardarDepartamento() {
-    if (this.formDepartamento.invalid) {
-      return;
+    if (this.formDepartamento.valid) {
+      if (this.modalTitle === 'Nuevo Registro') {
+        this.NuevoDepartamento();
+      } else {
+        this.actualizarDepartamento();
+      }
+   
     }
-    if (this.modalTitle === 'Nuevo Registro') {
-      this.NuevoDepartamento();
-    } else {
-      this.actualizarDepartamento();
+    else{
+      this.submitted = true;
     }
+ 
   }
 
   actualizarDepartamento() {
@@ -149,7 +154,7 @@ export class PostreListadoComponent implements OnInit {
       next: (data) => {
         this.getPostres();
         this.cookieService.set('Mensaje', 'Editado');
-        this.cookieService.set('showSuccessMessage', 'true');
+        this.cookieService.set('showSuccessMessagePostre', 'true');
         // localStorage.setItem('', '');
         location.reload();
         // this.display = false;
@@ -208,7 +213,7 @@ export class PostreListadoComponent implements OnInit {
     this._postreServices.agregar(modelo).subscribe({
       next: () => {
         this.getPostres();
-        this.cookieService.set('showSuccessMessage', 'true');
+        this.cookieService.set('showSuccessMessagePostre', 'true');
         this.cookieService.set('Mensaje', 'Nuevo');
         // localStorage.setItem('showSuccessMessage', 'true');
         location.reload();

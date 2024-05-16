@@ -8,49 +8,49 @@
 
                     <div class="field col-12 md:col-6">
                         <label>Nombre:</label>
-                        <input type="text" class="p-inputtext" formControlName="Comb_Descripcion">
-                        <br>
-                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
-                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                        <input type="text" class="p-inputtext" formControlName="Comb_Descripcion" [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['Comb_Descripcion'].invalid}">
+                        <small class="ng-dirty ng-invalid"
+                        *ngIf="submitted && form.controls['Comb_Descripcion'].invalid"
+                        style="color: red !important;">Nombre Requerido</small>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label>Precio:</label>
-                        <input type="number" class="p-inputtext" formControlName="Comb_Precio">
-                        <br>
-                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
-                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                        <input type="number" class="p-inputtext" formControlName="Comb_Precio" [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['Comb_Precio'].invalid}">
+                        <small class="ng-dirty ng-invalid"
+                        *ngIf="submitted && form.controls['Comb_Precio'].invalid"
+                        style="color: red !important;">Precio Requerido</small>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label>Alimento</label>
                         <p-dropdown [options]="alimentos" formControlName="Alim_Id" placeholder="Seleccione"
-                            [showClear]="false"></p-dropdown>
-                        <br>
-                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
-                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                            [showClear]="false" [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['Alim_Id'].invalid}"></p-dropdown>
+                            <small class="ng-dirty ng-invalid"
+                            *ngIf="submitted && form.controls['Alim_Id'].invalid"
+                            style="color: red !important;">Alimento Requerido</small>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label>Bebida</label>
                         <p-dropdown [options]="bebidas" formControlName="Bebi_Id" placeholder="Seleccione"
-                            [showClear]="false"></p-dropdown>
-                        <br>
-                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
-                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                            [showClear]="false" [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['Bebi_Id'].invalid}"></p-dropdown>
+                            <small class="ng-dirty ng-invalid"
+                            *ngIf="submitted && form.controls['Bebi_Id'].invalid"
+                            style="color: red !important;">Bebida Requerida</small>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label>Postre</label>
                         <p-dropdown [options]="postres" formControlName="Post_Id" placeholder="Seleccione"
-                            [showClear]="false"></p-dropdown>
-                        <br>
-                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
-                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                            [showClear]="false" [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['Post_Id'].invalid}"></p-dropdown>
+                            <small class="ng-dirty ng-invalid"
+                            *ngIf="submitted && form.controls['Post_Id'].invalid"
+                            style="color: red !important;">Postre Requerido</small>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label>Complemento</label>
                         <p-dropdown [options]="complementos" formControlName="Comp_Id" placeholder="Seleccione"
-                            [showClear]="false"></p-dropdown>
-                        <br>
-                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
-                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                            [showClear]="false" [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['Comp_Id'].invalid}"></p-dropdown> 
+                            <small class="ng-dirty ng-invalid"
+                            *ngIf="submitted && form.controls['Comp_Id'].invalid"
+                            style="color: red !important;">Complemento Requerido</small>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label>Imagen</label>
@@ -58,9 +58,7 @@
                             [multiple]="false" accept="image/*" [maxFileSize]="1000000"
                             chooseLabel="{{ showFileUpload ? 'Seleccione' : '' }}">
                         </p-fileUpload>
-                        <br>
-                        <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
-                            [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+                      
                     </div>
                 </form>
             </div>

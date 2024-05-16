@@ -36,6 +36,7 @@ export class DepartamentosListadoComponent implements OnInit {
   confirmacionVisible: boolean = false;
   departamentoAEliminar: Departamento | null = null;
   Usua_Id: string;
+  submitted: boolean = false;
   constructor(
     private service: DepartamentoServiceService,
     private router: Router,
@@ -140,14 +141,17 @@ export class DepartamentosListadoComponent implements OnInit {
   }
 
   guardarDepartamento() {
-    if (this.formDepartamento.invalid) {
-      return;
+    if (this.formDepartamento.valid) {
+      if (this.modalTitle === 'Nuevo Registro') {
+        this.NuevoDepartamento();
+      } else {
+        this.actualizarDepartamento();
+      }
     }
-    if (this.modalTitle === 'Nuevo Registro') {
-      this.NuevoDepartamento();
-    } else {
-      this.actualizarDepartamento();
+    else{
+      this.submitted = true;
     }
+ 
   }
 
   NuevoDepartamento() {

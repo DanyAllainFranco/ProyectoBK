@@ -81,13 +81,21 @@ namespace Proyecto_BK.API.Controllers
             };
             var list = _generalServices.CrearMuni(modelo);
 
-            return Ok(new { success = true, message = list.Message });
+            if(list.Code == 200)
+            {
+                return Ok(new { success = true, message = list.Message });
+            }
+            else
+            {
+                return BadRequest();
+            }
+          
         }
 
 
         [HttpPut("API/[controller]/Update")]
         public IActionResult Update(MunicipioViewModel item)
-        {
+         {
             _mapper.Map<tbMunicipios>(item);
             var modelo = new tbMunicipios()
             {
@@ -98,8 +106,15 @@ namespace Proyecto_BK.API.Controllers
                 Muni_Fecha_Modifica = DateTime.Now
             };
             var list = _generalServices.EditarMuni(modelo);
-
-            return Ok(new { success = true, message = list.Message });
+            if(list.Code == 200)
+            {
+                return Ok(new { success = true, message = list.Message });
+            }
+            else
+            {
+                return BadRequest();
+            }
+      
         }
 
 
@@ -107,7 +122,15 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult Delete(string id)
         {
             var list = _generalServices.Eliminarmuni(id);
-            return Ok(new { success = true, message = list.Message });
+            if(list.Code == 200)
+            {
+                return Ok(new { success = true, message = list.Message });
+            }
+            else
+            {
+                return BadRequest();
+            }
+        
         }
     }
 }

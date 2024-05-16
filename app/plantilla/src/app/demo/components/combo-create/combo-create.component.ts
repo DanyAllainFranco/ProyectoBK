@@ -50,7 +50,7 @@
   })
   export class ComboCreateComponent implements OnInit{
     departamento: CargarAlimentos[] = [];
-
+    submitted: boolean = false;
     form: FormGroup;
       pickListVisible: boolean = false;
 
@@ -218,8 +218,8 @@
         }
       );
     } else {
-      console.log("Ingrese los campos")
-      this.invalid = true;
+     
+      this.submitted = true;
     }
   }
   

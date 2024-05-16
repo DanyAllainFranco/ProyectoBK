@@ -11,8 +11,11 @@
         <h3>Rol:</h3>
         <div class="field">
           
-                <input type="text" formControlName="nombreRol" class="p-inputtext col-6" [ngModel]="rol?.rol_Descripcion" (ngModelChange)="onNombreRolChange($event)" name="nombreRol">
-
+                <input [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['nombreRol'].invalid}" type="text" formControlName="nombreRol" class="p-inputtext col-6" [ngModel]="rol?.rol_Descripcion" (ngModelChange)="onNombreRolChange($event)" name="nombreRol">
+                <br>
+                <small class="ng-dirty ng-invalid"
+                *ngIf="submitted && form.controls['nombreRol'].invalid"
+                style="color: red !important;">Rol Requerido</small>
            
           <br>
         </div>

@@ -10,10 +10,12 @@
                         <div class="p-formgrid grid">
                             <div class="field col">
                                 <label for="email2">Cargo</label>
-                                <input pInputText formControlName="cargo" autocomplete="off" id="email2" type="text" />
+                                <input [ngClass]="{'ng-invalid ng-dirty': submitted && formCargo.controls['cargo'].invalid}" pInputText formControlName="cargo"  id="email2" type="text" />
                                 <input pInputText formControlName="id" autocomplete="off" id="email" type="text"
                                     hidden />
-                                <small *ngIf="campoVacio('cargo')" class="text-danger">El campo es requerido.</small>
+                                    <small class="ng-dirty ng-invalid"
+                                    *ngIf="submitted && formCargo.controls['cargo'].invalid"
+                                    style="color: red !important;">Cargo Requerido</small>
                             </div>
                         </div>
                     </div>
