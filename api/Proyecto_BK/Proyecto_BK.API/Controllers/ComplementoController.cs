@@ -38,14 +38,7 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult AutoCompletado()
         {
             var list = _restauranteServices.ComplementoAutocompletado();
-            var drop = list.Data as List<tbComplementos>;
-            var rol = drop.Select(x => new SelectListItem
-            {
-                Text = x.Comp_Descripcion,
-                Value = x.Comp_Id.ToString()
-            }).ToList();
-
-            return Ok(rol.ToList());
+            return Ok(list.Data);
         }
 
        

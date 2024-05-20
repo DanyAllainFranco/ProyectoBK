@@ -64,7 +64,7 @@ export class FacturaComponent implements OnInit {
             pdf.addPage(pdfWidth, pdfHeight);
             pdf.addImage(imgData, 'JPEG', topLeftMargin, -(pdfHeight * i) + (topLeftMargin * 4), canvasImageWidth, canvasImageHeight);
         }
-        pdf.save("reporte.pdf");
+        pdf.save("Factura.pdf");
     });
   }
 }

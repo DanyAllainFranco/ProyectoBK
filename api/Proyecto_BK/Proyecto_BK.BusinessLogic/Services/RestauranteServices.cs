@@ -380,6 +380,21 @@ namespace Proyecto_BK.BusinessLogic.Services
         #endregion
 
         #region Combo Personal
+
+        public ServiceResult ComboAutocompletado()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _comboPersonalRepository.ComboList();
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
         public ServiceResult ListComboPersonal()
         {
             var result = new ServiceResult();
@@ -992,7 +1007,7 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var list = _postreRepository.List();
+                var list = _postreRepository.PostresDDL();
                 return result.Ok(list);
             }
             catch (Exception ex)

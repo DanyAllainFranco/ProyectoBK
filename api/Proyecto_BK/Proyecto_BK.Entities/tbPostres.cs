@@ -31,6 +31,17 @@ namespace Proyecto_BK.Entities
         [NotMapped]
         public string Usua_Modifica { get; set; }
 
+        [NotMapped]
+        public string text { get; set; }
+        [NotMapped]
+        public int value { get; set; }
+        [NotMapped]
+        public string image { get; set; }
+        [NotMapped]
+        public decimal precio { get; set; }
+
+
+
         public virtual tbUsuarios Post_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Post_Usua_ModificaNavigation { get; set; }
         public virtual ICollection<tbCombo> tbCombo { get; set; }

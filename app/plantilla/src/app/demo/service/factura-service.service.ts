@@ -35,6 +35,10 @@ export class FacturaServiceService {
     return this.http.get<Paquete[]>(this.PaqueteUrl);
   }
 
+  ComboUrl = 'https://localhost:44332/ComboAutoCompletado';
+  getCombo (){
+    return this.http.get<Combo[]>(this.ComboUrl);
+  }
   FacturaDetalleURL = 'https://localhost:44332/API/Factura/ListaDetalles';
   getFacturasDetalle(id){
     return this.http.get<FacturaDetalle[]>(`${this.FacturaDetalleURL}/${id}`)

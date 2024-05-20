@@ -89,7 +89,7 @@ export class FacturacionComponent {
 
 
   ngOnInit(): void {
-    this.loadProducts('N');
+    this.loadProducts('C');
     this.service.getFacturas().subscribe((data: any) => {
       console.log(data);
       this.Factura = data;
@@ -109,7 +109,7 @@ export class FacturacionComponent {
       Clie_Nombre: new FormControl(""),
       Clie_Identidad: new FormControl(""),
       Prod_Producto: new FormControl(""),
-      FaDe_Ident: new FormControl("N"),
+      FaDe_Ident: new FormControl("C"),
       FaDe_ProdId: new FormControl(""),
       FaDe_Cantidad: new FormControl("")
     });
@@ -133,6 +133,11 @@ export class FacturacionComponent {
       });
     } else if (value === 'P') {
       this.service.getPaquete().subscribe(products => {
+        this.products = products;
+        console.log(products);
+      });
+    }else if (value === 'C') {
+      this.service.getCombo().subscribe(products => {
         this.products = products;
         console.log(products);
       });
@@ -165,6 +170,12 @@ export class FacturacionComponent {
         console.log(products);
         this.resetForm(value);
       });
+    }else if (value === 'C') {
+      this.service.getCombo().subscribe(products => {
+        this.products = products;
+        console.log(products);
+        this.resetForm(value);
+      });
     }
   }
 
@@ -176,14 +187,14 @@ export class FacturacionComponent {
   }
 
   increaseQuantity(product) {
-    product.quantity++;
-    this.FacturaForm.get('FaDe_Cantidad').setValue(product.quantity);
+    product.cantidad++;
+    this.FacturaForm.get('FaDe_Cantidad').setValue(product.cantidad);
   }
 
   decreaseQuantity(product) {
-    if (product.quantity > 1) {
-      product.quantity--;
-      this.FacturaForm.get('FaDe_Cantidad').setValue(product.quantity);
+    if (product.cantidad > 1) {
+      product.cantidad--;
+      this.FacturaForm.get('FaDe_Cantidad').setValue(product.cantidad);
     }
   }
 

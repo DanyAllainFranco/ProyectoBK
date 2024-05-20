@@ -60,6 +60,10 @@ export class FacturaDetalle {
 export class Complemento{
 Comp_Id?:number;
 Comp_Descripcion?:string;
+text?:string;
+value?:number;
+image?:string;
+precio?:DecimalPipe;
 }
 
 export class FacturaEliminar{
@@ -71,22 +75,42 @@ export class FacturaEliminar{
 export class Postre{
 Post_Id?:number;
 Post_Descripcion?:string;
+text?:string;
+value?:number;
+image?:string;
+precio?:DecimalPipe;
+
 }
 
 
 export class Bebida{
     Bebi_Id?:number;
     Bebi_Descripcion?:string;     
+    text?:string;
+    value?:number;
+    image?:string;
+    precio?:DecimalPipe;
+
 }
 
 
 export class Combo{
     Comb_Id?:number;
     Comb_Descripcion?:string;
+    text?:string;
+    value?:number;
+    image?:string;
+    precio?:DecimalPipe;
+
 }
 
 
 export class Paquete{
    Paqe_Id?:number;
    Paqe_Descripcion?:string;
+   text?:string;
+   value?:number;
+   image?:string;
+   precio?:DecimalPipe;
+
 }

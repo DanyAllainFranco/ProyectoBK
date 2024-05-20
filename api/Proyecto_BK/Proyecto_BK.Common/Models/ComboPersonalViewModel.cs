@@ -48,5 +48,17 @@ namespace Proyecto_BK.Common.Models
         public int TotalPedidosAlimentos { get; set; }
         [NotMapped]
         public int TotalPedidosPostres { get; set; }
+
+        [NotMapped]
+
+        public string text { get; set; }
+        [NotMapped]
+        public int value { get; set; }
+        [NotMapped]
+
+        public string image { get; set; }
+        [NotMapped]
+        public decimal precio { get; set; }
+
     }
 }

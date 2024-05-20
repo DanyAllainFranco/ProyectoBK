@@ -84,6 +84,7 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Comb_Insertar = "[Rest].SP_Combos_Insertar";
         public static string Comb_Editar = "[Rest].SP_Combos_Editar";
         public static string Comb_Eliminar = "[Rest].SP_Combos_Eliminar";
+        public static string Comb_DDL = "[Rest].[SP_CombosDDL]";
         #endregion
 
         #region Complementos
