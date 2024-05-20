@@ -175,6 +175,18 @@ export class FacturacionComponent {
     this.FacturaForm.get('FaDe_Cantidad').setValue('');
   }
 
+  increaseQuantity(product) {
+    product.quantity++;
+    this.FacturaForm.get('FaDe_Cantidad').setValue(product.quantity);
+  }
+
+  decreaseQuantity(product) {
+    if (product.quantity > 1) {
+      product.quantity--;
+      this.FacturaForm.get('FaDe_Cantidad').setValue(product.quantity);
+    }
+  }
+
   addProductToInvoice(selectedProduct: any) {
     if (selectedProduct) {
       const cantidad = this.FacturaForm.get('FaDe_Cantidad').value;
@@ -284,6 +296,7 @@ export class FacturacionComponent {
     });
   }
 
+
   deleteSelectedProducts(codigo) {
     this.deleteProductDialog = true;
     this.ID = codigo;
@@ -318,8 +331,6 @@ export class FacturacionComponent {
       }
     })
   }
-
-
 
 }
 @NgModule({
