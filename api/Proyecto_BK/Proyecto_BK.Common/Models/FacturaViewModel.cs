@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,41 @@ namespace Proyecto_BK.Common.Models
         public string Cantidad { get; set; }
         public string Categoria { get; set; } 
         public string Total { get; set; }
+        [NotMapped]
+        public string Alim_Descripcion { get; set; }
+        [NotMapped]
+        public string Alim_Precio { get; set; }
+        [NotMapped]
+        public string Alim_Imagen { get; set; }
+
+        [NotMapped]
+        public string Bebi_Descripcion { get; set; }
+        [NotMapped]
+        public string Bebi_Precio { get; set; }
+        [NotMapped]
+        public string Bebi_Imagen { get; set; }
+
+        [NotMapped]
+        public string Comp_Descripcion { get; set; }
+        [NotMapped]
+        public string Comp_Precio { get; set; }
+        [NotMapped]
+        public string Comp_Imagen { get; set; }
+
+        [NotMapped]
+        public string Post_Descripcion { get; set; }
+        [NotMapped]
+        public string Post_Precio { get; set; }
+        [NotMapped]
+        public string Post_Imagen { get; set; }
+        [NotMapped]
+        public string Sucu_Descripcion { get; set; }
+        [NotMapped]
+        public string Empleado { get; set; }
+
+
+        [NotMapped]
+        public string CantidadVentas { get; set; }
 
     }
 }

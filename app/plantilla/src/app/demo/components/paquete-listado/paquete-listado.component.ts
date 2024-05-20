@@ -43,8 +43,14 @@ export class PaqueteListadoComponent implements OnInit {
     );
   }
 
+  editarPromo(rolId: number) {
+    this.router.navigate(['app/EditarPaquete', rolId]); // Redirige a la ruta de edición con el ID del rol
+  }
   Nuevo(){
     this.router.navigate(['app/CreatePaquete'])
+  }
+  detalleRol(combId: number) {
+    this.router.navigate(['app/DetallePaquete', combId]); // Redirige a la ruta de edición con el ID del rol
   }
 }
 @NgModule({

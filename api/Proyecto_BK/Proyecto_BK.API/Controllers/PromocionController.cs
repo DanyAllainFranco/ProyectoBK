@@ -109,7 +109,7 @@ namespace Proyecto_BK.API.Controllers
             }
         }
 
-        [HttpDelete("API/[controller]/Delete")]
+        [HttpDelete("API/[controller]/Delete/{Prom_Id}")]
         public IActionResult Delete(int Prom_Id)
         {
             var response = _restauranteServices.EliminarPromocion(Prom_Id);

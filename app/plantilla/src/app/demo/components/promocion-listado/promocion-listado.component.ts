@@ -15,6 +15,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
+import { DialogModule } from 'primeng/dialog';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -25,21 +26,12 @@ import { MessageService } from 'primeng/api';
 })
 export class PromocionListadoComponent implements OnInit {
   Promocion!: Promocion[];
-
+  confirmacionVisible: boolean = false;
+  departamentoAEliminar: any | null = null;
   constructor(private service: PromocionServiceService,  private messageService: MessageService, private router: Router) {}
 
   ngOnInit(): void {
-    this.service.getPromocion().subscribe(
-      (data: any) => {
-        console.log(data);
-        this.Promocion = data;
-        console.log(this.Promocion);
-      },
-       error => {
-        console.log(error);
-      }
-    );
-
+    this.getPromocion();
      // Mostrar el mensaje de éxito si está disponible
      console.log(this.service.successMessage)
      if (this.service.successMessage) {
@@ -54,11 +46,50 @@ export class PromocionListadoComponent implements OnInit {
       });
     }
   }
+  getPromocion(){
+    this.service.getPromocion().subscribe(
+      (data: any) => {
+        console.log(data);
+        this.Promocion = data;
+        console.log(this.Promocion);
+      },
+       error => {
+        console.log(error);
+      }
+    );
+  }
   editarPromo(rolId: number) {
     this.router.navigate(['app/EditarPromocion', rolId]); // Redirige a la ruta de edición con el ID del rol
   }
   Nuevo(){
     this.router.navigate(['app/CreatePromocion'])
+  }
+
+  confirmarEliminarDepartamento(departamento: any) {
+    this.departamentoAEliminar = departamento;
+    this.confirmacionVisible = true;
+  }
+
+  eliminarDepartamento() {
+    if (this.departamentoAEliminar) {
+      const idDepartamento = this.departamentoAEliminar.prom_Id;
+      console.log()
+      this.service.eliminar(idDepartamento).subscribe({
+        next: (data) => {
+          this.getPromocion();
+          this.confirmacionVisible = false;
+          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Postre eliminado correctamente!' });
+        },
+        error: (e) => {
+          console.log(e);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Este Departamento no se puede eliminar.' });
+        }
+      });
+    }
+  }
+
+  cancelarEliminar() {
+    this.confirmacionVisible = false;
   }
 
   detallePromo(combId: number) {
@@ -81,6 +112,7 @@ export class PromocionListadoComponent implements OnInit {
     ProgressBarModule,
     ToastModule,
     SliderModule,
+    DialogModule,
     RatingModule
   ],
   declarations: [PromocionListadoComponent]

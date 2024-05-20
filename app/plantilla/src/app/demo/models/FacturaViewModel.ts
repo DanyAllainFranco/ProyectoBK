@@ -12,6 +12,37 @@ export class Factura {
      Clie_Identidad?:string;
 }
 
+export class ReporteEmpleados{
+    empleado: string;
+    producto: string;
+    tipo: string;
+    cantidad: number;
+    subtotal: string
+}
+
+export class ReporteCompleto{
+    empleado: string;
+    sucursal: string;
+    producto: string;
+    tipo: string;
+    cantidad: number;
+    subtotal: string
+}
+export class ReporteProductos{
+    producto: string;
+    tipo: string;
+    cantidad: number;
+    subtotal: string
+}
+
+export class ReporteSucursal{
+    sucursal: string;
+    producto: string;
+    tipo: string;
+    cantidad: number;
+    subtotal: string
+}
+
 export class FacturaDetalle {
      clie_Nombre?:string;
      FaDe_Ident?:number;

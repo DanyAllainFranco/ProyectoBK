@@ -35,6 +35,68 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+        public IEnumerable<tbPaquetesPorComidas> MostrarAlimentos(int Paqe_Id)
+        {
+            string sql = ScriptsBaseDeDatos.PaCo_MostrarAlimentos;
+
+            List<tbPaquetesPorComidas> result = new List<tbPaquetesPorComidas>();
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Paqe_Id", Paqe_Id);
+                result = db.Query<tbPaquetesPorComidas>(sql, parametro, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+        public IEnumerable<tbPaquetesPorComidas> MostrarBebidas(int Paqe_Id)
+        {
+            string sql = ScriptsBaseDeDatos.PaCo_MostrarBebidas;
+
+            List<tbPaquetesPorComidas> result = new List<tbPaquetesPorComidas>();
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Paqe_Id", Paqe_Id);
+                result = db.Query<tbPaquetesPorComidas>(sql, parametro, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+
+        public IEnumerable<tbPaquetesPorComidas> MostrarComplementos(int Paqe_Id)
+        {
+            string sql = ScriptsBaseDeDatos.PaCo_MostrarComplementos;
+
+            List<tbPaquetesPorComidas> result = new List<tbPaquetesPorComidas>();
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Paqe_Id", Paqe_Id);
+                result = db.Query<tbPaquetesPorComidas>(sql, parametro, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+        public IEnumerable<tbPaquetesPorComidas> MostrarPostres(int Paqe_Id)
+        {
+            string sql = ScriptsBaseDeDatos.PaCo_MostrarPostres;
+
+            List<tbPaquetesPorComidas> result = new List<tbPaquetesPorComidas>();
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Paqe_Id", Paqe_Id);
+                result = db.Query<tbPaquetesPorComidas>(sql, parametro, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+
         public RequestStatus Insert(tbPaquetesPorComidas item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))

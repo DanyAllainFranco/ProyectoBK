@@ -11,6 +11,14 @@ export class Paquetes {
 }
 
 
+
+export class LlenarPaquetes{
+    paqe_Id: number;
+    paqe_Descripcion: string;
+    paqe_Precio: string;
+    paqe_Imagen : string;
+}
+
 export class PaquetesEnviar {
     paqe_Id?: number;
     paqe_Descripcion?: string;

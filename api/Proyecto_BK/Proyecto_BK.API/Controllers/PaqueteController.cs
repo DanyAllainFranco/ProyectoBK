@@ -47,12 +47,35 @@ namespace Proyecto_BK.API.Controllers
             return Ok(rol.ToList());
         }
 
-
-        [HttpGet("API/[controller]/Find")]
+        [HttpGet("API/[controller]/ListAlimentos3/{Paqe_Id}")]
+        public IActionResult ListAlimentos(int Paqe_Id)
+        {
+            var list = _restauranteServices.ListAlimentos3(Paqe_Id);
+            return Ok(list.Data);
+        }
+        [HttpGet("API/[controller]/ListBebidas3/{Paqe_Id}")]
+        public IActionResult ListBebidas(int Paqe_Id)
+        {
+            var list = _restauranteServices.ListBebidas3(Paqe_Id);
+            return Ok(list.Data);
+        }
+        [HttpGet("API/[controller]/ListComplementos3/{Paqe_Id}")]
+        public IActionResult ListComplementos(int Paqe_Id)
+        { 
+            var list = _restauranteServices.ListComplementos3(Paqe_Id);
+            return Ok(list.Data);
+        }
+        [HttpGet("API/[controller]/Find/{Paqe_Id}")]
         public IActionResult Find(int Paqe_Id)
         {
             var result = _restauranteServices.LlenarPaquete(Paqe_Id);
-            return Ok(result);
+            return Ok(result.Data);
+        }
+        [HttpGet("API/[controller]/ListPostres3/{Paqe_Id}")]
+        public IActionResult ListPostres(int Paqe_Id)
+        {       
+            var list = _restauranteServices.ListPostres3(Paqe_Id);
+            return Ok(list.Data);
         }
 
         [HttpPost("API/[controller]/Insert")]

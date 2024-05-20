@@ -9,17 +9,18 @@
 
                     <div class="field col-12 md:col-6">
                         <label>Nombre:</label>
-                        <input type="text" class="p-inputtext" formControlName="paqe_Descripcion">
-                         <!-- Mensaje de error -->
-                         <div *ngIf="form.controls['paqe_Descripcion'].errors?.hasOwnProperty('required') && form.controls['paqe_Descripcion'].touched" class="text-danger">
-
-                        El nombre es requerido.
-                    </div>
+                        <input #nombreInput type="text" autofocus class="p-inputtext" [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['paqe_Descripcion'].invalid}" formControlName="paqe_Descripcion" formControlName="paqe_Descripcion">
+                        <small class="ng-dirty ng-invalid"
+                        *ngIf="submitted && form.controls['paqe_Descripcion'].invalid"
+                        style="color: red !important;">Nombre Requerido</small>
+                  
                     </div>
                     <div class="field col-12 md:col-6">
                         <label>Precio:</label>
-                        <input type="text" class="p-inputtext" formControlName="paqe_Precio">
-
+                        <input #precioInput type="text" class="p-inputtext" [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['paqe_Precio'].invalid}" formControlName="paqe_Precio">
+                        <small class="ng-dirty ng-invalid"
+                        *ngIf="submitted && form.controls['paqe_Precio'].invalid"
+                        style="color: red !important;">Precio Requerido</small>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label>Imagen</label>
@@ -91,12 +92,9 @@
                                                  
                                                     <div class="flex gap-2 align-items-center">
                                                         <p-button icon="pi pi-minus-circle" (click)="decrementarCantidad(alim.alim_Id)" severity="danger"></p-button>
-                                                        <input type="number" class="p-inputtext" value="1" [ngModel]="cantidadSeleccionadaPorAlimento[alim.alim_Id]" (ngModelChange)="cantidadSeleccionadaPorAlimento[alim.alim_Id]=$event" [ngModelOptions]="{standalone: true}" readonly>
-
-
+                                                        <label>{{ cantidadSeleccionadaPorAlimento[alim.alim_Id] || 0 }}</label>
                                                         <p-button icon="pi pi-plus-circle" (click)="incrementarCantidad(alim.alim_Id)" severity="success"></p-button>
-                                                    </div>
-                                                    
+                                                      </div>
                                                     
                                                 </div>
                                             </div>
@@ -105,11 +103,11 @@
                                                     [alt]="alim.alim_Imagen" width="100" height="100"
                                                     class="w-9 shadow-2 my-3 mx-0" />
                                                 <input type="hidden" formControlName="prod_Id" [value]="alim.alim_Id">
-                                                <div class="text-2xl font-bold">{{alim.alim_Descripcion}}</div>
+                                                <div class="font-bold" style="font-size: 18px;">{{alim.alim_Descripcion}}</div>
                                             </div>
                                             <div class="flex align-items-center justify-content-between">
-                                                <span class="text-2xl font-semibold">${{alim.alim_Precio}}</span>
-                                                <p-button icon="pi pi-plus-circle" label="Agregar" (click)="guardar(alim.alim_Id)"></p-button>
+                                                <span class="font-semibold" style="font-size: 15px;">${{alim.alim_Precio}}</span>
+                                                <p-button icon="pi pi-plus-circle" (click)="guardar(alim.alim_Id)"></p-button>
                                                 
                                             </div>
                                         </div>
@@ -144,20 +142,29 @@
                                         <div class="card m-3 border-1 surface-border"
                                             style="background-color: #E2E2E2;">
                                             <div
-                                                class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
-                                                <div class="flex align-items-center">
-                                                </div>
+                                            class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
+                                            <div class="flex align-items-center">
+                                                <!-- Contador de cantidad -->
+                                             
+                      
+                                                <div class="flex gap-2 align-items-center">
+                                                    <p-button icon="pi pi-minus-circle" (click)="decrementarCantidad(post.post_id)" severity="danger"></p-button>
+                                                    <label>{{ cantidadSeleccionadaPorAlimento[post.post_id] || 0 }}</label>
+                                                    <p-button icon="pi pi-plus-circle" (click)="incrementarCantidad(post.post_id)" severity="success"></p-button>
+                                                  </div>
+                                                
+                                                
                                             </div>
+                                        </div>
                                             <div class="flex flex-column align-items-center text-center mb-3">
                                                 <img [src]="'https://localhost:44332/uploads/' + post.post_Imagen"
                                                     [alt]="post.post_Imagen" width="100" height="100"
                                                     class="w-9 shadow-2 my-3 mx-0" />
-                                                <div class="text-2xl font-bold">{{post.post_Descripcion}}</div>
+                                                <div class="font-bold" style="font-size: 18px;">{{post.post_Descripcion}}</div>
                                             </div>
                                             <div class="flex align-items-center justify-content-between">
-                                                <span class="text-2xl font-semibold">${{post.post_Precio}}</span>
-                                                <p-button icon="pi pi-plus-circle"></p-button>
-                                                <p-button icon="pi pi-trash" severity="danger"></p-button>
+                                                <span class="font-semibold" style="font-size: 15px;">${{post.post_Precio}}</span>
+                                                <p-button icon="pi pi-plus-circle"  (click)="guardar(post.post_id)"></p-button>
                                             </div>
                                         </div>
                                     </div>
@@ -188,20 +195,28 @@
                                         <div class="card m-3 border-1 surface-border"
                                             style="background-color: #E2E2E2;">
                                             <div
-                                                class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
-                                                <div class="flex align-items-center">
-                                                </div>
+                                            class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
+                                            <div class="flex align-items-center">
+                                                <!-- Contador de cantidad -->
+                     
+                                                <div class="flex gap-2 align-items-center">
+                                                    <p-button icon="pi pi-minus-circle" (click)="decrementarCantidad(comp.comp_Id)" severity="danger"></p-button>
+                                                    <label>{{ cantidadSeleccionadaPorAlimento[comp.comp_Id] || 0 }}</label>
+                                                    <p-button icon="pi pi-plus-circle" (click)="incrementarCantidad(comp.comp_Id)" severity="success"></p-button>
+                                                  </div>
+                                                
+                                                
                                             </div>
+                                        </div>
                                             <div class="flex flex-column align-items-center text-center mb-3">
                                                 <img [src]="'https://localhost:44332/uploads/' + comp.comp_Imagen"
                                                     [alt]="comp.comp_Imagen" width="100" height="100"
                                                     class="w-9 shadow-2 my-3 mx-0" />
-                                                <div class="text-2xl font-bold">{{comp.comp_Descripcion}}</div>
+                                                <div class="font-bold" style="font-size: 18px;">{{comp.comp_Descripcion}}</div>
                                             </div>
                                             <div class="flex align-items-center justify-content-between">
-                                                <span class="text-2xl font-semibold">${{comp.comp_Precio}}</span>
-                                                <p-button icon="pi pi-plus-circle"></p-button>
-                                                <p-button icon="pi pi-trash" severity="danger"></p-button>
+                                                <span class="font-semibold" style="font-size: 15px;">${{comp.comp_Precio}}</span>
+                                                <p-button icon="pi pi-plus-circle" (click)="guardar(comp.comp_Id)"></p-button>
                                             </div>
                                         </div>
                                     </div>
@@ -234,18 +249,25 @@
                                             <div
                                                 class="flex flex-wrap gap-2 align-items-center justify-content-between mb-2">
                                                 <div class="flex align-items-center">
+                                                                              
+                                
+                                                    <div class="flex gap-2 align-items-center">
+                                                        <p-button icon="pi pi-minus-circle" (click)="decrementarCantidad(bebi.bebi_Id)" severity="danger"></p-button>
+                                                        <label>{{ cantidadSeleccionadaPorAlimento[bebi.bebi_Id] || 0 }}</label>
+                                                        <p-button icon="pi pi-plus-circle" (click)="incrementarCantidad(bebi.bebi_Id)" severity="success"></p-button>
+                                                      </div>
+                                                
                                                 </div>
                                             </div>
                                             <div class="flex flex-column align-items-center text-center mb-3">
                                                 <img [src]="'https://localhost:44332/uploads/' + bebi.bebi_Imagen"
                                                     [alt]="bebi.bebi_Imagen" width="100" height="100"
                                                     class="w-9 shadow-2 my-3 mx-0" />
-                                                <div class="text-2xl font-bold">{{bebi.bebi_Descripcion}}</div>
+                                                <div class="font-bold" style="font-size: 18px;">{{bebi.bebi_Descripcion}}</div>
                                             </div>
                                             <div class="flex align-items-center justify-content-between">
-                                                <span class="text-2xl font-semibold">${{bebi.bebi_Precio}}</span>
-                                                <p-button icon="pi pi-plus-circle"></p-button>
-                                                <p-button icon="pi pi-trash" severity="danger"></p-button>
+                                                <span class="font-semibold" style="font-size: 15px;">${{bebi.bebi_Precio}}</span>
+                                                <p-button icon="pi pi-plus-circle"  (click)="guardar(bebi.bebi_Id)"></p-button>
                                             </div>
                                         </div>
                                     </div>

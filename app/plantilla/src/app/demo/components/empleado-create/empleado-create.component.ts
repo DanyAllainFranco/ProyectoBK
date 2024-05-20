@@ -204,7 +204,7 @@ guardar() {
       (respuesta: Respuesta) => {
         if (respuesta.success) {
           // this.messageService.add({severity:'success', summary:'Éxito', detail:'!Combo registrado correctamente!'});
-          this.clienteService.successMessage = '¡Cliente registrado correctamente!';
+          this.clienteService.successMessage = '¡Empleado registrado correctamente!';
           this.router.navigate(['app/IndexEmpleado']);
         } else {
           this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});

@@ -46,6 +46,78 @@ namespace Proyecto_BK.API.Controllers
             var list = _restauranteServices.ListadoFactura();
             return Ok(list.Data);
         }
+        [HttpGet("ReporteEmpleados/{Empl_Id}/{FechaInicio}/{FechaFin}")]
+        public IActionResult ReporEmpleado(int Empl_Id, string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ReporteEmpleados(Empl_Id, FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
+        [HttpGet("ReporteProductos/{FechaInicio}/{FechaFin}")]
+        public IActionResult ReporProdu(string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ReporteProductos(FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
+
+        [HttpGet("ReporteIdentificador/{Sucu_Id}/{FechaInicio}/{FechaFin}")]
+        public IActionResult ReporIdentificador(string Sucu_Id, string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ReporteIdentificador(Sucu_Id, FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
+        [HttpGet("ReporteSucursal/{Sucu_Id}/{FechaInicio}/{FechaFin}")]
+        public IActionResult ReporSucursal(int Sucu_Id,string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ReporteSucursal(Sucu_Id,FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
+
+        [HttpGet("ReporteCompleto/{FechaInicio}/{FechaFin}")]
+        public IActionResult ReporCompleto( string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ReporteCompleto( FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
+
+        [HttpGet("AlimentoMasVendido/{Usua_Usuario}/{FechaInicio}/{FechaFin}")]
+        public IActionResult AlimentoVendido(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ListAlimentosMasVenidos(Usua_Usuario, FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
+        [HttpGet("BebidaMasVendido/{Usua_Usuario}/{FechaInicio}/{FechaFin}")]
+        public IActionResult BebidaVendido(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ListBebidasMasVenidos(Usua_Usuario, FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
+
+        [HttpGet("PostreMasVendido/{Usua_Usuario}/{FechaInicio}/{FechaFin}")]
+        public IActionResult PostreVendido(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ListPostreMasVenidos(Usua_Usuario, FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
+
+        [HttpGet("SucursalesTop5/{Usua_Usuario}/{FechaInicio}/{FechaFin}")]
+        public IActionResult SucuTop5(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ListSucursalesTop5(Usua_Usuario, FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
+
+        [HttpGet("EmpleadosTop5/{Usua_Usuario}/{FechaInicio}/{FechaFin}")]
+        public IActionResult EmplTop5(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ListEmpleadosTop5(Usua_Usuario, FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
+        [HttpGet("ComplementosMasVendido/{Usua_Usuario}/{FechaInicio}/{FechaFin}")]
+        public IActionResult ComplementosVendido(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ListComplementoMasVenidos(Usua_Usuario, FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
 
         [HttpGet("ListadaEncabezado")]
         public IActionResult ListaEncabezado()

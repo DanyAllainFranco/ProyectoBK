@@ -26,7 +26,8 @@ export class AppMenuComponent implements OnInit {
   menuCompleto = [
     {
       items: [
-        { label: 'Graficos', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficos() },
+        { label: 'Inicio', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficos() },
+        { label: 'Dashboard', icon: 'pi pi-fw pi-chart-bar',  routerLink: ['/app/FiltrosGraficos']},
         {
           label: 'Reportes',
           icon: 'pi pi-file',
@@ -35,6 +36,31 @@ export class AppMenuComponent implements OnInit {
               label: 'Reporte Combos',
               icon: 'pi pi-palette',
               routerLink: ['/app/Index']
+            },
+            {
+              label: 'Reporte Empleados',
+              icon: 'pi pi-palette',
+              routerLink: ['/app/ReporteEmpleado']
+            },
+            {
+              label: 'Reporte Productos',
+              icon: 'pi pi-palette',
+              routerLink: ['/app/ReporteProducto']
+            },
+            {
+              label: 'Reporte Sucursal',
+              icon: 'pi pi-palette',
+              routerLink: ['/app/ReporteSucursal']
+            },
+            {
+              label: 'Reporte Completo',
+              icon: 'pi pi-palette',
+              routerLink: ['/app/ReporteCompleto']
+            },
+            {
+              label: 'Reporte Categoria',
+              icon: 'pi pi-palette',
+              routerLink: ['/app/ReporteCategoria']
             },
           ]
         },
@@ -185,17 +211,17 @@ export class AppMenuComponent implements OnInit {
           };
         });
 
-        // Mantener siempre los elementos "Graficos" y "Reportes"
-        const graficosYReportes = this.menuCompleto[0].items.filter(item =>
-          item.label.toLowerCase() === 'graficos' || item.label.toLowerCase() === 'reportes'
-        );
+        // // Mantener siempre los elementos "Graficos" y "Reportes"
+        // const graficosYReportes = this.menuCompleto[0].items.filter(item =>
+        //   item.label.toLowerCase() === 'graficos' || item.label.toLowerCase() === 'reportes'
+        // );
 
-        // Verificar si ya están presentes antes de agregar
-        graficosYReportes.forEach(grItem => {
-          if (!seccionesFiltradas[0].items.some(item => item.label.toLowerCase() === grItem.label.toLowerCase())) {
-            seccionesFiltradas[0].items.unshift(grItem);
-          }
-        });
+        // // Verificar si ya están presentes antes de agregar
+        // graficosYReportes.forEach(grItem => {
+        //   if (!seccionesFiltradas[0].items.some(item => item.label.toLowerCase() === grItem.label.toLowerCase())) {
+        //     seccionesFiltradas[0].items.unshift(grItem);
+        //   }
+        // });
 
         this.model = seccionesFiltradas;
       });
@@ -205,7 +231,7 @@ export class AppMenuComponent implements OnInit {
   }
 
   loadGraficos() {
-    this.router.navigate(['/app/PrincipalGraficos'], { queryParams: { usuario: this.usuario } });
+    this.router.navigate(['/app/Inicio'], { queryParams: { usuario: this.usuario } });
   }
 
   loadGraficosFiltros() {

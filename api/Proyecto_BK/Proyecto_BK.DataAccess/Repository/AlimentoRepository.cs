@@ -60,7 +60,18 @@ namespace Proyecto_BK.DataAccess.Repository
                 return result;
             }
         }
+        public IEnumerable<tbAlimentos> ListAlimentos3(int Paqe_Id)
+        {
+            List<tbAlimentos> result = new List<tbAlimentos>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Paqe_Id", Paqe_Id);
 
+                result = db.Query<tbAlimentos>(ScriptsBaseDeDatos.Alim_Mostrar3, parametro, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
         public RequestStatus Update(tbAlimentos item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))

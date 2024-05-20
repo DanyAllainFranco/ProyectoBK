@@ -35,6 +35,18 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+        public IEnumerable<tbBebidas> ListBebidas3(int Paqe_Id)
+        {
+            List<tbBebidas> result = new List<tbBebidas>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Paqe_Id", Paqe_Id);
+
+                result = db.Query<tbBebidas>(ScriptsBaseDeDatos.Bebi_Mostrar3, parametro, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
         public RequestStatus Insert(tbBebidas item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))

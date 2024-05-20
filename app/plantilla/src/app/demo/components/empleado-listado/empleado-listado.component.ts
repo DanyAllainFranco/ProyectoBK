@@ -11,6 +11,9 @@ import { dropMunicipio } from 'src/app/demo/models/MunicipioViewModel';
 import { dropCargo } from 'src/app/demo/models/CargosViewModel';
 import { dropEstadoCivil } from 'src/app/demo/models/EstadoCivilViewModel';
 import { MensajeViewModel } from 'src/app/demo/models/MensajeVIewModel';
+import { LlenarEmpleados } from '../../models/ClientesViewModel';
+import { SucursalServiceService } from '../../service/sucursal-service.service';
+import { dA } from '@fullcalendar/core/internal-common';
 @Component({
   templateUrl: './empleado-listado.component.html',
   styleUrl: './empleado-listado.component.css',
@@ -27,7 +30,7 @@ export class EmpleadoListadoComponent {
   municipios: any[] = [];
   estadocivil: any[] = [];
   cargo: any[] = [];
-
+  sucursales: any[] = [];
   rol: any[] = [];
   fill: any[] = [];
   viewModel: EmpleadoEnviar = new EmpleadoEnviar();
@@ -64,7 +67,12 @@ export class EmpleadoListadoComponent {
   ID: string = "";
   MunicipioCodigo: String = "";
 
-  constructor(private service: ServiceService, private router: Router,   private messageService: MessageService
+
+  confirmacionVisible: boolean = false;
+  departamentoAEliminar: LlenarEmpleados | null = null;
+
+  constructor(private service: ServiceService, private sucursal: SucursalServiceService,
+     private router: Router,   private messageService: MessageService
   
   ) { }
 
@@ -78,6 +86,7 @@ export class EmpleadoListadoComponent {
         Carg_Id: new FormControl("", Validators.required),
         Empl_Correo:new FormControl("",Validators.required),
       Esta_Id: new FormControl("", Validators.required),
+      Sucu_Id: new FormControl("",Validators.required),
       Dept_Codigo: new FormControl("0", [Validators.required]),
       Muni_Codigo: new FormControl("0", [Validators.required]),
     });
@@ -96,16 +105,27 @@ export class EmpleadoListadoComponent {
         console.log(data);
         this.cargo = data;
         });
+        this.sucursal.getSucursal().subscribe((data:any) =>{
+          console.log("DATA:" + data)
+          this.sucursales = data;
 
+        },error=>{
+          console.log(error)
+        }
+      )
 
-    this.service.getEmpleados().subscribe((data: any)=>{
-        console.log(data);
-        this.Empleado = data;
-      },error=>{
-        console.log(error);
-      });
+this.getEmpleados();
+
    }
    
+   getEmpleados(){
+    this.service.getEmpleados().subscribe((data: any)=>{
+      console.log(data);
+      this.Empleado = data;
+    },error=>{
+      console.log(error);
+    });
+   }
    onDepartmentChange(departmentId) {
     if (departmentId !== '0') {
       this.service.getMunicipios(departmentId).subscribe(
@@ -265,6 +285,39 @@ confirmDelete() {
     });
 
 }
+
+
+
+confirmarEliminarDepartamento(departamento: LlenarEmpleados) {
+
+  this.departamentoAEliminar = departamento;
+  console.log(this.departamentoAEliminar)
+  this.confirmacionVisible = true;
+}
+
+eliminarDepartamento() {
+  if (this.departamentoAEliminar) {
+    console.log(this.departamentoAEliminar.empl_Id)
+    const idDepartamento = this.departamentoAEliminar.empl_Id;
+    this.service.EliminarEmpleado(idDepartamento).subscribe({
+      next: (data) => {
+        this.getEmpleados();
+        this.confirmacionVisible = false;
+        console.log(idDepartamento);
+        this.messageService.add({severity:'success', summary:'Éxito', detail:'!Empleado eliminado correctamente!'});
+      },
+      error: (e) => {
+        console.log(e);
+        this.messageService.add({severity:'error', summary:'Error', detail:'Este combo no se puede eliminar.'});
+      }
+    });
+  }
+}
+
+cancelarEliminar() {
+  this.confirmacionVisible = false;
+}
+
 Fill(codigo) {
     this.service.getFill(codigo).subscribe({
         next: (data: Fill) => {

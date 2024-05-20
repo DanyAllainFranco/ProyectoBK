@@ -112,7 +112,7 @@ namespace Proyecto_BK.API.Controllers
             return Ok(new { success = true, message = list.Message });
         }
 
-        [HttpDelete("API/[controller]/Delete")]
+        [HttpDelete("API/[controller]/Delete/{Empl_Id}")]
         public IActionResult Delete(int Empl_Id)
         {
             var response = _generalServices.EliminarEmpleado(Empl_Id);

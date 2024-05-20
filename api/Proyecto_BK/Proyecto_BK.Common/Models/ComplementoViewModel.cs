@@ -19,6 +19,8 @@ namespace Proyecto_BK.Common.Models
         public DateTime? Comp_Fecha_Modifica { get; set; }
         public bool? Comp_Estado { get; set; }
         [NotMapped]
+        public string CantidadAgregada { get; set; }
+        [NotMapped]
         public string Usua_Creacion { get; set; }
         [NotMapped]
         public string Usua_Modifica { get; set; }

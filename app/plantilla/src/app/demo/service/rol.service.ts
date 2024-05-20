@@ -24,8 +24,8 @@ export class RolService {
   getPantallas2(RolId: number): Observable<Pantallas[]> {
     return this.http.get<Pantallas[]>( BASE_URL + "API/Rol/ListPantallas2/" + RolId);
   }
-  getPantallasAgregadas(Rol_Id: number): Observable<PantallasAgregadas[]> {
-    return this.http.get<PantallasAgregadas[]>( BASE_URL + "API/Rol/PantallasAgregadas/" + Rol_Id);
+  getPantallasAgregadas(Rol_Id: number): Observable<any[]> {
+    return this.http.get<any[]>( BASE_URL + "API/Rol/PantallasAgregadas/" + Rol_Id);
   }
   
   agregar(modelo: Rol): Observable<Respuesta> {

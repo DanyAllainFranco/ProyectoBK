@@ -16,3 +16,10 @@ export class Graficos {
     alim_Descripcion?: string;
     totalPedidosAlimentos?: number;
 }
+
+export class AlimentosVendidos{
+    alim_Descripcion: string;
+    alim_Precio: string;
+    alim_Imagen: string;
+    cantidadVentas: string;
+}

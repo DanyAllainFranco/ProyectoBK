@@ -29,6 +29,8 @@ namespace Proyecto_BK.Entities
         public int? Alim_Usua_Modifica { get; set; }
         public DateTime? Alim_Fecha_Modifica { get; set; }
         public bool? Alim_Estado { get; set; }
+        [NotMapped]
+        public string CantidadAgregada { get; set; }
 
         public virtual tbUsuarios Alim_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Alim_Usua_ModificaNavigation { get; set; }

@@ -36,6 +36,20 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+
+        public IEnumerable<tbPostres> ListPostre3(int Paqe_Id)
+        {
+            List<tbPostres> result = new List<tbPostres>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Paqe_Id", Paqe_Id);
+
+                result = db.Query<tbPostres>(ScriptsBaseDeDatos.Post_Mostrar3, parametro, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
         public tbPostres Find(int? id)
         {
             throw new NotImplementedException();

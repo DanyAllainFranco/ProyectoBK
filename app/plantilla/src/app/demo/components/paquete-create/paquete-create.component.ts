@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule,Inject } from '@angular/core';
+import { Component, OnInit, NgModule,Inject, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -90,11 +90,12 @@ export class PaqueteCreateComponent implements OnInit{
   orderCities: any[] = [];
 
   creado: boolean = false;
-
+  submitted: boolean = false;
   Detalle: PaquetesDetalles[];
   cantidadSeleccionadaPorAlimento: { [key: number]: number } = {};
   cantidad: number;
-
+  @ViewChild('nombreInput') nombreInput: ElementRef;
+  @ViewChild('precioInput') precioInput: ElementRef;
   identificador: string = 'A';
   cantidadSeleccionada: number = 0;
   initialValues: number[] = [];
@@ -167,6 +168,7 @@ onFilter(dv: DataView, event: Event) {
   onTabClick(tab: string, identi: string) {
     this.activeTab = tab;
     this.identificador = identi;
+    this.cantidadSeleccionadaPorAlimento = {}; // Resetear cantidades
     console.log("OPCION: " + this.activeTab + " " + "IDENTIFICADOR: " + this.identificador)
   }
 
@@ -180,11 +182,6 @@ onFilter(dv: DataView, event: Event) {
         console.log(error);
       }
     );
-  }
-
-  probando(id: number){
-    console.log("ID PRODUCTO: " + id )
-    console.log("IDENTIFICADOR: " + this.identificador)
   }
 
   cargarPostres(){
@@ -221,18 +218,23 @@ onFilter(dv: DataView, event: Event) {
     );
   }
 
-  incrementarCantidad(alimId: number) {
-    if (!this.cantidadSeleccionadaPorAlimento[alimId]) {
-        this.cantidadSeleccionadaPorAlimento[alimId] = 0;
-    }
-    this.cantidadSeleccionadaPorAlimento[alimId]++;
-}
 
-decrementarCantidad(alimId: number) {
-    if (this.cantidadSeleccionadaPorAlimento[alimId] && this.cantidadSeleccionadaPorAlimento[alimId] > 0) {
-        this.cantidadSeleccionadaPorAlimento[alimId]--;
+
+
+  incrementarCantidad(id: number) {
+    if (!this.cantidadSeleccionadaPorAlimento[id]) {
+      this.cantidadSeleccionadaPorAlimento[id] = 1;
+    } else {
+      this.cantidadSeleccionadaPorAlimento[id]++;
     }
-}
+  }
+  
+  decrementarCantidad(id: number) {
+    if (this.cantidadSeleccionadaPorAlimento[id] > 1) {
+      this.cantidadSeleccionadaPorAlimento[id]--;
+    }
+  }
+  
 
 
 
@@ -262,8 +264,9 @@ decrementarCantidad(alimId: number) {
     }
   }
 
+
   guardar(id: number) {
-    if (this.form.valid && this.prueba != "") {
+    if (this.form.valid) {
         const paqe_Descripcion = this.form.value.paqe_Descripcion;
         const paqe_Precio = this.form.value.paqe_Precio;
         const Usua_Id = 1
@@ -286,7 +289,7 @@ decrementarCantidad(alimId: number) {
             this.rolService.agregar(nuevoRol).subscribe(
               (respuesta: Respuesta) => {
                   if (respuesta.success) {
-                      // Guardar el ID del rol creado
+                   
                       this.PromId = parseInt(respuesta.message);
                       this.creado = true;
                       const Detalle: PaquetesDetalles = {
@@ -300,7 +303,7 @@ decrementarCantidad(alimId: number) {
                         this.rolService.agregarDetalle(Detalle).subscribe(
                           (respuesta: Respuesta) =>{
                             if(respuesta.success){
-                              console.log("EXITOO");
+                              // this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Agregado correctamente!' });
                             }
                           }
                         );
@@ -310,7 +313,7 @@ decrementarCantidad(alimId: number) {
   
                       
           
-                     this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Agregado correctamente!' });
+                     this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Paquete creado correctamente!' });
                   // this.router.navigate(['app/IndexPaquetes']);
                   
                   } else {
@@ -338,7 +341,7 @@ decrementarCantidad(alimId: number) {
             this.rolService.agregarDetalle(Detalle).subscribe(
               (respuesta: Respuesta) =>{
                 if(respuesta.success){
-                  console.log("EXITOO");
+                  this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Agregado correctamente!' });
                 }
               }
             );
@@ -349,9 +352,13 @@ decrementarCantidad(alimId: number) {
         }
         
     } else {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: '¡Ingrese todos los campos!' });
-        console.log("Ingrese los campos")
-      
+      this.submitted = true;
+      if (this.form.controls['paqe_Descripcion'].invalid) {
+        this.nombreInput.nativeElement.focus();
+      }
+      if (this.form.controls['paqe_Precio'].invalid) {
+        this.precioInput.nativeElement.focus();
+      }
     }
   }
 

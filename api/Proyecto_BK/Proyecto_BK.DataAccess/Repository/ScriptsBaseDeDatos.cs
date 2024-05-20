@@ -114,6 +114,15 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string PaCo_Insertar = "[Rest].SP_PaquetesPorComidas_Insertar";
         public static string PaCo_Editar = "[Rest].SP_PaquetesPorComidas_Editar";
         public static string PaCo_Eliminar = "[Rest].SP_PaquetesPorComidas_Eliminar";
+        public static string PaCo_MostrarAlimentos = "Rest.SP_PaquetesPorComidas_AlimentosAgregados";
+        public static string PaCo_MostrarComplementos = "Rest.SP_PaquetesPorComidas_ComplementosAgregados";
+        public static string PaCo_MostrarBebidas = "Rest.SP_PaquetesPorComidas_BebidasAgregadas";
+        public static string PaCo_MostrarPostres = "Rest.SP_PaquetesPorComidas_PostresAgregados";
+
+        public static string Alim_Mostrar3 = "Rest.SP_Alimentos_Mostrar3";
+        public static string Bebi_Mostrar3 = "Rest.SP_Bebidas_Mostrar3";
+        public static string Post_Mostrar3 = "Rest.SP_Postres_Mostrar3";
+        public static string Comp_Mostrar3 = "Rest.SP_Complementos_Mostrar3";
         #endregion
 
         #region Postres
@@ -241,6 +250,13 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Grafi_PostreFiltro = "[Rest].[SP_ObtenerPostreMasPedidoPorUsuarioFiltro]";
         public static string Grafi_PaquetesFiltro = "[Rest].[SP_ObtenerPaqueteMasPedidoPorUsuarioFiltro]";
         public static string Grafi_CombosFiltro = "[Rest].[SP_ObtenerComboMasPedidoPorUsuarioFiltro]";
+        public static string Grafi_AlimentoMasVendido = "[Rest].[SP_ObtenerAlimentoMasVendido]";
+        public static string Grafi_BebidaMasVendido = "[Rest].[SP_ObtenerBebidaMasVendida]";
+        public static string Grafi_PostreMasVendido = "[Rest].[SP_ObtenerPostreMasVendido]";
+        public static string Grafi_ComplementoMasVendido = "[Rest].[SP_ObtenerComplementoMasVendido]";
+        public static string Grafi_SucursalTop5 = "[Rest].[SP_ObtenerTop5SucursalesVentas]";
+        public static string Grafi_EmpleadosTop5 = "[Rest].[SP_ObtenerVentasPorEmpleado]";
+       
         #endregion
 
         #region Factura
@@ -248,6 +264,11 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Factura_Listar = "[Rest].[SP_FacturaDetalles_Listar]";
         public static string FacturaEncabezado_Insertar = "[Rest].[SP_FacturaEncabezado_Insertar]";
         public static string FacturaDetalle_Insertar = "[Rest].[SP_FacturaDetalle_Insertar]";
+        public static string Repor_VentasEmpleados = "[Rest].[SP_ReporteVentaEmpleados]";
+        public static string Repor_VentasProductos = "[Rest].[SP_ObtenerCantidadVentasPorProducto]";
+        public static string Repor_VentasSucursales = "[Rest].[SP_ReporteVentaSucursal]";
+        public static string Repor_VentasCompleto = "[Rest].[SP_ReporteCompleto]";
+        public static string Repor_VentasIdentificador = "[Rest].[SP_ReportePorIdentificador]";
         #endregion
 
 

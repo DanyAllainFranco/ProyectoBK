@@ -12,6 +12,8 @@ namespace Proyecto_BK.Common.Models
         public int Bebi_Id { get; set; }
         public string Bebi_Descripcion { get; set; }
         public decimal? Bebi_Precio { get; set; }
+        [NotMapped]
+        public string CantidadAgregada { get; set; }
         public string Bebi_Imagen { get; set; }
         public int? Bebi_Usua_Creacion { get; set; }
         public DateTime? Bebi_Fecha_Creacion { get; set; }

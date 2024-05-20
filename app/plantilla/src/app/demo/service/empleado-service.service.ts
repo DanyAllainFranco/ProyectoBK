@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BASE_URL } from './UrlParaAPI';
-import { Empleado,Fill } from '../models/EmpleadoViewModel';
+import { Empleado,EmpleadoDDL,Fill } from '../models/EmpleadoViewModel';
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
@@ -20,10 +20,20 @@ export class ServiceService {
   url = BASE_URL + 'API/Empleado/List'
   successMessage: string = '';
 
-  agregarEmpleados(modelo: EmpleadosEnviar): Observable<Respuesta> {
-    console.log(modelo)
-    return this.http.post<Respuesta>(BASE_URL + 'API/Empleado/Insert', modelo);
+  EmplDDL= 'https://localhost:44332/API/Empleado/EmpleadoDDL';
+  EmpleadoDDL (){
+    return this.http.get<EmpleadoDDL[]>(this.EmplDDL);
   }
+
+
+  prueba = 'https://localhost:44332/API/Empleado/Insert';
+  agregarEmpleados(modelo: EmpleadosEnviar): Observable<Respuesta> {
+
+    console.log(modelo)
+    return this.http.post<Respuesta>(this.prueba, modelo);
+  }
+
+
   obtenerClientePorId(idCombo: number): Observable<LlenarEmpleados> {
     return this.http.get<LlenarEmpleados>(`${BASE_URL}API/Empleado/Fill/${idCombo}`);
   }
