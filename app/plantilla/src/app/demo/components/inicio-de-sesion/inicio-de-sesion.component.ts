@@ -43,6 +43,7 @@ export class InicioDeSesionComponent {
             console.log("Datos: " + response[0].usua_Id)
             this.authService.setUserId(loginData.Usua_Id);
             localStorage.setItem('usuario', loginData.Usua_Usuario); 
+          
              this.cookieService.set('Usua_Id', response[0].usua_Id);
              this.cookieService.set('Usua_Usuario', response[0].usua_Usuario);
              this.cookieService.set('Rol_Id', response[0].rol_Id);

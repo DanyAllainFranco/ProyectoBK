@@ -37,6 +37,7 @@ import { FacturaServiceService } from '../../service/factura-service.service';
 import { ReporteEmpleados } from '../../models/FacturaViewModel';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { eventTupleToStore } from '@fullcalendar/core/internal';
 
 
 @Component({
@@ -51,6 +52,7 @@ export class ReporteEmpleadoComponent implements OnInit{
   Empl_Id: number;
   ReporteEmpleado: ReporteEmpleados[] = [];
   mostrar: boolean = false;
+  todos: boolean = false;
   @ViewChild('invoiceContent') invoiceContent: ElementRef;
   constructor(
     private empleadoService: ServiceService,
@@ -73,9 +75,15 @@ export class ReporteEmpleadoComponent implements OnInit{
 
   EmpleDLL() {
     this.empleadoService.EmpleadoDDL().subscribe(
-      (data: EmpleadoDDL[]) => {
-        this.empleados = data.map(item => ({ label: item.empl_Nombre, value: item.empl_Id }));;
+      (data: any[]) => {
+        this.empleados = data.map(item => ({ label: item.empl_Nombre, value: item.empl_Id }  ));;
         
+        // this.empleados = [
+        //   {label: 'Ver Todos', value: 'T'},
+        //   {label: 'Prueba', value: 'P'}
+        // ]
+
+  
       },
       error => {
         console.log(error);
@@ -84,7 +92,17 @@ export class ReporteEmpleadoComponent implements OnInit{
   }
 
  onChangeEmpleado(event: any) {
-    this.Empl_Id = event.value; // Obtener el ID del empleado seleccionado
+    this.Empl_Id = event.value;
+    const prueba = event.value;
+    if(prueba == 'T'){
+      console.log("SIII")
+      this.todos = true;
+      console.log("BOOL: " + this.todos)
+    }
+    else{
+      this.todos = false;
+      console.log("BOOL: " + this.todos)
+    }
     console.log("ID del empleado seleccionado:", this.Empl_Id);
     
   }
@@ -127,15 +145,29 @@ export class ReporteEmpleadoComponent implements OnInit{
     const FechaFinal = this.fechaFin;
     const Empl_Id = this.Empl_Id;
   
-    this.facturaService.ReporteEmpleados(Empl_Id,FechaInicio, FechaFinal).subscribe(
-      (data: any) => {
-         this.ReporteEmpleado = data;
-         this.mostrar = true;
-       },
-     error => {
-         console.log(error);
-       }
-   );
+    if(this.todos){
+      this.facturaService.ReporteEmpleadosTodos(FechaInicio, FechaFinal).subscribe(
+        (data: any) => {
+           this.ReporteEmpleado = data;
+           this.mostrar = true;
+         },
+       error => {
+           console.log(error);
+         }
+     );
+    }
+    else{
+      this.facturaService.ReporteEmpleados(Empl_Id,FechaInicio, FechaFinal).subscribe(
+        (data: any) => {
+           this.ReporteEmpleado = data;
+           this.mostrar = true;
+         },
+       error => {
+           console.log(error);
+         }
+     );
+    }
+   
   }
 
 

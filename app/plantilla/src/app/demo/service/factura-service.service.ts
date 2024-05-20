@@ -18,6 +18,15 @@ export class FacturaServiceService {
     return this.http.get<ReporteProductos>(`${BASE_URL}API/Factura/ReporteIdentificador/${Empl_Id}/${FechaInicio}/${FechaFinal}`);
   }
 
+  ReporteEmpleadosTodos(FechaInicio: string, FechaFinal: string): Observable<ReporteEmpleados> {
+    return this.http.get<ReporteEmpleados>(`${BASE_URL}API/Factura/ReporteEmpleadosTodos/${FechaInicio}/${FechaFinal}`);
+  }
+
+  ReporteSucursalTodos(FechaInicio: string, FechaFinal: string): Observable<ReporteSucursal> {
+    return this.http.get<ReporteSucursal>(`${BASE_URL}API/Factura/ReporteSucursalesTodos/${FechaInicio}/${FechaFinal}`);
+  }
+
+
   ReporteEmpleados(Empl_Id:number,FechaInicio: string, FechaFinal: string): Observable<ReporteEmpleados> {
     return this.http.get<ReporteEmpleados>(`${BASE_URL}API/Factura/ReporteEmpleados/${Empl_Id}/${FechaInicio}/${FechaFinal}`);
   }

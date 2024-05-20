@@ -51,6 +51,8 @@ export class ReporteProductosComponent implements OnInit{
   Empl_Id: number;
   ReporteEmpleado: ReporteEmpleados[] = [];
   mostrar: boolean = false;
+  Usuario: string = "";
+  Fecha: string = "";
   @ViewChild('invoiceContent') invoiceContent: ElementRef;
   constructor(
     private empleadoService: SucursalServiceService,
@@ -61,6 +63,7 @@ export class ReporteProductosComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
+    this.Usuario = this.cookieService.get("Usua_Usuario");
     const fechaActual = new Date();
     
     fechaActual.setMonth(fechaActual.getMonth() - 1);
@@ -68,6 +71,7 @@ export class ReporteProductosComponent implements OnInit{
     const fechaActualISO = new Date().toISOString().slice(0, 10);
     this.fechaInicio = fechaMesAnterior;
     this.fechaFin = fechaActualISO;
+    this.Fecha = fechaActualISO;
     this.EmpleDLL();
   }
 

@@ -111,6 +111,7 @@ identificador: string = 'A';
 cantidadSeleccionada: number = 0;
 initialValues: number[] = [];
 cantidadAgregada: number;
+
   constructor(
     private route: ActivatedRoute,
     private rolService: PaquetesServiceService,
@@ -119,7 +120,8 @@ cantidadAgregada: number;
     private alimentoService: AlimentosServiceService,
     private bebidaService: BebidasServiceService,
     private complementoService: ComplementoServiceService,
-    private messageService: MessageService,
+    private cookieService: CookieService,
+        private messageService: MessageService,
     private router: Router,
     private paqueteComida: PaquetesporComidaServiceService,
     private cd: ChangeDetectorRef,
@@ -127,6 +129,7 @@ cantidadAgregada: number;
   ) { }
   
   ngOnInit(): void {
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.route.params.subscribe(params => {
       this.ComboId = +params['id'];
       console.log("ID COBO: " + this.ComboId)
@@ -437,7 +440,7 @@ onFilter(dv: DataView, event: Event) {
       PaCo_Cantidad: cantidadAgregada,
       Prod_Id: id,
       PaCo_Identificador: paCo_Identificador,
-      Usua_Id: 1
+      Usua_Id: this.Usua_Id
     }
     console.log("CANTIDAD: " + cantidadAgregada);
     if(cantidadAgregada > 0){
@@ -464,7 +467,7 @@ onFilter(dv: DataView, event: Event) {
         paqe_Descripcion: paqe_Descripcion,
         paqe_Imagen: paqe_Imagen,
         paqe_Precio: paqe_Precio,
-        Usua_Id: 1
+        Paqe_Usua_Modifica: this.Usua_Id
       };
   
       this.rolService.actualizar(NuevoCombo).subscribe(

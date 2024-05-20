@@ -24,7 +24,8 @@ export class PaquetesEnviar {
     paqe_Descripcion?: string;
     paqe_Precio?: string;
     paqe_Imagen?: string;
-    Usua_Id: number;
+    Paqe_Usua_Creacion?: number;
+    Paqe_Usua_Modifica?: number;
 }
 
 

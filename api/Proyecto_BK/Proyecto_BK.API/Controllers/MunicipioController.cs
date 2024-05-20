@@ -76,7 +76,7 @@ namespace Proyecto_BK.API.Controllers
                 Muni_Codigo = item.Muni_Codigo,
                 Muni_Descripcion = item.Muni_Descripcion,
                 Dept_Codigo = item.Dept_Codigo,
-                Muni_Usua_Creacion = 1,
+                Muni_Usua_Creacion = item.Muni_Usua_Creacion,
                 Muni_Fecha_Creacion = DateTime.Now
             };
             var list = _generalServices.CrearMuni(modelo);
@@ -102,7 +102,7 @@ namespace Proyecto_BK.API.Controllers
                 Muni_Codigo = item.Muni_Codigo,
                 Muni_Descripcion = item.Muni_Descripcion,
                 Dept_Codigo = item.Dept_Codigo,
-                Muni_Usua_Modifica = 1,
+                Muni_Usua_Modifica = item.Muni_Usua_Modifica,
                 Muni_Fecha_Modifica = DateTime.Now
             };
             var list = _generalServices.EditarMuni(modelo);

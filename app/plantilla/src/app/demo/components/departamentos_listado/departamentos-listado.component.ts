@@ -35,7 +35,7 @@ export class DepartamentosListadoComponent implements OnInit {
   modalButtonLabel: string = 'Guardar';
   confirmacionVisible: boolean = false;
   departamentoAEliminar: Departamento | null = null;
-  Usua_Id: string;
+  Usua_Id: number;
   submitted: boolean = false;
   constructor(
     private service: DepartamentoServiceService,
@@ -54,7 +54,7 @@ export class DepartamentosListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDepartamentos();
-    this.Usua_Id = this.cookieService.get('Usua_Id');
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
 
   }
 
@@ -157,7 +157,9 @@ export class DepartamentosListadoComponent implements OnInit {
   NuevoDepartamento() {
     const modelo: Departamento = {
       dept_Codigo: this.formDepartamento.value.codigo,
-      dept_Descripcion: this.formDepartamento.value.departamento
+      dept_Descripcion: this.formDepartamento.value.departamento,
+      Usua_Id: 
+      this.Usua_Id
     }
     this._departamentoServicio.agregar(modelo).subscribe({
       next: (data) => {  
@@ -176,7 +178,8 @@ export class DepartamentosListadoComponent implements OnInit {
     const idDepartamento = this.selectedDepartamento.dept_Codigo;
     const modelo: Departamento = {
       dept_Codigo: this.formDepartamento.value.codigo,
-      dept_Descripcion: this.formDepartamento.value.departamento
+      dept_Descripcion: this.formDepartamento.value.departamento,
+      Usua_Id: this.Usua_Id
     }
     this._departamentoServicio.actualizar(idDepartamento, modelo).subscribe({
       next: (data) => {

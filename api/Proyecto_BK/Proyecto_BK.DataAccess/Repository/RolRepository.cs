@@ -59,7 +59,7 @@ namespace Proyecto_BK.DataAccess.Repository
 
                 parametro.Add("Rol_Descripcion", item.Rol_Descripcion);
 
-                parametro.Add("Rol_Usua_Creacion", 1);
+                parametro.Add("Rol_Usua_Creacion", item.Rol_Usua_Creacion);
                 parametro.Add("Rol_Fecha_Creacion", DateTime.Now);
 
                 parametro.Add("role_id", dbType: DbType.Int32, direction: ParameterDirection.Output);

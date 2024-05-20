@@ -64,6 +64,8 @@ export class Promociones {
     prom_Precio?: string;
     prom_Imagen?: string;
     dias_Id?: string;
+    Prom_Usua_Creacion?: number;
+    Prom_Usua_Modifica?: number;
 }
 
 export class PromocionEnviar {

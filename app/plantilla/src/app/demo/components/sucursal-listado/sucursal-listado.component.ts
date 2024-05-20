@@ -21,7 +21,7 @@ import { DialogModule } from 'primeng/dialog';
 import { DepartamentoServiceService } from '../../service/departamento-service.service';
 import { ServiceService } from '../../service/municipio-service.service';
 import { dropDepartamento } from '../../models/DepartamentosViewModel';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-sucursal-listado',
   templateUrl: './sucursal-listado.component.html',
@@ -42,10 +42,12 @@ export class SucursalListadoComponent implements OnInit {
   sucursalAEliminar: Sucursales | null = null;
   departamentos: any[] = [];
   municipios: SelectItem[] = [];
+  Usua_Id:number;
   constructor(
     private service: SucursalServiceService,
     private router: Router,
     private fb: FormBuilder,
+    private cookieService: CookieService,
     private _sucursalServicio: SucursalServiceService,
     private messageService: MessageService,
     private departamentoService: DepartamentoServiceService,
@@ -62,6 +64,7 @@ export class SucursalListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSucursales();
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.municipioService.getDropDownsDepartamentos().subscribe((data: dropDepartamento[]) => {
       this.departamentos = data;
   });
@@ -178,7 +181,8 @@ export class SucursalListadoComponent implements OnInit {
   nuevaSucursal() {
     const modelo: Sucursales = {
       sucu_Descripcion: this.formSucursal.value.sucursal,
-      muni_Codigo: this.formSucursal.value.Muni_Codigo
+      muni_Codigo: this.formSucursal.value.Muni_Codigo,
+      sucu_Usua_Creacion: this.Usua_Id
     }
     this._sucursalServicio.agregar(modelo).subscribe({
       next: (data) => {  
@@ -198,7 +202,8 @@ export class SucursalListadoComponent implements OnInit {
     const modelo: Sucursales = {
       sucu_Descripcion: this.formSucursal.value.sucursal,
       muni_Codigo: this.formSucursal.value.Muni_Codigo,
-      sucu_Id: this.formSucursal.value.id
+      sucu_Id: this.formSucursal.value.id,
+      sucu_Usua_Modifica: this.Usua_Id
     }
     this._sucursalServicio.actualizar(idSucursal, modelo).subscribe({
       next: (data) => {

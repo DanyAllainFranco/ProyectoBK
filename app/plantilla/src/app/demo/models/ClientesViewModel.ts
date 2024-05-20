@@ -51,6 +51,7 @@ export class ClientesEnviar {
     Esta_Id?: string;
     Muni_Codigo?: string;
     Clie_Usua_Creacion?: number;
+    Clie_Usua_Modifica?: number;
 }
 
 

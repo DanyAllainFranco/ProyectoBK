@@ -41,6 +41,7 @@
   import { GalleriaModule } from 'primeng/galleria';
   import { CarouselModule } from 'primeng/carousel';
   import { FileUploadModule } from 'primeng/fileupload';
+  import { CookieService } from 'ngx-cookie-service';
 
   @Component({
     selector: 'app-combo-create',
@@ -57,6 +58,7 @@
       selectedImageURL: string | null = null;
       imageSelected: boolean = false;
       showFileUpload: boolean = true;
+      Usua_Id:number;
   prueba: string = "";
 
       invalid: boolean = false;
@@ -67,6 +69,9 @@
       constructor(private productService: ProductService,
         private router: Router,
         private fb: FormBuilder,
+        
+
+    private cookieService: CookieService,
         private alimentoService: AlimentosServiceService,
         private bebidaService: BebidasServiceService,
         private postreService: PostreServiceService,
@@ -84,6 +89,8 @@
           }
 
   ngOnInit(): void {
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
+
     this.cargarAlimentos();
     this.cargarBebidas();
     this.cargarPostres();
@@ -196,7 +203,7 @@
         Bebi_Id: Bebi_Id,
         Comb_Imagen: Comb_Imagen,
         Comb_Precio: Comb_Precio,
-        ComB_Usua_Creacion: 1,
+        Comb_Usua_Creacion: this.Usua_Id,
         Comp_Id: Comp_Id,
         Post_Id: Post_Id,
       };

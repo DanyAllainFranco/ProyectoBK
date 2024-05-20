@@ -48,6 +48,7 @@ export class PostreListadoComponent implements OnInit {
   showFileUpload: boolean = true;
   prueba: string = "";
   submitted: boolean = false;
+  Usua_Id:number;
 
   constructor(
     private service: PostreServiceService, 
@@ -67,6 +68,7 @@ export class PostreListadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.getPostres();
     // const  = localStorage.getItem('showSuccessMessage');
     const showSuccessMessage = this.cookieService.get('showSuccessMessagePostre');
@@ -147,7 +149,7 @@ export class PostreListadoComponent implements OnInit {
       post_Descripcion: this.formDepartamento.value.post_Descripcion,
       post_Precio: this.formDepartamento.value.post_Precio,
       post_Imagen: this.prueba,
-      post_Usua_Modifica: 1,
+      post_Usua_Modifica: this.Usua_Id,
     }
 
     this._postreServices.actualizar(modelo).subscribe({
@@ -206,7 +208,7 @@ export class PostreListadoComponent implements OnInit {
       post_Descripcion: this.formDepartamento.value.post_Descripcion,
       post_Precio: this.formDepartamento.value.post_Precio,
       post_Imagen: this.prueba,
-      post_Usua_Creacion: 1,
+      post_Usua_Creacion: this.Usua_Id,
     };
 
     // Enviar los datos del formulario a tu API para agregar el registro

@@ -48,6 +48,7 @@ import { ServiceService } from '../../service/empleado-service.service';
 import { DepartamentoServiceService } from '../../service/departamento-service.service';
 import { EstadoCivilServiceService } from '../../service/estadocivil-service.service';
 import { ClientesServiceService } from '../../service/cliente-service.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-cliente-editar',
@@ -73,10 +74,12 @@ export class ClienteEditarComponent implements OnInit{
   estadosciviles: SelectItem[] = [];
   DepartamentoId: string;
   submitted = false;
+  Usua_Id:number;
   constructor(
     private route: ActivatedRoute,
     private rolService: ClientesServiceService,
     private formBuilder: FormBuilder,
+    private cookieService: CookieService,
     private postreService: PostreServiceService,
     private alimentoService: AlimentosServiceService,
     private bebidaService: BebidasServiceService,
@@ -89,6 +92,7 @@ export class ClienteEditarComponent implements OnInit{
   ) { }
   
   ngOnInit(): void {
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.route.params.subscribe(params => {
       this.ComboId = +params['id'];
       console.log("ID COBO: " + this.ComboId)
@@ -199,7 +203,7 @@ export class ClienteEditarComponent implements OnInit{
          Clie_Correo: Clie_Correo,
          Esta_Id: Esta_Id,
          Muni_Codigo: Muni_Codigo,
-         Clie_Usua_Creacion: 1,
+         Clie_Usua_Modifica: this.Usua_Id,
        };
   
        this.rolService.actualizar(NuevoCombo).subscribe(

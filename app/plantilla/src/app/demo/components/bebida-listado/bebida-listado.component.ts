@@ -42,6 +42,8 @@ export class BebidaListadoComponent implements OnInit {
   departamento: Postre[] = [];
   formDepartamento: FormGroup;
   selectedDepartamento: any;
+  
+ Usua_Id:number;
   modalTitle: string = 'Nuevo Registro';
   modalButtonLabel: string = 'Guardar';
   confirmacionVisible: boolean = false;
@@ -73,6 +75,9 @@ export class BebidaListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBebidas();
+    
+
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.mostrarmensaje = this.cookieService.get('showSuccessMessageBebida');
     this.mensaje =  this.cookieService.get('MensajeBebida');
 
@@ -155,7 +160,7 @@ export class BebidaListadoComponent implements OnInit {
       bebi_Descripcion: this.formDepartamento.value.bebi_Descripcion,
       bebi_Precio: this.formDepartamento.value.bebi_Precio,
       bebi_Imagen: this.prueba,
-      bebi_Usua_Modifica: 1,
+      bebi_Usua_Modifica: this.Usua_Id,
     }
 
     this.service.actualizar(modelo).subscribe({
@@ -214,7 +219,7 @@ export class BebidaListadoComponent implements OnInit {
       bebi_Descripcion: this.formDepartamento.value.bebi_Descripcion,
       bebi_Precio: this.formDepartamento.value.bebi_Precio,
       bebi_Imagen: this.prueba,
-      bebi_Usua_Creacion: 1,
+      bebi_Usua_Creacion: this.Usua_Id,
     };
 
   

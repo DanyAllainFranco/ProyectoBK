@@ -7,7 +7,7 @@ import { Estado, Estado2, EstadoCivilEnviar,Fill } from 'src/app/demo/models/Est
 import { EstadoCivilServiceService } from '../../service/estadocivil-service.service';
 import { FormGroup, FormControl,  Validators, FormBuilder  } from '@angular/forms';
 import { MensajeViewModel } from 'src/app/demo/models/MensajeVIewModel';
-
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -54,10 +54,13 @@ export class EstadocivilListadoComponent implements OnInit {
     FechaModificacion: String = "";
     ID: String = "";
   
+ Usua_Id:number;
     constructor(
         private service: EstadoCivilServiceService, 
         private router: Router,
         private fb: FormBuilder,
+        
+    private cookieService: CookieService,
         private confirmationService: ConfirmationService, 
         private messageService: MessageService
     ) { 
@@ -70,6 +73,7 @@ export class EstadocivilListadoComponent implements OnInit {
   
 
     ngOnInit(): void {
+      this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
         this.formCargo = this.fb.group({
             esta_Descripcion: ["", Validators.required],
           });
@@ -147,7 +151,7 @@ export class EstadocivilListadoComponent implements OnInit {
         const modelo: Estado2 = {
             esta_Id: 0,
             esta_Descripcion: this.formCargo.value.esta_Descripcion,
-              Usua_Id: 1
+              Usua_Id: this.Usua_Id
         }
         this.service.agregar(modelo).subscribe({
           next: (data) => {  
@@ -167,7 +171,7 @@ export class EstadocivilListadoComponent implements OnInit {
         const modelo: Estado2 = {
         esta_Id: idCargo,
         esta_Descripcion: this.formCargo.value.esta_Descripcion,
-          Usua_Id: 1
+          Usua_Id: this.Usua_Id
         }
         this.service.actualizar(modelo).subscribe({
           next: (data) => {

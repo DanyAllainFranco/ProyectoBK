@@ -8,12 +8,15 @@ export class MunicipioEnviar {
     Muni_Codigo: string;
     Muni_Descripcion: string;
     Dept_Codigo: string;
+    Muni_Usua_Creacion?: number;
+    Muni_Usua_Modifica?: number;
 }
 export class Municipio2{
     muni_Codigo: number;
     muni_Descripcion: string;
     dept_Codigo: string;
-    Usua_Id: number;
+    Muni_Usua_Creacion?: number;
+    Muni_Usua_Modifica?: number;
 }
 
 export class Fill {

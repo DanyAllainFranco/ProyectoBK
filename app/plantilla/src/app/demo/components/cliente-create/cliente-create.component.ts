@@ -49,6 +49,7 @@ import { DepartamentoServiceService } from '../../service/departamento-service.s
 import { EstadoCivilServiceService } from '../../service/estadocivil-service.service';
 import { ClientesEnviar } from '../../models/ClientesViewModel';
 import { ClientesServiceService } from '../../service/cliente-service.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-cliente-create',
@@ -66,10 +67,13 @@ export class ClienteCreateComponent implements OnInit{
     estadosciviles: SelectItem[] = [];
     DepartamentoId: string;
     submitted: boolean = false;
+    Usua_Id:number;
     constructor(private productService: ProductService,
       private router: Router,
       private fb: FormBuilder,
       private municipioService: ServiceService,
+      
+    private cookieService: CookieService,
       private departamentoService: DepartamentoServiceService,
       private estadoService: EstadoCivilServiceService,
       private clienteService: ClientesServiceService,
@@ -89,6 +93,7 @@ export class ClienteCreateComponent implements OnInit{
 ngOnInit(): void {
   this.cargarDepartamentos();
   this.cargarEstados();
+  this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
 }
 
 cargarDepartamentos(){
@@ -160,7 +165,7 @@ guardar() {
       Clie_Correo: Clie_Correo,
       Esta_Id: Esta_Id,
       Muni_Codigo: Muni_Codigo,
-      Clie_Usua_Creacion: 1,
+      Clie_Usua_Creacion: this.Usua_Id,
     };
 
     this.clienteService.agregar(NuevoCombo).subscribe(

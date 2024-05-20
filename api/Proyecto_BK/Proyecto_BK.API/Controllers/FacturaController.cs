@@ -52,6 +52,21 @@ namespace Proyecto_BK.API.Controllers
             var result = _restauranteServices.ReporteEmpleados(Empl_Id, FechaInicio, FechaFin);
             return Ok(result.Data);
         }
+
+        [HttpGet("ReporteSucursalesTodos/{FechaInicio}/{FechaFin}")]
+        public IActionResult ReporSucursalTodos(string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ReporteSucursalesTodos(FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
+
+        [HttpGet("ReporteEmpleadosTodos/{FechaInicio}/{FechaFin}")]
+        public IActionResult ReporEmpleadoTodos(string FechaInicio, string FechaFin)
+        {
+            var result = _restauranteServices.ReporteEmpleadosTodos(FechaInicio, FechaFin);
+            return Ok(result.Data);
+        }
+
         [HttpGet("ReporteProductos/{FechaInicio}/{FechaFin}")]
         public IActionResult ReporProdu(string FechaInicio, string FechaFin)
         {

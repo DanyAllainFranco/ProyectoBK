@@ -17,6 +17,7 @@ import { ToastModule } from 'primeng/toast';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { MessageService } from 'primeng/api';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-cargo-listado',
@@ -35,10 +36,12 @@ export class CargoListadoComponent implements OnInit {
   confirmacionVisible: boolean = false;
   cargoAEliminar: Cargos | null = null;
   submitted = false;
+  Usua_Id:number;
   constructor(
     private service: CargosServiceService,
     private router: Router,
     private fb: FormBuilder,
+    private cookieService: CookieService,
     private _cargoServicio: CargosServiceService,
     private messageService: MessageService,
   ) {
@@ -50,6 +53,7 @@ export class CargoListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCargos();
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
   }
 
   detalleRol(combId: number) {
@@ -131,6 +135,7 @@ export class CargoListadoComponent implements OnInit {
   nuevoCargo() {
     const modelo: Cargos = {
       carg_Descripcion: this.formCargo.value.cargo,
+      carg_Usua_creacion: this.Usua_Id
     }
     this._cargoServicio.agregar(modelo).subscribe({
       next: (data) => {  
@@ -149,7 +154,8 @@ export class CargoListadoComponent implements OnInit {
     const idCargo = this.selectedCargo.carg_Id;
     const modelo: Cargos = {
       carg_Descripcion: this.formCargo.value.cargo,
-      carg_Id: this.formCargo.value.id
+      carg_Id: this.formCargo.value.id,
+      carg_Usua_Modifica: this.Usua_Id
     }
     this._cargoServicio.actualizar(idCargo, modelo).subscribe({
       next: (data) => {

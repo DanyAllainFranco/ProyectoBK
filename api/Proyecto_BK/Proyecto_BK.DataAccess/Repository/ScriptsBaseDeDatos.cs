@@ -265,8 +265,10 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string FacturaEncabezado_Insertar = "[Rest].[SP_FacturaEncabezado_Insertar]";
         public static string FacturaDetalle_Insertar = "[Rest].[SP_FacturaDetalle_Insertar]";
         public static string Repor_VentasEmpleados = "[Rest].[SP_ReporteVentaEmpleados]";
+        public static string Repor_VentasEmpleadosTodos = "[Rest].[SP_ReporteVentaEmpleadosTodos]";
         public static string Repor_VentasProductos = "[Rest].[SP_ObtenerCantidadVentasPorProducto]";
         public static string Repor_VentasSucursales = "[Rest].[SP_ReporteVentaSucursal]";
+        public static string Repor_VentasSucursalesTodos = "[Rest].[SP_ReporteVentaSucursalTodos]";
         public static string Repor_VentasCompleto = "[Rest].[SP_ReporteCompleto]";
         public static string Repor_VentasIdentificador = "[Rest].[SP_ReportePorIdentificador]";
         #endregion

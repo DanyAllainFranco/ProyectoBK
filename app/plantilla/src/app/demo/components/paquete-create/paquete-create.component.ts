@@ -109,6 +109,7 @@ export class PaqueteCreateComponent implements OnInit{
       private complementoService: ComplementoServiceService,
       private messageService: MessageService,
       private countryService: CountryService,
+      private cookieService: CookieService,
        private rolService: PaquetesServiceService) {
         this.form = this.fb.group({
           paqe_Descripcion: ['', Validators.required],
@@ -120,7 +121,7 @@ export class PaqueteCreateComponent implements OnInit{
         }
 
   ngOnInit(): void {
-
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
         this.sortOptions = [
             { label: 'Precio mas alto', value: '!alim_Precio' },
             { label: 'Precio mas bajo', value: 'alim_Precio' }
@@ -269,7 +270,7 @@ onFilter(dv: DataView, event: Event) {
     if (this.form.valid) {
         const paqe_Descripcion = this.form.value.paqe_Descripcion;
         const paqe_Precio = this.form.value.paqe_Precio;
-        const Usua_Id = 1
+        const Usua_Id = this.Usua_Id
         const paqe_Imagen = this.prueba;
         const prod_Id = id;
         const paCo_Identificador = this.identificador;
@@ -279,7 +280,7 @@ onFilter(dv: DataView, event: Event) {
             paqe_Descripcion: paqe_Descripcion,
             paqe_Imagen: paqe_Imagen,
             paqe_Precio: paqe_Precio,
-            Usua_Id: Usua_Id,
+            Paqe_Usua_Creacion: Usua_Id,
         };
 
         
@@ -297,7 +298,7 @@ onFilter(dv: DataView, event: Event) {
                         PaCo_Cantidad: cantidad,
                         Prod_Id: prod_Id,
                         PaCo_Identificador: paCo_Identificador,
-                        Usua_Id: 1
+                        Usua_Id: this.Usua_Id
                       }
                      
                         this.rolService.agregarDetalle(Detalle).subscribe(
@@ -335,7 +336,7 @@ onFilter(dv: DataView, event: Event) {
             PaCo_Cantidad: cantidad,
             Prod_Id: prod_Id,
             PaCo_Identificador: paCo_Identificador,
-            Usua_Id: 1
+            Usua_Id: this.Usua_Id
           }
           if(cantidad > 0){
             this.rolService.agregarDetalle(Detalle).subscribe(

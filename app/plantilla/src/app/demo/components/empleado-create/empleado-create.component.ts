@@ -51,7 +51,7 @@ import { ClientesEnviar, EmpleadosEnviar } from '../../models/ClientesViewModel'
 import { ClientesServiceService } from '../../service/cliente-service.service';
 import { CargosServiceService } from '../../service/cargo-service.service';
 import { SucursalServiceService } from '../../service/sucursal-service.service';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-empleado-create',
@@ -70,6 +70,7 @@ export class EmpleadoCreateComponent implements OnInit{
     sucursales: SelectItem[] = [];
     DepartamentoId: string;
     submitted: boolean = false;
+    Usua_Id:number;
     constructor(private productService: ProductService,
       private router: Router,
       private fb: FormBuilder,
@@ -77,6 +78,8 @@ export class EmpleadoCreateComponent implements OnInit{
       private departamentoService: DepartamentoServiceService,
       private estadoService: EstadoCivilServiceService,
       private cargoService: CargosServiceService,
+      private cookieService: CookieService,
+
       private susursalServie: SucursalServiceService,
       private clienteService: ServiceService,
       private messageService: MessageService,
@@ -96,6 +99,7 @@ export class EmpleadoCreateComponent implements OnInit{
         }
 
 ngOnInit(): void {
+  this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
   this.cargarDepartamentos();
   this.cargarEstados();
   this.cargarCargos();
@@ -197,7 +201,7 @@ guardar() {
       Sucu_Id: sucu_Id,
       Carg_Id: carg_Id,
       Muni_Codigo: muni_Codigo,
-      Usua_Id: 1,
+      Usua_Id: this.Usua_Id,
     };
 
     this.clienteService.agregarEmpleados(NuevoCombo).subscribe(

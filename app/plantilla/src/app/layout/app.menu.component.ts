@@ -32,11 +32,11 @@ export class AppMenuComponent implements OnInit {
           label: 'Reportes',
           icon: 'pi pi-file',
           items: [
-            {
-              label: 'Reporte Combos',
-              icon: 'pi pi-palette',
-              routerLink: ['/app/Index']
-            },
+            // {
+            //   label: 'Reporte Combos',
+            //   icon: 'pi pi-palette',
+            //   routerLink: ['/app/Index']
+            // },
             {
               label: 'Reporte Empleados',
               icon: 'pi pi-palette',

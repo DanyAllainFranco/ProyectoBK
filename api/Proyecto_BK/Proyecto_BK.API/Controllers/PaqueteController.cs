@@ -87,7 +87,7 @@ namespace Proyecto_BK.API.Controllers
                 Paqe_Descripcion = json.Paqe_Descripcion,
                 Paqe_Precio = json.Paqe_Precio,
                 Paqe_Imagen = json.Paqe_Imagen,
-                Paqe_Usua_Creacion = 1,
+                Paqe_Usua_Creacion = json.Paqe_Usua_Creacion,
                 Paqe_Fecha_Creacion = DateTime.Now
             };
             int rolId;
@@ -106,7 +106,7 @@ namespace Proyecto_BK.API.Controllers
                 Paqe_Descripcion = json.Paqe_Descripcion,
                 Paqe_Precio = json.Paqe_Precio,
                 Paqe_Imagen = json.Paqe_Imagen,
-                Paqe_Usua_Modifica = 1,
+                Paqe_Usua_Modifica = json.Paqe_Usua_Modifica,
                 Paqe_Fecha_Modifica = DateTime.Now
             };
             var list = _restauranteServices.EditarPaquete(modelo);

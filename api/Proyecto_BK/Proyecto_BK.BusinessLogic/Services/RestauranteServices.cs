@@ -1031,6 +1031,34 @@ namespace Proyecto_BK.BusinessLogic.Services
             }
 
         }
+        public ServiceResult ReporteEmpleadosTodos(string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.ReporteEmpleadosTodos(FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+
+        }
+        public ServiceResult ReporteSucursalesTodos(string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.ReporteSucursalTodos(FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+
+        }
         public ServiceResult ReporteEmpleados(int Empl_Id, string FechaInicio, string FechaFin)
         {
             var result = new ServiceResult();

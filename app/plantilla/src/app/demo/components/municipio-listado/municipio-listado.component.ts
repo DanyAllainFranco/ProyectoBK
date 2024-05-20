@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Fill,Municipio,Municipio2,MunicipioEnviar } from 'src/app/demo/models/MunicipioViewModel';
 import { dropDepartamento } from 'src/app/demo/models/DepartamentosViewModel';
 import { MensajeViewModel } from 'src/app/demo/models/MensajeVIewModel';
-
+import { CookieService } from 'ngx-cookie-service';
 import { ServiceService } from 'src/app/demo/service/municipio-service.service';
 import { FormGroup, FormControl,  Validators, FormBuilder  } from '@angular/forms';
 import { DepartamentoServiceService } from '../../service/departamento-service.service';
@@ -47,6 +47,7 @@ export class MunicipioListadoComponent implements OnInit {
     FechaCreacion: String = "";
     FechaModificacion: String = "";
     complementos: SelectItem[] = [];
+    Usua_Id:number;
     ID: String = "";
     constructor(
         private service: ServiceService, 
@@ -55,12 +56,15 @@ export class MunicipioListadoComponent implements OnInit {
         private messageService: MessageService,
         private complementoService: DepartamentoServiceService,
         private fb: FormBuilder,
+        
+    private cookieService: CookieService,
     ) { 
        
     
     }
     
     ngOnInit(): void {
+      this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
         //Inicializamos form,drops,lista
         this.formDepartamento = this.fb.group({
             muni_Codigo: ["", Validators.required],
@@ -195,7 +199,7 @@ export class MunicipioListadoComponent implements OnInit {
       muni_Codigo: this.formDepartamento.value.muni_Codigo,
       muni_Descripcion: this.formDepartamento.value.muni_Descripcion,
       dept_Codigo: this.formDepartamento.value.dept_Codigo,
-      Usua_Id: 1
+      Muni_Usua_Creacion: this.Usua_Id
     }
     this.service.agregar(modelo).subscribe({
       next: (data) => {  
@@ -228,8 +232,8 @@ export class MunicipioListadoComponent implements OnInit {
     const modelo: Municipio2 = {
         muni_Codigo: this.formDepartamento.value.muni_Codigo,
         muni_Descripcion: this.formDepartamento.value.muni_Descripcion,
-        dept_Codigo: this.formDepartamento.value.dept_Codigo,
-        Usua_Id: 1
+        dept_Codigo: this.formDepartamento.value.dept_Codigo, 
+        Muni_Usua_Modifica: this.Usua_Id
       }
     this.service.actualizar(modelo).subscribe({
       next: (data) => {
@@ -280,7 +284,7 @@ export class MunicipioListadoComponent implements OnInit {
              this.municipioForm = new FormGroup({
                  Muni_Codigo: new FormControl("",Validators.required),
                  Muni_Descripcion: new FormControl("", Validators.required),
-                 Dept_Codigo: new FormControl('0', [Validators.required])
+                 Dept_Codigo: new FormControl('0', [Validators.required]),
              });
      
             }else{

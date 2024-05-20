@@ -52,6 +52,7 @@ export class ComplementoListadoComponent implements OnInit {
   showFileUpload: boolean = true;
   submitted: boolean = false;
   prueba: string = "";
+  Usua_Id:number;
   constructor(
     private service: ComplementoServiceService,
     private router: Router ,
@@ -71,7 +72,7 @@ export class ComplementoListadoComponent implements OnInit {
 
   ngOnInit(): void {
    this.getComplementos();
-
+   this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
    const showSuccessMessage = this.cookieService.get('showSuccessMessageComplemento');
    const tipo =  this.cookieService.get('Mensaje');
    console.log("SDAS: " + showSuccessMessage)
@@ -149,7 +150,7 @@ export class ComplementoListadoComponent implements OnInit {
       comp_Descripcion: this.formDepartamento.value.comp_Descripcion,
       comp_Precio: this.formDepartamento.value.comp_Precio,
       comp_Imagen: this.prueba,
-      comp_Usua_Modifica: 1,
+      comp_Usua_Modifica: this.Usua_Id,
     }
 
     this.service.actualizar(modelo).subscribe({
@@ -208,7 +209,7 @@ export class ComplementoListadoComponent implements OnInit {
       comp_Descripcion: this.formDepartamento.value.comp_Descripcion,
       comp_Precio: this.formDepartamento.value.comp_Precio,
       comp_Imagen: this.prueba,
-      comp_Usua_Creacion: 1,
+      comp_Usua_Creacion: this.Usua_Id,
     };
 
   

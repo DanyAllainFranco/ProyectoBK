@@ -74,7 +74,7 @@ namespace Proyecto_BK.API.Controllers
             {
                 Esta_Descripcion = item.Esta_Descripcion
 ,
-                Esta_Usua_Creacion = 1,
+                Esta_Usua_Creacion = item.Esta_Usua_Creacion,
                 Esta_Fecha_Creacion = DateTime.Now,
             };
             var list = _generalServices.CrearEstado(modelo);
@@ -91,7 +91,7 @@ namespace Proyecto_BK.API.Controllers
             {
                 Esta_Id = item.Esta_Id,
                 Esta_Descripcion = item.Esta_Descripcion,
-                Esta_Usua_Modifica = 1,
+                Esta_Usua_Modifica = item.Esta_Usua_Modifica,
                 Esta_Fecha_Modifica = DateTime.Now
             };
             var list = _generalServices.EditarEstado(modelo);

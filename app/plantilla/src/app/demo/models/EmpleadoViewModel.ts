@@ -39,7 +39,7 @@ export class EmpleadoEnviar {
     Muni_Codigo: string;
     Esta_Id: string;
     Carg_Id: string;
-  
+    Usua_Id:number;
   
 
 

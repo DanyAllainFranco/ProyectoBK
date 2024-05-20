@@ -14,6 +14,8 @@ import { MensajeViewModel } from 'src/app/demo/models/MensajeVIewModel';
 import { LlenarEmpleados } from '../../models/ClientesViewModel';
 import { SucursalServiceService } from '../../service/sucursal-service.service';
 import { dA } from '@fullcalendar/core/internal-common';
+import { CookieService } from 'ngx-cookie-service';
+
 @Component({
   templateUrl: './empleado-listado.component.html',
   styleUrl: './empleado-listado.component.css',
@@ -70,14 +72,15 @@ export class EmpleadoListadoComponent {
 
   confirmacionVisible: boolean = false;
   departamentoAEliminar: LlenarEmpleados | null = null;
-
+  Usua_Id:number;
   constructor(private service: ServiceService, private sucursal: SucursalServiceService,
-     private router: Router,   private messageService: MessageService
+     private router: Router,   private messageService: MessageService,   private cookieService: CookieService,
   
   ) { }
 
 
   ngOnInit(): void {
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.clienteForm = new FormGroup({
         Empl_Nombre: new FormControl("",Validators.required),
         Empl_Apellido: new FormControl("", Validators.required),
@@ -89,6 +92,7 @@ export class EmpleadoListadoComponent {
       Sucu_Id: new FormControl("",Validators.required),
       Dept_Codigo: new FormControl("0", [Validators.required]),
       Muni_Codigo: new FormControl("0", [Validators.required]),
+      Usua_Id: new FormControl(this.Usua_Id)
     });
     this.service.getDropDownsDepartamentos().subscribe((data: dropDepartamento[]) => {
     console.log(data);

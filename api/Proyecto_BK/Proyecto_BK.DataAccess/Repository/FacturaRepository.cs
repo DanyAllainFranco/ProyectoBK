@@ -187,6 +187,35 @@ namespace Proyecto_BK.DataAccess.Repository
             return result;
         }
 
+        public IEnumerable<tbFacturaDetalle> ReporteEmpleadosTodos(string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFacturaDetalle> result = new List<tbFacturaDetalle>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+            
+                parameter.Add("@FechaInicio", FechaInicio);
+                parameter.Add("@FechaFin", FechaFin);
+                result = db.Query<tbFacturaDetalle>(ScriptsBaseDeDatos.Repor_VentasEmpleadosTodos, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+
+        public IEnumerable<tbFacturaDetalle> ReporteSucursalTodos(string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFacturaDetalle> result = new List<tbFacturaDetalle>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+
+                parameter.Add("@FechaInicio", FechaInicio);
+                parameter.Add("@FechaFin", FechaFin);
+                result = db.Query<tbFacturaDetalle>(ScriptsBaseDeDatos.Repor_VentasSucursalesTodos, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+
+
         public IEnumerable<tbFacturaDetalle> ReporteProductos(string FechaInicio, string FechaFin)
         {
             IEnumerable<tbFacturaDetalle> result = new List<tbFacturaDetalle>();

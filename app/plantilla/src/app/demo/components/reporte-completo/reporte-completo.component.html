@@ -1,36 +1,39 @@
 <div class="grid col-12 p-fluid p-formgrid">
-    <div class="col-12">
-        <div class="card">
+  <div class="col-12">
+    <div class="card">
+      <h3 class="text-center">Reporte Ventas Completo</h3>
+      <div class=" grid mt-3">
+        <div class="field col-12 md:col-6">
+          <label>Fecha Inicio:</label>
+          <input type="date" id="fechaInicio" [(ngModel)]="fechaInicio" (change)="cambiarFechaInicio($event)"
+            class="p-inputtext">
+        </div>
+        <div class="field col-12 md:col-6">
+          <label>Fecha Fin:</label>
+          <input type="date" id="fechaFin" [(ngModel)]="fechaFin" (change)="cambiarFechaFin($event)"
+            class="p-inputtext">
+        </div>
 
-            <div class=" grid">
-                <div class="field col-12 md:col-6">
-                    <label>Fecha Inicio:</label>
-                    <input type="date" id="fechaInicio" [(ngModel)]="fechaInicio" (change)="cambiarFechaInicio($event)" class="p-inputtext">
-                </div>
-                <div class="field col-12 md:col-6">
-                    <label>Fecha Fin:</label>
-                    <input type="date" id="fechaFin" [(ngModel)]="fechaFin" (change)="cambiarFechaFin($event)" class="p-inputtext">
-                </div>
-              
-                <!-- <div class="field col-12 md:col-4">
+        <!-- <div class="field col-12 md:col-4">
                     <label>Empleado:</label>
                     <p-dropdown [options]="empleados" placeholder="Seleccione" (onChange)="onChangeEmpleado($event)"></p-dropdown>
                 </div> -->
-            </div>
-            <div class="grid">
-                <div class="col-4">
-                    <button  pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" (click)="Nuevo()" label="Generar PDF"></button>
-                </div>
-            </div>
-           
-
+      </div>
+      <div class="grid">
+        <div class="col-4">
+          <button pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" (click)="Nuevo()"
+            label="Generar PDF"></button>
         </div>
+      </div>
+
+
     </div>
+  </div>
 </div>
 
 
 <div *ngIf="mostrar">
-<div class="invoice-2 invoice-content" #invoiceContent>
+  <div class="invoice-2 invoice-content" #invoiceContent>
     <div class="container">
       <div class="row">
         <div class="col-12">
@@ -54,7 +57,7 @@
                     </div>
                   </div>
                 </div>
-  
+
               </div>
               <div class="invoice-top">
                 <div class="grid">
@@ -82,7 +85,7 @@
                     <table class="table mb-0 table-striped invoice-table">
                       <thead class="bg-active">
                         <tr class="tr">
-                  
+
                           <th class="pl0 text-start">Empleado</th>
                           <th class="text-center">Sucursal</th>
                           <th class="text-center">Producto</th>
@@ -93,9 +96,9 @@
                       </thead>
                       <tbody>
                         <tr class="tr" *ngFor="let repo of ReporteEmpleado">
-                    
-                            <td>{{ repo.empleado}}</td>
-                            <td>{{ repo.sucursal}}</td>
+
+                          <td>{{ repo.empleado}}</td>
+                          <td>{{ repo.sucursal}}</td>
                           <td>{{ repo.producto}}</td>
                           <td>{{repo.tipo}}</td>
                           <td>{{repo.cantidad}}</td>
@@ -110,7 +113,7 @@
                 <div class="row">
                   <div class="col-lg-6 col-md-5 col-sm-5">
                     <div class="payment-method mb-30">
-  
+
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-7 col-sm-7">
@@ -125,19 +128,19 @@
                 <div class="grid">
                   <div class="col-12">
                     <div class="contact-info clearfix">
-  
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="invoice-btn-section clearfix d-print-none">
-                <a href="javascript:window.print()" class="btn btn-lg btn-print">
-                    <i class="fa fa-print"></i> Imprimir Reporte
-                </a>
-                <a id="invoice_download_btn" class="btn btn-lg btn-download btn-theme" (click)="DescargrPDF()">
-                    <i class="fa fa-download"></i> Descargar Reporte
-                </a>
+              <a href="javascript:window.print()" class="btn btn-lg btn-print">
+                <i class="fa fa-print"></i> Imprimir Reporte
+              </a>
+              <a id="invoice_download_btn" class="btn btn-lg btn-download btn-theme" (click)="DescargrPDF()">
+                <i class="fa fa-download"></i> Descargar Reporte
+              </a>
             </div>
           </div>
         </div>
@@ -145,4 +148,3 @@
     </div>
   </div>
 </div>
-

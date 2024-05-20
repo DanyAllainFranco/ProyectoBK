@@ -28,6 +28,7 @@ import { Pantallas } from 'src/app/demo/models/PantallaViewMode';
 import { Rol } from 'src/app/demo/models/RolesViewModel';
 import { Respuesta } from 'src/app/demo/models/ServiceResult';
 import { MessageService } from 'primeng/api';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-rol-create',
@@ -58,12 +59,13 @@ export class RolCreateComponent implements OnInit{
 
     pickListVisible: boolean = false;
 
+    Usua_Id:number;
     invalid: boolean = false;
 
     constructor(private productService: ProductService,
       private router: Router,
       private fb: FormBuilder,
-      
+      private cookieService: CookieService,
       private messageService: MessageService,
        private rolService: RolService) {
         this.form = this.fb.group({
@@ -73,7 +75,7 @@ export class RolCreateComponent implements OnInit{
 
     ngOnInit() {
       this.cargarPantallas();
-
+      this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
       
   }
 
@@ -99,6 +101,7 @@ export class RolCreateComponent implements OnInit{
         const nuevoRol: Rol = {
             rol_Id: 0,
             rol_Descripcion: nombreRol,
+            Rol_Usua_Creacion: this.Usua_Id
         };
 
         this.rolService.agregar(nuevoRol).subscribe(

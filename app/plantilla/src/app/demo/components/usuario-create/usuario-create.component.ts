@@ -36,6 +36,7 @@ import { EmpleadoDDL } from '../../models/EmpleadoViewModel';
 import { UsuarioEnviar } from '../../models/UsuariosViewModel';
 import { RolService } from '../../service/rol.service';
 import { CheckboxModule } from 'primeng/checkbox';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-usuario-create',
@@ -50,11 +51,13 @@ export class UsuarioCreateComponent implements OnInit{
 valCheck: string[] = [];
 submitted = false;
     complementos: SelectItem[] = [];
+    Usua_Id:number;
     constructor(
       private router: Router,
       private fb: FormBuilder,
       private complementoService: RolService,
       private messageService: MessageService,
+      private cookieService: CookieService,
       private rolService: UsuariosServiceService) {
         this.form = this.fb.group({
           Usua_Usuario: ['', Validators.required],
@@ -62,9 +65,11 @@ submitted = false;
           Empl_Id: ['', Validators.required],
           Rol_Id: ['', Validators.required],
           Usua_Admin: [false],
+          Usua_Id: [this.Usua_Id]
         });
         }
   ngOnInit(): void {
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.EmpleDLL();
     this.cargarRoles();
   }

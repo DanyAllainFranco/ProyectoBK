@@ -32,13 +32,13 @@ import { CookieService } from 'ngx-cookie-service';
   selector: 'app-aliment-listado',
   templateUrl:'./alimento-listado.component.html',
   styleUrl: './alimento-listado.component.scss',
-  providers: [MessageService]
+  providers: [MessageService,]
 })
 
 export class AlimentosListadoComponent implements OnInit {
   alimentos!: Alimento2[];
 
-
+  Usua_Id:number;
   display: boolean = false;
   departamento: Postre[] = [];
   formDepartamento: FormGroup;
@@ -71,7 +71,8 @@ export class AlimentosListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAlimentos();
-
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
+    console.log("USUA_ID: " + this.Usua_Id)
     const showSuccessMessage = this.cookieService.get('showSuccessMessageAlimento');
     const tipo =  this.cookieService.get('Mensaje');
     console.log("SDAS: " + showSuccessMessage)
@@ -151,7 +152,7 @@ guardarDepartamento()
      alim_Descripcion: this.formDepartamento.value.alim_Descripcion,
      alim_Precio: this.formDepartamento.value.alim_Precio,
      alim_Imagen: this.prueba,
-     alim_Usua_Modifica: 1,
+     alim_Usua_Modifica: this.Usua_Id,
    }
 
    this.service.actualizar(modelo).subscribe({
@@ -211,7 +212,7 @@ recargarPagina() {
       alim_Descripcion: this.formDepartamento.value.alim_Descripcion,
      alim_Precio: this.formDepartamento.value.alim_Precio,
      alim_Imagen: this.prueba,
-     alim_Usua_Creacion: 1,
+     alim_Usua_Creacion: this.Usua_Id,
    };
 
    // Enviar los datos del formulario a tu API para agregar el registro

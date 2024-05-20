@@ -29,7 +29,7 @@ import { Rol } from 'src/app/demo/models/RolesViewModel';
 import { Respuesta } from 'src/app/demo/models/ServiceResult';
 import { MessageService } from 'primeng/api';
 import { dA } from '@fullcalendar/core/internal-common';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-rol-editar',
   templateUrl: './rol-editar.component.html',
@@ -56,6 +56,7 @@ export class RolEditarComponent implements OnInit {
 
   RolId: number;
 
+  Usua_Id:number;
 
 
   pickListVisible: boolean = false;
@@ -64,13 +65,14 @@ export class RolEditarComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private cookieService: CookieService,
     private router: Router,
     private rolService: RolService,
     private formBuilder: FormBuilder,
   ) { }
   ngOnInit(): void {
   
-
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.route.params.subscribe(params => {
       this.rolId = +params['id'];
       this.obtenerRol(this.rolId);
@@ -114,10 +116,11 @@ export class RolEditarComponent implements OnInit {
   submitForm() {
     if (this.form.valid) {
       const nuevoNombre = this.form.value.nombreRol;
+      const usuaId = this.Usua_Id;
       // const idprueba = this.form.value.
       const nuevasPantallas = this.targetCities.map(pantalla => pantalla.code); // Obtener IDs de las pantallas seleccionadas
 
-      this.rolService.actualizar({ ...this.rol, rol_Descripcion: nuevoNombre }).subscribe(
+      this.rolService.actualizar({ ...this.rol, rol_Descripcion: nuevoNombre, Rol_Usua_Modifica: usuaId }).subscribe(
         (response) => {
           console.log("ID ROL:" + " " + this.rolId)
 

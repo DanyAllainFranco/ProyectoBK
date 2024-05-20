@@ -34,7 +34,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { CarouselModule } from 'primeng/carousel';
 import { FileUploadModule } from 'primeng/fileupload';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-promocion-editar',
@@ -80,16 +80,19 @@ prueba: string = "";
 
     invalid: boolean = false;
     dias: SelectItem[] = [];
-
+    Usua_Id:number;
     constructor(private productService: ProductService,
       private router: Router,
       // private fb: FormBuilder,
       private route: ActivatedRoute,
       private formBuilder: FormBuilder,
+      
+    private cookieService: CookieService,
       private messageService: MessageService,
        private rolService: PromocionServiceService) {
         }
         ngOnInit(): void {
+          this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
           this.route.params.subscribe(params => {
             this.PromId = +params['id'];
             console.log("ID COBO: " + this.PromId)
@@ -340,7 +343,7 @@ prueba: string = "";
               const Prom_Descripcion = this.form.value.prom_Descripcion;
               const Prom_Precio = this.form.value.prom_Precio;
               const Dias_Id = this.form.value.dias_Id;
-              const Usua_Id = 1;
+              const Usua_Id = this.Usua_Id;
               const prom_Imagen = this.Imagen;
               const alimentosAgregados = this.targetCities.map(objeto => objeto.code);
               const bebidasAgregadas = this.targetBebida.map(bebida => bebida.code);
@@ -356,7 +359,8 @@ prueba: string = "";
                   prom_Descripcion: Prom_Descripcion,
                   prom_Imagen: prom_Imagen,
                   prom_Precio: Prom_Precio,
-                  dias_Id: Dias_Id
+                  dias_Id: Dias_Id,
+                  Prom_Usua_Modifica: Usua_Id
               };
         
               this.rolService.actualizar(nuevoRol).subscribe(
