@@ -522,6 +522,17 @@ table th{
     list-style: none;
 }
 
+.fixed-bottom-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Color de fondo opcional */
+    padding: 10px; /* Espaciado opcional */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+}
+
+
 .invoice-2 .payment-method ul li strong{
     font-weight: 500;
 }
