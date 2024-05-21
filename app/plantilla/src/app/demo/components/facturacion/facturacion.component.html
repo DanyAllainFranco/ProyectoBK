@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <div class="invoice-top">
-                            <form [formGroup]="FacturaForm" (keydown)="handleKeyDown($event)" (ngSubmit)="onSubmit()">
+                            <form [formGroup]="FacturaForm"  (ngSubmit)="onSubmit()">
                                 <div class="p-fluid p-formgrid grid">
                                     <div class="field col-12 md:col-6">
                                         <label for="">Cliente</label>
@@ -98,14 +98,14 @@
                                 <div class="product-grid">
                                     <div class="product-card" *ngFor="let product of products">
                                         <div class="product-image">
-                                            <img [src]="product.image" alt="{{product.name}}">
+                                            <img [src]="'https://localhost:44332/uploads/' + product.image" alt="{{product.name}}">
                                         </div>
                                         <div class="product-info">
                                             <h5>{{ product.text }}</h5>
                                             <p>Codigo: {{ product.value }}</p>
                                             <p>Precio: {{ product.precio }} Lps</p>
                                             <div class="quantity-control">
-                                                <button pButton icon="pi pi-minus" type="button" (click)="decreaseQuantity(product)"></button>
+                                                <button pButton icon="pi pi-minus" type="button" (click)="decreaseQuantity(product)" style="background-color: #D62700;"></button>
                                                 <input pInputText id="FaDe_Cantidad" formControlName="FaDe_Cantidad" type="text" [(ngModel)]="product.cantidad" required autofocus 
                                                 [ngClass]="{'ng-invalid ng-dirty': submitted && (FacturaForm.get('FaDe_Cantidad').value === '0' || FacturaForm.get('FaDe_Cantidad').value === '')}" />
                                                 <button pButton icon="pi pi-plus" type="button" (click)="increaseQuantity(product)"></button>

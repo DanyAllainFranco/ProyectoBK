@@ -207,7 +207,7 @@ export class FacturacionComponent {
           producto: selectedProduct.text,
           cantidad: cantidad,
           precio: selectedProduct.precio,
-          total: selectedProduct.precio * cantidad
+          total: (selectedProduct.precio * cantidad).toFixed(2)
         });
 
         this.onSelectProduct(selectedProduct);
@@ -245,21 +245,13 @@ export class FacturacionComponent {
           producto: producto.text,
           cantidad: cantidad,
           precio: producto.precio,
-          total: producto.precio * cantidad
+          total: (producto.precio * cantidad).toFixed(0)
         });
       } else {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'La cantidad tiene que ser mayor a 0.' });
       }
     } else {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se ha seleccionado ningun producto de la cuadricula' });
-    }
-  }
-
-  handleKeyDown(event: KeyboardEvent) {
-    if (event.key === "Enter" || event.key === "Tab") {
-      event.preventDefault();
-      console.log("Click");
-      this.onSubmit();
     }
   }
 

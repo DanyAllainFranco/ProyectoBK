@@ -18,6 +18,7 @@
                                       <div class="info">
                                         <tr>
                                           <h1 class="inv-header-1" >Factura</h1>
+                                         
                                       </div>
                                   </div>
                               </div>
@@ -28,15 +29,16 @@
                             <div class="grid">
                                 <div class="col-6">
                                     <div class="invoice-number mb-30">
-                                        <h4 class="inv-title-1"></h4>
-                                        <!-- <h2 class="name" *ngFor="let detalle of factura">{{factura.clie_Nombre}}</h2>                                   -->
+                                        <h4 class="inv-title-1">Fecha de facturacion: </h4>
+                                        <div class="fecha">                                              
+                                            <p class="Date" *ngFor="let detalle of factura">{{detalle.fact_Fecha}}</p>                                  
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="invoice-number mb-30">
                                         <div class="invoice-number-inner">
                                             <h4 class="inv-title-1"> </h4>
-                                            <h2 class="name">  </h2>                                          
                                         </div>
                                     </div>
                                 </div>
@@ -52,6 +54,7 @@
                                         <th class="pl0 text-start">Producto</th>
                                         <th class="text-center">Cantidad</th>
                                         <th class="text-center">Precio</th>
+                                        <th class="text-center">Total por producto</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -59,6 +62,7 @@
                                           <td class="pl0">{{ detalle.producto }}</td>
                                           <td class="text-center">{{ detalle.cantidad }}</td>
                                           <td class="text-center">{{ detalle.precio }}</td>
+                                          <td class="text-center">{{ detalle.total }}</td>
                                         </tr>
                                       </tbody>
                                 </table>

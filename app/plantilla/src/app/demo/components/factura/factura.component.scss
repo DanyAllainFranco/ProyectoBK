@@ -592,7 +592,7 @@ table th{
 }
 
 .invoice-2 .invoice-center {
-    padding: 0 50px 40px;
+    padding: 0px 201px 0px 0px
 }
 
 .invoice-2 .table > :not(caption) > * > * {
@@ -2504,8 +2504,10 @@ table th{
     }
 
 }
-
-
+.Date{
+    font-weight: bold;
+    color: #000;
+}
 
 
 

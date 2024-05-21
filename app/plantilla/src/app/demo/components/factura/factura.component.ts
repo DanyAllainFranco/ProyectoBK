@@ -16,6 +16,7 @@ export class FacturaComponent implements OnInit {
   producto: string;
   precio: string;
   cantidad: string;
+  fact_Fecha:Date;
   fact_Id: number;
   factura: FacturaDetalle[];
 
@@ -39,6 +40,9 @@ export class FacturaComponent implements OnInit {
         }
         if (primerDetalle.fact_Id) {
           this.fact_Id = primerDetalle.fact_Id;
+        }
+        if (primerDetalle.fact_Fecha) {
+          this.fact_Fecha = primerDetalle.fact_Fecha;
         }
       }
     });

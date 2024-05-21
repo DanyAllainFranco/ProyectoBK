@@ -13,6 +13,7 @@ export class Factura {
 }
 
 export class FacturaDetalle {
+    fact_Fecha?:Date;
      faDe_Id?:number;
      clie_Nombre?:string;
      FaDe_Ident?:number;
@@ -24,7 +25,7 @@ export class FacturaDetalle {
      precio?:string;
      cantidad?:string; 
      categoria?:string;
-     total?:number;
+     total?:string;
  }
  
  export class FacturaDetalleEnviar {
