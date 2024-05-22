@@ -1,9 +1,10 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { RolService } from '../demo/service/rol.service';
+import { consumerPollProducersForChange } from '@angular/core/primitives/signals';
 
 @Component({
   selector: 'app-menu',
@@ -26,8 +27,12 @@ export class AppMenuComponent implements OnInit {
   menuCompleto = [
     {
       items: [
-        { label: 'Inicio', icon: 'pi pi-fw pi-chart-bar', command: () => this.loadGraficos() },
-        { label: 'Dashboard', icon: 'pi pi-fw pi-chart-bar',  routerLink: ['/app/FiltrosGraficos']},
+        { label: 'Inicio', icon: 'pi pi-fw pi-home',    routerLink: ['/app/Inicio']  },
+        { 
+          label: 'Dashboard', 
+          icon: 'pi pi-fw pi-chart-pie', 
+          routerLink: ['/app/FiltrosGraficos'] 
+        },
         {
           label: 'Reportes',
           icon: 'pi pi-file',
@@ -186,6 +191,8 @@ export class AppMenuComponent implements OnInit {
       this.servicioLogin.getPantallasAgregadas(roleId).subscribe(pantallasPermitidas => {
         const nombresPermitidos = new Set(pantallasPermitidas.map(pant => pant.pant_Descripcion.toLowerCase().trim()));
 
+        
+
         const filtrarSubitems = (subitems) => {
           return subitems.filter(opcion => {
             const nombreLowerCase = opcion.label.toLowerCase().trim();
@@ -211,24 +218,16 @@ export class AppMenuComponent implements OnInit {
           };
         });
 
-        // // Mantener siempre los elementos "Graficos" y "Reportes"
-        // const graficosYReportes = this.menuCompleto[0].items.filter(item =>
-        //   item.label.toLowerCase() === 'graficos' || item.label.toLowerCase() === 'reportes'
-        // );
-
-        // // Verificar si ya están presentes antes de agregar
-        // graficosYReportes.forEach(grItem => {
-        //   if (!seccionesFiltradas[0].items.some(item => item.label.toLowerCase() === grItem.label.toLowerCase())) {
-        //     seccionesFiltradas[0].items.unshift(grItem);
-        //   }
-        // });
-
         this.model = seccionesFiltradas;
       });
     } else {
       this.model = this.menuCompleto;
     }
   }
+
+
+
+
 
   loadGraficos() {
     this.router.navigate(['/app/Inicio'], { queryParams: { usuario: this.usuario } });

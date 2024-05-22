@@ -22,129 +22,17 @@
       </div>
       <div class="grid">
         <div class="col-4">
-          <button pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" (click)="Nuevo()"
+          <button pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" (click)="onImprimir()"
             label="Generar PDF"></button>
         </div>
       </div>
 
+      
+    <div *ngIf="pdfSrc" style="margin-top: 20px;">
+      <iframe [src]="pdfSrc" width="100%" height="500px"></iframe>
+  </div>
 
     </div>
   </div>
 </div>
 
-
-<div *ngIf="mostrar">
-  <div class="invoice-2 invoice-content" #invoiceContent>
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="invoice-inner clearfix">
-            <div class="invoice-info clearfix" id="invoice_wrapper">
-              <div class="invoice-headar">
-                <div class="grid">
-                  <div class="col-6">
-                    <div class="invoice-logo">
-                      <div class="logo">
-                        <img src="../../../../assets/layout/images/bk.png" alt="logo">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="invoice-id">
-                      <div class="info">
-                        <tr>
-                          <h1 class="inv-header-1">Reporte</h1>
-                          <h5 for="">Fecha: {{Fecha}}</h5>
-
-                          <h5 for="">Usuario: {{Usuario}}</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="invoice-top">
-                <div class="grid">
-                  <div class="col-6">
-                    <div class="invoice-number mb-30">
-                      <h4 class="inv-title-1"></h4>
-                      <!-- <h2 class="name" *ngFor="let detalle of factura">{{factura.clie_Nombre}}</h2> -->
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="invoice-number mb-30">
-                      <div class="invoice-number-inner">
-                        <h4 class="inv-title-1"> </h4>
-                        <h2 class="name"> </h2>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--Datos de prueba-->
-              <!--Aqui iran los datos del endpoint de la API-->
-              <div class="invoice-center">
-                <div class="centrado" style="position: center;align-items: center; margin-left: 80px;">
-                  <div class="table-responsive">
-                    <table class="table mb-0 table-striped invoice-table">
-                      <thead class="bg-active">
-                        <tr class="tr">
-
-                          <th class="pl0 text-start">Producto</th>
-                          <th class="text-center">Tipo</th>
-                          <th class="text-center">Cantidad</th>
-                          <th class="text-center">Subtotal</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr class="tr" *ngFor="let repo of ReporteEmpleado">
-
-                          <td>{{ repo.producto}}</td>
-                          <td>{{repo.tipo}}</td>
-                          <td>{{repo.cantidad}}</td>
-                          <td>{{repo.subtotal}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-              <div class="invoice-bottom">
-                <div class="row">
-                  <div class="col-lg-6 col-md-5 col-sm-5">
-                    <div class="payment-method mb-30">
-
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-md-7 col-sm-7">
-                    <div class="terms-conditions mb-30">
-                      <h3 class="inv-title-1">Politica</h3>
-                      <p>Si al pagar no se le otorga una factura , su compra sera gratis</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="invoice-contact clearfix">
-                <div class="grid">
-                  <div class="col-12">
-                    <div class="contact-info clearfix">
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="invoice-btn-section clearfix d-print-none">
-              <a href="javascript:window.print()" class="btn btn-lg btn-print">
-                <i class="fa fa-print"></i> Imprimir Reporte
-              </a>
-              <a id="invoice_download_btn" class="btn btn-lg btn-download btn-theme" (click)="DescargrPDF()">
-                <i class="fa fa-download"></i> Descargar Reporte
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

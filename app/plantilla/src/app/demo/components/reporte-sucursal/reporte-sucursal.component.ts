@@ -34,10 +34,10 @@ import { dA } from '@fullcalendar/core/internal-common';
 import { ServiceService } from '../../service/empleado-service.service';
 import { EmpleadoDDL } from '../../models/EmpleadoViewModel';
 import { FacturaServiceService } from '../../service/factura-service.service';
-import { ReporteEmpleados } from '../../models/FacturaViewModel';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import { ReporteEmpleados, ReporteSucursal } from '../../models/FacturaViewModel';
 import { SucursalServiceService } from '../../service/sucursal-service.service';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { ImpresionService } from '../../service/impresion.service';
 
 @Component({
   selector: 'app-reporte-sucursal',
@@ -49,7 +49,9 @@ export class ReporteSucursalComponent implements OnInit{
   fechaFin: string;
   empleados: SelectItem[] = [];
   Empl_Id: number;
-  ReporteEmpleado: ReporteEmpleados[] = [];
+  pdfSrc: SafeResourceUrl | null = null;
+  Usuario: string;
+  ReporteEmpleado: ReporteSucursal[] = [];
   mostrar: boolean = false;
   todos: boolean = false;
   @ViewChild('invoiceContent') invoiceContent: ElementRef;
@@ -58,6 +60,8 @@ export class ReporteSucursalComponent implements OnInit{
     private alimentoFiltro: ObtenerFiltros,
     private route: ActivatedRoute,
     private cookieService: CookieService,
+    private service: ImpresionService, 
+
     private facturaService: FacturaServiceService
   ) { }
 
@@ -101,7 +105,7 @@ export class ReporteSucursalComponent implements OnInit{
       console.log("BOOL: " + this.todos)
     }
     console.log("ID del empleado seleccionado:", this.Empl_Id);
-    
+    this.Nuevo();
   }
 
   cambiarFechaInicio(event: Event) {
@@ -114,27 +118,7 @@ export class ReporteSucursalComponent implements OnInit{
   }
 
   DescargrPDF() {
-    'use strict';
-    var contentWidth = document.getElementById("invoice_wrapper").offsetWidth;
-    var contentHeight = document.getElementById("invoice_wrapper").offsetHeight;
-    var topLeftMargin = 20;
-    var pdfWidth = contentWidth + (topLeftMargin * 2);
-    var pdfHeight = (pdfWidth * 1.5) + (topLeftMargin * 2);
-    var canvasImageWidth = contentWidth;
-    var canvasImageHeight = contentHeight;
-    var totalPDFPages = Math.ceil(contentHeight / pdfHeight) - 1;
-
-    html2canvas(document.getElementById("invoice_wrapper")).then(function (canvas) {
-        canvas.getContext('2d');
-        var imgData = canvas.toDataURL("image/jpeg", 1.0);
-        var pdf = new jsPDF('p', 'pt', [pdfWidth, pdfHeight]);
-        pdf.addImage(imgData, 'JPEG', topLeftMargin, topLeftMargin, canvasImageWidth, canvasImageHeight);
-        for (var i = 1; i <= totalPDFPages; i++) {
-            pdf.addPage(pdfWidth, pdfHeight);
-            pdf.addImage(imgData, 'JPEG', topLeftMargin, -(pdfHeight * i) + (topLeftMargin * 4), canvasImageWidth, canvasImageHeight);
-        }
-        pdf.save("reportesucursal.pdf");
-    });
+   
   }
 
   Nuevo(){
@@ -166,6 +150,25 @@ export class ReporteSucursalComponent implements OnInit{
     }
    
   }
+  onImprimir() {
+    const encabezado = ["Sucursal", "Producto", "Categoria", "Cantidad", "Total"];
+    const cuerpo = [];
+
+
+    
+    this.ReporteEmpleado.forEach(filtro => {
+        cuerpo.push([
+            filtro.sucursal,
+            filtro.producto,
+            filtro.tipo,
+            filtro.cantidad,
+            filtro.subtotal,
+        ]);
+    });
+
+    // PDF con datosde la tabla
+    this.pdfSrc = this.service.imprimir(encabezado, cuerpo, "         Reporte Ventas Sucursal",this.Usuario);
+}
 }
 
 

@@ -34,10 +34,10 @@ import { dA } from '@fullcalendar/core/internal-common';
 import { ServiceService } from '../../service/empleado-service.service';
 import { EmpleadoDDL } from '../../models/EmpleadoViewModel';
 import { FacturaServiceService } from '../../service/factura-service.service';
-import { ReporteEmpleados } from '../../models/FacturaViewModel';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import { ReporteCompleto, ReporteEmpleados } from '../../models/FacturaViewModel';
 import { SucursalServiceService } from '../../service/sucursal-service.service';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { ImpresionService } from '../../service/impresion.service';
 
 
 @Component({
@@ -50,14 +50,16 @@ export class ReporteCompletoComponent implements OnInit{
   fechaFin: string;
   empleados: SelectItem[] = [];
   Empl_Id: number;
-  ReporteEmpleado: ReporteEmpleados[] = [];
+  ReporteEmpleado: ReporteCompleto[] = [];
   mostrar: boolean = false;
-  @ViewChild('invoiceContent') invoiceContent: ElementRef;
+  Usuario: string;
+  pdfSrc: SafeResourceUrl | null = null;
   constructor(
     private empleadoService: SucursalServiceService,
     private alimentoFiltro: ObtenerFiltros,
     private route: ActivatedRoute,
     private cookieService: CookieService,
+    private service: ImpresionService, 
     private facturaService: FacturaServiceService
   ) { }
 
@@ -70,6 +72,8 @@ export class ReporteCompletoComponent implements OnInit{
     this.fechaInicio = fechaMesAnterior;
     this.fechaFin = fechaActualISO;
     this.EmpleDLL();
+    this.Usuario = this.cookieService.get('Usua_Usuario');
+    this.Nuevo();
   }
 
   EmpleDLL() {
@@ -87,40 +91,21 @@ export class ReporteCompletoComponent implements OnInit{
  onChangeEmpleado(event: any) {
     this.Empl_Id = event.value; // Obtener el ID del empleado seleccionado
     console.log("ID del empleado seleccionado:", this.Empl_Id);
-    
+    this.Nuevo();
   }
 
   cambiarFechaInicio(event: Event) {
     this.fechaInicio = (event.target as HTMLInputElement).value;
+    this.Nuevo();
   }
   
   cambiarFechaFin(event: Event) {
     this.fechaFin = (event.target as HTMLInputElement).value;
+    this.Nuevo();
     
   }
 
   DescargrPDF() {
-    'use strict';
-    var contentWidth = document.getElementById("invoice_wrapper").offsetWidth;
-    var contentHeight = document.getElementById("invoice_wrapper").offsetHeight;
-    var topLeftMargin = 20;
-    var pdfWidth = contentWidth + (topLeftMargin * 2);
-    var pdfHeight = (pdfWidth * 1.5) + (topLeftMargin * 2);
-    var canvasImageWidth = contentWidth;
-    var canvasImageHeight = contentHeight;
-    var totalPDFPages = Math.ceil(contentHeight / pdfHeight) - 1;
-
-    html2canvas(document.getElementById("invoice_wrapper")).then(function (canvas) {
-        canvas.getContext('2d');
-        var imgData = canvas.toDataURL("image/jpeg", 1.0);
-        var pdf = new jsPDF('p', 'pt', [pdfWidth, pdfHeight]);
-        pdf.addImage(imgData, 'JPEG', topLeftMargin, topLeftMargin, canvasImageWidth, canvasImageHeight);
-        for (var i = 1; i <= totalPDFPages; i++) {
-            pdf.addPage(pdfWidth, pdfHeight);
-            pdf.addImage(imgData, 'JPEG', topLeftMargin, -(pdfHeight * i) + (topLeftMargin * 4), canvasImageWidth, canvasImageHeight);
-        }
-        pdf.save("reportecompleto.pdf");
-    });
   }
 
   Nuevo(){
@@ -128,7 +113,7 @@ export class ReporteCompletoComponent implements OnInit{
     const FechaFinal = this.fechaFin;
     const Empl_Id = this.Empl_Id;
   
-    this.facturaService.ReporteCompleto(FechaInicio, FechaFinal).subscribe(
+    this.facturaService.ReporteCompleto(this.fechaInicio,this.fechaFin).subscribe(
       (data: any) => {
          this.ReporteEmpleado = data;
          this.mostrar = true;
@@ -138,6 +123,26 @@ export class ReporteCompletoComponent implements OnInit{
        }
    );
   }
+  onImprimir() {
+    const encabezado = ["Sucursal","Empleado", "Producto", "Categoria", "Cantidad", "Total"];
+    const cuerpo = [];
+
+
+    
+    this.ReporteEmpleado.forEach(filtro => {
+        cuerpo.push([
+          filtro.sucursal,
+            filtro.empleado,
+            filtro.producto,
+            filtro.tipo,
+            filtro.cantidad,
+            filtro.subtotal,
+        ]);
+    });
+
+    // PDF con datosde la tabla
+    this.pdfSrc = this.service.imprimir(encabezado, cuerpo, "         Reporte Ventas Completo",this.Usuario);
+}
 }
 
 

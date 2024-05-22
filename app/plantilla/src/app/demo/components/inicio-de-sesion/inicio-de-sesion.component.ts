@@ -17,7 +17,9 @@ import { CookieService } from 'ngx-cookie-service';
 })
 
 export class InicioDeSesionComponent {
-  loginForm: FormGroup;  
+  loginForm: FormGroup; 
+  submitted: boolean = false; 
+  prueba: boolean = false;
   constructor(public layoutService: LayoutService, 
     private cookieService: CookieService,
     private formBuilder: FormBuilder,
@@ -49,18 +51,16 @@ export class InicioDeSesionComponent {
              this.cookieService.set('Rol_Id', response[0].rol_Id);
              this.cookieService.set('Usua_Admin', response[0].usua_Admin);
             const valor = this.cookieService.get('Usua_Id');
-            console.log("PRUEBA: " + valor)
-            console.log("ROL: " + this.cookieService.get("Rol_Id"))
-            console.log("Admin: " + this.cookieService.get("Usua_Admin"))
-            this.router.navigate(['/app/Inicio'], { queryParams: { usuario: loginData.Usua_Usuario } });
+         
+            this.router.navigate(['/app/Inicio']);
           }
         },
         error => {
-          console.error('Error al iniciar sesión:', error);
+          this.submitted = true;
         }
       );
     } else {
-      console.log('Formulario inválido');
+      this.prueba = true;
     }
   }
   

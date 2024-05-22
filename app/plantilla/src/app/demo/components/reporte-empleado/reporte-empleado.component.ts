@@ -35,9 +35,9 @@ import { ServiceService } from '../../service/empleado-service.service';
 import { EmpleadoDDL } from '../../models/EmpleadoViewModel';
 import { FacturaServiceService } from '../../service/factura-service.service';
 import { ReporteEmpleados } from '../../models/FacturaViewModel';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import { eventTupleToStore } from '@fullcalendar/core/internal';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { ImpresionService } from '../../service/impresion.service';
 
 
 @Component({
@@ -53,10 +53,13 @@ export class ReporteEmpleadoComponent implements OnInit{
   ReporteEmpleado: ReporteEmpleados[] = [];
   mostrar: boolean = false;
   todos: boolean = false;
+  pdfSrc: SafeResourceUrl | null = null;
+  Usuario: string;
   @ViewChild('invoiceContent') invoiceContent: ElementRef;
   constructor(
     private empleadoService: ServiceService,
     private alimentoFiltro: ObtenerFiltros,
+    private service: ImpresionService, 
     private route: ActivatedRoute,
     private cookieService: CookieService,
     private facturaService: FacturaServiceService
@@ -71,6 +74,7 @@ export class ReporteEmpleadoComponent implements OnInit{
     this.fechaInicio = fechaMesAnterior;
     this.fechaFin = fechaActualISO;
     this.EmpleDLL();
+    this.Usuario = this.cookieService.get('Usua_Usuario');
   }
 
   EmpleDLL() {
@@ -104,7 +108,7 @@ export class ReporteEmpleadoComponent implements OnInit{
       console.log("BOOL: " + this.todos)
     }
     console.log("ID del empleado seleccionado:", this.Empl_Id);
-    
+    this.Nuevo();
   }
 
   cambiarFechaInicio(event: Event) {
@@ -117,27 +121,7 @@ export class ReporteEmpleadoComponent implements OnInit{
   }
 
   DescargrPDF() {
-    'use strict';
-    var contentWidth = document.getElementById("invoice_wrapper").offsetWidth;
-    var contentHeight = document.getElementById("invoice_wrapper").offsetHeight;
-    var topLeftMargin = 20;
-    var pdfWidth = contentWidth + (topLeftMargin * 2);
-    var pdfHeight = (pdfWidth * 1.5) + (topLeftMargin * 2);
-    var canvasImageWidth = contentWidth;
-    var canvasImageHeight = contentHeight;
-    var totalPDFPages = Math.ceil(contentHeight / pdfHeight) - 1;
-
-    html2canvas(document.getElementById("invoice_wrapper")).then(function (canvas) {
-        canvas.getContext('2d');
-        var imgData = canvas.toDataURL("image/jpeg", 1.0);
-        var pdf = new jsPDF('p', 'pt', [pdfWidth, pdfHeight]);
-        pdf.addImage(imgData, 'JPEG', topLeftMargin, topLeftMargin, canvasImageWidth, canvasImageHeight);
-        for (var i = 1; i <= totalPDFPages; i++) {
-            pdf.addPage(pdfWidth, pdfHeight);
-            pdf.addImage(imgData, 'JPEG', topLeftMargin, -(pdfHeight * i) + (topLeftMargin * 4), canvasImageWidth, canvasImageHeight);
-        }
-        pdf.save("reporteempledo.pdf");
-    });
+  
   }
 
   Nuevo(){
@@ -169,6 +153,26 @@ export class ReporteEmpleadoComponent implements OnInit{
     }
    
   }
+
+  onImprimir() {
+    const encabezado = ["Empleado", "Producto", "Categoria", "Cantidad", "Total"];
+    const cuerpo = [];
+
+
+    
+    this.ReporteEmpleado.forEach(filtro => {
+        cuerpo.push([
+            filtro.empleado,
+            filtro.producto,
+            filtro.tipo,
+            filtro.cantidad,
+            filtro.subtotal,
+        ]);
+    });
+
+    // PDF con datosde la tabla
+    this.pdfSrc = this.service.imprimir(encabezado, cuerpo, "         Reporte Ventas Empleados",this.Usuario);
+}
 
 
 }

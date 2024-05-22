@@ -80,7 +80,7 @@ export class RolCreateComponent implements OnInit{
   }
 
   Volver(){
-    this.router.navigate(['app/IndexRol'])
+    this.router.navigate(['app/IndexRoles'])
   }
   cargarPantallas() {
     this.rolService.getPantallas2(0).subscribe(

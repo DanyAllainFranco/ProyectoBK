@@ -357,7 +357,7 @@ onFilter(dv: DataView, event: Event) {
       if (this.form.controls['paqe_Descripcion'].invalid) {
         this.nombreInput.nativeElement.focus();
       }
-      if (this.form.controls['paqe_Precio'].invalid) {
+      else if (this.form.controls['paqe_Precio'].invalid) {
         this.precioInput.nativeElement.focus();
       }
     }

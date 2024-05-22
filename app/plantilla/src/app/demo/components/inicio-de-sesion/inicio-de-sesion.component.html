@@ -45,12 +45,19 @@
               <div class="field padding-bottom--24">
                 <label for="usuario">Usuario</label>
                 <input type="text" name="Usua_Usuario" formControlName="Usua_Usuario" >
+                <small class="ng-dirty ng-invalid" *ngIf="prueba && loginForm.controls['Usua_Usuario'].invalid"
+                style="color: red !important;">Usuario Requerido</small>
               </div>
               <div class="field padding-bottom--24">
                 <div class="grid--50-50">
                   <label for="contraseña">Contraseña</label>               
                 </div>
                 <input type="password" name="Usua_Contra" formControlName="Usua_Contra">
+                <small class="ng-dirty ng-invalid" *ngIf="prueba && loginForm.controls['Usua_Contra'].invalid"
+                style="color: red !important;">Contraseña Requerida</small>
+
+                <small class="ng-dirty ng-invalid" *ngIf="submitted"
+                style="color: red !important; font-size: 13px;">Usuario o Contraseña Incorrecto</small>
               </div>
               <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
                 <label for="checkbox">
