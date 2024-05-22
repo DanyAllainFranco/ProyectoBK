@@ -38,6 +38,7 @@ export class FacturaListadoComponent implements OnInit {
   cantidad: string;
   fact_Id: number;
   Detalles: boolean = false;
+  usua_Usuario: string;
   // municipios: any[] = [];
   // formSucursal: FormGroup;
   // selectedSucursal: any;
@@ -63,6 +64,7 @@ export class FacturaListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFactura();
+    console.log(this.getFactura);
   }
 
   getFactura() {

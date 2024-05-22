@@ -22,7 +22,7 @@ namespace Proyecto_BK.Common.Models
         public string Producto { get; set; }
         public string Precio { get; set; }
         public string Cantidad { get; set; }
-        public string Categoria { get; set; } 
+        public string Categoria { get; set; }
         public string Total { get; set; }
         [NotMapped]
         public string Alim_Descripcion { get; set; }
@@ -58,7 +58,9 @@ namespace Proyecto_BK.Common.Models
 
 
         [NotMapped]
-        public string CantidadVentas { get; set; }
+        public string CantidadVentas { get; set; } 
+
+        public string Usua_Usuario { get; set; }
 
     }
 }

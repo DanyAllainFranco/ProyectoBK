@@ -25,7 +25,7 @@
                                     placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
                         </th> 
-                        
+                     
                         <th style="text-align: center;">
                             Acciones     
                          </th> 
@@ -34,7 +34,8 @@
                 <ng-template pTemplate="body" let-fact>
                     <tr>
                         <td>{{fact.fact_Id}}</td>
-                        <td>{{fact.fact_Fecha | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{fact.fact_Fecha | date: 'dd/MM/yyyy' }}</td>    
+   
                         <td style="display: flex; justify-content: space-around; align-items: center;">
                             <button pButton pRipple type="button" label="Factura" class="p-button-raised p-button-primary" (click)="detalles(fact.fact_Id)"></button>
                         </td>

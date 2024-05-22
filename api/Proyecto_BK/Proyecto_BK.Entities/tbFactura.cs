@@ -59,6 +59,9 @@ namespace Proyecto_BK.Entities
 
         [NotMapped]
         public string CantidadVentas { get; set; }
+        
+        [NotMapped]
+        public string Usua_Usuario { get; set; }
         public virtual tbEmpleados Empl { get; set; }
         public virtual tbUsuarios Fact_Usua_CreacionNavigation { get; set; }
         public virtual tbSucursales Sucu { get; set; }

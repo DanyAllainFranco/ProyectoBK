@@ -70,10 +70,8 @@ export class FacturaComponent implements OnInit {
       if (i > 0) {
         position = -(pdfHeight * i) + (topLeftMargin * 4);
         pdf.addPage([pdfWidth, pdfHeight]);
-
-        // Agregar encabezado en cada página nueva
         pdf.setFontSize(12);
-        pdf.text("Encabezado de la página " + (i + 1), 10, 10); // Personaliza tu encabezado aquí
+        pdf.text("" + (i + 1), 10, 10); 
       }
       pdf.addImage(imgData, 'JPEG', topLeftMargin, position, canvasImageWidth, canvasImageHeight);
     }

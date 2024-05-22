@@ -10,6 +10,7 @@ export class Factura {
      Clie_Id?:number;
      Clie_Nombre?:String;
      Clie_Identidad?:string;
+     usua_Usuario?: string;
 }
 
 export class ReporteEmpleados{
