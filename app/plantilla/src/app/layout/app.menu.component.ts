@@ -5,6 +5,8 @@ import { Router, RouterLink } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { RolService } from '../demo/service/rol.service';
 import { consumerPollProducersForChange } from '@angular/core/primitives/signals';
+import { Subscription } from 'rxjs';
+import { aD } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-menu',
@@ -16,7 +18,7 @@ export class AppMenuComponent implements OnInit {
   usuario: string;
   permisosPermitidos: Set<string> = new Set();
   prueba: boolean = false;
-
+  private subscription: Subscription = new Subscription();
   constructor(
     private servicioLogin: RolService,
     private cookieService: CookieService,
@@ -24,14 +26,92 @@ export class AppMenuComponent implements OnInit {
     private router: Router
   ) { }
 
-  menuCompleto = [
+  ngOnInit() {
+    const admin = this.cookieService.get('Usua_Admin').toString();
+
+   
+    const storedPermissions = localStorage.getItem('allowedScreens');
+    console.log("PERMISOS: " + storedPermissions)
+    if (storedPermissions) {
+        this.permisosPermitidos = new Set(JSON.parse(storedPermissions));
+    }
+    console.log('ADMIN: '+ admin )
+    if (admin !== 'true') {
+        const roleId = Number.parseInt(this.cookieService.get('Rol_Id'));
+      console.log('ENTROO: ' + roleId)
+        this.subscription.add(
+            this.servicioLogin.getPantallasAgregadas(roleId).subscribe(pantallasPermitidas => {
+                const nombresPermitidos = new Set(
+                    pantallasPermitidas
+                        .map(pant => pant.pant_Descripcion ? pant.pant_Descripcion.toLowerCase().replace(/\s+/g, '') : '')
+                        .filter(pantalla => pantalla !== '')
+                );
+                console.log("PANTLLAA: " + nombresPermitidos)
+                const filtrarItems = (items) => {
+                    return items
+                        .map(opcion => {
+                            if (opcion.items) {
+                                const subItemsFiltrados = filtrarItems(opcion.items);
+                                if (subItemsFiltrados.length > 0) {
+                                    return { ...opcion, items: subItemsFiltrados };
+                                }
+                            } else if (nombresPermitidos.has(opcion.label.toLowerCase().replace(/\s+/g, ''))) {
+                              console.log("DFSD: " + nombresPermitidos)
+                                return opcion;
+                            }
+                            return null;
+                        })
+                        .filter(opcion => opcion !== null);
+                };
+
+                this.model = this.Menucompleto.map(section => {
+                    const itemsFiltrados = filtrarItems(section.items);
+                    if (itemsFiltrados.length > 0) {
+                        return { ...section, items: itemsFiltrados };
+                    }
+                    return null;
+                }).filter(section => section !== null);
+                this.addInicioMenu();
+            })
+        );
+    } else {
+      this.addInicioMenu();
+        this.model = this.Menucompleto;
+        
+    }
+}
+
+
+
+ngOnDestroy() {
+    this.subscription.unsubscribe();
+}
+
+addInicioMenu() {
+  const inicioMenu = {
+      label: 'Inicio',
+      icon: 'pi pi-fw pi-home',
+      routerLink: ['/app/Inicio']
+  };
+
+  let inicioSection = this.model.find(section => section.items.some(item => item.label === 'Inicio'));
+  if (!inicioSection) {
+      if (this.model.length > 0) {
+          this.model[0].items.unshift(inicioMenu);
+      } else {
+          this.model.push({ items: [inicioMenu] });
+      }
+  }
+}
+
+Menucompleto = [
     {
       items: [
         { label: 'Inicio', icon: 'pi pi-fw pi-home',    routerLink: ['/app/Inicio']  },
         { 
           label: 'Dashboard', 
           icon: 'pi pi-fw pi-chart-pie', 
-          routerLink: ['/app/FiltrosGraficos'] 
+          routerLink: ['/app/dashboard'] 
         },
         {
           label: 'Reportes',
@@ -44,28 +124,28 @@ export class AppMenuComponent implements OnInit {
             // },
             {
               label: 'Reporte Empleados',
-              icon: 'pi pi-palette',
-              routerLink: ['/app/ReporteEmpleado']
+              icon: 'pi pi-file',
+              routerLink: ['/app/reporteempleados']
             },
             {
               label: 'Reporte Productos',
-              icon: 'pi pi-palette',
-              routerLink: ['/app/ReporteProducto']
+              icon: 'pi pi-file',
+              routerLink: ['/app/reporteproductos']
             },
             {
               label: 'Reporte Sucursal',
-              icon: 'pi pi-palette',
-              routerLink: ['/app/ReporteSucursal']
+              icon: 'pi pi-file',
+              routerLink: ['/app/reportesucursal']
             },
             {
               label: 'Reporte Completo',
-              icon: 'pi pi-palette',
-              routerLink: ['/app/ReporteCompleto']
+              icon: 'pi pi-file',
+              routerLink: ['/app/reportecompleto']
             },
             {
               label: 'Reporte Categoria',
-              icon: 'pi pi-palette',
-              routerLink: ['/app/ReporteCategoria']
+              icon: 'pi pi-file',
+              routerLink: ['/app/reportecategoria']
             },
           ]
         },
@@ -75,18 +155,18 @@ export class AppMenuComponent implements OnInit {
           items: [
             {
               label: 'Cargos',
-              icon: 'pi pi pi-fw pi-key',
-              routerLink: ['/app/IndexCargos']
+              icon: 'pi pi-key',
+              routerLink: ['/app/cargos']
             },
             {
               label: 'Usuarios',
-              icon: 'pi pi-user-plus',
-              routerLink: ['/app/IndexUsuarios']
+              icon: 'pi pi-key',
+              routerLink: ['/app/usuarios']
             },
             {
               label: 'Roles',
-              icon: 'pi pi-sitemap',
-              routerLink: ['/app/IndexRoles']
+              icon: 'pi pi-key',
+              routerLink: ['/app/roles']
             },
           ]
         },
@@ -96,28 +176,28 @@ export class AppMenuComponent implements OnInit {
           items: [
             {
               label: 'Departamentos',
-              icon: 'pi pi-map-marker',
-              routerLink: ['/app/Index']
+              icon: 'pi pi-fw pi-globe',
+              routerLink: ['/app/departamentos']
             },
             {
               label: 'Empleados',
-              icon: 'pi pi-users',
-              routerLink: ['/app/IndexEmpleado']
+              icon: 'pi pi-fw pi-globe',
+              routerLink: ['/app/empleados']
             },
             {
               label: 'Municipios',
-              icon: 'pi pi-map-marker',
-              routerLink: ['/app/IndexMunicipio']
+              icon: 'pi pi-fw pi-globe',
+              routerLink: ['/app/municipios']
             },
             {
               label: 'Estados Civiles',
-              icon: 'pi pi-fw pi-heart',
-              routerLink: ['/app/IndexEstadoCivil']
+              icon: 'pi pi-fw pi-globe',
+              routerLink: ['/app/estadosciviles']
             },
             {
               label: 'Clientes',
-              icon: 'pi pi-fw pi-users',
-              routerLink: ['/app/IndexClientes']
+              icon: 'pi pi-fw pi-globe',
+              routerLink: ['/app/clientes']
             },
           ]
         },
@@ -126,44 +206,44 @@ export class AppMenuComponent implements OnInit {
           icon: 'pi pi-shopping-bag',
           items: [
             {
-              label: 'Combo',
-              icon: 'pi pi-user',
-              routerLink: ['/app/IndexComboPersonal']
+              label: 'Combos',
+              icon: 'pi pi-shopping-bag',
+              routerLink: ['/app/combo']
             },
             {
               label: 'Alimentos',
-              icon: 'pi pi-plus-circle',
-              routerLink: ['/app/IndexAlimentos']
+              icon: 'pi pi-shopping-bag',
+              routerLink: ['/app/alimentos']
             },
             {
               label: 'Complementos',
-              icon: 'pi pi-plus-circle',
-              routerLink: ['/app/IndexComplemento']
+              icon: 'pi pi-shopping-bag',
+              routerLink: ['/app/complementos']
             },
             {
               label: 'Postres',
-              icon: 'pi pi-plus-circle',
-              routerLink: ['/app/IndexPostre']
+              icon: 'pi pi-shopping-bag',
+              routerLink: ['/app/postres']
             },
             {
               label: 'Bebidas',
-              icon: 'pi pi-plus-circle',
-              routerLink: ['/app/IndexBebidas']
+              icon: 'pi pi-shopping-bag',
+              routerLink: ['/app/bebidas']
             },
             {
               label: 'Promociones',
-              icon: 'pi pi-plus-circle',
-              routerLink: ['/app/IndexPromocion']
+              icon: 'pi pi-shopping-bag',
+              routerLink: ['/app/promociones']
             },
             {
               label: 'Paquetes',
-              icon: 'pi pi-users',
-              routerLink: ['/app/IndexPaquetes']
+              icon: 'pi pi-shopping-bag',
+              routerLink: ['/app/paquetes']
             },
             {
               label: 'Sucursales',
-              icon: 'pi pi-building',
-              routerLink: ['/app/IndexSucursales']
+              icon: 'pi pi-shopping-bag',
+              routerLink: ['/app/sucursales']
             }
           ]
         },
@@ -174,7 +254,7 @@ export class AppMenuComponent implements OnInit {
             {
               label: 'Facturas',
               icon: 'pi pi pi-fw pi-key',
-              routerLink: ['/app/IndexFactura/']
+              routerLink: ['/app/facturas']
             },
           ]
         },
@@ -182,48 +262,48 @@ export class AppMenuComponent implements OnInit {
     },
   ];
 
-  ngOnInit() {
-    this.usuario = localStorage.getItem('usuario');
-    const admin = this.cookieService.get('Usua_Admin').toString();
-    if (admin != "true") {
-      const roleId = Number.parseInt(this.cookieService.get('Rol_Id'));
+  // ngOnInit() {
+  //   this.usuario = localStorage.getItem('usuario');
+  //   const admin = this.cookieService.get('Usua_Admin').toString();
+  //   if (admin != "true") {
+  //     const roleId = Number.parseInt(this.cookieService.get('Rol_Id'));
 
-      this.servicioLogin.getPantallasAgregadas(roleId).subscribe(pantallasPermitidas => {
-        const nombresPermitidos = new Set(pantallasPermitidas.map(pant => pant.pant_Descripcion.toLowerCase().trim()));
+  //     this.servicioLogin.getPantallasAgregadas(roleId).subscribe(pantallasPermitidas => {
+  //       const nombresPermitidos = new Set(pantallasPermitidas.map(pant => pant.pant_Descripcion.toLowerCase().trim()));
 
         
 
-        const filtrarSubitems = (subitems) => {
-          return subitems.filter(opcion => {
-            const nombreLowerCase = opcion.label.toLowerCase().trim();
-            return nombresPermitidos.has(nombreLowerCase);
-          });
-        };
+  //       const filtrarSubitems = (subitems) => {
+  //         return subitems.filter(opcion => {
+  //           const nombreLowerCase = opcion.label.toLowerCase().trim();
+  //           return nombresPermitidos.has(nombreLowerCase);
+  //         });
+  //       };
 
-        const seccionesFiltradas = this.menuCompleto.map(section => {
-          const itemsFiltrados = section.items.map(subSection => {
-            if (subSection.items) {
-              const subItemsFiltrados = filtrarSubitems(subSection.items);
-              return {
-                ...subSection,
-                items: subItemsFiltrados
-              };
-            }
-            return subSection;
-          }).filter(subSection => subSection.items ? subSection.items.length > 0 : true);
+  //       const seccionesFiltradas = this.menuCompleto.map(section => {
+  //         const itemsFiltrados = section.items.map(subSection => {
+  //           if (subSection.items) {
+  //             const subItemsFiltrados = filtrarSubitems(subSection.items);
+  //             return {
+  //               ...subSection,
+  //               items: subItemsFiltrados
+  //             };
+  //           }
+  //           return subSection;
+  //         }).filter(subSection => subSection.items ? subSection.items.length > 0 : true);
 
-          return {
-            ...section,
-            items: itemsFiltrados
-          };
-        });
+  //         return {
+  //           ...section,
+  //           items: itemsFiltrados
+  //         };
+  //       });
 
-        this.model = seccionesFiltradas;
-      });
-    } else {
-      this.model = this.menuCompleto;
-    }
-  }
+  //       this.model = seccionesFiltradas;
+  //     });
+  //   } else {
+  //     this.model = this.menuCompleto;
+  //   }
+  // }
 
 
 

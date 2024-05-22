@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Departamento, LlenarDepartamento} from '../models/DepartamentosViewModel'
+import {Departamento, Departamento2, LlenarDepartamento} from '../models/DepartamentosViewModel'
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { BASE_URL } from './UrlParaAPI';
@@ -32,7 +32,7 @@ export class DepartamentoServiceService {
   }
 
   UrlUpdate = 'https://localhost:44332/API/Departamento/Update';
-  actualizar(dept_Codigo:number,modelo:Departamento):Observable<Departamento>{
+  actualizar(dept_Codigo:number,modelo:Departamento2):Observable<Departamento>{
     return this.http.put<Departamento>(this.UrlUpdate,modelo);
   }
   

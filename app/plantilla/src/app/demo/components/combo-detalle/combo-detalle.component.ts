@@ -171,7 +171,7 @@ obtenerRol(id: number) {
   );
 }
 Volver(){
-  this.router.navigate(['app/IndexComboPersonal'])
+  this.router.navigate(['app/combo'])
 }
 }
 

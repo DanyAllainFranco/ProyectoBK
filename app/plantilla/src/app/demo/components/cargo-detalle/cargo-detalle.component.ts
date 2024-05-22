@@ -116,7 +116,7 @@ export class CargoDetalleComponent implements OnInit{
   }
   
   Volver(){
-    this.router.navigate(['app/IndexCargos'])
+    this.router.navigate(['app/cargos'])
   }
 
 }

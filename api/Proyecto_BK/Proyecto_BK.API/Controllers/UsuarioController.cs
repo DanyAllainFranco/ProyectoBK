@@ -71,7 +71,7 @@ namespace Proyecto_BK.API.Controllers
                 Usua_Admin = json.Usua_Admin,
                 Empl_Id = json.Empl_Id,
                 Rol_Id = json.Rol_Id,
-                Usua_Usua_Creacion = json.Usua_Usua_Creacion,
+                Usua_Usua_Creacion = 1,
                 Usua_Fecha_Creacion = DateTime.Now,
             };
             var response = _accesoServices.CrearUsuario(modelo);

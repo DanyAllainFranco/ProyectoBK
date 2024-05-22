@@ -364,7 +364,7 @@ onFilter(dv: DataView, event: Event) {
   }
 
   Volver(){
-    this.router.navigate(['app/IndexPaquetes'])
+    this.router.navigate(['app/paquetes'])
   }
 
 }

@@ -16,7 +16,13 @@ export class dropEstadoCivil{
 export class Estado2{
     esta_Id: number;
     esta_Descripcion: string;
-    Usua_Id: number;
+    Esta_Usua_Creacion: number;
+}
+
+export class Estado3{
+    esta_Id: number;
+    esta_Descripcion: string;
+    Esta_Usua_Modifica: number;
 }
 
 export class Fill {

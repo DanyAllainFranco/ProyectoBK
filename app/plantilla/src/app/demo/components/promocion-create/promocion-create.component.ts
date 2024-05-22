@@ -309,7 +309,7 @@ guardar() {
           );
                   
                   this.rolService.successMessage = '¡Promocion registrada correctamente!';
-              this.router.navigate(['app/IndexPromocion']);
+              this.router.navigate(['app/promociones']);
               
               } else {
                   console.error('Error al crear el rol:', respuesta.message);
@@ -338,7 +338,7 @@ onSortChange(event: any) {
 
 
 Volver(){
-  this.router.navigate(['app/IndexPromocion'])
+  this.router.navigate(['app/promociones'])
 }
 }
 

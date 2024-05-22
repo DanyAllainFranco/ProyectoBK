@@ -118,7 +118,7 @@ export class DepartamentoDetalleComponent implements OnInit{
     );
   }
   Volver(){
-    this.router.navigate(['app/Index'])
+    this.router.navigate(['app/departamentos'])
   }
 }
 

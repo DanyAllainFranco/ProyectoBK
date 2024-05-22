@@ -117,7 +117,7 @@ obtenerRol(id: number) {
   );
 }
 Volver(){
-  this.router.navigate(['app/IndexClientes'])
+  this.router.navigate(['app/clientes'])
 }
 }
 

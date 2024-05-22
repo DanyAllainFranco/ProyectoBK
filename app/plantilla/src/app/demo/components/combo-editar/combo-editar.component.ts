@@ -199,7 +199,7 @@ export class ComboEditarComponent implements OnInit{
     );
   }
   Volver(){
-    this.router.navigate(['app/IndexComboPersonal'])
+    this.router.navigate(['app/combo'])
   }
   guardar() {    
     if (this.form.valid) {
@@ -227,7 +227,7 @@ export class ComboEditarComponent implements OnInit{
         (respuesta: Respuesta) => {
           if (respuesta.success) {
             this.rolService.successMessage = '¡Combo actualizado correctamente!';
-            this.router.navigate(['app/IndexComboPersonal']);
+            this.router.navigate(['app/combo']);
           } else {
             this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});
             console.error('Error al crear el combo:', respuesta.message);

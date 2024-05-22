@@ -142,7 +142,7 @@ cargarEstados(){
 
 
 Volver(){
-  this.router.navigate(['app/IndexComboPersonal'])
+  this.router.navigate(['app/clientes'])
 }
 
 
@@ -156,8 +156,8 @@ guardar() {
     const Esta_Id = this.form.value.Esta_Id;
     const Muni_Codigo = this.form.value.Muni_Codigo;
 
-    const NuevoCombo: ClientesEnviar = {
-      Clie_Id: 0,
+    const NuevoCombo: any = {
+      
       Clie_Identidad: Clie_Identidad,
       Clie_Nombre: Clie_Nombre,
       Clie_Apellido: Clie_Apellido,
@@ -165,15 +165,14 @@ guardar() {
       Clie_Correo: Clie_Correo,
       Esta_Id: Esta_Id,
       Muni_Codigo: Muni_Codigo,
-      Clie_Usua_Creacion: this.Usua_Id,
-    };
+      };
 
     this.clienteService.agregar(NuevoCombo).subscribe(
       (respuesta: Respuesta) => {
         if (respuesta.success) {
           // this.messageService.add({severity:'success', summary:'Éxito', detail:'!Combo registrado correctamente!'});
           this.clienteService.successMessage = '¡Cliente registrado correctamente!';
-          this.router.navigate(['app/IndexClientes']);
+          this.router.navigate(['app/clientes']);
         } else {
           this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});
           console.error('Error al crear el combo:', respuesta.message);

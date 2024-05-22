@@ -80,7 +80,7 @@ export class RolCreateComponent implements OnInit{
   }
 
   Volver(){
-    this.router.navigate(['app/IndexRoles'])
+    this.router.navigate(['app/roles'])
   }
   cargarPantallas() {
     this.rolService.getPantallas2(0).subscribe(
@@ -126,7 +126,7 @@ export class RolCreateComponent implements OnInit{
                     );
                     
                     this.rolService.successMessage = '¡Rol registrado correctamente!';
-                this.router.navigate(['app/IndexRoles']);
+                this.router.navigate(['app/roles']);
                     // Resto de la lógica de éxito (como mostrar mensajes, redireccionar, etc.)
                 } else {
                     console.error('Error al crear el rol:', respuesta.message);

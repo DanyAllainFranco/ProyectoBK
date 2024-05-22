@@ -85,6 +85,9 @@ export class RolEditarComponent implements OnInit {
 
   }
  
+  Volver(){
+    this.router.navigate(['app/roles'])
+  }
 
 
   cargarPantallas() {
@@ -137,7 +140,7 @@ export class RolEditarComponent implements OnInit {
                          console.error('Error al agregar las pantallas al rol:', respuestaPantallas.message);
                        }
                        this.rolService.successMessage = '¡Rol actualizado correctamente!';
-                       this.router.navigate(['app/IndexRoles']);
+                       this.router.navigate(['app/roles']);
                    },
                    error => {
                        console.error('Error en la solicitud HTTP:', error);

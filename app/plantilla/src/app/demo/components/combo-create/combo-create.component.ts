@@ -181,7 +181,7 @@
     );
   }
   Volver(){
-    this.router.navigate(['app/IndexComboPersonal'])
+    this.router.navigate(['app/combo'])
   }
 
 
@@ -213,7 +213,7 @@
           if (respuesta.success) {
             // this.messageService.add({severity:'success', summary:'Éxito', detail:'!Combo registrado correctamente!'});
             this.rolService.successMessage = '¡Combo registrado correctamente!';
-            this.router.navigate(['app/IndexComboPersonal']);
+            this.router.navigate(['app/combo']);
           } else {
             this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});
             console.error('Error al crear el combo:', respuesta.message);

@@ -180,7 +180,7 @@ export class ClienteEditarComponent implements OnInit{
   }
 
   Volver(){
-    this.router.navigate(['app/IndexClientes'])
+    this.router.navigate(['app/clientes'])
   }
 
    guardar() {    
@@ -210,7 +210,7 @@ export class ClienteEditarComponent implements OnInit{
          (respuesta: Respuesta) => {
            if (respuesta.success) {
              this.rolService.successMessage = '¡Cliente actualizado correctamente!';
-             this.router.navigate(['app/IndexClientes']);
+             this.router.navigate(['app/clientes']);
            } else {
              this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});
              console.error('Error al crear el combo:', respuesta.message);

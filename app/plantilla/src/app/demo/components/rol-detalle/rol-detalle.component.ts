@@ -123,7 +123,7 @@ ObtenerPantallas(){
   );
 }
 Volver(){
-  this.router.navigate(['app/IndexRoles'])
+  this.router.navigate(['app/roles'])
 }
 }
 

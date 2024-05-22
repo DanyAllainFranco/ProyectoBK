@@ -64,8 +64,7 @@ submitted = false;
           Usua_Contra: ['', Validators.required],
           Empl_Id: ['', Validators.required],
           Rol_Id: ['', Validators.required],
-          Usua_Admin: [false],
-          Usua_Id: [this.Usua_Id]
+          Usua_Admin: [false]
         });
         }
   ngOnInit(): void {
@@ -100,7 +99,7 @@ submitted = false;
 
 
   Volver(){
-    this.router.navigate(['app/IndexUsuarios'])
+    this.router.navigate(['app/usuarios'])
   }
 
   guardar() {    
@@ -111,7 +110,7 @@ submitted = false;
           if (respuesta.success) {
             // this.messageService.add({severity:'success', summary:'Éxito', detail:'!Combo registrado correctamente!'});
             this.rolService.successMessage = '¡Usuario registrado correctamente!';
-            this.router.navigate(['app/IndexUsuarios']);
+            this.router.navigate(['app/usuarios']);
           } else {
             this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});
             console.error('Error al crear el combo:', respuesta.message);

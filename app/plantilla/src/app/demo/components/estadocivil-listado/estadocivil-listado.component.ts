@@ -3,7 +3,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Product } from 'src/app/demo/api/product';
 import {Router} from '@angular/router';
 import { Table } from 'primeng/table';
-import { Estado, Estado2, EstadoCivilEnviar,Fill } from 'src/app/demo/models/EstadoCivilViewModel';
+import { Estado, Estado2, Estado3, EstadoCivilEnviar,Fill } from 'src/app/demo/models/EstadoCivilViewModel';
 import { EstadoCivilServiceService } from '../../service/estadocivil-service.service';
 import { FormGroup, FormControl,  Validators, FormBuilder  } from '@angular/forms';
 import { MensajeViewModel } from 'src/app/demo/models/MensajeVIewModel';
@@ -151,7 +151,7 @@ export class EstadocivilListadoComponent implements OnInit {
         const modelo: Estado2 = {
             esta_Id: 0,
             esta_Descripcion: this.formCargo.value.esta_Descripcion,
-              Usua_Id: this.Usua_Id
+            Esta_Usua_Creacion: this.Usua_Id
         }
         this.service.agregar(modelo).subscribe({
           next: (data) => {  
@@ -168,10 +168,10 @@ export class EstadocivilListadoComponent implements OnInit {
     
       actualizarCargo() {
         const idCargo = this.selectedCargo;
-        const modelo: Estado2 = {
+        const modelo: Estado3 = {
         esta_Id: idCargo,
         esta_Descripcion: this.formCargo.value.esta_Descripcion,
-          Usua_Id: this.Usua_Id
+          Esta_Usua_Modifica: this.Usua_Id
         }
         this.service.actualizar(modelo).subscribe({
           next: (data) => {

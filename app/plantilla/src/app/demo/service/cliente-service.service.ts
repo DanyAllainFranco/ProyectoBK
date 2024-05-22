@@ -22,9 +22,9 @@ export class ClientesServiceService {
   }
 
 
-  agregar(modelo: ClientesEnviar): Observable<Respuesta> {
+  agregar(modelo: any): Observable<any> {
     console.log(modelo)
-    return this.http.post<Respuesta>(`${BASE_URL}API/Cliente/Insert`, modelo);
+    return this.http.post<any>(`${BASE_URL}API/Cliente/Insert`, modelo);
   }
   obtenerClientePorId(idCombo: number): Observable<LlenarClientes> {
     return this.http.get<LlenarClientes>(`${BASE_URL}API/Cliente/Find/${idCombo}`);

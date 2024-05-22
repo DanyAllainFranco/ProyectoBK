@@ -196,7 +196,7 @@ Imagen: string;
   }
 
   Volver(){
-    this.router.navigate(['app/IndexPaquetes'])
+    this.router.navigate(['app/paquetes'])
   }
 }
 

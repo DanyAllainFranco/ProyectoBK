@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule,Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Departamento } from '../../models/DepartamentosViewModel';
+import { Departamento, Departamento2 } from '../../models/DepartamentosViewModel';
 import { DepartamentoServiceService } from '../../service/departamento-service.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -158,8 +158,7 @@ export class DepartamentosListadoComponent implements OnInit {
     const modelo: Departamento = {
       dept_Codigo: this.formDepartamento.value.codigo,
       dept_Descripcion: this.formDepartamento.value.departamento,
-      Usua_Id: 
-      this.Usua_Id
+      Dept_Usua_Creacion: this.Usua_Id
     }
     this._departamentoServicio.agregar(modelo).subscribe({
       next: (data) => {  
@@ -176,10 +175,10 @@ export class DepartamentosListadoComponent implements OnInit {
 
   actualizarDepartamento() {
     const idDepartamento = this.selectedDepartamento.dept_Codigo;
-    const modelo: Departamento = {
+    const modelo: Departamento2 = {
       dept_Codigo: this.formDepartamento.value.codigo,
       dept_Descripcion: this.formDepartamento.value.departamento,
-      Usua_Id: this.Usua_Id
+      Dept_Usua_Modifica: this.Usua_Id
     }
     this._departamentoServicio.actualizar(idDepartamento, modelo).subscribe({
       next: (data) => {

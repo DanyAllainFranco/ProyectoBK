@@ -118,7 +118,7 @@ export class SucursalDetalleComponent implements OnInit{
   }
   
   Volver(){
-    this.router.navigate(['app/IndexSucursales'])
+    this.router.navigate(['app/sucursales'])
   }
 
 }

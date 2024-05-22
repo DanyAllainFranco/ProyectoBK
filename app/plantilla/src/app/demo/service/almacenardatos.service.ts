@@ -5,6 +5,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AlmacenardatosService {
+  loadPermissions() {
+    throw new Error('Method not implemented.');
+  }
   private userIdSource = new Subject<number>();
   userId$ = this.userIdSource.asObservable();
 

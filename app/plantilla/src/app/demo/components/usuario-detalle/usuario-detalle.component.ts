@@ -122,7 +122,7 @@ export class UsuarioDetalleComponent implements OnInit{
   }
   
   Volver(){
-    this.router.navigate(['app/IndexUsuarios'])
+    this.router.navigate(['app/usuarios'])
   }
 
 }

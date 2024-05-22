@@ -224,7 +224,7 @@ Imagen: string;
   }
 
   Volver(){
-    this.router.navigate(['app/IndexPromocion'])
+    this.router.navigate(['app/promociones'])
   }
 }
 

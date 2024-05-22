@@ -467,7 +467,7 @@ prueba: string = "";
                       );
                      
                           this.rolService.successMessage = '¡Promocion actualizada correctamente!';
-                      this.router.navigate(['app/IndexPromocion']);
+                      this.router.navigate(['app/promociones']);
                       
                     
                   },
@@ -481,7 +481,7 @@ prueba: string = "";
         }
 
   Volver(){
-    this.router.navigate(['app/IndexPromocion'])
+    this.router.navigate(['app/promociones'])
   }
 
   onSortChange(event: any) {

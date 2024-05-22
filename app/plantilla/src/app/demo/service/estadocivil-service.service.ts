@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Estado, Estado2, Fill} from '../models/EstadoCivilViewModel'
+import {Estado, Estado2, Estado3, Fill} from '../models/EstadoCivilViewModel'
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
@@ -28,7 +28,7 @@ export class EstadoCivilServiceService {
     return this.http.delete<void>(BASE_URL + 'API/EstadoCivil/Delete/' + Dept_Codigo	);
   }
 
-  actualizar(modelo:Estado2):Observable<Estado2>{
+  actualizar(modelo:Estado3):Observable<Estado2>{
     return this.http.put<Estado2>(BASE_URL + 'API/EstadoCivil/Update',modelo);
   }
 
