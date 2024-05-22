@@ -10,8 +10,9 @@ namespace Proyecto_BK.Common.Models
     {
         public DateTime? Fact_Fecha { get; set; }
         public decimal? Fact_Total { get; set; }
-        public string Clie_Identidad { get; set; }
-        public string Clie_Nombre { get; set; }
+
+        //public string Clie_Identidad { get; set; }
+        //public string Clie_Nombre { get; set; }
         public int? Fact_Id { get; set; }
         public int? FaDe_Cantidad { get; set; }
         public int? FaDe_Subtotal { get; set; }

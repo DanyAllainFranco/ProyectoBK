@@ -17,14 +17,7 @@
                                 <p-columnFilter type="text" field="fact_Descripcion" display="menu"
                                     placeholder="Buscar por Alimento"></p-columnFilter>
                             </div>
-                        </th>    
-                        <th>
-                            <div class="flex justify-content-between align-items-center">
-                                Factura a nombre de
-                                <p-columnFilter type="text" field="fact_Precio" display="menu"
-                                placeholder="Buscar por Alimento"></p-columnFilter>
-                            </div>
-                        </th>     
+                        </th>       
                         <th>
                             <div class="flex justify-content-between align-items-center">
                               Fecha de facturacion
@@ -41,7 +34,6 @@
                 <ng-template pTemplate="body" let-fact>
                     <tr>
                         <td>{{fact.fact_Id}}</td>
-                        <td>{{fact.clie_Nombre}}</td>
                         <td>{{fact.fact_Fecha | date: 'dd/MM/yyyy' }}</td>
                         <td style="display: flex; justify-content: space-around; align-items: center;">
                             <button pButton pRipple type="button" label="Factura" class="p-button-raised p-button-primary" (click)="detalles(fact.fact_Id)"></button>

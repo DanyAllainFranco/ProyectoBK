@@ -71,8 +71,6 @@ namespace Proyecto_BK.DataAccess.Repository
                 parametro.Add("@Fact_Total", item.Fact_Total);
                 parametro.Add("@Fact_Usua_Creacion", 1);
                 parametro.Add("@Fact_Fecha_Creacion", DateTime.Now);
-                parametro.Add("@Clie_Identidad", item.Clie_Identidad);
-                parametro.Add("@Clie_Nombre", item.Clie_Nombre);
                 parametro.Add("@Fact_Id", dbType:DbType.Int32,direction:ParameterDirection.Output);
                 var result = db.Execute(ScriptsBaseDeDatos.FacturaEncabezado_Insertar,
                     parametro,

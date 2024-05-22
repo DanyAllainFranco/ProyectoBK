@@ -61,9 +61,7 @@ namespace Proyecto_BK.API.Controllers
                 var modeloFactura = new FacturaViewModel()
                 {
                     Fact_Id = item.Fact_Id,
-                    Fact_Total = item.Fact_Total,
-                    Clie_Identidad = item.Clie_Identidad,
-                    Clie_Nombre = item.Clie_Nombre
+                    Fact_Total = item.Fact_Total
 
                 };
                 var IdFactura = _restauranteServices.CrearFactura(modeloFactura, out int id);
