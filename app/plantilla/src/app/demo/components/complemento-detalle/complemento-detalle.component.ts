@@ -97,7 +97,7 @@ export class ComplementoDetalleComponent implements OnInit{
         this.EditarCombo = data;
         console.log("DSFD: " + this.EditarCombo.comp_Descripcion)
         this.Imagen = this.EditarCombo.comp_Imagen;
-        this.selectedImageURL = "https://localhost:44332/uploads/" + this.Imagen;
+        this.selectedImageURL = "http://sistemarestaurante.somee.com/uploads/" + this.Imagen;
   
          this.form.patchValue({
           comp_Descripcion: this.EditarCombo.comp_Descripcion,

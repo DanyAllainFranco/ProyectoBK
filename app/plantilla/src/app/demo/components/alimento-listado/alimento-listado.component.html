@@ -84,6 +84,13 @@
                     <tr>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
+                                Codigo
+                                <p-columnFilter type="text" field="alim_Descripcion" display="menu"
+                                    placeholder="Buscar por Alimento"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
                                 Alimentos
                                 <p-columnFilter type="text" field="alim_Descripcion" display="menu"
                                     placeholder="Buscar por Alimento"></p-columnFilter>
@@ -112,6 +119,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-alim>
                     <tr>
+                        <td>{{alim.alim_Id}}</td>
                         <td>{{alim.alim_Descripcion}}</td>
                         <td>{{alim.alim_Precio}}</td>
                         <td>

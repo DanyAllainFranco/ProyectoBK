@@ -25,6 +25,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { MensajeViewModel } from '../../models/MensajeVIewModel';
 import { Factura, FacturaDetalle, FacturaEnviar } from '../../models/FacturaViewModel';
+import { CookieOptions, CookieService } from 'ngx-cookie-service';
 
 @Component({
   templateUrl: './facturacion.component.html',
@@ -72,7 +73,7 @@ export class FacturacionComponent {
   FaDe_Id = 0;
   Prod_Nombre?: string;
   FaDe_Ident?: string;
-  Empl_Id = 0;
+  Empl_Id: number;
   selectedMetodo: string = '1';
   showRtn: boolean = false;
   //AUTOCOMPLETADO
@@ -85,12 +86,22 @@ export class FacturacionComponent {
   selectedListJoya: any[] = [];
   filteredCountries: any[] = [];
   products: any[];
+  Usua_Id: number;
+  Sucu_Id: number;
+  
   constructor(private service: FacturaServiceService, private router: Router,
-    private messageService: MessageService, private countryService: CountryService, private fb: FormBuilder,
+    private messageService: MessageService, private countryService: CountryService, 
+    private cookieService: CookieService,
+    private fb: FormBuilder,
   ) { }
 
 
   ngOnInit(): void {
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
+    this.Sucu_Id = Number.parseInt(this.cookieService.get('Sucu_Id'));
+    this.Empl_Id = Number.parseInt(this.cookieService.get('Empl_Id'));
+    
+  
     this.loadProducts('C');
     this.service.getFacturas().subscribe((data: any) => {
       console.log(data);
@@ -324,7 +335,7 @@ export class FacturacionComponent {
   onSubmit() {
     this.viewModel = this.FacturaForm.value;
     this.viewModel.Fact_Id = this.Fact_ID;
-    this.service.EnviarFactura(this.viewModel).subscribe((data: MensajeViewModel[]) => {
+    this.service.EnviarFactura(this.Usua_Id,this.Sucu_Id,this.Empl_Id,this.viewModel).subscribe((data: MensajeViewModel[]) => {
       if (data["message"] == "Operación completada exitosamente.") {
         this.Fact_ID = data["id"];
         this.DataTable = false;

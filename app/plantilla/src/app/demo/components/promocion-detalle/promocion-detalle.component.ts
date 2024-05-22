@@ -199,7 +199,7 @@ Imagen: string;
         this.EditarCombo = data;
 
         this.Imagen = this.EditarCombo.prom_Imagen;
-        this.selectedImageURL = "https://localhost:44332/uploads/" + this.Imagen;
+        this.selectedImageURL = "http://sistemarestaurante.somee.com/uploads/" + this.Imagen;
 
         // this.selectedImageURL = "https://localhost:44332/uploads/" + this.Imagen;
 

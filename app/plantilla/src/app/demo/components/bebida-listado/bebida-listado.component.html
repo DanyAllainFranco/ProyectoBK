@@ -83,6 +83,13 @@
                     <tr>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
+                                Codigo
+                                <p-columnFilter type="text" field="bebi_Descripcion" display="menu"
+                                    placeholder="Buscar por Alimento"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
                                 Bebida
                                 <p-columnFilter type="text" field="bebi_Descripcion" display="menu"
                                     placeholder="Buscar por Alimento"></p-columnFilter>
@@ -112,6 +119,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-bebi>
                     <tr class="">
+                        <td>{{bebi.bebi_Id}}</td>
                         <td>{{bebi.bebi_Descripcion}}</td>
                         <td>
                             <img *ngIf="bebi.bebi_Imagen"

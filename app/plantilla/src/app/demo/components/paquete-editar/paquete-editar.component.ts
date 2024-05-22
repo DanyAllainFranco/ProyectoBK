@@ -392,7 +392,7 @@ onFilter(dv: DataView, event: Event) {
         this.EditarCombo = data;
 
         this.Imagen = this.EditarCombo.paqe_Imagen;
-        this.selectedImageURL = "https://localhost:44332/uploads/" + this.Imagen;
+        this.selectedImageURL = "http://sistemarestaurante.somee.com/uploads/" + this.Imagen;
 
         console.log("Esta es la imagen: " + this.Imagen)
          this.form.patchValue({

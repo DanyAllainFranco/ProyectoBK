@@ -44,18 +44,25 @@ export class InicioDeSesionComponent {
           console.log('Respuesta del servidor:', response);
           if (response !== "Error") {
             console.log("Datos: " + response[0].usua_Id)
-       
+            console.log("Datos: " + response[0].sucu_Id)
             localStorage.setItem('usuario', loginData.Usua_Usuario); 
-          
+            console.log('DATOS: ' + response)
              this.cookieService.set('Usua_Id', response[0].usua_Id);
              this.cookieService.set('Usua_Usuario', response[0].usua_Usuario);
              this.cookieService.set('Rol_Id', response[0].rol_Id);
              this.cookieService.set('Usua_Admin', response[0].usua_Admin);
+          this.cookieService.set('Sucu_Id', response[0].sucu_Id);
+          this.cookieService.set('Empl_Id', response[0].empl_Id);
+          const hola = this.cookieService.get('Empl_Id');
+          const hola2 = this.cookieService.get('Sucu_Id')
+
+          console.log(hola + ' ' + hola2)
              this.authService.setUsuarioLogueado(response[0].usua_Usuario);
+
              this.authService.loadPermissions();
             const valor = this.cookieService.get('Usua_Id');
          
-            this.router.navigate(['/app/Inicio']);
+           this.router.navigate(['/app/Inicio']);
           }
         },
         error => {

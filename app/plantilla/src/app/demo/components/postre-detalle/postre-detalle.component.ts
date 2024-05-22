@@ -97,7 +97,7 @@ export class PostreDetalleComponent implements OnInit{
       this.EditarCombo = data;
       console.log("DSFD: " + this.EditarCombo.post_Descripcion)
       this.Imagen = this.EditarCombo.post_Imagen;
-      this.selectedImageURL = "https://localhost:44332/uploads/" + this.Imagen;
+      this.selectedImageURL = "http://sistemarestaurante.somee.com/uploads/" + this.Imagen;
 
        this.form.patchValue({
          post_Descripcion: this.EditarCombo.post_Descripcion,

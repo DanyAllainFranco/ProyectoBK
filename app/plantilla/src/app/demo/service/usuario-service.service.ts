@@ -55,11 +55,6 @@ export class UsuariosServiceService {
 
 
 
-
-
-
-
-
   UrlLogin = 'http://sistemarestaurante.somee.com/API/Usuario/Login';
   login(loginData: Login): Observable<any> {
     return this.http.get<any>(`${this.UrlLogin}?Usua_Usuario=${loginData.Usua_Usuario}&Usua_Contra=${loginData.Usua_Contra}`);

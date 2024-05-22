@@ -96,7 +96,7 @@ export class BebidaDetalleComponent implements OnInit{
         this.EditarCombo = data;
         console.log("DSFD: " + this.EditarCombo.bebi_Descripcion)
         this.Imagen = this.EditarCombo.bebi_Imagen;
-        this.selectedImageURL = "https://localhost:44332/uploads/" + this.Imagen;
+        this.selectedImageURL = "http://sistemarestaurante.somee.com/uploads/" + this.Imagen;
   
          this.form.patchValue({
           bebi_Descripcion: this.EditarCombo.bebi_Descripcion,

@@ -16,7 +16,7 @@
                             </div>
                         </div>
                         <div class="invoice-top">
-                            <form [formGroup]="FacturaForm"  (ngSubmit)="onSubmit()">
+                            <form [formGroup]="FacturaForm" (ngSubmit)="onSubmit()">
                                 <div class="p-fluid p-formgrid grid">
                                     <div class="field col-12 md:col-6">
                                         <!-- <label for="">Cliente</label>
@@ -66,30 +66,44 @@
                                             <td colspan="5">
                                                 <div class="radio-group">
                                                     <label>
-                                                        <input type="radio" value="C" (change)="onRadioChange($event.target.value)" formControlName="FaDe_Ident" />
+                                                        <input type="radio" value="C"
+                                                            (change)="onRadioChange($event.target.value)"
+                                                            formControlName="FaDe_Ident" />
                                                         Combo
                                                     </label>
                                                     <label>
-                                                        <input type="radio" value="N" (change)="onRadioChange($event.target.value)" formControlName="FaDe_Ident" />
+                                                        <input type="radio" value="N"
+                                                            (change)="onRadioChange($event.target.value)"
+                                                            formControlName="FaDe_Ident" />
                                                         Complemento
                                                     </label>
                                                     <label>
-                                                        <input type="radio" value="D" (change)="onRadioChange($event.target.value)" formControlName="FaDe_Ident" />
+                                                        <input type="radio" value="D"
+                                                            (change)="onRadioChange($event.target.value)"
+                                                            formControlName="FaDe_Ident" />
                                                         Postre
                                                     </label>
                                                     <label>
-                                                        <input type="radio" value="B" (change)="onRadioChange($event.target.value)" formControlName="FaDe_Ident" />
+                                                        <input type="radio" value="B"
+                                                            (change)="onRadioChange($event.target.value)"
+                                                            formControlName="FaDe_Ident" />
                                                         Bebida
                                                     </label>
                                                     <label>
-                                                        <input type="radio" value="P" (change)="onRadioChange($event.target.value)" formControlName="FaDe_Ident" />
+                                                        <input type="radio" value="P"
+                                                            (change)="onRadioChange($event.target.value)"
+                                                            formControlName="FaDe_Ident" />
                                                         Paquete
                                                     </label>
                                                 </div>
                                             </td>
-                                            <td style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
-                                                <button pButton icon="pi pi-plus" type="button" label="Agregar" (click)="onSubmit()" class="p-button-primary"></button>
-                                                <button pButton icon="pi pi-shopping-cart" type="button" label="Facturar" (click)="cancelar()" class="p-button-primary"></button>
+                                            <td
+                                                style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
+                                                <button pButton icon="pi pi-plus" type="button" label="Agregar"
+                                                    (click)="onSubmit()" class="p-button-primary"></button>
+                                                <button pButton icon="pi pi-shopping-cart" type="button"
+                                                    label="Facturar" (click)="cancelar()"
+                                                    class="p-button-primary"></button>
                                             </td>
                                         </tr>
                                     </ng-template>
@@ -97,21 +111,26 @@
                                 <div class="product-grid">
                                     <div class="product-card" *ngFor="let product of products">
                                         <div class="product-image">
-                                            <img [src]="'https://localhost:44332/uploads/' + product.image" alt="{{product.name}}">
+                                            <img [src]="'http://sistemarestaurante.somee.com/uploads/' + product.image"
+                                                alt="{{product.name}}">
                                         </div>
                                         <div class="product-info">
                                             <h5>{{ product.text }}</h5>
-                                            <p>Codigo: {{ product.value  }}</p>
+                                            <p>Codigo: {{ product.value }}</p>
                                             <p>Precio: {{ product.precio }} Lps</p>
                                             <div class="quantity-control">
-                                                <button pButton icon="pi pi-minus" type="button" (click)="decreaseQuantity(product)" style="background-color: #D62700;"></button>
-                                                <input pInputText id="FaDe_Cantidad" formControlName="FaDe_Cantidad" type="text"
-                                                 [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('FaDe_Cantidad').invalid}"
-                                                  />
-                                                <button pButton icon="pi pi-plus" type="button" (click)="increaseQuantity(product)"></button>
+                                                <button pButton icon="pi pi-minus" type="button"
+                                                    (click)="decreaseQuantity(product)"
+                                                    style="background-color: #D62700;"></button>
+                                                <input pInputText id="FaDe_Cantidad" formControlName="FaDe_Cantidad"
+                                                    type="text"
+                                                    [ngClass]="{'ng-invalid ng-dirty': submitted && FacturaForm.get('FaDe_Cantidad').invalid}" />
+                                                <button pButton icon="pi pi-plus" type="button"
+                                                    (click)="increaseQuantity(product)"></button>
                                             </div>
                                             <div class="btn-agregar">
-                                                <button pButton type="button" (click)="addProductToInvoice(product)" label="Añadir"></button>
+                                                <button pButton type="button" (click)="addProductToInvoice(product)"
+                                                    label="Añadir"></button>
                                             </div>
                                         </div>
                                     </div>
@@ -126,53 +145,61 @@
 </div>
 
 <style>
-.product-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 10px;
-}
-.product-card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 1rem;
-    width: calc(25% - 1rem);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-}
-.product-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-.product-info h5 {
-    margin: 0.5rem 0;
-}
-.quantity-control {
-    margin-left: 5px;
-    display: flex;
-    margin-bottom: 10px;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-}
-.quantity-control input {
-    width: 50px;
-    text-align: center;
-}
-.radio-group {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-}
-.radio-group label {
-    margin-right: 1rem;
-    display: flex;
-    align-items: center;
-}
-.btn-agregar{
-    float: right;
-}
+    .product-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 10px;
+    }
+
+    .product-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 1rem;
+        width: calc(25% - 1rem);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    }
+
+    .product-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .product-info h5 {
+        margin: 0.5rem 0;
+    }
+
+    .quantity-control {
+        margin-left: 5px;
+        display: flex;
+        margin-bottom: 10px;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .quantity-control input {
+        width: 50px;
+        text-align: center;
+    }
+
+    .radio-group {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .radio-group label {
+        margin-right: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-agregar {
+        float: right;
+    }
 </style>

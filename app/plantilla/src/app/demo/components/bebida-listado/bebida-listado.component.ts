@@ -132,7 +132,7 @@ export class BebidaListadoComponent implements OnInit {
   editDepartamento(departamento: any) {
     this.selectedDepartamento = departamento.bebi_Id;
     console.log("ID: " + this.selectedDepartamento),
-    this.selectedImageURL = "https://localhost:44332/uploads/" + departamento.bebi_Imagen;
+    this.selectedImageURL = "http://sistemarestaurante.somee.com/uploads/" + departamento.bebi_Imagen;
     this.prueba = departamento.bebi_Imagen;
     this.modalTitle = 'Editar Registro';
     this.modalButtonLabel = 'Actualizar';

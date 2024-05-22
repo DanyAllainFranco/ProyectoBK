@@ -138,9 +138,9 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
-        [HttpPost("Create")]
+        [HttpPost("Create/{Usua_Id}/{Sucu_Id}/{Empl_Id}")]
 
-        public IActionResult Insert(FacturaViewModel item)
+        public IActionResult Insert(int Usua_Id,int Sucu_Id, int Empl_Id, FacturaViewModel item)
             {
             if (item.Fact_Id == 0)
             {
@@ -148,8 +148,10 @@ namespace Proyecto_BK.API.Controllers
                 var modeloFactura = new FacturaViewModel()
                 {
                     Fact_Id = item.Fact_Id,
-                    Fact_Total = item.Fact_Total
-
+                    Fact_Total = item.Fact_Total,
+                    Sucu_Id = Sucu_Id,
+                    Empl_Id = Empl_Id,
+                    Fact_Usua_Creacion = Usua_Id
                 };
                 var IdFactura = _restauranteServices.CrearFactura(modeloFactura, out int id);
                 IdFactura.Message = id.ToString();

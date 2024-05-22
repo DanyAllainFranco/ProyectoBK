@@ -23,6 +23,13 @@
                     <tr>
                         <th style="min-width: 12rem">
                             <div class="flex justify-content-between align-items-center">
+                                Codigo
+                                <p-columnFilter type="text" field="paqe_Descripcion" display="menu"
+                                    placeholder="Buscar por Alimento"></p-columnFilter>
+                            </div>
+                        </th>
+                        <th style="min-width: 12rem">
+                            <div class="flex justify-content-between align-items-center">
                                 Paquete
                                 <p-columnFilter type="text" field="paqe_Descripcion" display="menu"
                                     placeholder="Buscar por Alimento"></p-columnFilter>
@@ -52,6 +59,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-paqe>
                     <tr>
+                        <td>{{paqe.paqe_Id}}</td>
                         <td>{{paqe.paqe_Descripcion}}</td>
                         <td>{{paqe.paqe_Precio}}</td>
                         <td>

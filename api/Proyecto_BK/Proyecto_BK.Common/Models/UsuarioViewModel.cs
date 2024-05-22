@@ -14,6 +14,7 @@ namespace Proyecto_BK.Common.Models
         public string Usua_Contra { get; set; }
         public bool Usua_Admin { get; set; }
         public int Empl_Id { get; set; }
+        public int Sucu_Id { get; set; }
         public int Rol_Id { get; set; }
         [NotMapped]
         public string UsuaAdmin { get; set; }

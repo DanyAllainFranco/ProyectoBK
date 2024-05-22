@@ -82,9 +82,9 @@ export class FacturaServiceService {
   }
 
 
-  CrearFactura = 'http://sistemarestaurante.somee.com/API/Factura/Create';
-  EnviarFactura(formData: any): Observable<any> {
-    return this.http.post<any>(this.CrearFactura, formData).pipe(
+  CrearFactura = 'http://sistemarestaurante.somee.com/API/Factura/Create/';
+  EnviarFactura(Usua_id: number,Sucu_Id: number, Empl_Id: number,formData: any): Observable<any> {
+    return this.http.post<any>(`${this.CrearFactura}${Usua_id}/${Sucu_Id}/${Empl_Id}`, formData).pipe(
       map(response => {
         console.log('Respuesta del servidor:', response);
         return response;

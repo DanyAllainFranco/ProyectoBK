@@ -29,7 +29,7 @@ export class ServiceService {
     return this.http.get<LlenarEmpleados>(`${BASE_URL}API/Empleado/Fill/${idCombo}`);
   }
 
-  prueba = 'https://localhost:44332/API/Empleado/Insert';
+  prueba = 'http://sistemarestaurante.somee.com/API/Empleado/Insert';
   agregarEmpleados(modelo: EmpleadosEnviar): Observable<Respuesta> {
 
     console.log(modelo)

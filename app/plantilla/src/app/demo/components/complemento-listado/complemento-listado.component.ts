@@ -120,7 +120,7 @@ export class ComplementoListadoComponent implements OnInit {
   editDepartamento(departamento: any) {
     this.selectedDepartamento = departamento.comp_Id;
     console.log("ID: " + this.selectedDepartamento),
-    this.selectedImageURL = "https://localhost:44332/uploads/" + departamento.comp_Imagen;
+    this.selectedImageURL = "http://sistemarestaurante.somee.com/uploads/" + departamento.comp_Imagen;
     this.prueba = departamento.comp_Imagen;
     this.modalTitle = 'Editar Registro';
     this.modalButtonLabel = 'Actualizar';

@@ -119,7 +119,7 @@ export class PostreListadoComponent implements OnInit {
   editDepartamento(departamento: any) {
     this.selectedDepartamento = departamento.post_id;
     console.log("ID: " + this.selectedDepartamento),
-    this.selectedImageURL = "https://localhost:44332/uploads/" + departamento.post_Imagen;
+    this.selectedImageURL = "http://sistemarestaurante.somee.com/uploads/" + departamento.post_Imagen;
     this.prueba = departamento.post_Imagen;
     this.modalTitle = 'Editar Registro';
     this.modalButtonLabel = 'Actualizar';

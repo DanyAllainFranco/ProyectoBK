@@ -124,7 +124,7 @@ editDepartamento(departamento: any) {
   this.selectedDepartamento = departamento.alim_Id;
   console.log("DSADSA: " + this.selectedDepartamento)
   console.log("ID: " + this.selectedDepartamento),
-  this.selectedImageURL = "https://localhost:44332/uploads/" + departamento.alim_Imagen;
+  this.selectedImageURL = "http://sistemarestaurante.somee.com/uploads/" + departamento.alim_Imagen;
   this.prueba = departamento.alim_Imagen;
   this.modalTitle = 'Editar Registro';
   this.modalButtonLabel = 'Actualizar';

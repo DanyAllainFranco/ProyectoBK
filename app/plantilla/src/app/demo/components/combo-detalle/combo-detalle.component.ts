@@ -145,7 +145,7 @@ obtenerRol(id: number) {
       this.EditarCombo = data;
 
       this.Imagen = this.EditarCombo.comb_Imagen;
-      this.selectedImageURL = "https://localhost:44332/uploads/" + this.Imagen;
+      this.selectedImageURL = "http://sistemarestaurante.somee.com/uploads/" + this.Imagen;
       
       this.cargarPostres();
       this.cargarAlimentos();

@@ -87,6 +87,7 @@ export class FacturaDetalle {
      FaDe_ProdId:number;
      Prod_Nombre?:String;
      FaDe_Cantidad?:number; 
+     Fact_Usua_Creacion?: number;
  }
  
 export class Complemento{
