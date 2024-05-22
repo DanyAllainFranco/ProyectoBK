@@ -114,7 +114,7 @@ namespace Proyecto_BK.API.Controllers
 
             if (!Directory.Exists(uploadsFolderPath))
             {
-                Directory.CreateDirectory(uploadsFolderPath);
+                //Directory.CreateDirectory(uploadsFolderPath);
             }
             var filePath = Path.Combine(uploadsFolderPath, file.FileName);
 

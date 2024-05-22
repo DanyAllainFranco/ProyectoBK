@@ -113,7 +113,7 @@ export class FacturacionComponent {
       Prod_Producto: new FormControl(""),
       FaDe_Ident: new FormControl("C"),
       FaDe_ProdId: new FormControl(""),
-      FaDe_Cantidad: new FormControl(1,Validators.required)
+      FaDe_Cantidad: new FormControl(1)
     });
   }
   //AUTOCOMPLETADO
@@ -185,24 +185,20 @@ export class FacturacionComponent {
     this.FacturaForm.get('FaDe_Ident').setValue(value);
     this.FacturaForm.get('FaDe_ProdId').setValue('');
     this.FacturaForm.get('Prod_Producto').setValue('');
-    this.FacturaForm.get('FaDe_Cantidad').setValue(1);
+    this.FacturaForm.get('FaDe_Cantidad').setValue('');
   }
 
-  toggleRtn(event: any) {
-    this.showRtn = event;
-  }
-
-  increaseQuantity(product) {
-    product.cantidad++;
-    // Update the form control with the new value
-    this.FacturaForm.get('FaDe_Cantidad').setValue(product.cantidad);
+  increaseQuantity(product: any): void {
+    let cantidad = this.FacturaForm.get('FaDe_Cantidad').value;
+    cantidad++;
+    this.FacturaForm.get('FaDe_Cantidad').setValue(cantidad);
   }
   
-  decreaseQuantity(product) {
-    if (product.cantidad > 1) {
-      product.cantidad--;
-      // Update the form control with the new value
-      this.FacturaForm.get('FaDe_Cantidad').setValue(product.cantidad);
+  decreaseQuantity(product: any): void {
+    let cantidad = this.FacturaForm.get('FaDe_Cantidad').value;
+    if (cantidad > 1) {
+      cantidad--;
+      this.FacturaForm.get('FaDe_Cantidad').setValue(cantidad);
     }
   }
 
