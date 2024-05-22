@@ -37,14 +37,7 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult AutoCompletado()
         {
             var list = _restauranteServices.PostreAutocompletar();
-            var drop = list.Data as List<tbPostres>;
-             var rol = drop.Select(x => new SelectListItem
-            {
-                Text = x.Post_Descripcion,
-                Value = x.Post_id.ToString()
-            }).ToList();
-
-            return Ok(rol.ToList());
+            return Ok(list.Data);
         }
 
         [HttpGet("API/[controller]/DropDown")]

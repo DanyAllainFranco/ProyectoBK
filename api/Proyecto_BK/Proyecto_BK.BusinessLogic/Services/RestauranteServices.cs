@@ -60,26 +60,26 @@ namespace Proyecto_BK.BusinessLogic.Services
         #region Factura
 
 
-        //public ServiceResult ElimnarFacturaDetalle(string Fact_Id, string prod_nombre, int dif)
-        //{
-        //    var result = new ServiceResult();
-        //    try
-        //    {
-        //        var list = _facturaRepository.Delete(Fact_Id, prod_nombre, dif);
-        //        if (list.CodeStatus > 0)
-        //        {
-        //            return result.Ok($"La accion ha sido existosa", list);
-        //        }
-        //        else
-        //        {
-        //            return result.Error("No se pudo realizar la accion");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return result.Error(ex);
-        //    }
-        //}
+        public ServiceResult ElimnarFacturaDetalle(int Fact_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.Delete(Fact_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"La accion ha sido existosa", list);
+                }
+                else
+                {
+                    return result.Error("No se pudo realizar la accion");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
 
         public ServiceResult ListadoFacturaDetalles(int Fact_Id)
         {
@@ -380,6 +380,21 @@ namespace Proyecto_BK.BusinessLogic.Services
         #endregion
 
         #region Combo Personal
+
+        public ServiceResult ComboAutocompletado()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _comboPersonalRepository.ComboList();
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
         public ServiceResult ListComboPersonal()
         {
             var result = new ServiceResult();
@@ -1273,7 +1288,7 @@ namespace Proyecto_BK.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var list = _postreRepository.List();
+                var list = _postreRepository.PostresDDL();
                 return result.Ok(list);
             }
             catch (Exception ex)

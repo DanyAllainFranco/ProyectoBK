@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Proyecto_BK.BusinessLogic.Services;
 using Proyecto_BK.Common.Models;
 using Proyecto_BK.Entities;
@@ -29,6 +30,13 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult List()
         {
             var list = _restauranteServices.ListComboPersonal();
+            return Ok(list.Data);
+        }
+
+        [HttpGet("ComboAutoCompletado")]
+        public IActionResult AutoCompletado()
+        {
+            var list = _restauranteServices.ComboAutocompletado();
             return Ok(list.Data);
         }
 

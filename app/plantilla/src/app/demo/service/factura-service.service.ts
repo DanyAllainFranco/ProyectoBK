@@ -65,20 +65,20 @@ export class FacturaServiceService {
     return this.http.get<Paquete[]>(this.PaqueteUrl);
   }
 
+  ComboUrl = 'https://localhost:44332/ComboAutoCompletado';
+  getCombo (){
+    return this.http.get<Combo[]>(this.ComboUrl);
+  }
   FacturaDetalleURL = 'https://localhost:44332/API/Factura/ListaDetalles';
   getFacturasDetalle(id){
     return this.http.get<FacturaDetalle[]>(`${this.FacturaDetalleURL}/${id}`)
   }
 
 
-  // eliminarFacturaDetalle(id) : Observable<any>{
-  //   return this.http.delete<any>(`${this.url}EliminarD/${id}`);
-  // }
 
-
-  FacturaEliminar = '/https://localhost:44332/API/Factura/DeleteFactura';
-  EliminarFactura(Fact_Id,FaDe_Nombre,FaDe_Ident): Observable<any>{
-    return this.http.put<any>(`${this.FacturaEliminar}/${Fact_Id},${FaDe_Nombre},${FaDe_Ident}`,{})
+  EliminarDetalle = 'https://localhost:44332/API/Factura/DeleteFactura';
+  eliminarFacturaDetalle(fact_Id) : Observable<any>{
+    return this.http.delete<any>(`${this.EliminarDetalle}/${fact_Id}`);
   }
 
 

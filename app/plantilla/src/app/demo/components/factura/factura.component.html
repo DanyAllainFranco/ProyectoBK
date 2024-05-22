@@ -1,81 +1,88 @@
-<div class="invoice-2 invoice-content" >
+<div class="invoice-2 invoice-content">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="invoice-inner clearfix">
                     <div class="invoice-info clearfix" id="invoice_wrapper">
                         <div class="invoice-headar">
-                          <div class="grid">
-                              <div class="col-6">
-                                  <div class="invoice-logo">
-                                      <div class="logo">
-                                          <img src="../../../../assets/layout/images/bk.png" alt="logo">
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-6">
-                                  <div class="invoice-id">
-                                      <div class="info">
-                                        <tr>
-                                          <h1 class="inv-header-1" >Factura</h1>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                          
-                        </div>
-                        <div class="invoice-top">
                             <div class="grid">
                                 <div class="col-6">
-                                    <div class="invoice-number mb-30">
-                                        <h4 class="inv-title-1"></h4>
-                                        <!-- <h2 class="name" *ngFor="let detalle of factura">{{factura.clie_Nombre}}</h2>                                   -->
+                                    <div class="invoice-logo">
+                                        <div class="logo">
+                                            <img src="../../../../assets/layout/images/bk.png" alt="logo">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <div class="invoice-number mb-30">
-                                        <div class="invoice-number-inner">
-                                            <h4 class="inv-title-1"> </h4>
-                                            <h2 class="name">  </h2>                                          
+                                    <div class="invoice-id">
+                                        <div class="info">
+                                            <h1 class="inv-header-1">N° de Orden:</h1>
+                                            <h3 class="Orden">{{ fact_Id }}</h3>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--Datos de prueba--> <!--Aqui iran los datos del endpoint de la API-->
-                        <div class="invoice-center">
-                            <div class="centrado" style="position: center;align-items: center;margin-left: 150px;">
-                            <div class="table-responsive">
-                                <table class="table mb-0 table-striped invoice-table">
-                                    <thead class="bg-active">
-                                    <tr class="tr">
-                                        <th class="pl0 text-start">Producto</th>
-                                        <th class="text-center">Cantidad</th>
-                                        <th class="text-center">Precio</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="tr" *ngFor="let detalle of factura">
-                                          <td class="pl0">{{ detalle.producto }}</td>
-                                          <td class="text-center">{{ detalle.cantidad }}</td>
-                                          <td class="text-center">{{ detalle.precio }}</td>
-                                        </tr>
-                                      </tbody>
-                                </table>
+                        <div class="invoice-top">
+                            <div class="grid">
+                                <div class="col-6">
+                                    <div class="invoice-number mb-30">
+                                        <h4 class="inv-title-1">Fecha de facturación: </h4>
+                                        <div class="fecha">
+                                            <p class="Date">{{ fact_Fecha }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="invoice-number mb-30">
+                                        <div class="invoice-number-inner">
+                                            <h4 class="inv-title-1"></h4>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <!--Datos de prueba-->
+                        <!--Aqui iran los datos del endpoint de la API-->
+                        <div class="invoice-center">
+                            <div class="centrado" style="position: center; align-items: center; margin-left: 150px;">
+                                <div class="table-responsive">
+                                    <table class="table mb-0 table-striped invoice-table">
+                                        <thead class="bg-active">
+                                            <tr class="tr">
+                                                <th class="pl0 text-start">Producto</th>
+                                                <th class="text-center">Cantidad</th>
+                                                <th class="text-center">Precio</th>
+                                                <th class="text-center">Total por producto</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="tr" *ngFor="let detalle of factura">
+                                                <td class="pl0">{{ detalle.producto }}</td>
+                                                <td class="text-center">{{ detalle.cantidad }}</td>
+                                                <td class="text-center">{{ detalle.precio | number:'1.2-2' }}</td>
+                                                <td class="text-center">{{ detalle.total | number:'1.2-2' }}</td>
+                                            </tr>
+                                             <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td  class="text-end" style="font-weight: bold;">Total:</td>
+                                                <td class="text-center" style="font-weight: bold;">{{ sumaTotal | number:'1.2-2' }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <div class="invoice-bottom">
+                        <div class="invoice-bottom" id="invoiceFooter">
                             <div class="row">
                                 <div class="col-lg-6 col-md-5 col-sm-5">
-                                    <div class="payment-method mb-30">
-                                      
-                                    </div>
+                                    <div class="payment-method mb-30"></div>
                                 </div>
                                 <div class="col-lg-6 col-md-7 col-sm-7">
                                     <div class="terms-conditions mb-30">
-                                        <h3 class="inv-title-1">Politica</h3>
-                                        <p>Si al pagar no se le otorga una factura , su compra sera gratis</p>
+                                        <h3 class="inv-title-1">Política</h3>
+                                        <p>Si al pagar no se le otorga una factura, su compra será gratis.</p>
                                     </div>
                                 </div>
                             </div>
@@ -83,9 +90,7 @@
                         <div class="invoice-contact clearfix">
                             <div class="grid">
                                 <div class="col-12">
-                                    <div class="contact-info clearfix">
-
-                                    </div>
+                                    <div class="contact-info clearfix"></div>
                                 </div>
                             </div>
                         </div>
@@ -102,4 +107,4 @@
             </div>
         </div>
     </div>
-  </div>
+</div>

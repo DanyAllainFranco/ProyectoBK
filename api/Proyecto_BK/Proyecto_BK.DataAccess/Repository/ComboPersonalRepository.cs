@@ -48,6 +48,7 @@ namespace Proyecto_BK.DataAccess.Repository
         }
 
 
+
         public tbCombo Fill(string id)
         {
 
@@ -200,7 +201,17 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
-        
+        public IEnumerable<tbCombo> ComboList()
+        {
+            List<tbCombo> result = new List<tbCombo>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                result = db.Query<tbCombo>(ScriptsBaseDeDatos.Comb_DDL, commandType: CommandType.Text).ToList();
+                return result;
+            }
+        }
+
+
         public RequestStatus Update(tbCombo item)
         {
             string sql = ScriptsBaseDeDatos.Comb_Editar;

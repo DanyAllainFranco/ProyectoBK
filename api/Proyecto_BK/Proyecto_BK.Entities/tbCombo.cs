@@ -48,6 +48,8 @@ namespace Proyecto_BK.Entities
         public int TotalPedidosAlimentos { get; set; }
         [NotMapped]
         public int TotalPedidosPostres { get; set; }
+        [NotMapped]
+        public decimal precio { get; set; }
 
         public virtual tbAlimentos Alim { get; set; }
         public virtual tbBebidas Bebi { get; set; }
@@ -55,5 +57,13 @@ namespace Proyecto_BK.Entities
         public virtual tbUsuarios Comb_Usua_ModificaNavigation { get; set; }
         public virtual tbComplementos Comp { get; set; }
         public virtual tbPostres Post { get; set; }
+        [NotMapped]
+
+        public string text { get; set; }
+        [NotMapped]
+        public int value { get; set; }
+        [NotMapped]
+
+        public string image { get; set; }
     }
 }

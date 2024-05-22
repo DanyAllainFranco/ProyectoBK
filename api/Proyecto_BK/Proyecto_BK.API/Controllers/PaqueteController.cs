@@ -37,14 +37,7 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult AutoCompletado()
         {
             var list = _restauranteServices.PaqueteAucompletado();
-            var drop = list.Data as List<tbPaquetes>;
-            var rol = drop.Select(x => new SelectListItem
-            {
-                Text = x.Paqe_Descripcion,
-                Value = x.Paqe_Id.ToString()
-            }).ToList();
-
-            return Ok(rol.ToList());
+            return Ok(list.Data);
         }
 
         [HttpGet("API/[controller]/ListAlimentos3/{Paqe_Id}")]

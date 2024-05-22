@@ -44,6 +44,8 @@ export class ReporteSucursal{
 }
 
 export class FacturaDetalle {
+    fact_Fecha?:Date;
+     faDe_Id?:number;
      clie_Nombre?:string;
      FaDe_Ident?:number;
      FaDe_Cantidad?:number;
@@ -62,7 +64,7 @@ export class FacturaDetalle {
     FaDe_Ident?:number;
     FaDe_Cantidad?:number;
     FaDe_Subtotal?:number;
-    FaDe_ProdId?:number;
+    FaDe_ProdId:number;
     Prod_Producto?:string;
     Fact_Fecha ?:Date;
     Fact_Total ?:DecimalPipe;
@@ -82,7 +84,7 @@ export class FacturaDetalle {
      Fact_Total ?:DecimalPipe;
      Clie_Nombre?:String;
      Clie_Identidad?:string;
-     FaDe_ProdId?:number;
+     FaDe_ProdId:number;
      Prod_Nombre?:String;
      FaDe_Cantidad?:number; 
  }
@@ -90,6 +92,10 @@ export class FacturaDetalle {
 export class Complemento{
 Comp_Id?:number;
 Comp_Descripcion?:string;
+text?:string;
+value?:number;
+image?:string;
+precio?:DecimalPipe;
 }
 
 export class FacturaEliminar{
@@ -101,22 +107,42 @@ export class FacturaEliminar{
 export class Postre{
 Post_Id?:number;
 Post_Descripcion?:string;
+text?:string;
+value?:number;
+image?:string;
+precio?:DecimalPipe;
+
 }
 
 
 export class Bebida{
     Bebi_Id?:number;
     Bebi_Descripcion?:string;     
+    text?:string;
+    value?:number;
+    image?:string;
+    precio?:DecimalPipe;
+
 }
 
 
 export class Combo{
     Comb_Id?:number;
     Comb_Descripcion?:string;
+    text?:string;
+    value?:number;
+    image?:string;
+    precio?:DecimalPipe;
+
 }
 
 
 export class Paquete{
    Paqe_Id?:number;
    Paqe_Descripcion?:string;
+   text?:string;
+   value?:number;
+   image?:string;
+   precio?:DecimalPipe;
+
 }

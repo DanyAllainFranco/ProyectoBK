@@ -13,11 +13,17 @@ namespace Proyecto_BK.DataAccess.Repository
 {
     public class FacturaRepository : IRepository<FacturaViewModel>
     {
-        public RequestStatus Delete(int? id)
+        public RequestStatus Delete(int? FaDe_Id)
         {
-            throw new NotImplementedException();
-        }
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@FaDe_Id", FaDe_Id);
 
+                var result = db.QueryFirst(ScriptsBaseDeDatos.FacturaEliminar_Detalle, parameter, commandType: CommandType.StoredProcedure);
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+            }
+        }
         public FacturaViewModel Details(int? id)
         {
             throw new NotImplementedException();

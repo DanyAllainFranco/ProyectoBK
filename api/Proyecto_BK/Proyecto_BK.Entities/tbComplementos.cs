@@ -28,7 +28,18 @@ namespace Proyecto_BK.Entities
         public bool? Comp_Estado { get; set; }
         [NotMapped]
         public string Usua_Creacion { get; set; }
+
         [NotMapped]
+
+        public string text { get; set; }
+        [NotMapped]
+        public int value { get; set; }
+        [NotMapped]
+        public string image { get; set; }
+
+        [NotMapped]
+        public decimal precio { get; set; }
+
         public string Usua_Modifica { get; set; }
         [NotMapped]
         public string CantidadAgregada { get; set; }
