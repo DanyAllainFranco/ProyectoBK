@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {}
+    "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
+    "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
         "projectName": "Proyecto_BK.Entities",
-        "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
-        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAB1\\Documents\\GitHub\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\obj\\",
+        "projectPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\Proyecto_BK.Entities.csproj",
+        "packagesPath": "C:\\Users\\informatica\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\informatica\\Desktop\\ProyectoBK\\ProyectoBK\\api\\Proyecto_BK\\Proyecto_BK.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\informatica\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
