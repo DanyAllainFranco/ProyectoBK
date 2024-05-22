@@ -15,7 +15,7 @@ import { Bebida, Bebidas, Complemento, Postre, SucursalesPromocion } from '../mo
 export class PromocionServiceService {
   successMessage: string = '';
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/Promocion/List';
+  Url = 'http://sistemarestaurante.somee.com/API/Promocion/List';
 
 
   actualizar(modelo:Promociones):Observable<Respuesta>{

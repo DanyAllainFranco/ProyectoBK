@@ -11,7 +11,7 @@ import { BASE_URL } from './UrlParaAPI';
 export class AlimentosServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/Alimento/List';
+  Url = 'http://sistemarestaurante.somee.com/API/Alimento/List';
 
 
   getAlimento (){

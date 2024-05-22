@@ -84,6 +84,7 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Comb_Insertar = "[Rest].SP_Combos_Insertar";
         public static string Comb_Editar = "[Rest].SP_Combos_Editar";
         public static string Comb_Eliminar = "[Rest].SP_Combos_Eliminar";
+        public static string Comb_DDL = "[Rest].[SP_CombosDDL]";
         #endregion
 
         #region Complementos
@@ -271,6 +272,7 @@ namespace Proyecto_BK.DataAccess.Repository
         public static string Repor_VentasSucursalesTodos = "[Rest].[SP_ReporteVentaSucursalTodos]";
         public static string Repor_VentasCompleto = "[Rest].[SP_ReporteCompleto]";
         public static string Repor_VentasIdentificador = "[Rest].[SP_ReportePorIdentificador]";
+        public static string FacturaEliminar_Detalle = "[Rest].[sp_FacturaDetalles_eliminar]";
         #endregion
 
 

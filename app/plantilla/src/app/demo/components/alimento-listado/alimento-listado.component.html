@@ -115,7 +115,8 @@
                         <td>{{alim.alim_Descripcion}}</td>
                         <td>{{alim.alim_Precio}}</td>
                         <td>
-                            <img *ngIf="alim.alim_Imagen" [src]="'https://localhost:44332/uploads/' + alim.alim_Imagen"
+                            <img *ngIf="alim.alim_Imagen"
+                                [src]="'http://sistemarestaurante.somee.com/uploads/' + alim.alim_Imagen"
                                 alt="Imagen de postre" width="100">
                         </td>
 

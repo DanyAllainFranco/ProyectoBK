@@ -40,49 +40,49 @@ export class FacturaServiceService {
     return this.http.get<ReporteSucursal>(`${BASE_URL}API/Factura/ReporteSucursal/${Empl_Id}/${FechaInicio}/${FechaFinal}`);
   }
 
-  Url = 'https://localhost:44332/API/Factura/List';
+  Url = 'http://sistemarestaurante.somee.com/API/Factura/List';
   getFacturas (){
     return this.http.get<Factura[]>(this.Url);
   }
 
-  ComplementoURL = 'https://localhost:44332/ComplementoAutoCompletado';
+  ComplementoURL = 'http://sistemarestaurante.somee.com/ComplementoAutoCompletado';
   getComplemento (){
     return this.http.get<Complemento[]>(this.ComplementoURL);
   }
 
-  PostreUrl = 'https://localhost:44332/PostreAutoCompletado';
+  PostreUrl = 'http://sistemarestaurante.somee.com/PostreAutoCompletado';
   getPostre (){
     return this.http.get<Postre[]>(this.PostreUrl);
   }
 
-  BebidaUrl = 'https://localhost:44332/AutoCompletado';
+  BebidaUrl = 'http://sistemarestaurante.somee.com/AutoCompletado';
   getBebida (){
     return this.http.get<Bebida[]>(this.BebidaUrl);
   }
 
-  PaqueteUrl = 'https://localhost:44332/PaqueteAutoCompletado';
+  PaqueteUrl = 'http://sistemarestaurante.somee.com/PaqueteAutoCompletado';
   getPaquete (){
     return this.http.get<Paquete[]>(this.PaqueteUrl);
   }
 
-  ComboUrl = 'https://localhost:44332/ComboAutoCompletado';
+  ComboUrl = 'http://sistemarestaurante.somee.com/ComboAutoCompletado';
   getCombo (){
     return this.http.get<Combo[]>(this.ComboUrl);
   }
-  FacturaDetalleURL = 'https://localhost:44332/API/Factura/ListaDetalles';
+  FacturaDetalleURL = 'http://sistemarestaurante.somee.com/API/Factura/ListaDetalles';
   getFacturasDetalle(id){
     return this.http.get<FacturaDetalle[]>(`${this.FacturaDetalleURL}/${id}`)
   }
 
 
 
-  EliminarDetalle = 'https://localhost:44332/API/Factura/DeleteFactura';
+  EliminarDetalle = 'http://sistemarestaurante.somee.com/API/Factura/DeleteFactura';
   eliminarFacturaDetalle(fact_Id) : Observable<any>{
     return this.http.delete<any>(`${this.EliminarDetalle}/${fact_Id}`);
   }
 
 
-  CrearFactura = 'https://localhost:44332/API/Factura/Create';
+  CrearFactura = 'http://sistemarestaurante.somee.com/API/Factura/Create';
   EnviarFactura(formData: any): Observable<any> {
     return this.http.post<any>(this.CrearFactura, formData).pipe(
       map(response => {

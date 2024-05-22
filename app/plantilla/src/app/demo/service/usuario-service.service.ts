@@ -15,12 +15,12 @@ import { BASE_URL } from './UrlParaAPI';
 export class UsuariosServiceService {
   successMessage: string = '';
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/Usuario/List';
+  Url = 'http://sistemarestaurante.somee.com/API/Usuario/List';
   getUsuario (){
     return this.http.get<Usuario[]>(this.Url);
   }
 
-  prueba = 'https://localhost:44332/API/Usuario/Insert';
+  prueba = 'http://sistemarestaurante.somee.com/API/Usuario/Insert';
   agregar(modelo: UsuarioEnviar): Observable<Respuesta> {
     console.log(modelo)
     return this.http.post<Respuesta>(this.prueba, modelo);
@@ -60,37 +60,37 @@ export class UsuariosServiceService {
 
 
 
-  UrlLogin = 'https://localhost:44332/API/Usuario/Login';
+  UrlLogin = 'http://sistemarestaurante.somee.com/API/Usuario/Login';
   login(loginData: Login): Observable<any> {
     return this.http.get<any>(`${this.UrlLogin}?Usua_Usuario=${loginData.Usua_Usuario}&Usua_Contra=${loginData.Usua_Contra}`);
   }
 
-  RolDDL= 'https://localhost:44332/API/Rol/RolesDDL';
+  RolDDL= 'http://sistemarestaurante.somee.com/API/Rol/RolesDDL';
   RolesDLL (){
     return this.http.get<RolesDLL[]>(this.RolDDL);
   }
 
-  EmplDDL= 'https://localhost:44332/API/Empleado/EmpleadoDDL';
+  EmplDDL= 'http://sistemarestaurante.somee.com/API/Empleado/EmpleadoDDL';
   EmpleadoDDL (){
     return this.http.get<EmpleadoDDL[]>(this.EmplDDL);
   }
 
-  // UrlAgregar =  'https://localhost:44332/API/Usuario/Insert' ;
+  // UrlAgregar =  'http://sistemarestaurante.somee.com/API/Usuario/Insert' ;
   // agregar(modelo:Usuario):Observable<Usuario>{
   //   return this.http.post<Usuario>(this.UrlAgregar,modelo);
   // }
   
-  UrlObtener = 'https://localhost:44332/API/Usuario/Find';
+  UrlObtener = 'http://sistemarestaurante.somee.com/API/Usuario/Find';
     obtener(Usua_Id:number){
     return this.http.get<Usuario>(`${this.UrlObtener}?Usua_Id=${Usua_Id}`);
   }
 
-  // UrlUpdate = 'https://localhost:44332/API/Usuario/Update';
+  // UrlUpdate = 'http://sistemarestaurante.somee.com/API/Usuario/Update';
   // actualizar(sucu_Id:number,modelo:Usuario):Observable<Usuario>{
   //   return this.http.put<Usuario>(this.UrlUpdate,modelo);
   // }
   
-  // UrlEliminar = 'https://localhost:44332/API/Usuario/Delete';
+  // UrlEliminar = 'http://sistemarestaurante.somee.com/API/Usuario/Delete';
   // eliminar(Usua_Id:number):Observable<void>{
   //   return this.http.delete<void>(`${this.UrlEliminar}?Usua_Id=${Usua_Id}`);
   // }

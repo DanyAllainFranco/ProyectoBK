@@ -14,7 +14,7 @@ export class EstadoCivilServiceService {
   constructor(private http: HttpClient) { }
 
 
-  Url = 'https://localhost:44332/API/EstadoCivil/List';
+  Url = 'http://sistemarestaurante.somee.com/API/EstadoCivil/List';
 
   getEstadoCivil (){
     return this.http.get<Estado[]>(this.Url);
@@ -33,7 +33,7 @@ export class EstadoCivilServiceService {
   }
 
   EnviarEstadoCivil(formData: any): Observable<any> {
-    return this.http.post<any>('https://localhost:44332/API/EstadoCivil/Create', formData).pipe(
+    return this.http.post<any>('http://sistemarestaurante.somee.com/API/EstadoCivil/Create', formData).pipe(
       map(response => {
         return response;
       }),
@@ -41,14 +41,14 @@ export class EstadoCivilServiceService {
   }
 
   getFill(codigo: string): Observable<Fill> {
-    return this.http.get<Fill>('https://localhost:44332/API/EstadoCivil/Fill/' + codigo);
+    return this.http.get<Fill>('http://sistemarestaurante.somee.com/API/EstadoCivil/Fill/' + codigo);
   }
 
   EliminarEstadoCivil(ID): Observable<any>{
-    return this.http.delete<any>('https://localhost:44332/API/EstadoCivil/Delete/' + ID)
+    return this.http.delete<any>('http://sistemarestaurante.somee.com/API/EstadoCivil/Delete/' + ID)
   }
   
   ActualizarEstadoCivil(formData){
-    return this.http.put('https://localhost:44332/API/EstadoCivil/Update/', formData)
+    return this.http.put('http://sistemarestaurante.somee.com/API/EstadoCivil/Update/', formData)
   }
 }

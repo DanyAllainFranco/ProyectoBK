@@ -12,7 +12,7 @@ import { BASE_URL } from './UrlParaAPI';
 export class ClientesServiceService {
   successMessage: string = '';
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/Cliente/List';
+  Url = 'http://sistemarestaurante.somee.com/API/Cliente/List';
   getCliente (){
     return this.http.get<Clientes[]>(this.Url);
   }

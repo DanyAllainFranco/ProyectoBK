@@ -10,7 +10,7 @@ import { BASE_URL } from './UrlParaAPI';
 })
 export class PaquetesporComidaServiceService {
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/PaquetePorComida/List';
+  Url = 'http://sistemarestaurante.somee.com/API/PaquetePorComida/List';
   getPaqueteporComida (){
     return this.http.get<PaquetesporComida[]>(this.Url);
   }

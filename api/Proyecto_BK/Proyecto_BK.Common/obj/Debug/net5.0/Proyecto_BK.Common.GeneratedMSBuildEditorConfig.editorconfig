@@ -7,8 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = Proyecto_BK.Common
-<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\informatica\Desktop\ProyectoBK\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\
-=======
-build_property.ProjectDir = C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\
->>>>>>> origin/David

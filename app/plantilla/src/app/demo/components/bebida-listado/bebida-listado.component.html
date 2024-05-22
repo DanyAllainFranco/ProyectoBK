@@ -11,16 +11,18 @@
                             <div class="field col">
                                 <label htmlFor="name2">Bebida:</label>
                                 <input pInputText formControlName="bebi_Descripcion" autocomplete="off" id="name2"
-                                    type="text" [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['bebi_Descripcion'].invalid}"/>
-                                    <small class="ng-dirty ng-invalid"
+                                    type="text"
+                                    [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['bebi_Descripcion'].invalid}" />
+                                <small class="ng-dirty ng-invalid"
                                     *ngIf="submitted && formDepartamento.controls['bebi_Descripcion'].invalid"
                                     style="color: red !important;">Bebida Requerida</small>
                             </div>
                             <div class="field col">
                                 <label htmlFor="email2">Precio:</label>
                                 <input pInputText formControlName="bebi_Precio" autocomplete="off" id="email2"
-                                    type="text" [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['bebi_Precio'].invalid}"/>
-                                    <small class="ng-dirty ng-invalid"
+                                    type="text"
+                                    [ngClass]="{'ng-invalid ng-dirty': submitted && formDepartamento.controls['bebi_Precio'].invalid}" />
+                                <small class="ng-dirty ng-invalid"
                                     *ngIf="submitted && formDepartamento.controls['bebi_Precio'].invalid"
                                     style="color: red !important;">Precio Requerido</small>
                             </div>
@@ -68,14 +70,15 @@
                 <ng-template pTemplate="caption">
                     <div class="flex justify-content-between flex-column sm:flex-row">
                         <!-- <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button> -->
-                    <div class=" mb-2"> </div>
+                        <div class=" mb-2"> </div>
                         <span class="p-input-icon-left mb-2">
                             <i class="pi pi-search"></i>
-                            <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Buscar" class="w-full"/>
+                            <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)"
+                                placeholder="Buscar" class="w-full" />
                         </span>
                     </div>
                 </ng-template>
-    
+
                 <ng-template pTemplate="header">
                     <tr>
                         <th style="min-width: 12rem">
@@ -111,7 +114,8 @@
                     <tr class="">
                         <td>{{bebi.bebi_Descripcion}}</td>
                         <td>
-                            <img *ngIf="bebi.bebi_Imagen" [src]="'https://localhost:44332/uploads/' + bebi.bebi_Imagen"
+                            <img *ngIf="bebi.bebi_Imagen"
+                                [src]="'http://sistemarestaurante.somee.com/uploads/' + bebi.bebi_Imagen"
                                 alt="Imagen de postre" width="100">
                         </td>
 

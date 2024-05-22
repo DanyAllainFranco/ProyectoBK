@@ -19,7 +19,7 @@ import { Respuesta } from '../models/ServiceResult';
 export class ComboPersonalServiceService {
   successMessage: string = '';
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/ComboPersonal/List';
+  Url = 'http://sistemarestaurante.somee.com/API/ComboPersonal/List';
 
 
   EnviarImagen(file : any): Observable<any>{

@@ -13,7 +13,7 @@ import { BASE_URL } from './UrlParaAPI';
 export class ObtenerFiltros {
 
   constructor(private http: HttpClient) { }
-  baseUrl = 'https://localhost:44332/API/ComboPersonal';
+  baseUrl = 'http://sistemarestaurante.somee.com/API/ComboPersonal';
 
 
   obtenerAlimentosMasVendidos(Usua_Usuario:string,FechaInicio: string, FechaFinal: string): Observable<any> {
@@ -79,7 +79,7 @@ export class ObtenerFiltros {
 export class AlimentomasPedidoServiceService {
 
   constructor(private http: HttpClient) { }
-  baseUrl = 'https://localhost:44332/API/ComboPersonal';
+  baseUrl = 'http://sistemarestaurante.somee.com/API/ComboPersonal';
 
   getAlimentomasPedido(Usua_Usuario: string) {
     const url = `${this.baseUrl}/GrafiAlimentos?Usua_Usuario=${Usua_Usuario}`;
@@ -98,7 +98,7 @@ export class AlimentomasPedidoServiceService {
 export class CombomasPedidoServiceService {
 
   constructor(private http: HttpClient) { }
-  baseUrl = 'https://localhost:44332/API/ComboPersonal';
+  baseUrl = 'http://sistemarestaurante.somee.com/API/ComboPersonal';
 
   getCombomasPedido(Usua_Usuario: string) {
     const url = `${this.baseUrl}/GrafiCombos?Usua_Usuario=${Usua_Usuario}`;
@@ -112,7 +112,7 @@ export class CombomasPedidoServiceService {
 export class PaquetemasPedidoServiceService {
 
   constructor(private http: HttpClient) { }
-  baseUrl = 'https://localhost:44332/API/ComboPersonal';
+  baseUrl = 'http://sistemarestaurante.somee.com/API/ComboPersonal';
 
   getPaquetemasPedido(Usua_Usuario: string) {
     const url = `${this.baseUrl}/GrafiPaquetes?Usua_Usuario=${Usua_Usuario}`;
@@ -127,7 +127,7 @@ export class PaquetemasPedidoServiceService {
 export class PostremasPedidoServiceService {
 
   constructor(private http: HttpClient) { }
-  baseUrl = 'https://localhost:44332/API/ComboPersonal';
+  baseUrl = 'http://sistemarestaurante.somee.com/API/ComboPersonal';
 
   getPostremasPedido(Usua_Usuario: string) {
     const url = `${this.baseUrl}/GrafiPostres?Usua_Usuario=${Usua_Usuario}`;
