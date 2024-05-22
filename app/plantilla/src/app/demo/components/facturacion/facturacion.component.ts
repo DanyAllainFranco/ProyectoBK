@@ -3,7 +3,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { Router } from '@angular/router';
 import { FacturaServiceService } from '../../service/factura-service.service';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -111,7 +111,7 @@ export class FacturacionComponent {
       Prod_Producto: new FormControl(""),
       FaDe_Ident: new FormControl("C"),
       FaDe_ProdId: new FormControl(""),
-      FaDe_Cantidad: new FormControl("")
+      FaDe_Cantidad: new FormControl(1,Validators.required)
     });
   }
   //AUTOCOMPLETADO
@@ -183,17 +183,19 @@ export class FacturacionComponent {
     this.FacturaForm.get('FaDe_Ident').setValue(value);
     this.FacturaForm.get('FaDe_ProdId').setValue('');
     this.FacturaForm.get('Prod_Producto').setValue('');
-    this.FacturaForm.get('FaDe_Cantidad').setValue('');
+    this.FacturaForm.get('FaDe_Cantidad').setValue(1);
   }
 
   increaseQuantity(product) {
     product.cantidad++;
+    // Update the form control with the new value
     this.FacturaForm.get('FaDe_Cantidad').setValue(product.cantidad);
   }
-
+  
   decreaseQuantity(product) {
     if (product.cantidad > 1) {
       product.cantidad--;
+      // Update the form control with the new value
       this.FacturaForm.get('FaDe_Cantidad').setValue(product.cantidad);
     }
   }
@@ -206,7 +208,7 @@ export class FacturacionComponent {
         this.FacturaDetalle.push({
           producto: selectedProduct.text,
           cantidad: cantidad,
-          precio: selectedProduct.precio,
+          precio: (selectedProduct.precio).toFixed(2),
           total: (selectedProduct.precio * cantidad).toFixed(2)
         });
 
@@ -244,8 +246,8 @@ export class FacturacionComponent {
         this.FacturaDetalle.push({
           producto: producto.text,
           cantidad: cantidad,
-          precio: producto.precio,
-          total: (producto.precio * cantidad).toFixed(0)
+          precio: (producto.precio).toFixed(2),
+          total: (producto.precio * cantidad).toFixed(2)
         });
       } else {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'La cantidad tiene que ser mayor a 0.' });

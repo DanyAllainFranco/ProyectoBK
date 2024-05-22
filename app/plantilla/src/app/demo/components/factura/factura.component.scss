@@ -241,11 +241,21 @@ table th{
     margin-left: auto;
 }
 
-.invoice-1 .invoice-id .info{
+.invoice-1 .invoice-id{
     max-width: 200px;
     margin:0 50px 0 auto;
     padding: 34px 0;
 }
+
+.Orden{
+    margin-top: 35px;
+    font-weight: bold;
+}
+
+.info {
+    display: flex;
+    align-items: center; /* Alinea verticalmente */
+  }
 
 .invoice-1 .invoice-id{
     border-radius: 75px 0 0 75px;
