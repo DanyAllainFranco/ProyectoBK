@@ -8,20 +8,20 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAvn4kk4UCe0KsOvMYo8RFGAAAAAACAAAAAAAQZgAAAAEAACAAAADx7gvdxJM58xJsNTyjH/0sO9yjLrUw5mtkdzU+Xaf7gQAAAAAOgAAAAAIAACAAAABvv30grdAzvgEb3jcD76TKqJ6FAmUa+cFGt/vZ/7v9TiAAAACQMu35fk1YrQOm9KLhiJ1ttepqNpkSmsQVSDsGQu+LyEAAAABwWnS0cIJDKxkh/sv1jt0bwL0x1bGA4la3ZuzYjFzqB8nzoMn+Tng0SIBc5FMrWaK/7FocMWOh5/q8Sj9lOlGw</EncryptedPassword>
     <_PublishTargetUrl>ftp://155.254.244.28/www.SistemaRestaurante.somee.com</_PublishTargetUrl>
-    <History>True|2024-05-22T17:13:55.4458895Z;</History>
+    <History>True|2024-05-22T19:16:48.3929014Z;True|2024-05-22T11:13:55.4458895-06:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
       <publishTime>05/21/2024 11:08:20</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>05/22/2024 08:29:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="AutoMapper.dll">
-      <publishTime>01/05/2022 09:27:54</publishTime>
+      <publishTime>05/01/2022 09:27:54</publishTime>
     </File>
     <File Include="AutoMapper.Extensions.Microsoft.DependencyInjection.dll">
-      <publishTime>01/05/2022 09:57:34</publishTime>
+      <publishTime>05/01/2022 09:57:34</publishTime>
     </File>
     <File Include="cs/Microsoft.CodeAnalysis.CSharp.resources.dll">
       <publishTime>11/11/2020 18:15:14</publishTime>
@@ -51,7 +51,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/11/2020 18:16:28</publishTime>
     </File>
     <File Include="dotnet-aspnet-codegenerator-design.dll">
-      <publishTime>02/08/2021 19:32:20</publishTime>
+      <publishTime>08/02/2021 19:32:20</publishTime>
     </File>
     <File Include="es/Microsoft.CodeAnalysis.CSharp.resources.dll">
       <publishTime>11/11/2020 18:15:14</publishTime>
@@ -78,7 +78,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/11/2020 18:16:28</publishTime>
     </File>
     <File Include="Humanizer.dll">
-      <publishTime>06/02/2020 07:07:58</publishTime>
+      <publishTime>02/06/2020 07:07:58</publishTime>
     </File>
     <File Include="it/Microsoft.CodeAnalysis.CSharp.resources.dll">
       <publishTime>11/11/2020 18:15:14</publishTime>
@@ -150,13 +150,13 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>10/24/2020 00:40:08</publishTime>
     </File>
     <File Include="Microsoft.EntityFrameworkCore.SqlServer.dll">
-      <publishTime>10/24/2020 00:41:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Microsoft.Extensions.DependencyInjection.Abstractions.dll">
       <publishTime>10/22/2021 17:48:30</publishTime>
     </File>
     <File Include="Microsoft.Extensions.Options.dll">
-      <publishTime>10/22/2021 17:50:00</publishTime>
+      <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="Microsoft.Extensions.Primitives.dll">
       <publishTime>10/22/2021 17:50:40</publishTime>
@@ -183,25 +183,25 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>08/29/2020 14:14:12</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll">
-      <publishTime>02/08/2021 19:32:08</publishTime>
+      <publishTime>08/02/2021 19:32:08</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Core.dll">
-      <publishTime>02/08/2021 19:32:16</publishTime>
+      <publishTime>08/02/2021 19:32:16</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGeneration.dll">
-      <publishTime>02/08/2021 19:32:18</publishTime>
+      <publishTime>08/02/2021 19:32:18</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll">
-      <publishTime>02/08/2021 19:32:18</publishTime>
+      <publishTime>08/02/2021 19:32:18</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll">
-      <publishTime>02/08/2021 19:32:14</publishTime>
+      <publishTime>08/02/2021 19:32:14</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll">
-      <publishTime>02/08/2021 19:32:12</publishTime>
+      <publishTime>08/02/2021 19:32:12</publishTime>
     </File>
     <File Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll">
-      <publishTime>02/08/2021 19:32:18</publishTime>
+      <publishTime>08/02/2021 19:32:18</publishTime>
     </File>
     <File Include="Newtonsoft.Json.dll">
       <publishTime>03/24/2018 11:44:14</publishTime>
@@ -219,43 +219,43 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/11/2020 18:16:28</publishTime>
     </File>
     <File Include="Proyecto_BK.API.deps.json">
-      <publishTime>05/22/2024 11:08:22</publishTime>
+      <publishTime>05/22/2024 13:12:46</publishTime>
     </File>
     <File Include="Proyecto_BK.API.dll">
-      <publishTime>05/22/2024 11:08:18</publishTime>
+      <publishTime>05/22/2024 13:12:43</publishTime>
     </File>
     <File Include="Proyecto_BK.API.exe">
-      <publishTime>05/22/2024 11:08:18</publishTime>
+      <publishTime>05/22/2024 13:12:43</publishTime>
     </File>
     <File Include="Proyecto_BK.API.pdb">
-      <publishTime>05/22/2024 11:08:18</publishTime>
+      <publishTime>05/22/2024 13:12:43</publishTime>
     </File>
     <File Include="Proyecto_BK.API.runtimeconfig.json">
-      <publishTime>05/22/2024 11:08:18</publishTime>
+      <publishTime>05/22/2024 13:12:43</publishTime>
     </File>
     <File Include="Proyecto_BK.BusinessLogic.dll">
-      <publishTime>05/22/2024 11:08:17</publishTime>
+      <publishTime>05/22/2024 13:12:41</publishTime>
     </File>
     <File Include="Proyecto_BK.BusinessLogic.pdb">
-      <publishTime>05/22/2024 11:08:17</publishTime>
+      <publishTime>05/22/2024 13:12:41</publishTime>
     </File>
     <File Include="Proyecto_BK.Common.dll">
-      <publishTime>05/22/2024 11:08:16</publishTime>
+      <publishTime>05/22/2024 13:12:39</publishTime>
     </File>
     <File Include="Proyecto_BK.Common.pdb">
-      <publishTime>05/22/2024 11:08:16</publishTime>
+      <publishTime>05/22/2024 13:12:39</publishTime>
     </File>
     <File Include="Proyecto_BK.DataAccess.dll">
-      <publishTime>05/22/2024 11:08:16</publishTime>
+      <publishTime>05/22/2024 13:12:40</publishTime>
     </File>
     <File Include="Proyecto_BK.DataAccess.pdb">
-      <publishTime>05/22/2024 11:08:16</publishTime>
+      <publishTime>05/22/2024 13:12:40</publishTime>
     </File>
     <File Include="Proyecto_BK.Entities.dll">
-      <publishTime>05/22/2024 11:08:15</publishTime>
+      <publishTime>05/22/2024 13:12:39</publishTime>
     </File>
     <File Include="Proyecto_BK.Entities.pdb">
-      <publishTime>05/22/2024 11:08:15</publishTime>
+      <publishTime>05/22/2024 13:12:39</publishTime>
     </File>
     <File Include="pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll">
       <publishTime>11/11/2020 18:15:14</publishTime>
@@ -285,7 +285,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>08/25/2020 17:25:12</publishTime>
     </File>
     <File Include="runtimes/win-arm/lib/net5.0/dotnet-aspnet-codegenerator-design.exe">
-      <publishTime>02/08/2021 19:32:20</publishTime>
+      <publishTime>08/02/2021 19:32:20</publishTime>
     </File>
     <File Include="runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll">
       <publishTime>08/25/2020 14:34:56</publishTime>
@@ -294,7 +294,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>08/25/2020 14:31:56</publishTime>
     </File>
     <File Include="runtimes/win-arm64/lib/net5.0/dotnet-aspnet-codegenerator-design.exe">
-      <publishTime>02/08/2021 19:32:20</publishTime>
+      <publishTime>08/02/2021 19:32:20</publishTime>
     </File>
     <File Include="runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll">
       <publishTime>08/25/2020 14:35:06</publishTime>
@@ -333,19 +333,19 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>09/23/2020 06:47:24</publishTime>
     </File>
     <File Include="System.Composition.AttributedModel.dll">
-      <publishTime>11/04/2016 22:55:42</publishTime>
+      <publishTime>04/11/2016 22:55:42</publishTime>
     </File>
     <File Include="System.Composition.Convention.dll">
-      <publishTime>11/04/2016 22:55:42</publishTime>
+      <publishTime>04/11/2016 22:55:42</publishTime>
     </File>
     <File Include="System.Composition.Hosting.dll">
-      <publishTime>11/04/2016 22:55:42</publishTime>
+      <publishTime>04/11/2016 22:55:42</publishTime>
     </File>
     <File Include="System.Composition.Runtime.dll">
-      <publishTime>11/04/2016 22:55:44</publishTime>
+      <publishTime>04/11/2016 22:55:44</publishTime>
     </File>
     <File Include="System.Composition.TypedParts.dll">
-      <publishTime>11/04/2016 22:55:46</publishTime>
+      <publishTime>04/11/2016 22:55:46</publishTime>
     </File>
     <File Include="System.Configuration.ConfigurationManager.dll">
       <publishTime>11/15/2019 02:37:04</publishTime>
@@ -375,7 +375,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/11/2020 18:16:28</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>05/22/2024 11:08:22</publishTime>
+      <publishTime>05/22/2024 13:12:46</publishTime>
     </File>
     <File Include="wwwroot/uploads/1715614977660-246059798-Funerales.jpg">
       <publishTime>05/21/2024 11:08:51</publishTime>

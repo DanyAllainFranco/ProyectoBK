@@ -6,7 +6,7 @@
         <form [formGroup]="form" class="grid col-12 p-fluid p-formgrid">
           <div class="field col-12 md:col-6">
             <label>Identidad:</label>
-            <input [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['Clie_Identidad'].invalid}" type="text"
+            <input [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['Clie_Identidad'].invalid}" type=" "
               class="p-inputtext" formControlName="Clie_Identidad">
             <small class="ng-dirty ng-invalid" *ngIf="submitted && form.controls['Clie_Identidad'].invalid"
               style="color: red !important;">Identidad Requerido</small>

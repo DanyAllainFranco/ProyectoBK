@@ -67,19 +67,21 @@ export class ReporteEmpleadoComponent implements OnInit{
 
   ngOnInit(): void {
     const fechaActual = new Date();
-    
+    this.EmpleDLL();
     fechaActual.setMonth(fechaActual.getMonth() - 1);
     const fechaMesAnterior = fechaActual.toISOString().slice(0, 10);
     const fechaActualISO = new Date().toISOString().slice(0, 10);
     this.fechaInicio = fechaMesAnterior;
     this.fechaFin = fechaActualISO;
-    this.EmpleDLL();
+  
+
     this.Usuario = this.cookieService.get('Usua_Usuario');
   }
 
   EmpleDLL() {
     this.empleadoService.EmpleadoDDL().subscribe(
       (data: any[]) => {
+        console.log(data)
         this.empleados = data.map(item => ({ label: item.empl_Nombre, value: item.empl_Id }  ));;
         
         // this.empleados = [
@@ -98,7 +100,7 @@ export class ReporteEmpleadoComponent implements OnInit{
  onChangeEmpleado(event: any) {
     this.Empl_Id = event.value;
     const prueba = event.value;
-    if(prueba == 'T'){
+    if(prueba == 15){
       console.log("SIII")
       this.todos = true;
       console.log("BOOL: " + this.todos)

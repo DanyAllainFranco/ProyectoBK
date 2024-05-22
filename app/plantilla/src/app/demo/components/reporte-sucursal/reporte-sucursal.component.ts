@@ -95,7 +95,7 @@ export class ReporteSucursalComponent implements OnInit{
   onChangeEmpleado(event: any) {
     this.Empl_Id = event.value;
     const prueba = event.value;
-    if(prueba == 'T'){
+    if(prueba == 9){
       console.log("SIII")
       this.todos = true;
       console.log("BOOL: " + this.todos)

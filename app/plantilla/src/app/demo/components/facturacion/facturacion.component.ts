@@ -318,7 +318,7 @@ export class FacturacionComponent {
     this.Agregar = true;
     this.MunCodigo = true;
     this.Fact_ID = 0;
-    this.router.navigate(['/app/IndexFacturacion']);
+    this.router.navigate(['/app/facturas']);
   }
 
   onSubmit() {

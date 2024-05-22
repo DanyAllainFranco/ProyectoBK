@@ -20,7 +20,7 @@ export class ServiceService {
   url = BASE_URL + 'API/Empleado/List'
   successMessage: string = '';
 
-  EmplDDL= 'https://localhost:44332/API/Empleado/EmpleadoDDL';
+  EmplDDL= 'http://sistemarestaurante.somee.com/API/Empleado/EmpleadoDDL';
   EmpleadoDDL (){
     return this.http.get<EmpleadoDDL[]>(this.EmplDDL);
   }
