@@ -19,24 +19,24 @@
                             <form [formGroup]="FacturaForm"  (ngSubmit)="onSubmit()">
                                 <div class="p-fluid p-formgrid grid">
                                     <div class="field col-12 md:col-6">
-                                        <label for="">Cliente</label>
+                                        <!-- <label for="">Cliente</label>
                                         <p-inputGroup>
                                             <p-inputGroupAddon>
                                                 <i class="pi pi-user"></i>
                                             </p-inputGroupAddon>
                                             <input pInputText type="text" placeholder="Nombre" formControlName="Clie_Nombre"/>
                                         </p-inputGroup>
-                                        <small *ngIf="submitted && FacturaForm.controls['Clie_Nombre'].invalid" style="color: red !important;">Nombre Requerido</small>
+                                        <small *ngIf="submitted && FacturaForm.controls['Clie_Nombre'].invalid" style="color: red !important;">Nombre Requerido</small> -->
                                     </div>
                                     <div class="field col-12 md:col-6">
-                                        <label for="">Identidad</label>
+                                        <!-- <label for="">Identidad</label>
                                         <p-inputGroup>
                                             <p-inputGroupAddon>
                                                 <i class="pi pi-credit-card"></i>
                                             </p-inputGroupAddon>
                                             <input pInputText type="text" placeholder="Numero de identidad" formControlName="Clie_Identidad"/>
                                         </p-inputGroup>
-                                        <small *ngIf="submitted && FacturaForm.controls['Clie_Identidad'].invalid" style="color: red !important;">Identidad requerida</small>
+                                        <small *ngIf="submitted && FacturaForm.controls['Clie_Identidad'].invalid" style="color: red !important;">Identidad requerida</small> -->
                                     </div>
                                 </div>
                                 <p-table [value]="FacturaDetalle">

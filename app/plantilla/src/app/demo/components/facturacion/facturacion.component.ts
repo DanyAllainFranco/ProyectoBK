@@ -107,9 +107,9 @@ export class FacturacionComponent {
     });
     this.FacturaForm = new FormGroup({
       //FACTURA
-      // Clie_Id: new FormControl(""),    
-      Clie_Nombre: new FormControl(""),
-      Clie_Identidad: new FormControl(""),
+      // // Clie_Id: new FormControl(""),    
+      // Clie_Nombre: new FormControl(""),
+      // Clie_Identidad: new FormControl(""),
       Prod_Producto: new FormControl(""),
       FaDe_Ident: new FormControl("C"),
       FaDe_ProdId: new FormControl(""),
