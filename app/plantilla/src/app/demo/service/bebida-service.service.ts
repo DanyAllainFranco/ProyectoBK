@@ -11,7 +11,7 @@ import { Observable, map } from 'rxjs';
 export class BebidasServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/Bebida/List';
+  Url = 'http://sistemarestaurante.somee.com/API/Bebida/List';
   getBebidas (){
     return this.http.get<CargarBebidas[]>(this.Url);
   }

@@ -83,10 +83,9 @@ export class DepartamentoDetalleComponent implements OnInit{
 
   ngOnInit(): void {
      this.route.params.subscribe(params => {
-      const prueba  = +params['id'];
+      const prueba  =  params['id'];
       console.log("FDSF: " + prueba)
-    //  this.obtenerRol(prueba);
-
+     this.obtenerRol(prueba.toString());
     });
     this.form = this.formBuilder.group({
       dept_Codigo: ['', Validators.required],

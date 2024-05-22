@@ -15,7 +15,7 @@ export class PostreServiceService {
   successMessage: string = '';
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/Postre/List';
+  Url = 'http://sistemarestaurante.somee.com/API/Postre/List';
 
   obtenerPostrePorId(idCombo: number): Observable<LlenarPostres> {
     return this.http.get<LlenarPostres>(`${BASE_URL}API/Postre/Fill/${idCombo}`);

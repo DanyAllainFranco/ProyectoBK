@@ -9,7 +9,7 @@ import {HttpClient} from '@angular/common/http'
 export class PromocionPorComidaServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/PromocionPorComida/List';
+  Url = 'http://sistemarestaurante.somee.com/API/PromocionPorComida/List';
 
   getPromocionPorComida (){
     return this.http.get<PromocionComida[]>(this.Url);

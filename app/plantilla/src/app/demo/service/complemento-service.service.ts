@@ -11,7 +11,7 @@ import { map } from 'rxjs';
 export class ComplementoServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/Complemento/List';
+  Url = 'http://sistemarestaurante.somee.com/API/Complemento/List';
 
   getComplemento (){
     return this.http.get<CargarComplementos[]>(this.Url);

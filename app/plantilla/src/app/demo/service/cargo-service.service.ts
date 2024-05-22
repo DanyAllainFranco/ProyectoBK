@@ -11,7 +11,7 @@ import { BASE_URL } from './UrlParaAPI';
 export class CargosServiceService {
 
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/Cargo/List';
+  Url = 'http://sistemarestaurante.somee.com/API/Cargo/List';
   getCargo (){
     return this.http.get<Cargos[]>(this.Url);
   }
@@ -20,22 +20,22 @@ export class CargosServiceService {
     return this.http.get<LlenarCargo>(`${BASE_URL}API/Cargo/Find/${idCombo}`);
   }
 
-  UrlAgregar =  'https://localhost:44332/API/Cargo/Insert' ;
+  UrlAgregar =  'http://sistemarestaurante.somee.com/API/Cargo/Insert' ;
   agregar(modelo:Cargos):Observable<Cargos>{
     return this.http.post<Cargos>(this.UrlAgregar,modelo);
   }
   
-  UrlObtener = 'https://localhost:44332/API/Cargo/Find';
+  UrlObtener = 'http://sistemarestaurante.somee.com/API/Cargo/Find';
     obtener(Carg_Id:number){
     return this.http.get<Cargos>(`${this.UrlObtener}?Carg_Id=${Carg_Id}`);
   }
 
-  UrlUpdate = 'https://localhost:44332/API/Cargo/Update';
+  UrlUpdate = 'http://sistemarestaurante.somee.com/API/Cargo/Update';
   actualizar(carg_id:number,modelo:Cargos):Observable<Cargos>{
     return this.http.put<Cargos>(this.UrlUpdate,modelo);
   }
   
-  UrlEliminar = 'https://localhost:44332/API/Cargo/Delete';
+  UrlEliminar = 'http://sistemarestaurante.somee.com/API/Cargo/Delete';
   eliminar(Carg_Id:number):Observable<void>{
     return this.http.delete<void>(`${this.UrlEliminar}?Carg_Id=${Carg_Id}`);
   }

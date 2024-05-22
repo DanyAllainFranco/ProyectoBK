@@ -12,7 +12,7 @@ import { Observable, map } from 'rxjs';
 export class PaquetesServiceService {
   successMessage: string = '';
   constructor(private http: HttpClient) { }
-  Url = 'https://localhost:44332/API/Paquete/List';
+  Url = 'http://sistemarestaurante.somee.com/API/Paquete/List';
   getPaquete (){
     return this.http.get<Paquetes[]>(this.Url);
   }

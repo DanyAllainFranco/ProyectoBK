@@ -32,6 +32,9 @@ export class AppTopBarComponent implements OnInit{
         }
         
     }
+    CrearNuevaFactura(): void {
+        this.router.navigate(['/app/IndexFacturacion']);
+      }
 
     logOut() {
         this.cookieService.deleteAll();

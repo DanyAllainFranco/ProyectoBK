@@ -1,0 +1,15 @@
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\bin\Release\net5.0\Proyecto_BK.Common.deps.json
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\bin\Release\net5.0\Proyecto_BK.Common.dll
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\bin\Release\net5.0\ref\Proyecto_BK.Common.dll
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\bin\Release\net5.0\Proyecto_BK.Common.pdb
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\bin\Release\net5.0\Proyecto_BK.Entities.dll
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\bin\Release\net5.0\Proyecto_BK.Entities.pdb
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\obj\Release\net5.0\Proyecto_BK.Common.csproj.AssemblyReference.cache
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\obj\Release\net5.0\Proyecto_BK.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\obj\Release\net5.0\Proyecto_BK.Common.AssemblyInfoInputs.cache
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\obj\Release\net5.0\Proyecto_BK.Common.AssemblyInfo.cs
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\obj\Release\net5.0\Proyecto_BK.Common.csproj.CoreCompileInputs.cache
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\obj\Release\net5.0\Proyecto_BK.Common.csproj.CopyComplete
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\obj\Release\net5.0\Proyecto_BK.Common.dll
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\obj\Release\net5.0\ref\Proyecto_BK.Common.dll
+C:\Users\LAB1\Documents\GitHub\ProyectoBK\api\Proyecto_BK\Proyecto_BK.Common\obj\Release\net5.0\Proyecto_BK.Common.pdb
