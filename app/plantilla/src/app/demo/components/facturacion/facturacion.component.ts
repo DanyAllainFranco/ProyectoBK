@@ -8,6 +8,7 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { CountryService } from 'src/app/demo/service/country.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
@@ -73,6 +74,7 @@ export class FacturacionComponent {
   FaDe_Ident?: string;
   Empl_Id = 0;
   selectedMetodo: string = '1';
+  showRtn: boolean = false;
   //AUTOCOMPLETADO
   detalleForm: FormGroup;
   metodos: any[] = [];
@@ -184,6 +186,10 @@ export class FacturacionComponent {
     this.FacturaForm.get('FaDe_ProdId').setValue('');
     this.FacturaForm.get('Prod_Producto').setValue('');
     this.FacturaForm.get('FaDe_Cantidad').setValue(1);
+  }
+
+  toggleRtn(event: any) {
+    this.showRtn = event;
   }
 
   increaseQuantity(product) {

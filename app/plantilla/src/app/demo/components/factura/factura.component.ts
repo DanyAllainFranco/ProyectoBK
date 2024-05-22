@@ -20,6 +20,7 @@ export class FacturaComponent implements OnInit {
   fact_Fecha: string; // Cambiado a string para almacenar la fecha formateada
   fact_Id: number;
   factura: FacturaDetalle[];
+  sumaTotal: number = 0;
 
   constructor(private facturaService: DatosCompartidosService, private datePipe: DatePipe) { }
 
@@ -43,6 +44,7 @@ export class FacturaComponent implements OnInit {
         if (primerDetalle.fact_Fecha) {
           this.fact_Fecha = this.datePipe.transform(primerDetalle.fact_Fecha, 'yyyy-MM-dd'); // Formatear la fecha
         }
+        this.sumaTotal = this.factura.reduce((acc, cur) => acc + parseFloat(cur.total), 0);
       }
     });
   }
