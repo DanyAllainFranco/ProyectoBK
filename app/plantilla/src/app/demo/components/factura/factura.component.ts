@@ -51,32 +51,35 @@ export class FacturaComponent implements OnInit {
 
   DescargrPDF() {
     'use strict';
-    var contentWidth = document.getElementById("invoice_wrapper").offsetWidth;
-    var contentHeight = document.getElementById("invoice_wrapper").offsetHeight;
-    var topLeftMargin = 15;
-    var pdfWidth = contentWidth + (topLeftMargin * 2);
-    var pdfHeight = (pdfWidth * 1) + (topLeftMargin * 2);
-    var canvasImageWidth = contentWidth;
-    var canvasImageHeight = contentHeight;
-    var totalPDFPages = Math.ceil(contentHeight / pdfHeight) - 1;
+  var contentWidth = document.getElementById("invoice_wrapper").offsetWidth;
+  var contentHeight = document.getElementById("invoice_wrapper").offsetHeight;
+  var topLeftMargin = 15;
+  var pdfWidth = contentWidth + (topLeftMargin * 2);
+  var pdfHeight = (pdfWidth * 1) + (topLeftMargin * 2);
+  var canvasImageWidth = contentWidth;
+  var canvasImageHeight = contentHeight;
+  var totalPDFPages = Math.ceil(contentHeight / pdfHeight) - 1;
 
-    html2canvas(document.getElementById("invoice_wrapper")).then(function (canvas) {
-        canvas.getContext('2d');
-        var imgData = canvas.toDataURL("image/jpeg", 1.0);
-        var pdf = new jsPDF('p', 'pt', [pdfWidth, pdfHeight]);
-        var position = 0;
+  html2canvas(document.getElementById("invoice_wrapper")).then(function (canvas) {
+    canvas.getContext('2d');
+    var imgData = canvas.toDataURL("image/jpeg", 1.0);
+    var pdf = new jsPDF('p', 'pt', [pdfWidth, pdfHeight]);
+    var position = 0;
 
-        for (var i = 0; i <= totalPDFPages; i++) {
-            if (i > 0) {
-                position = -(pdfHeight * i) + (topLeftMargin * 4); 
-                pdf.addPage([pdfWidth, pdfHeight]); 
-              
-            }
-            pdf.addImage(imgData, 'JPEG', topLeftMargin, position, canvasImageWidth, canvasImageHeight);
-        }
-        pdf.save("factura.pdf");
-    });
-}
+    for (var i = 0; i <= totalPDFPages; i++) {
+      if (i > 0) {
+        position = -(pdfHeight * i) + (topLeftMargin * 4);
+        pdf.addPage([pdfWidth, pdfHeight]);
+
+        // Agregar encabezado en cada página nueva
+        pdf.setFontSize(12);
+        pdf.text("Encabezado de la página " + (i + 1), 10, 10); // Personaliza tu encabezado aquí
+      }
+      pdf.addImage(imgData, 'JPEG', topLeftMargin, position, canvasImageWidth, canvasImageHeight);
+    }
+    pdf.save("factura.pdf");
+   });
+ }
 }
 
 @NgModule({
