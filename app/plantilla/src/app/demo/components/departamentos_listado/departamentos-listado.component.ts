@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule,Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Departamento } from '../../models/DepartamentosViewModel';
+import { Departamento, Departamento2 } from '../../models/DepartamentosViewModel';
 import { DepartamentoServiceService } from '../../service/departamento-service.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -18,6 +18,7 @@ import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { MessageService } from 'primeng/api';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-departamentos-listado',
@@ -35,14 +36,16 @@ export class DepartamentosListadoComponent implements OnInit {
   modalButtonLabel: string = 'Guardar';
   confirmacionVisible: boolean = false;
   departamentoAEliminar: Departamento | null = null;
-  Usua_Id: string;
+  Usua_Id: number;
+  submitted: boolean = false;
   constructor(
     private service: DepartamentoServiceService,
     private router: Router,
     private fb: FormBuilder,
     private _departamentoServicio: DepartamentoServiceService,
     private messageService: MessageService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private creationGuard: CreationGuard
    
   ) {
     this.formDepartamento = this.fb.group({
@@ -53,11 +56,12 @@ export class DepartamentosListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDepartamentos();
-    this.Usua_Id = this.cookieService.get('Usua_Id');
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
 
   }
 
   detalleRol(combId: string) {
+    this.creationGuard.allow();
     console.log(combId)
    this.router.navigate(['app/DetalleDepartamento', combId]); 
   }
@@ -140,20 +144,24 @@ export class DepartamentosListadoComponent implements OnInit {
   }
 
   guardarDepartamento() {
-    if (this.formDepartamento.invalid) {
-      return;
+    if (this.formDepartamento.valid) {
+      if (this.modalTitle === 'Nuevo Registro') {
+        this.NuevoDepartamento();
+      } else {
+        this.actualizarDepartamento();
+      }
     }
-    if (this.modalTitle === 'Nuevo Registro') {
-      this.NuevoDepartamento();
-    } else {
-      this.actualizarDepartamento();
+    else{
+      this.submitted = true;
     }
+ 
   }
 
   NuevoDepartamento() {
     const modelo: Departamento = {
       dept_Codigo: this.formDepartamento.value.codigo,
-      dept_Descripcion: this.formDepartamento.value.departamento
+      dept_Descripcion: this.formDepartamento.value.departamento,
+      Dept_Usua_Creacion: this.Usua_Id
     }
     this._departamentoServicio.agregar(modelo).subscribe({
       next: (data) => {  
@@ -170,9 +178,10 @@ export class DepartamentosListadoComponent implements OnInit {
 
   actualizarDepartamento() {
     const idDepartamento = this.selectedDepartamento.dept_Codigo;
-    const modelo: Departamento = {
+    const modelo: Departamento2 = {
       dept_Codigo: this.formDepartamento.value.codigo,
-      dept_Descripcion: this.formDepartamento.value.departamento
+      dept_Descripcion: this.formDepartamento.value.departamento,
+      Dept_Usua_Modifica: this.Usua_Id
     }
     this._departamentoServicio.actualizar(idDepartamento, modelo).subscribe({
       next: (data) => {

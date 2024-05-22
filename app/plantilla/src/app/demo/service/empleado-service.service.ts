@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BASE_URL } from './UrlParaAPI';
-import { Empleado,Fill } from '../models/EmpleadoViewModel';
+import { Empleado,EmpleadoDDL,Fill } from '../models/EmpleadoViewModel';
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
@@ -8,6 +8,8 @@ import { dropDepartamento } from '../models/DepartamentosViewModel';
 import { CargarMunicipios, dropMunicipio } from '../models/MunicipioViewModel';
 import { dropEstadoCivil } from '../models/EstadoCivilViewModel';
 import { dropCargo } from '../models/CargosViewModel';
+import { EmpleadosEnviar, LlenarEmpleados } from '../models/ClientesViewModel';
+import { Respuesta } from '../models/ServiceResult';
 
 
 @Injectable({
@@ -16,6 +18,48 @@ import { dropCargo } from '../models/CargosViewModel';
 export class ServiceService {
   constructor(private http:HttpClient) { }
   url = BASE_URL + 'API/Empleado/List'
+  successMessage: string = '';
+
+  EmplDDL= 'https://localhost:44332/API/Empleado/EmpleadoDDL';
+  EmpleadoDDL (){
+    return this.http.get<EmpleadoDDL[]>(this.EmplDDL);
+  }
+
+  obtenerCliePorId(idCombo: number): Observable<LlenarEmpleados> {
+    return this.http.get<LlenarEmpleados>(`${BASE_URL}API/Empleado/Fill/${idCombo}`);
+  }
+
+  prueba = 'https://localhost:44332/API/Empleado/Insert';
+  agregarEmpleados(modelo: EmpleadosEnviar): Observable<Respuesta> {
+
+    console.log(modelo)
+    return this.http.post<Respuesta>(this.prueba, modelo);
+  }
+
+
+  obtenerClientePorId(idCombo: number): Observable<LlenarEmpleados> {
+    return this.http.get<LlenarEmpleados>(`${BASE_URL}API/Empleado/Fill/${idCombo}`);
+  }
+
+  
+  eliminar(idDepartamento:number):Observable<void>{
+    return this.http.delete<void>(`${BASE_URL}API/Cliente/Delete/${idDepartamento}`);
+  }
+
+  actualizar(modelo:EmpleadosEnviar):Observable<Respuesta>{
+    return this.http.put<Respuesta>(`${BASE_URL}API/Empleado/Update`,modelo);
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 
   urlDrop = BASE_URL + 'API/Departamento/DropDown'

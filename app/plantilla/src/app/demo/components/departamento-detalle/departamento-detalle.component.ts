@@ -85,7 +85,7 @@ export class DepartamentoDetalleComponent implements OnInit{
      this.route.params.subscribe(params => {
       const prueba  = +params['id'];
       console.log("FDSF: " + prueba)
-    //  this.obtenerRol(this.ComboId);
+    //  this.obtenerRol(prueba);
 
     });
     this.form = this.formBuilder.group({
@@ -118,7 +118,7 @@ export class DepartamentoDetalleComponent implements OnInit{
     );
   }
   Volver(){
-    this.router.navigate(['app/Index'])
+    this.router.navigate(['app/departamentos'])
   }
 }
 

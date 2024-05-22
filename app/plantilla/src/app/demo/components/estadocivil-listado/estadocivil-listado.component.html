@@ -1,37 +1,39 @@
 <p-toast style="background-color: red !important;"></p-toast>
 <div class="main-card mb-3 card"> 
     <div class="card-header">
-        <h3 class="card-title">Estado Civil</h3>
+        <h1 class="text-center">Estados Civiles</h1>
     </div>
     <div class="card-body">
-    
-          <button (click)="collapse()" pButton icon="pi pi-plus-circle" style="margin-bottom: 10px ;" [class.hidden]="!Agregar">Agregar</button>
-          
-          <div [class.hidden]="!Collapse" style="margin-top: 20px;">
-
-            <form [formGroup]="estadocivilForm" (ngSubmit)="onSubmit()">
-                <div class="p-fluid p-formgrid grid">
-
-                  <div class="field col-12 md:col-6">
-                    <label for="Esta_Descripcion">Estado Civil</label>
-                    <input pInputText id="Esta_Descripcion" formControlName="Esta_Descripcion" type="text" required autofocus  [ngClass]="{'ng-invalid ng-dirty': submitted && estadocivilForm.get('Esta_Descripcion').value === ''}"
-                    (keydown)="validarTexto($event)" />
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && estadocivilForm.controls['Esta_Descripcion'].invalid" style="color: red !important;">Estados Civiles Requeridos</small>
+ 
+          <p-dialog header="{{modalTitle}}" [(visible)]="display" [modal]="true" showEffect="fade"
+          [style]="{width: '30vw'}" [breakpoints]="{'960px': '75vw'}">
+          <form [formGroup]="formCargo">
+              <div class="p-fluid">
+                  <div class="p-formgrid grid">
+                      <div class="field col">
+                          <label for="email2">Estado Civil: </label>
+                          <input [ngClass]="{'ng-invalid ng-dirty': submitted && formCargo.controls['esta_Descripcion'].invalid}" pInputText formControlName="esta_Descripcion"  id="email2" type="text" />
+                              <small class="ng-dirty ng-invalid"
+                              *ngIf="submitted && formCargo.controls['esta_Descripcion'].invalid"
+                              style="color: red !important;">Estado Civil Requerido</small>
+                      </div>
                   </div>
+              </div>
+          </form>
+          <ng-template pTemplate="footer">
+              <button pButton icon="pi pi-times" (click)="display=false" label="Cerrar"
+                  class="p-button-outlined p-button-danger mr-2"></button>
+              <button pButton icon="pi pi-check" (click)="guardarCargo()" label="{{modalButtonLabel}}"
+                  class="p-button-outlined"></button>
+          </ng-template>
+      </p-dialog>
+      <div class="grid">
+        <div class="col-12">
+            <button (click)="displayNuevoCargo()" [class.hidden]="!Agregar" pButton icon="pi pi-plus-circle" label="Nuevo"
+                class="mr-2"></button>
 
-                  
-                </div>
-
-                <div style="display: flex; justify-content: flex-end; margin-top: 1rem; grid-gap: 5px;">
-                  <button pButton icon="pi pi-check" type="submit" label="Agregar" class="p-button-outlined"></button>
-                  <button pButton icon="pi pi-times" type="button" (click)="cancelar()" label="Cerrar" class="p-button-outlined"></button>
-                </div>
-
-            </form>
-
-
-          </div>
-
+        </div>
+    </div>
         <p-table #dt1 [value]="Estado" dataKey="esta_Id" [rows]="10" [loading]="loading" [class.hidden]="!DataTable" [rowHover]="true" styleClass="p-datatable-gridlines"  [paginator]="true" [globalFilterFields]="['este_Id,esta_Descripcion']" responsiveLayout="scroll">
             <ng-template pTemplate="caption">
                 <div class="flex justify-content-between flex-column sm:flex-row">
@@ -79,9 +81,9 @@
                         {{esta.esta_Descripcion}}
                     </td>
                     <td style="display: flex; justify-content: space-around; ;grid-gap: 5px;">
-                        <p-button  label="Editar"   icon="pi pi-user-edit" size="small" (click)="Fill(esta.esta_Id)" severity="primary" [raised]="true" [plain]="true"></p-button>
+                        <p-button  label="Editar"   icon="pi pi-user-edit" size="small"    (click)="editCargo(esta)" severity="primary" severity="primary" [raised]="true" [plain]="true"></p-button>
                         <p-button  label="Detalles"   icon="pi pi-book" size="small" (click)="detalles(esta.esta_Id)" severity="secondary" [raised]="true" [plain]="true"></p-button>
-                        <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="deleteSelectedProducts(esta.esta_Id)" severity="danger" [raised]="true" [plain]="true"></p-button>
+                        <p-button  label="Eliminar" icon="pi pi-trash" size="small" (click)="confirmarEliminarCargo(esta)" severity="danger" [raised]="true" [plain]="true"></p-button>
                       
                     </td>
                 </tr>
@@ -167,15 +169,14 @@
       <button pButton icon="pi pi-arrow-left" type="button" (click)="cancelar()" label="Volver" class="p-button-outlined"></button>
     </div>
 </div>
-<p-dialog [(visible)]="deleteProductDialog" header="Confirmar" [modal]="true" [style]="{width:'450px'}">
-    <div class="flex align-items-center justify-content-center">
-        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-        <span>Estas seguro de eliminarlo?</span>
-    </div>
-    <ng-template pTemplate="footer">
-        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
-        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmDelete()"></button>
-    </ng-template>
+<p-dialog header="Confirmar Eliminación" [(visible)]="confirmacionVisible" modal="true"
+[style]="{ width: '300px' }">
+<p>¿Está seguro de que desea eliminar este registro?</p>
+<p-footer>
+    <button pButton type="button" class="mr-2" label="Cancelar" (click)="cancelarEliminar()"></button>
+    <button pButton type="button" label="Confirmar" class="p-button-danger"
+        (click)="eliminarCargo()"></button>
+</p-footer>
 </p-dialog>
 </div>
 </div>

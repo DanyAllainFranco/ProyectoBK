@@ -40,12 +40,35 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
-
-        [HttpGet("API/[controller]/Find")]
+        [HttpGet("API/[controller]/ListAlimentos3/{Paqe_Id}")]
+        public IActionResult ListAlimentos(int Paqe_Id)
+        {
+            var list = _restauranteServices.ListAlimentos3(Paqe_Id);
+            return Ok(list.Data);
+        }
+        [HttpGet("API/[controller]/ListBebidas3/{Paqe_Id}")]
+        public IActionResult ListBebidas(int Paqe_Id)
+        {
+            var list = _restauranteServices.ListBebidas3(Paqe_Id);
+            return Ok(list.Data);
+        }
+        [HttpGet("API/[controller]/ListComplementos3/{Paqe_Id}")]
+        public IActionResult ListComplementos(int Paqe_Id)
+        { 
+            var list = _restauranteServices.ListComplementos3(Paqe_Id);
+            return Ok(list.Data);
+        }
+        [HttpGet("API/[controller]/Find/{Paqe_Id}")]
         public IActionResult Find(int Paqe_Id)
         {
             var result = _restauranteServices.LlenarPaquete(Paqe_Id);
-            return Ok(result);
+            return Ok(result.Data);
+        }
+        [HttpGet("API/[controller]/ListPostres3/{Paqe_Id}")]
+        public IActionResult ListPostres(int Paqe_Id)
+        {       
+            var list = _restauranteServices.ListPostres3(Paqe_Id);
+            return Ok(list.Data);
         }
 
         [HttpPost("API/[controller]/Insert")]
@@ -57,7 +80,7 @@ namespace Proyecto_BK.API.Controllers
                 Paqe_Descripcion = json.Paqe_Descripcion,
                 Paqe_Precio = json.Paqe_Precio,
                 Paqe_Imagen = json.Paqe_Imagen,
-                Paqe_Usua_Creacion = 1,
+                Paqe_Usua_Creacion = json.Paqe_Usua_Creacion,
                 Paqe_Fecha_Creacion = DateTime.Now
             };
             int rolId;
@@ -76,7 +99,7 @@ namespace Proyecto_BK.API.Controllers
                 Paqe_Descripcion = json.Paqe_Descripcion,
                 Paqe_Precio = json.Paqe_Precio,
                 Paqe_Imagen = json.Paqe_Imagen,
-                Paqe_Usua_Modifica = 1,
+                Paqe_Usua_Modifica = json.Paqe_Usua_Modifica,
                 Paqe_Fecha_Modifica = DateTime.Now
             };
             var list = _restauranteServices.EditarPaquete(modelo);

@@ -43,6 +43,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { FileUploadModule } from 'primeng/fileupload';
 import { Fill } from '../../models/ComboPersonalViewModel';
 import { dA } from '@fullcalendar/core/internal-common';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-combo-editar',
@@ -61,6 +62,9 @@ export class ComboEditarComponent implements OnInit{
   complementos: SelectItem[] = [];
   selectedImageURL: string | null = null;
   Imagen: string;
+  submitted: boolean = false;
+  Usua_Id:number;
+
   constructor(
     private route: ActivatedRoute,
     private rolService: ComboPersonalServiceService,
@@ -70,10 +74,13 @@ export class ComboEditarComponent implements OnInit{
     private bebidaService: BebidasServiceService,
     private complementoService: ComplementoServiceService,
     private messageService: MessageService,
+    private cookieService: CookieService,
     private router: Router,
   ) { }
   
   ngOnInit(): void {
+    
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.route.params.subscribe(params => {
       this.ComboId = +params['id'];
       console.log("ID COBO: " + this.ComboId)
@@ -192,7 +199,7 @@ export class ComboEditarComponent implements OnInit{
     );
   }
   Volver(){
-    this.router.navigate(['app/IndexComboPersonal'])
+    this.router.navigate(['app/combo'])
   }
   guardar() {    
     if (this.form.valid) {
@@ -211,7 +218,7 @@ export class ComboEditarComponent implements OnInit{
         Bebi_Id: Bebi_Id,
         Comb_Imagen: Comb_Imagen,
         Comb_Precio: Comb_Precio,
-        ComB_Usua_Creacion: 1,
+        Comb_Usua_Modifica: this.Usua_Id,
         Comp_Id: Comp_Id,
         Post_Id: Post_Id,
       };
@@ -220,7 +227,7 @@ export class ComboEditarComponent implements OnInit{
         (respuesta: Respuesta) => {
           if (respuesta.success) {
             this.rolService.successMessage = '¡Combo actualizado correctamente!';
-            this.router.navigate(['app/IndexComboPersonal']);
+            this.router.navigate(['app/combo']);
           } else {
             this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});
             console.error('Error al crear el combo:', respuesta.message);
@@ -232,8 +239,7 @@ export class ComboEditarComponent implements OnInit{
         }
       );
     } else {
-      console.log("Ingrese los campos")
-      this.invalid = true;
+     this.submitted = true;
     }
   }
 }

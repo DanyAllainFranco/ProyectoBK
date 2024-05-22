@@ -44,7 +44,7 @@ namespace Proyecto_BK.API.Controllers
         [HttpGet("API/[controller]/Fill/{Dept_Codigo}")]
 
         public IActionResult Fill(string Dept_Codigo)
-        {
+        { 
 
             var list = _generalServices.LlenarDepto(Dept_Codigo);
             return Ok(list.Data);
@@ -73,7 +73,7 @@ namespace Proyecto_BK.API.Controllers
             {
                 Dept_Codigo = json.Dept_Codigo,
                 Dept_Descripcion = json.Dept_Descripcion,
-                Dept_Usua_Creacion = 1,
+                Dept_Usua_Creacion = json.Dept_Usua_Creacion,
                 Dept_Fecha_Creacion = DateTime.Now
             };
             var response = _generalServices.CrearDepto(modelo);
@@ -87,7 +87,7 @@ namespace Proyecto_BK.API.Controllers
             {
                 Dept_Codigo = json.Dept_Codigo,
                 Dept_Descripcion = json.Dept_Descripcion,
-                Dept_Usua_Modifica = 1,
+                Dept_Usua_Modifica = json.Dept_Usua_Modifica,
                 Dept_Fecha_Modifica = DateTime.Now
             };
             var list = _generalServices.EditarDepto(modelo);

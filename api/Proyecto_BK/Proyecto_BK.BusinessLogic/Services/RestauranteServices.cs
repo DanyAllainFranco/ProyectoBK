@@ -886,6 +886,287 @@ namespace Proyecto_BK.BusinessLogic.Services
         #endregion
 
         #region Paquete por Comidas
+        public ServiceResult ListPostres3(int Paqe_Id) //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _postreRepository.ListPostre3(Paqe_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+        public ServiceResult ListComplementos3(int Paqe_Id) //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _complementoRepository.ListComplementos3(Paqe_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+        public ServiceResult ListBebidas3(int Paqe_Id) //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _bebidaRepository.ListBebidas3(Paqe_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+        public ServiceResult ListAlimentos3(int Paqe_Id) //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _alimentoRepository.ListAlimentos3(Paqe_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+        public ServiceResult ListAlimentosAgregados(int Paqe_Id) //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _paquetePorComidaRepository.MostrarAlimentos(Paqe_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+        public ServiceResult ListBebidasAgregados(int Paqe_Id) //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _paquetePorComidaRepository.MostrarBebidas(Paqe_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+        public ServiceResult ListComplementosAgregados(int Paqe_Id) //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _paquetePorComidaRepository.MostrarComplementos(Paqe_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+        public ServiceResult ListPostresAgregados(int Paqe_Id) //RolesDDL
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _paquetePorComidaRepository.MostrarPostres(Paqe_Id);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error en la capa de servicio al listar roles");
+            }
+        }
+        public ServiceResult ReporteProductos(string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.ReporteProductos( FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+
+        }
+        public ServiceResult ReporteCompleto( string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.ReporteCompleto(FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+
+        }
+        public ServiceResult ReporteIdentificador(string Sucu_Id, string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.ReporteIdentificador(Sucu_Id, FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+
+        }
+        public ServiceResult ReporteSucursal(int Sucu_Id, string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.ReporteSucursales(Sucu_Id, FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+
+        }
+        public ServiceResult ReporteEmpleadosTodos(string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.ReporteEmpleadosTodos(FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+
+        }
+        public ServiceResult ReporteSucursalesTodos(string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.ReporteSucursalTodos(FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+
+        }
+        public ServiceResult ReporteEmpleados(int Empl_Id, string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.ReporteEmpleados(Empl_Id, FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+
+        }
+        public ServiceResult ListAlimentosMasVenidos(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.AlimentoMasVendio(Usua_Usuario, FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult ListSucursalesTop5(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.SucursalTop5(Usua_Usuario, FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult ListEmpleadosTop5(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.EmpleadoTop5(Usua_Usuario, FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult ListComplementoMasVenidos(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.ComplementoMasVendio(Usua_Usuario, FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult ListPostreMasVenidos(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.PostreMasVendio(Usua_Usuario, FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult ListBebidasMasVenidos(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _facturaRepository.BebidaMasVendio(Usua_Usuario, FechaInicio, FechaFin);
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
         public ServiceResult ListPaquetePorComida()
         {
             var result = new ServiceResult();

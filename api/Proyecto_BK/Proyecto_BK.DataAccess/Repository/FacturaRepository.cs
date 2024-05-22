@@ -108,6 +108,188 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+        public IEnumerable<tbFactura> AlimentoMasVendio(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFactura> result = new List<tbFactura>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Usua_Usuario", Usua_Usuario);
+                parameter.Add("FechaInicio", FechaInicio);
+                parameter.Add("FechaFin", FechaFin);
+                result = db.Query<tbFactura>(ScriptsBaseDeDatos.Grafi_AlimentoMasVendido, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+
+        public IEnumerable<tbFactura> BebidaMasVendio(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFactura> result = new List<tbFactura>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Usua_Usuario", Usua_Usuario);
+                parameter.Add("FechaInicio", FechaInicio);
+                parameter.Add("FechaFin", FechaFin);
+                result = db.Query<tbFactura>(ScriptsBaseDeDatos.Grafi_BebidaMasVendido, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+        public IEnumerable<tbFactura> PostreMasVendio(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFactura> result = new List<tbFactura>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Usua_Usuario", Usua_Usuario);
+                parameter.Add("FechaInicio", FechaInicio);
+                parameter.Add("FechaFin", FechaFin);
+                result = db.Query<tbFactura>(ScriptsBaseDeDatos.Grafi_PostreMasVendido, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+        public IEnumerable<tbFactura> ComplementoMasVendio(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFactura> result = new List<tbFactura>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Usua_Usuario", Usua_Usuario);
+                parameter.Add("FechaInicio", FechaInicio);
+                parameter.Add("FechaFin", FechaFin);
+                result = db.Query<tbFactura>(ScriptsBaseDeDatos.Grafi_ComplementoMasVendido, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+
+        public IEnumerable<tbFactura> SucursalTop5(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFactura> result = new List<tbFactura>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Usua_Usuario", Usua_Usuario);
+                parameter.Add("FechaInicio", FechaInicio);
+                parameter.Add("FechaFin", FechaFin);
+                result = db.Query<tbFactura>(ScriptsBaseDeDatos.Grafi_SucursalTop5, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+
+
+        public IEnumerable<tbFacturaDetalle> ReporteEmpleados(int Empl_Id,string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFacturaDetalle> result = new List<tbFacturaDetalle>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@Empl_Id", Empl_Id);
+                parameter.Add("@FechaInicio", FechaInicio);
+                parameter.Add("@FechaFin", FechaFin);
+                result = db.Query<tbFacturaDetalle>(ScriptsBaseDeDatos.Repor_VentasEmpleados, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+
+        public IEnumerable<tbFacturaDetalle> ReporteEmpleadosTodos(string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFacturaDetalle> result = new List<tbFacturaDetalle>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+            
+                parameter.Add("@FechaInicio", FechaInicio);
+                parameter.Add("@FechaFin", FechaFin);
+                result = db.Query<tbFacturaDetalle>(ScriptsBaseDeDatos.Repor_VentasEmpleadosTodos, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+
+        public IEnumerable<tbFacturaDetalle> ReporteSucursalTodos(string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFacturaDetalle> result = new List<tbFacturaDetalle>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+
+                parameter.Add("@FechaInicio", FechaInicio);
+                parameter.Add("@FechaFin", FechaFin);
+                result = db.Query<tbFacturaDetalle>(ScriptsBaseDeDatos.Repor_VentasSucursalesTodos, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+
+
+        public IEnumerable<tbFacturaDetalle> ReporteProductos(string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFacturaDetalle> result = new List<tbFacturaDetalle>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+
+                parameter.Add("@FechaInicio", FechaInicio);
+                parameter.Add("@FechaFin", FechaFin);
+                result = db.Query<tbFacturaDetalle>(ScriptsBaseDeDatos.Repor_VentasProductos, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+
+        public IEnumerable<tbFacturaDetalle> ReporteCompleto(string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFacturaDetalle> result = new List<tbFacturaDetalle>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+
+                parameter.Add("@FechaInicio", FechaInicio);
+                parameter.Add("@FechaFin", FechaFin);
+                result = db.Query<tbFacturaDetalle>(ScriptsBaseDeDatos.Repor_VentasCompleto, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+
+        public IEnumerable<tbFacturaDetalle> ReporteIdentificador(string Sucu_Id, string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFacturaDetalle> result = new List<tbFacturaDetalle>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@Identificador", Sucu_Id);
+                parameter.Add("@FechaInicio", FechaInicio);
+                parameter.Add("@FechaFin", FechaFin);
+                result = db.Query<tbFacturaDetalle>(ScriptsBaseDeDatos.Repor_VentasIdentificador, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+        public IEnumerable<tbFacturaDetalle> ReporteSucursales(int Sucu_Id, string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFacturaDetalle> result = new List<tbFacturaDetalle>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@Sucursal_Id", Sucu_Id);
+                parameter.Add("@FechaInicio", FechaInicio);
+                parameter.Add("@FechaFin", FechaFin);
+                result = db.Query<tbFacturaDetalle>(ScriptsBaseDeDatos.Repor_VentasSucursales, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+
+        public IEnumerable<tbFactura> EmpleadoTop5(string Usua_Usuario, string FechaInicio, string FechaFin)
+        {
+            IEnumerable<tbFactura> result = new List<tbFactura>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Usua_Usuario", Usua_Usuario);
+                parameter.Add("FechaInicio", FechaInicio);
+                parameter.Add("FechaFin", FechaFin);
+                result = db.Query<tbFactura>(ScriptsBaseDeDatos.Grafi_EmpleadosTop5, parameter, commandType: CommandType.StoredProcedure);
+            }
+            return result;
+        }
+
+
         public RequestStatus Update(FacturaViewModel item)
         {
             throw new NotImplementedException();

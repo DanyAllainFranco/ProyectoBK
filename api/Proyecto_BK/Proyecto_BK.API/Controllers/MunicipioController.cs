@@ -76,30 +76,45 @@ namespace Proyecto_BK.API.Controllers
                 Muni_Codigo = item.Muni_Codigo,
                 Muni_Descripcion = item.Muni_Descripcion,
                 Dept_Codigo = item.Dept_Codigo,
-                Muni_Usua_Creacion = 1,
+                Muni_Usua_Creacion = item.Muni_Usua_Creacion,
                 Muni_Fecha_Creacion = DateTime.Now
             };
             var list = _generalServices.CrearMuni(modelo);
 
-            return Ok(new { success = true, message = list.Message });
+            if(list.Code == 200)
+            {
+                return Ok(new { success = true, message = list.Message });
+            }
+            else
+            {
+                return BadRequest();
+            }
+          
         }
 
 
         [HttpPut("API/[controller]/Update")]
         public IActionResult Update(MunicipioViewModel item)
-        {
+         {
             _mapper.Map<tbMunicipios>(item);
             var modelo = new tbMunicipios()
             {
                 Muni_Codigo = item.Muni_Codigo,
                 Muni_Descripcion = item.Muni_Descripcion,
                 Dept_Codigo = item.Dept_Codigo,
-                Muni_Usua_Modifica = 1,
+                Muni_Usua_Modifica = item.Muni_Usua_Modifica,
                 Muni_Fecha_Modifica = DateTime.Now
             };
             var list = _generalServices.EditarMuni(modelo);
-
-            return Ok(new { success = true, message = list.Message });
+            if(list.Code == 200)
+            {
+                return Ok(new { success = true, message = list.Message });
+            }
+            else
+            {
+                return BadRequest();
+            }
+      
         }
 
 
@@ -107,7 +122,15 @@ namespace Proyecto_BK.API.Controllers
         public IActionResult Delete(string id)
         {
             var list = _generalServices.Eliminarmuni(id);
-            return Ok(new { success = true, message = list.Message });
+            if(list.Code == 200)
+            {
+                return Ok(new { success = true, message = list.Message });
+            }
+            else
+            {
+                return BadRequest();
+            }
+        
         }
     }
 }

@@ -24,6 +24,7 @@ import {MostrarmensajeService} from 'src/app/demo/service/mostrarmensaje.service
 import { Subscription } from 'rxjs';
 import { MensajeViewModel } from '../../models/MensajeVIewModel';
 import { TimeScale } from 'chart.js';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-rol-listado',
@@ -67,7 +68,8 @@ export class RolListadoComponent implements OnInit{
     private service: RolService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private creationGuard: CreationGuard
   ) {
   }
 ngOnInit(): void {
@@ -87,6 +89,7 @@ ngOnInit(): void {
     }
 }
 detalleRol(combId: number) {
+  this.creationGuard.allow();
   this.router.navigate(['app/DetalleRol', combId]); // Redirige a la ruta de edición con el ID del rol
 }
 detalles(codigo){
@@ -150,10 +153,12 @@ cancelarEliminar() {
 }
 
 editarRol(rolId: number) {
+  this.creationGuard.allow();
   this.router.navigate(['app/EditarRol', rolId]); // Redirige a la ruta de edición con el ID del rol
 }
 
   Nuevo(){
+    this.creationGuard.allow();
     this.router.navigate(['app/CreateRol'])
   }
   

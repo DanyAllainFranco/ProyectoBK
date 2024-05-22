@@ -11,8 +11,11 @@
         <h3>Rol:</h3>
         <div class="field">
           
-                <input type="text" formControlName="nombreRol" class="p-inputtext col-6" [ngModel]="rol?.rol_Descripcion" (ngModelChange)="onNombreRolChange($event)" name="nombreRol">
-
+                <input [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['nombreRol'].invalid}" type="text" formControlName="nombreRol" class="p-inputtext col-6" [ngModel]="rol?.rol_Descripcion" (ngModelChange)="onNombreRolChange($event)" name="nombreRol">
+                <br>
+                <small class="ng-dirty ng-invalid"
+                *ngIf="submitted && form.controls['nombreRol'].invalid"
+                style="color: red !important;">Rol Requerido</small>
            
           <br>
         </div>
@@ -25,7 +28,7 @@
           </p-pickList>
         </div> 
         <div class="p-field p-d-flex" style="justify-content: end;">
-          <button pButton pRipple type="button" label="Volver" icon="pi pi-times" class="p-button-rounded p-button-secondary mt-4"></button>
+          <button pButton pRipple type="button" label="Volver" icon="pi pi-times" (click)="Volver()" class="p-button-rounded p-button-secondary mt-4"></button>
           <button pButton pRipple type="submit" label="Guardar" icon="pi pi-check" class="p-button-rounded ms-6"></button>
         </div>
     </form>

@@ -41,6 +41,7 @@
   import { GalleriaModule } from 'primeng/galleria';
   import { CarouselModule } from 'primeng/carousel';
   import { FileUploadModule } from 'primeng/fileupload';
+  import { CookieService } from 'ngx-cookie-service';
 
   @Component({
     selector: 'app-combo-create',
@@ -50,13 +51,14 @@
   })
   export class ComboCreateComponent implements OnInit{
     departamento: CargarAlimentos[] = [];
-
+    submitted: boolean = false;
     form: FormGroup;
       pickListVisible: boolean = false;
 
       selectedImageURL: string | null = null;
       imageSelected: boolean = false;
       showFileUpload: boolean = true;
+      Usua_Id:number;
   prueba: string = "";
 
       invalid: boolean = false;
@@ -67,6 +69,9 @@
       constructor(private productService: ProductService,
         private router: Router,
         private fb: FormBuilder,
+        
+
+    private cookieService: CookieService,
         private alimentoService: AlimentosServiceService,
         private bebidaService: BebidasServiceService,
         private postreService: PostreServiceService,
@@ -84,6 +89,8 @@
           }
 
   ngOnInit(): void {
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
+
     this.cargarAlimentos();
     this.cargarBebidas();
     this.cargarPostres();
@@ -174,7 +181,7 @@
     );
   }
   Volver(){
-    this.router.navigate(['app/IndexComboPersonal'])
+    this.router.navigate(['app/combo'])
   }
 
 
@@ -196,7 +203,7 @@
         Bebi_Id: Bebi_Id,
         Comb_Imagen: Comb_Imagen,
         Comb_Precio: Comb_Precio,
-        ComB_Usua_Creacion: 1,
+        Comb_Usua_Creacion: this.Usua_Id,
         Comp_Id: Comp_Id,
         Post_Id: Post_Id,
       };
@@ -206,7 +213,7 @@
           if (respuesta.success) {
             // this.messageService.add({severity:'success', summary:'Éxito', detail:'!Combo registrado correctamente!'});
             this.rolService.successMessage = '¡Combo registrado correctamente!';
-            this.router.navigate(['app/IndexComboPersonal']);
+            this.router.navigate(['app/combo']);
           } else {
             this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});
             console.error('Error al crear el combo:', respuesta.message);
@@ -218,8 +225,8 @@
         }
       );
     } else {
-      console.log("Ingrese los campos")
-      this.invalid = true;
+     
+      this.submitted = true;
     }
   }
   

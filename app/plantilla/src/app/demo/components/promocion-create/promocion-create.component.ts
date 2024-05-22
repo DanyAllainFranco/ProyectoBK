@@ -34,7 +34,7 @@ import { GalleriaModule } from 'primeng/galleria';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { CarouselModule } from 'primeng/carousel';
 import { FileUploadModule } from 'primeng/fileupload';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-promocion-create',
   templateUrl: './promocion-create.component.html',
@@ -48,6 +48,7 @@ export class PromocionCreateComponent implements OnInit{
     sortOrder: number = 0;
 
     sortField: string = '';
+    submitted: boolean = false;
 
     sourceAlimentos: any[] = [];
     sourceBebidas: any[] = [];
@@ -83,6 +84,7 @@ prueba: string = "";
       private fb: FormBuilder,
       
       private messageService: MessageService,
+      private cookieService: CookieService,
        private rolService: PromocionServiceService) {
         this.form = this.fb.group({
           Prom_Descripcion: ['', Validators.required],
@@ -92,6 +94,7 @@ prueba: string = "";
         }
 
 ngOnInit(): void {
+  this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
   this.cargarAlimentos();
   this.cargarDias();
   this.cargarBebidas();
@@ -217,7 +220,7 @@ guardar() {
       const Prom_Descripcion = this.form.value.Prom_Descripcion;
       const Prom_Precio = this.form.value.Prom_Precio;
       const Dias_Id = this.form.value.Dias_Id;
-      const Usua_Id = 1
+      const Usua_Id = this.Usua_Id
       const prom_Imagen = this.prueba;
       const alimentosAgregados = this.targetCities.map(objeto => objeto.code);
       const bebidasAgregadas = this.targetBebida.map(bebida => bebida.code);
@@ -234,7 +237,8 @@ guardar() {
           prom_Descripcion: Prom_Descripcion,
           prom_Imagen: prom_Imagen,
           prom_Precio: Prom_Precio,
-          dias_Id: Dias_Id
+          dias_Id: Dias_Id,
+          Prom_Usua_Creacion: Usua_Id
       };
 
       this.rolService.agregar(nuevoRol).subscribe(
@@ -305,7 +309,7 @@ guardar() {
           );
                   
                   this.rolService.successMessage = '¡Promocion registrada correctamente!';
-              this.router.navigate(['app/IndexPromocion']);
+              this.router.navigate(['app/promociones']);
               
               } else {
                   console.error('Error al crear el rol:', respuesta.message);
@@ -316,8 +320,7 @@ guardar() {
           }
       );
   } else {
-      console.log("Ingrese los campos")
-      this.invalid = true;
+      this.submitted = true;
   }
 }
 
@@ -335,7 +338,7 @@ onSortChange(event: any) {
 
 
 Volver(){
-  this.router.navigate(['app/IndexPromocion'])
+  this.router.navigate(['app/promociones'])
 }
 }
 

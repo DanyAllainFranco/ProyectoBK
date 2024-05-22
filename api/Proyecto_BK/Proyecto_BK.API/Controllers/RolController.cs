@@ -88,7 +88,6 @@ namespace Proyecto_BK.API.Controllers
             {
                 Rol_Descripcion = item.Rol_Descripcion,
                 Rol_Usua_Creacion = item.Rol_Usua_Creacion,
-
             };
 
             int rolId;
@@ -105,7 +104,7 @@ namespace Proyecto_BK.API.Controllers
             {
                 Rol_Id = Convert.ToInt32(item.Rol_Id),
                 Rol_Descripcion = item.Rol_Descripcion,
-                Rol_Usua_Modifica = 1,
+                Rol_Usua_Modifica = item.Rol_Usua_Modifica,
                 Rol_Fecha_Modifica = DateTime.Now
             };
             var list = _accesoServices.EditarRol(modelo);

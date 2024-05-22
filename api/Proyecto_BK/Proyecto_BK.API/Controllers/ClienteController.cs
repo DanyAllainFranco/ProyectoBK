@@ -31,11 +31,11 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
-        [HttpGet("API/[controller]/Find")]
+        [HttpGet("API/[controller]/Find/{Clie_Id}")]
         public IActionResult Find(int Clie_Id)
         {
             var result = _generalServices.LlenarCliente(Clie_Id);
-            return Ok(result);
+            return Ok(result.Data);
         }
 
         [HttpPost("API/[controller]/Insert")]
@@ -51,7 +51,7 @@ namespace Proyecto_BK.API.Controllers
                 Clie_Correo = json.Clie_Correo,
                 Esta_Id = json.Esta_Id,
                 Muni_Codigo = json.Muni_Codigo,
-                Clie_Usua_Creacion = 1,
+                Clie_Usua_Creacion = json.Clie_Usua_Creacion,
                 Clie_Fecha_Creacion = DateTime.Now
             };
             var response = _generalServices.CrearCliente(modelo);
@@ -72,14 +72,14 @@ namespace Proyecto_BK.API.Controllers
                 Clie_Correo = json.Clie_Correo,
                 Esta_Id = json.Esta_Id,
                 Muni_Codigo = json.Muni_Codigo,
-                Clie_Usua_Modifica = 1,
+                Clie_Usua_Modifica = json.Clie_Usua_Modifica,
                 Clie_Fecha_Modifica = DateTime.Now
             };
             var list = _generalServices.EditarCliente(modelo);
             return Ok(list);
         }
 
-        [HttpDelete("API/[controller]/Delete")]
+        [HttpDelete("API/[controller]/Delete/{Clie_Id}")]
         public IActionResult Delete(int Clie_Id)
         {
             var response = _generalServices.EliminarCliente(Clie_Id);

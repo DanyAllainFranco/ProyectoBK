@@ -1,0 +1,113 @@
+<div class="grid">
+    <div class="col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <div class="grid">
+                <form [formGroup]="form" class="grid col-12 p-fluid p-formgrid">
+                    <div class="field col-12 md:col-6">
+                        <label>Identidad:</label>
+                        <input [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['empl_Identidad'].invalid}"
+                            type="text" class="p-inputtext" formControlName="empl_Identidad">
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && form.controls['empl_Identidad'].invalid"
+                            style="color: red !important;">Identidad Requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Nombre:</label>
+                        <input [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['empl_Nombre'].invalid}"
+                            type="text" class="p-inputtext" formControlName="empl_Nombre">
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && form.controls['empl_Nombre'].invalid"
+                            style="color: red !important;">Nombre Requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Apellido:</label>
+                        <input [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['empl_Apellido'].invalid}"
+                            type="text" class="p-inputtext" formControlName="empl_Apellido">
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && form.controls['empl_Apellido'].invalid"
+                            style="color: red !important;">Apellido Requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Sexo:</label>
+                        <div class="grid mt-1">
+                            <div class="col-2">
+
+                            </div>
+                            <div class="col-4">
+                                <input
+                                    [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['empl_Sexo'].invalid}"
+                                    type="radio" class="form-check-input" name="empl_Sexo" value="M"
+                                    formControlName="empl_Sexo">
+                                <label for="empl_Sexo">Masculino</label>
+                            </div>
+                            <div class="col-4">
+                                <input
+                                    [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['empl_Sexo'].invalid}"
+                                    type="radio" class="form-check-input" name="empl_Sexo" value="F"
+                                    formControlName="empl_Sexo">
+                                <label for="empl_Sexo">Femenino</label>
+                            </div>
+                        </div>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && form.controls['empl_Sexo'].invalid"
+                            style="color: red !important;">Sexo Requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Correo:</label>
+                        <input [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['empl_Correo'].invalid}"
+                            type="email" class="p-inputtext" formControlName="empl_Correo">
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && form.controls['empl_Correo'].invalid"
+                            style="color: red !important;">Correo Requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Estado Civil:</label>
+                        <p-dropdown [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['esta_Id'].invalid}"
+                            [options]="estadosciviles" formControlName="esta_Id" placeholder="Seleccione"
+                            [showClear]="false"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && form.controls['esta_Id'].invalid"
+                            style="color: red !important;">Estado Civil Requerido</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Departamento:</label>
+                        <p-dropdown (onChange)="onDepartmentChange($event)" [options]="departamentos"
+                            placeholder="Seleccione" [showClear]="false"></p-dropdown>
+
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label>Municipio:</label>
+                        <p-dropdown
+                            [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['muni_Codigo'].invalid}"
+                            [options]="municipios" formControlName="muni_Codigo" placeholder="Seleccione"
+                            [showClear]="false"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && form.controls['muni_Codigo'].invalid"
+                            style="color: red !important;">Municipio Requerido</small>
+                    </div>
+
+
+                    <div class="field col-12 md:col-6">
+                        <label>Cargo:</label>
+                        <p-dropdown [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['carg_Id'].invalid}"
+                            [options]="cargos" formControlName="carg_Id" placeholder="Seleccione"
+                            [showClear]="false"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && form.controls['carg_Id'].invalid"
+                            style="color: red !important;">Cargo Requerido</small>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <label>Sucursal:</label>
+                        <p-dropdown [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['sucu_Id'].invalid}"
+                            [options]="sucursales" formControlName="sucu_Id" placeholder="Seleccione"
+                            [showClear]="false"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && form.controls['sucu_Id'].invalid"
+                            style="color: red !important;">Sucursal Requerido</small>
+                    </div>
+                </form>
+            </div>
+            <div class="grid p-justify-end">
+                <div class="col">
+                    <button pButton pRipple type="button" label="Volver" icon="pi pi-times"
+                        class="p-button-rounded p-button-secondary mt-4" (click)="Volver()"></button>
+                    <button pButton pRipple type="button" label="Guardar" icon="pi pi-check"
+                        class="p-button-rounded ms-6" (click)="guardar()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

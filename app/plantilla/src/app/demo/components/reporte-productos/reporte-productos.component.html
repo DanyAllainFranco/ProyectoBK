@@ -1,0 +1,38 @@
+<div class="grid col-12 p-fluid p-formgrid">
+
+  <div class="col-12">
+    <div class="card">
+      <h3 class="text-center">Reporte Ventas Productos</h3>
+      <div class="grid mt-3">
+        <div class="field col-12 md:col-6">
+          <label>Fecha Inicio:</label>
+          <input type="date" id="fechaInicio" [(ngModel)]="fechaInicio" (change)="cambiarFechaInicio($event)"
+            class="p-inputtext">
+        </div>
+        <div class="field col-12 md:col-6">
+          <label>Fecha Fin:</label>
+          <input type="date" id="fechaFin" [(ngModel)]="fechaFin" (change)="cambiarFechaFin($event)"
+            class="p-inputtext">
+        </div>
+
+        <!-- <div class="field col-12 md:col-4">
+                    <label>Empleado:</label>
+                    <p-dropdown [options]="empleados" placeholder="Seleccione" (onChange)="onChangeEmpleado($event)"></p-dropdown>
+                </div> -->
+      </div>
+      <div class="grid">
+        <div class="col-4">
+          <button pButton icon="pi pi-plus-circle" style="margin-bottom: 10px;" (click)="onImprimir()"
+            label="Generar PDF"></button>
+        </div>
+      </div>
+
+
+      <div *ngIf="pdfSrc" style="margin-top: 20px;">
+        <iframe [src]="pdfSrc" width="100%" height="500px"></iframe>
+    </div>
+    
+    </div>
+  </div>
+</div>
+

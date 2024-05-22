@@ -1,5 +1,5 @@
 import { Route, RouterModule, Routes } from '@angular/router';
-import { NgModule, createComponent } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from "./layout/app.layout.component";
 import { InicioDeSesionComponent } from './demo/components/inicio-de-sesion/inicio-de-sesion.component';
@@ -20,7 +20,6 @@ import { ClientesListadoComponent } from './demo/components/cliente-listado/clie
 import { UsuariosListadoComponent } from './demo/components/usuario-listado/usuario-listado.component';
 import { PaqueteListadoComponent } from './demo/components/paquete-listado/paquete-listado.component';
 import { SucursalListadoComponent } from './demo/components/sucursal-listado/sucursal-listado.component';
-// import { GraficosComponent } from './demo/components/graficos/graficos.component';
 import { ReporteVentasComponent } from './demo/components/reporte-ventas/reporte-ventas.component';
 import { ListDemoComponent } from './demo/components/uikit/list/listdemo.component';
 import { GraficosComponent } from './demo/components/uikit/charts/chartsdemo.component';
@@ -29,13 +28,13 @@ import { FacturacionComponent } from './demo/components/facturacion/facturacion.
 import { FacturaComponent } from './demo/components/factura/factura.component';
 import { RolListadoComponent } from './demo/components/rol-listado/rol-listado.component';
 import { FiltrosComponent } from './demo/components/filtros/filtros.component';
-import {RolCreateComponent} from './demo/components/rol-create/rol-create.component';
-import {RolEditarComponent} from './demo/components/rol-editar/rol-editar.component';
-import {ComboCreateComponent} from './demo/components/combo-create/combo-create.component';
-import {ComboEditarComponent} from './demo/components/combo-editar/combo-editar.component';
-import {ComboDetalleComponent} from './demo/components/combo-detalle/combo-detalle.component';
-import {RolDetalleComponent} from './demo/components/rol-detalle/rol-detalle.component';
-import {PromocionCreateComponent} from './demo/components/promocion-create/promocion-create.component';
+import { RolCreateComponent } from './demo/components/rol-create/rol-create.component';
+import { RolEditarComponent } from './demo/components/rol-editar/rol-editar.component';
+import { ComboCreateComponent } from './demo/components/combo-create/combo-create.component';
+import { ComboEditarComponent } from './demo/components/combo-editar/combo-editar.component';
+import { ComboDetalleComponent } from './demo/components/combo-detalle/combo-detalle.component';
+import { RolDetalleComponent } from './demo/components/rol-detalle/rol-detalle.component';
+import { PromocionCreateComponent } from './demo/components/promocion-create/promocion-create.component';
 import { PromocionEditarComponent } from './demo/components/promocion-editar/promocion-editar.component';
 import { PromocionDetalleComponent } from './demo/components/promocion-detalle/promocion-detalle.component';
 import { PostreDetalleComponent } from './demo/components/postre-detalle/postre-detalle.component';
@@ -48,79 +47,109 @@ import { UsuarioDetalleComponent } from './demo/components/usuario-detalle/usuar
 import { CargoDetalleComponent } from './demo/components/cargo-detalle/cargo-detalle.component';
 import { DepartamentoDetalleComponent } from './demo/components/departamento-detalle/departamento-detalle.component';
 import { ClienteCreateComponent } from './demo/components/cliente-create/cliente-create.component';
+import { ClienteEditarComponent } from './demo/components/cliente-editar/cliente-editar.component';
+import { ClienteDetalleComponent } from './demo/components/cliente-detalle/cliente-detalle.component';
+import { SucursalDetalleComponent } from './demo/components/sucursal-detalle/sucursal-detalle.component';
+import { EmpleadoCreateComponent } from './demo/components/empleado-create/empleado-create.component';
+import { EmpleadoEditarComponent } from './demo/components/empleado-editar/empleado-editar.component';
+import { EmpleadoDemoModule } from './demo/components/empleado-listado/empleadodemo.module';
+import { EmpleadoDetalleComponent } from './demo/components/empleado-detalle/empleado-detalle.component';
+import { AuthGuardService } from './demo/service/auth-guard.service';
+import { PaqueteEditarComponent } from './demo/components/paquete-editar/paquete-editar.component';
+import { PaqueteDetalleComponent } from './demo/components/paquete-detalle/paquete-detalle.component';
+import { InicioComponent } from './demo/components/inicio/inicio.component';
+import { ReporteEmpleadoComponent } from './demo/components/reporte-empleado/reporte-empleado.component';
+import { ReporteProductos } from './demo/models/FacturaViewModel';
+import { ReporteProductosComponent } from './demo/components/reporte-productos/reporte-productos.component';
+import { ReporteSucursalComponent } from './demo/components/reporte-sucursal/reporte-sucursal.component';
+import { ReporteCompletoComponent } from './demo/components/reporte-completo/reporte-completo.component';
+import { ReporteIdentificadorComponent } from './demo/components/reporte-identificador/reporte-identificador.component';
+import { AuthGuard } from './auth/auth.guard';
+import { CreationGuard } from './demo/service/autguard-url.service';
 
-
-
+const routes: Routes = [
+    {
+        path: '', component: InicioDeSesionComponent // Componente de inicio de sesión como raíz
+    },
+    {
+        path: 'app', component: AppLayoutComponent, // Resto de tus rutas van bajo 'app'
+        children: [
+            { path: 'Principal', component: ListDemoComponent  },
+            { path: 'PrincipalGraficos', component: GraficosComponent },
+            { path: 'Inicio', component: InicioComponent, },
+            { path: 'dashboard', component: FiltrosComponent,},
+            { path: 'hoo', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
+            { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
+            { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
+            { path: 'documentation', loadChildren: () => import('./demo/components/documentation/documentation.module').then(m => m.DocumentationModule) },
+            { path: 'blocks', loadChildren: () => import('./demo/components/primeblocks/primeblocks.module').then(m => m.PrimeBlocksModule) },
+            { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) },
+            { path: 'departamentos', component: DepartamentosListadoComponent,  canActivate: [AuthGuard] },
+            { path: 'combo', component: CombopersonalListadoComponent, canActivate: [AuthGuard] },
+            { path: 'CreateCombo', component: ComboCreateComponent,canActivate:[ CreationGuard] },
+            { path: 'complementos', component: ComplementoListadoComponent, canActivate: [AuthGuard]},
+            { path: 'empleados', data: { breadcrumb: 'Empleado' }, loadChildren: () => import('./demo/components/empleado-listado/empleadodemo.module').then(m => m.EmpleadoDemoModule), canActivate: [AuthGuard] },
+            { path: 'estadosciviles', data: { breadcrumb: 'Estado' }, loadChildren: () => import('./demo/components/estadocivil-listado/EstadoCivildemo.module').then(m => m.EstadoCivilDemoModule),  canActivate: [AuthGuard] },
+            { path: 'municipios', data: { breadcrumb: 'Municipio' }, loadChildren: () => import('./demo/components/municipio-listado/Municipiodemo.module').then(m => m.MunicipioDemoModule), canActivate: [AuthGuard] },
+            { path: 'postres', component: PostreListadoComponent, canActivate: [AuthGuard] },
+            { path: 'promociones', component: PromocionListadoComponent, canActivate: [AuthGuard] },
+            { path: 'IndexPromocionPorComida', component: PromocionporcomidaListadoComponent },
+            { path: 'IndexPromocionPorSucursal', component: PromocionporsucursalListadoComponent },
+            { path: 'cargos', component: CargoListadoComponent, canActivate: [AuthGuard]  },
+            { path: 'alimentos', component: AlimentosListadoComponent, canActivate: [AuthGuard]},
+            { path: 'bebidas', component: BebidaListadoComponent, canActivate: [AuthGuard]},
+            { path: 'clientes', component: ClientesListadoComponent, canActivate: [AuthGuard]},
+            { path: 'usuarios', component: UsuariosListadoComponent, canActivate: [AuthGuard] },
+            { path: 'paquetes', component: PaqueteListadoComponent, canActivate: [AuthGuard] },
+            { path: 'sucursales', component: SucursalListadoComponent, canActivate: [AuthGuard] },
+            { path: 'roles', component: RolListadoComponent, canActivate: [AuthGuard]},
+            { path: 'CreateRol', component: RolCreateComponent,canActivate:[ CreationGuard] },
+            { path: 'CreatePaquete', component: PaqueteCreateComponent,canActivate:[ CreationGuard] },
+            { path: 'CreateEmpleado', component: EmpleadoCreateComponent,canActivate:[ CreationGuard]  },
+            { path: 'EditarRol/:id', component: RolEditarComponent,canActivate:[ CreationGuard]  },
+            { path: 'EditarEmpleado/:id', component: EmpleadoEditarComponent,canActivate:[ CreationGuard]  },
+            { path: 'DetalleEmpleado/:id', component: EmpleadoDetalleComponent,canActivate:[ CreationGuard]  },
+            { path: 'EditarCliente/:id', component: ClienteEditarComponent,canActivate:[ CreationGuard]  },
+            { path: 'EditarPaquete/:id', component: PaqueteEditarComponent,canActivate:[ CreationGuard]  },
+            { path: 'EditarPromocion/:id', component: PromocionEditarComponent,canActivate:[ CreationGuard]  },
+            { path: 'DetalleRol/:id', component: RolDetalleComponent,canActivate:[ CreationGuard]  },
+            { path: 'DetallePaquete/:id', component: PaqueteDetalleComponent,canActivate:[ CreationGuard]  },
+            { path: 'DetalleSucursal/:id', component: SucursalDetalleComponent, canActivate:[ CreationGuard]  },
+            { path: 'DetalleCliente/:id', component: ClienteDetalleComponent,canActivate:[ CreationGuard]  },
+            { path: 'CreatePromocion', component: PromocionCreateComponent,canActivate:[ CreationGuard]  },
+            { path: 'EditarCombo/:id', component: ComboEditarComponent, canActivate:[ CreationGuard] },
+            { path: 'CreateCliente', component: ClienteCreateComponent, canActivate:[ CreationGuard] },
+            { path: 'DetalleCombo/:id', component: ComboDetalleComponent,canActivate:[ CreationGuard]  },
+            { path: 'DetalleUsuario/:id', component: UsuarioDetalleComponent,canActivate:[ CreationGuard] },
+            { path: 'DetallePromocion/:id', component: PromocionDetalleComponent, canActivate:[ CreationGuard] },
+            { path: 'DetalleCargo/:id', component: CargoDetalleComponent, canActivate:[ CreationGuard] },
+            { path: 'DetalleDepartamento/:id', component: DepartamentoDetalleComponent,canActivate:[ CreationGuard]  },
+            { path: 'DetallePostre/:id', component: PostreDetalleComponent,canActivate:[ CreationGuard]  },
+            { path: 'DetalleAlimento/:id', component: AlimentoDetalleComponent, canActivate:[ CreationGuard]  },
+            { path: 'DetalleBebida/:id', component: BebidaDetalleComponent,canActivate:[ CreationGuard]  },
+            { path: 'CreateUsuario', component: UsuarioCreateComponent, canActivate: [CreationGuard]  },
+            { path: 'DetalleComplemento/:id', component: ComplementoDetalleComponent, canActivate:[ CreationGuard] },
+            { path: 'IndexInforme', component: ReporteVentasComponent,canActivate:[ CreationGuard] },
+            { path: 'facturas', component: FacturaListadoComponent, canActivate: [AuthGuard]  },
+            { path: 'IndexFacturacion', component: FacturacionComponent, },
+            { path: 'IndexFac', component: FacturaComponent, },
+            { path: 'login', component: InicioDeSesionComponent },
+            { path: 'reporteempleados', component: ReporteEmpleadoComponent, canActivate: [AuthGuard] },
+            { path: 'reporteproductos', component: ReporteProductosComponent, },
+            { path: 'reportesucursal', component: ReporteSucursalComponent, canActivate: [AuthGuard] },
+            { path: 'reportecompleto', component: ReporteCompletoComponent,  canActivate: [AuthGuard]},
+            { path: 'reportecategoria', component: ReporteIdentificadorComponent, canActivate: [AuthGuard] }
+        ]
+    },
+    { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
+    { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
+    { path: 'notfound', component: NotfoundComponent },
+ 
+    // { path: '**', redirectTo: '/notfound' },
+]
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot([
-            {
-                path: '', component: InicioDeSesionComponent // Componente de inicio de sesión como raíz
-            },
-            {
-                path: 'app', component: AppLayoutComponent, // Resto de tus rutas van bajo 'app'
-                children: [
-                    { path: 'Principal',  component:ListDemoComponent},
-                    { path: 'PrincipalGraficos',  component:GraficosComponent},
-                    { path: 'FiltrosGraficos',  component:FiltrosComponent},
-                    { path: 'dashboard', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
-                    { path: 'uikit', loadChildren: () => import('./demo/components/uikit/uikit.module').then(m => m.UIkitModule) },
-                    { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
-                    { path: 'documentation', loadChildren: () => import('./demo/components/documentation/documentation.module').then(m => m.DocumentationModule) },
-                    { path: 'blocks', loadChildren: () => import('./demo/components/primeblocks/primeblocks.module').then(m => m.PrimeBlocksModule) },
-                    { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) },
-                    { path: 'Index', component: DepartamentosListadoComponent },
-                    { path: 'IndexComboPersonal', component: CombopersonalListadoComponent }, 
-                    { path: 'CreateCombo', component: ComboCreateComponent }, 
-                    { path: 'IndexComplemento', component: ComplementoListadoComponent }, 
-                    { path: 'IndexEmpleado', data: { breadcrumb: 'Empleado' }, loadChildren: () => import('./demo/components/empleado-listado/empleadodemo.module').then(m => m.EmpleadoDemoModule) },
-                    { path: 'IndexEstadoCivil', data: { breadcrumb: 'Estado' }, loadChildren: () => import('./demo/components/estadocivil-listado/EstadoCivildemo.module').then(m => m.EstadoCivilDemoModule) },
-                    { path: 'IndexMunicipio', data: { breadcrumb: 'Municipio' }, loadChildren: () => import('./demo/components/municipio-listado/Municipiodemo.module').then(m => m.MunicipioDemoModule) },
-                    { path: 'IndexPostre', component: PostreListadoComponent }, 
-                    { path: 'IndexPromocion', component: PromocionListadoComponent },
-                    { path: 'IndexPromocionPorComida', component: PromocionporcomidaListadoComponent }, 
-                    { path: 'IndexPromocionPorSucursal', component: PromocionporsucursalListadoComponent } ,
-                    { path: 'IndexCargos', component: CargoListadoComponent },
-                    { path: 'IndexAlimentos', component: AlimentosListadoComponent } ,
-                    { path: 'IndexBebidas', component: BebidaListadoComponent }, 
-                    { path: 'IndexClientes', component: ClientesListadoComponent },
-                    { path: 'IndexUsuarios', component: UsuariosListadoComponent },
-                    { path: 'IndexPaquetes', component: PaqueteListadoComponent },
-                    { path: 'IndexSucursales', component: SucursalListadoComponent },
-                    {path: 'IndexRoles', component:RolListadoComponent},
-                    { path: 'CreateRol', component: RolCreateComponent } , 
-                    { path: 'CreatePaquete', component: PaqueteCreateComponent } , 
-                    { path: 'EditarRol/:id', component: RolEditarComponent } ,
-                    { path: 'EditarPromocion/:id', component: PromocionEditarComponent } ,
-                    { path: 'DetalleRol/:id', component: RolDetalleComponent } ,
-                    { path: 'CreatePromocion', component: PromocionCreateComponent } ,
-                    { path: 'EditarCombo/:id', component: ComboEditarComponent } ,
-                    { path: 'CreateCliente', component: ClienteCreateComponent } ,
-                    { path: 'DetalleCombo/:id', component: ComboDetalleComponent },
-                    { path: 'DetalleUsuario/:id', component: UsuarioDetalleComponent },
-                    { path: 'DetallePromocion/:id', component: PromocionDetalleComponent},
-                    { path: 'DetalleCargo/:id', component: CargoDetalleComponent},
-                    { path: 'DetalleDepartamento/:id', component: DepartamentoDetalleComponent},
-                    { path: 'DetallePostre/:id', component: PostreDetalleComponent},
-                    { path: 'DetalleAlimento/:id', component: AlimentoDetalleComponent},
-                    { path: 'DetalleBebida/:id', component: BebidaDetalleComponent},
-                    { path: 'CreateUsuario', component: UsuarioCreateComponent},
-                    { path: 'DetalleComplemento/:id', component: ComplementoDetalleComponent},
-                    // { path: 'IndexGraficos', component: GraficosComponent }
-                    { path: 'IndexInforme', component: ReporteVentasComponent }, //IndexFactura
-                    { path: 'IndexFactura', component: FacturaListadoComponent }, //IndexFactura
-                    { path: 'IndexFacturacion', component: FacturacionComponent }, //Factura
-                    { path: 'IndexFac', component: FacturaComponent } //Factura
-
-                                ]
-            },
-            { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
-            { path: 'landing', loadChildren: () => import('./demo/components/landing/landing.module').then(m => m.LandingModule) },
-            { path: 'notfound', component: NotfoundComponent },
-            { path: '**', redirectTo: '/notfound' },
-        ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
-    ],
+    imports: [RouterModule.forRoot(routes,{ scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })],
     exports: [RouterModule]
 })
 export class AppRoutingModule {

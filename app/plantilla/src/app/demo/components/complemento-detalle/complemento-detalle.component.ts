@@ -114,7 +114,7 @@ export class ComplementoDetalleComponent implements OnInit{
     );
   }
   Volver(){
-    this.router.navigate(['app/IndexComplemento'])
+    this.router.navigate(['app/complementos'])
   }
 
 }

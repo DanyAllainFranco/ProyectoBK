@@ -21,6 +21,9 @@ export class PromocionServiceService {
   actualizar(modelo:Promociones):Observable<Respuesta>{
     return this.http.put<Respuesta>(`${BASE_URL}API/Promocion/Update`,modelo);
   }
+  eliminar(Dept_Codigo:string):Observable<void>{
+    return this.http.delete<void>(BASE_URL + 'API/Promocion/Delete/' + Dept_Codigo	);
+  }
 
   EnviarImagen(file : any): Observable<any>{
     return this.http.post<Promocion[]>(BASE_URL + 'API/Promocion/Subir/', file).pipe(
@@ -83,6 +86,11 @@ export class PromocionServiceService {
   obtenerPromoPorId(idRol: number): Observable<LlenarPromocion> {
     return this.http.get<LlenarPromocion>(`${BASE_URL}API/Promocion/Fill/${idRol}`);
   }
+
+  obtenerPaquePorId(idRol: number): Observable<any> {
+    return this.http.get<any>(`${BASE_URL}API/Paquete/Find/${idRol}`);
+  }
+
   getPostresAgregadas(Rol_Id: number): Observable<PostresAgregados[]> {
     return this.http.get<PostresAgregados[]>( BASE_URL + "API/Promocion/PostresAgregados/" + Rol_Id);
   }

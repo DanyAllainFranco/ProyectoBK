@@ -13,7 +13,10 @@ namespace Proyecto_BK.Common.Models
         public int Sucu_Id { get; set; }
         public string Sucu_Descripcion { get; set; }
         public string Muni_Codigo { get; set; }
-
+        [NotMapped]
+        public string Usua_Creacion { get; set; }
+        [NotMapped]
+        public string Usua_Modifica { get; set; }
         [NotMapped]
 
         public string Muni_Descripcion { get; set; }

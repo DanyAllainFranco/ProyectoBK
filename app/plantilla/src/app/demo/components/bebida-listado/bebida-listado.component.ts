@@ -27,6 +27,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 
 @Component({
@@ -42,6 +43,8 @@ export class BebidaListadoComponent implements OnInit {
   departamento: Postre[] = [];
   formDepartamento: FormGroup;
   selectedDepartamento: any;
+  
+ Usua_Id:number;
   modalTitle: string = 'Nuevo Registro';
   modalButtonLabel: string = 'Guardar';
   confirmacionVisible: boolean = false;
@@ -51,13 +54,18 @@ export class BebidaListadoComponent implements OnInit {
   imageSelected: boolean = false;
   showFileUpload: boolean = true;
   prueba: string = "";
+  mensaje: string;
+  submitted: boolean = false;
+  mostrarmensaje: string;
   constructor(private service: BebidasServiceService, 
     private router: Router ,
     private fb: FormBuilder,
     private cookieService: CookieService,
     private _postreServices: PostreServiceService,
     private messageService: MessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private creationGuard: CreationGuard
+
   ) {
     this.formDepartamento = this.fb.group({
       // post_Id: ["", Validators.required],
@@ -70,20 +78,27 @@ export class BebidaListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBebidas();
-    const showSuccessMessage = this.cookieService.get('showSuccessMessage');
-    const tipo =  this.cookieService.get('Mensaje');
-    console.log("SDAS: " + showSuccessMessage)
-    if (showSuccessMessage) {
+    
+
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
+    this.mostrarmensaje = this.cookieService.get('showSuccessMessageBebida');
+    this.mensaje =  this.cookieService.get('MensajeBebida');
+
+    if (this.mostrarmensaje) {
       setTimeout(() => {  
-        if(tipo == 'Nuevo'){
+        if(this.mensaje == 'Nuevo'){
           this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Bebida agregado correctamente' });
+          this.mensaje = '';
         }
         else{
           this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Bebida editado correctamente' });
+          this.cookieService.delete('MensajeBebida');
         }
+       
+      this.cookieService.delete('showSuccessMessageBebida');
       });
-      this.cookieService.delete('showSuccessMessage');
-      this.cookieService.delete('Mensaje');
+   
+      
     }
   }
 
@@ -101,6 +116,7 @@ export class BebidaListadoComponent implements OnInit {
   }
  
   detallePostre(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetalleBebida', combId]); // Redirige a la ruta de edición con el ID del rol
   }
 
@@ -128,14 +144,17 @@ export class BebidaListadoComponent implements OnInit {
   }
 
   guardarDepartamento() {
-    if (this.formDepartamento.invalid) {
-      return;
+    if (this.formDepartamento.valid) {
+      if (this.modalTitle === 'Nuevo Registro') {
+        this.NuevoDepartamento();
+      } else {
+        this.actualizarDepartamento();
+      }
     }
-    if (this.modalTitle === 'Nuevo Registro') {
-      this.NuevoDepartamento();
-    } else {
-      this.actualizarDepartamento();
+    else{
+      this.submitted = true
     }
+   
   }
 
   actualizarDepartamento() {
@@ -145,14 +164,14 @@ export class BebidaListadoComponent implements OnInit {
       bebi_Descripcion: this.formDepartamento.value.bebi_Descripcion,
       bebi_Precio: this.formDepartamento.value.bebi_Precio,
       bebi_Imagen: this.prueba,
-      bebi_Usua_Modifica: 1,
+      bebi_Usua_Modifica: this.Usua_Id,
     }
 
     this.service.actualizar(modelo).subscribe({
       next: (data) => {
         this.getBebidas();
-        this.cookieService.set('Mensaje', 'Editado');
-        this.cookieService.set('showSuccessMessage', 'true');
+        this.cookieService.set('MensajeBebida', 'Editado');
+        this.cookieService.set('showSuccessMessageBebida', 'true');
         // localStorage.setItem('', '');
         location.reload();
         // this.display = false;
@@ -204,15 +223,15 @@ export class BebidaListadoComponent implements OnInit {
       bebi_Descripcion: this.formDepartamento.value.bebi_Descripcion,
       bebi_Precio: this.formDepartamento.value.bebi_Precio,
       bebi_Imagen: this.prueba,
-      bebi_Usua_Creacion: 1,
+      bebi_Usua_Creacion: this.Usua_Id,
     };
 
   
     this.service.agregar(modelo).subscribe({
       next: () => {
         this.getBebidas();
-        this.cookieService.set('showSuccessMessage', 'true');
-        this.cookieService.set('Mensaje', 'Nuevo');
+        this.cookieService.set('showSuccessMessageBebida', 'true');
+        this.cookieService.set('MensajeBebida', 'Nuevo');
         location.reload();
       },
       error: (error) => {

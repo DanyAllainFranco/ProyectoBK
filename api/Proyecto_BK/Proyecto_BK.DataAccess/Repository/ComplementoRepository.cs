@@ -37,6 +37,19 @@ namespace Proyecto_BK.DataAccess.Repository
 
         }
 
+        public IEnumerable<tbComplementos> ListComplementos3(int Paqe_Id)
+        {
+            List<tbComplementos> result = new List<tbComplementos>();
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Paqe_Id", Paqe_Id);
+
+                result = db.Query<tbComplementos>(ScriptsBaseDeDatos.Comp_Mostrar3, parametro, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
         public tbComplementos Find(int? id)
         {
             throw new NotImplementedException();

@@ -1,6 +1,13 @@
 export class Departamento{
     dept_Codigo?: string;
     dept_Descripcion?:string;
+    Dept_Usua_Creacion:number;
+}
+
+export class Departamento2{
+    dept_Codigo?: string;
+    dept_Descripcion?:string;
+    Dept_Usua_Modifica:number;
 }
 
 

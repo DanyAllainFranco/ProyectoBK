@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule,Inject } from '@angular/core';
+import { Component, OnInit, NgModule,Inject, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -41,10 +41,12 @@ import { PostreServiceService } from '../../service/postre-service.service';
 import { ComplementoServiceService } from '../../service/complemento-service.service';
 import { Bebida, Bebida3, Complemento, Complemento2, Postre, Postre2 } from '../../models/BebidasViewModel';
 import { Alimento, Alimento3 } from '../../models/AlimentosViewModel';
-import { PaquetesEnviar } from '../../models/PaquetesViewModel';
+import { PaquetesDetalles, PaquetesEnviar } from '../../models/PaquetesViewModel';
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { CountryService } from '../../service/country.service';
 import { DataView } from 'primeng/dataview';
+import {CookieService} from 'ngx-cookie-service'
+import { cA } from '@fullcalendar/core/internal-common';
 
 @Component({
   selector: 'app-paquete-create',
@@ -87,6 +89,17 @@ export class PaqueteCreateComponent implements OnInit{
 
   orderCities: any[] = [];
 
+  creado: boolean = false;
+  submitted: boolean = false;
+  Detalle: PaquetesDetalles[];
+  cantidadSeleccionadaPorAlimento: { [key: number]: number } = {};
+  cantidad: number;
+  @ViewChild('nombreInput') nombreInput: ElementRef;
+  @ViewChild('precioInput') precioInput: ElementRef;
+  identificador: string = 'A';
+  cantidadSeleccionada: number = 0;
+  initialValues: number[] = [];
+
     constructor(private productService: ProductService,
       private router: Router,
       private fb: FormBuilder,
@@ -96,15 +109,19 @@ export class PaqueteCreateComponent implements OnInit{
       private complementoService: ComplementoServiceService,
       private messageService: MessageService,
       private countryService: CountryService,
+      private cookieService: CookieService,
        private rolService: PaquetesServiceService) {
         this.form = this.fb.group({
           paqe_Descripcion: ['', Validators.required],
           paqe_Precio: ['', Validators.required],
+          // prod_Id: ['',Validators.required],
+            // paCo_Cantidad: [''],
+          // paCo_Identificador: ['',Validators.required]
         });
         }
 
   ngOnInit(): void {
-
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
         this.sortOptions = [
             { label: 'Precio mas alto', value: '!alim_Precio' },
             { label: 'Precio mas bajo', value: 'alim_Precio' }
@@ -129,6 +146,7 @@ export class PaqueteCreateComponent implements OnInit{
    this.cargarBebidas();
    this.cargarComplementos();
    this.cargarPostres();
+
   }
 
   onSortChange(event: any) {
@@ -148,8 +166,11 @@ onFilter(dv: DataView, event: Event) {
 }
 
 
-  onTabClick(tab: string) {
+  onTabClick(tab: string, identi: string) {
     this.activeTab = tab;
+    this.identificador = identi;
+    this.cantidadSeleccionadaPorAlimento = {}; // Resetear cantidades
+    console.log("OPCION: " + this.activeTab + " " + "IDENTIFICADOR: " + this.identificador)
   }
 
   cargarComplementos(){
@@ -167,7 +188,7 @@ onFilter(dv: DataView, event: Event) {
   cargarPostres(){
     this.postreService.getPostre().subscribe(
       (data: any[]) => {
-        console.log(data)
+        
         this.postres = data
       },
       error => {
@@ -199,6 +220,25 @@ onFilter(dv: DataView, event: Event) {
   }
 
 
+
+
+  incrementarCantidad(id: number) {
+    if (!this.cantidadSeleccionadaPorAlimento[id]) {
+      this.cantidadSeleccionadaPorAlimento[id] = 1;
+    } else {
+      this.cantidadSeleccionadaPorAlimento[id]++;
+    }
+  }
+  
+  decrementarCantidad(id: number) {
+    if (this.cantidadSeleccionadaPorAlimento[id] > 1) {
+      this.cantidadSeleccionadaPorAlimento[id]--;
+    }
+  }
+  
+
+
+
   onUpload(event) {
     const file: File = event.files[0];
     this.selectedImageURL = URL.createObjectURL(file);
@@ -225,47 +265,106 @@ onFilter(dv: DataView, event: Event) {
     }
   }
 
-  guardar() {
+
+  guardar(id: number) {
     if (this.form.valid) {
         const paqe_Descripcion = this.form.value.paqe_Descripcion;
         const paqe_Precio = this.form.value.paqe_Precio;
-        const Usua_Id = 1
+        const Usua_Id = this.Usua_Id
         const paqe_Imagen = this.prueba;
+        const prod_Id = id;
+        const paCo_Identificador = this.identificador;
+        const cantidad = this.cantidadSeleccionadaPorAlimento[prod_Id];
         const nuevoRol: PaquetesEnviar = {
             paqe_Id: 0,
             paqe_Descripcion: paqe_Descripcion,
             paqe_Imagen: paqe_Imagen,
             paqe_Precio: paqe_Precio,
-            Usua_Id: Usua_Id,
+            Paqe_Usua_Creacion: Usua_Id,
         };
+
+        
+        
+        if(this.creado == false){ 
+          if(cantidad > 0){
+            this.rolService.agregar(nuevoRol).subscribe(
+              (respuesta: Respuesta) => {
+                  if (respuesta.success) {
+                   
+                      this.PromId = parseInt(respuesta.message);
+                      this.creado = true;
+                      const Detalle: PaquetesDetalles = {
+                        paqe_Id: this.PromId,
+                        PaCo_Cantidad: cantidad,
+                        Prod_Id: prod_Id,
+                        PaCo_Identificador: paCo_Identificador,
+                        Usua_Id: this.Usua_Id
+                      }
+                     
+                        this.rolService.agregarDetalle(Detalle).subscribe(
+                          (respuesta: Respuesta) =>{
+                            if(respuesta.success){
+                              // this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Agregado correctamente!' });
+                            }
+                          }
+                        );
+                    
+                    
+                     
   
-        this.rolService.agregar(nuevoRol).subscribe(
-            (respuesta: Respuesta) => {
-                if (respuesta.success) {
-                    // Guardar el ID del rol creado
-                    this.PromId = parseInt(respuesta.message);
+                      
+          
+                     this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Paquete creado correctamente!' });
+                  // this.router.navigate(['app/IndexPaquetes']);
                   
-                    this.mostrar = 'Exito';
-                  
-                    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Paquete registrada correctamente!' });
-                // this.router.navigate(['app/IndexPaquetes']);
-                
-                } else {
-                    console.error('Error al crear el rol:', respuesta.message);
+                  } else {
+                      console.error('Error al crear el rol:', respuesta.message);
+                  }
+              },
+              error => {
+                  console.error('Error al crear el rol:', error);
+              }
+          );
+          }
+         else{
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: '¡Ingrese una cantidad!' });
+         }
+        }
+        else{
+          const Detalle: PaquetesDetalles = {
+            paqe_Id: this.PromId,
+            PaCo_Cantidad: cantidad,
+            Prod_Id: prod_Id,
+            PaCo_Identificador: paCo_Identificador,
+            Usua_Id: this.Usua_Id
+          }
+          if(cantidad > 0){
+            this.rolService.agregarDetalle(Detalle).subscribe(
+              (respuesta: Respuesta) =>{
+                if(respuesta.success){
+                  this.messageService.add({ severity: 'success', summary: 'Éxito', detail: '¡Agregado correctamente!' });
                 }
-            },
-            error => {
-                console.error('Error al crear el rol:', error);
-            }
-        );
+              }
+            );
+          }
+         else{
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: '¡Ingrese una cantidad!' });
+         }
+        }
+        
     } else {
-        console.log("Ingrese los campos")
-      
+      this.submitted = true;
+      if (this.form.controls['paqe_Descripcion'].invalid) {
+        this.nombreInput.nativeElement.focus();
+      }
+      else if (this.form.controls['paqe_Precio'].invalid) {
+        this.precioInput.nativeElement.focus();
+      }
     }
   }
 
   Volver(){
-    this.router.navigate(['app/IndexPaquetes'])
+    this.router.navigate(['app/paquetes'])
   }
 
 }

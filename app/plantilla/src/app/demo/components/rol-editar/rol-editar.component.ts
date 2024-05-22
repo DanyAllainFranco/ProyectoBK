@@ -29,7 +29,7 @@ import { Rol } from 'src/app/demo/models/RolesViewModel';
 import { Respuesta } from 'src/app/demo/models/ServiceResult';
 import { MessageService } from 'primeng/api';
 import { dA } from '@fullcalendar/core/internal-common';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-rol-editar',
   templateUrl: './rol-editar.component.html',
@@ -43,7 +43,7 @@ export class RolEditarComponent implements OnInit {
   sortOptions: SelectItem[] = [];
 
   sortOrder: number = 0;
-
+  submitted = false;
   sortField: string = '';
 
   sourceCities: any[] = [];
@@ -56,6 +56,7 @@ export class RolEditarComponent implements OnInit {
 
   RolId: number;
 
+  Usua_Id:number;
 
 
   pickListVisible: boolean = false;
@@ -64,13 +65,14 @@ export class RolEditarComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private cookieService: CookieService,
     private router: Router,
     private rolService: RolService,
     private formBuilder: FormBuilder,
   ) { }
   ngOnInit(): void {
   
-
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.route.params.subscribe(params => {
       this.rolId = +params['id'];
       this.obtenerRol(this.rolId);
@@ -83,6 +85,9 @@ export class RolEditarComponent implements OnInit {
 
   }
  
+  Volver(){
+    this.router.navigate(['app/roles'])
+  }
 
 
   cargarPantallas() {
@@ -114,10 +119,11 @@ export class RolEditarComponent implements OnInit {
   submitForm() {
     if (this.form.valid) {
       const nuevoNombre = this.form.value.nombreRol;
+      const usuaId = this.Usua_Id;
       // const idprueba = this.form.value.
       const nuevasPantallas = this.targetCities.map(pantalla => pantalla.code); // Obtener IDs de las pantallas seleccionadas
 
-      this.rolService.actualizar({ ...this.rol, rol_Descripcion: nuevoNombre }).subscribe(
+      this.rolService.actualizar({ ...this.rol, rol_Descripcion: nuevoNombre, Rol_Usua_Modifica: usuaId }).subscribe(
         (response) => {
           console.log("ID ROL:" + " " + this.rolId)
 
@@ -134,7 +140,7 @@ export class RolEditarComponent implements OnInit {
                          console.error('Error al agregar las pantallas al rol:', respuestaPantallas.message);
                        }
                        this.rolService.successMessage = '¡Rol actualizado correctamente!';
-                       this.router.navigate(['app/IndexRoles']);
+                       this.router.navigate(['app/roles']);
                    },
                    error => {
                        console.error('Error en la solicitud HTTP:', error);
@@ -154,6 +160,9 @@ export class RolEditarComponent implements OnInit {
           // Puedes mostrar un mensaje de error al usuario aquí
         }
       );
+    }
+    else{
+      this.submitted = true;
     }
   }
 

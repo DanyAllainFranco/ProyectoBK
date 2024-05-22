@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Factura,FacturaDetalle,Complemento,Bebida,Combo,Postre,Paquete} from '../models/FacturaViewModel'
+import {Factura,FacturaDetalle,Complemento,Bebida,Combo,Postre,Paquete, ReporteEmpleados, ReporteProductos, ReporteSucursal, ReporteCompleto} from '../models/FacturaViewModel'
 import {HttpClient} from '@angular/common/http'
 import { Observable, catchError, map } from 'rxjs';
+import { BASE_URL } from './UrlParaAPI';
+import { Empleado } from '../models/EmpleadoViewModel';
 
 
 @Injectable({
@@ -10,6 +12,34 @@ import { Observable, catchError, map } from 'rxjs';
 export class FacturaServiceService {
 
   constructor(private http: HttpClient) { }
+
+
+  ReporteIdentificador(Empl_Id:string,FechaInicio: string, FechaFinal: string): Observable<ReporteProductos> {
+    return this.http.get<ReporteProductos>(`${BASE_URL}API/Factura/ReporteIdentificador/${Empl_Id}/${FechaInicio}/${FechaFinal}`);
+  }
+
+  ReporteEmpleadosTodos(FechaInicio: string, FechaFinal: string): Observable<ReporteEmpleados> {
+    return this.http.get<ReporteEmpleados>(`${BASE_URL}API/Factura/ReporteEmpleadosTodos/${FechaInicio}/${FechaFinal}`);
+  }
+
+  ReporteSucursalTodos(FechaInicio: string, FechaFinal: string): Observable<ReporteSucursal> {
+    return this.http.get<ReporteSucursal>(`${BASE_URL}API/Factura/ReporteSucursalesTodos/${FechaInicio}/${FechaFinal}`);
+  }
+
+
+  ReporteEmpleados(Empl_Id:number,FechaInicio: string, FechaFinal: string): Observable<ReporteEmpleados> {
+    return this.http.get<ReporteEmpleados>(`${BASE_URL}API/Factura/ReporteEmpleados/${Empl_Id}/${FechaInicio}/${FechaFinal}`);
+  }
+  ReporteProductos(FechaInicio: string, FechaFinal: string): Observable<ReporteProductos> {
+    return this.http.get<ReporteProductos>(`${BASE_URL}API/Factura/ReporteProductos/${FechaInicio}/${FechaFinal}`);
+  }
+  ReporteCompleto(FechaInicio: string, FechaFinal: string): Observable<ReporteCompleto> {
+    return this.http.get<ReporteCompleto>(`${BASE_URL}API/Factura/ReporteCompleto/${FechaInicio}/${FechaFinal}`);
+  }
+  ReporteSucursales(Empl_Id:number,FechaInicio: string, FechaFinal: string): Observable<ReporteSucursal> {
+    return this.http.get<ReporteSucursal>(`${BASE_URL}API/Factura/ReporteSucursal/${Empl_Id}/${FechaInicio}/${FechaFinal}`);
+  }
+
   Url = 'https://localhost:44332/API/Factura/List';
   getFacturas (){
     return this.http.get<Factura[]>(this.Url);

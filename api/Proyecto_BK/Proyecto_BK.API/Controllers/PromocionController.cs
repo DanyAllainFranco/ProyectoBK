@@ -79,7 +79,7 @@ namespace Proyecto_BK.API.Controllers
                 Prom_Precio = item.Prom_Precio,
                 Prom_Imagen = item.Prom_Imagen,
                 Dias_Id = item.Dias_Id,
-                Prom_Usua_Creacion = 1,
+                Prom_Usua_Creacion = item.Prom_Usua_Creacion,
                 Prom_Fecha_Creacion = DateTime.Now
             };
             int rolId;
@@ -100,7 +100,7 @@ namespace Proyecto_BK.API.Controllers
                     Prom_Precio = item.Prom_Precio,
                     Prom_Imagen = item.Prom_Imagen,
                     Dias_Id = item.Dias_Id,
-                    Prom_Usua_Modifica = 1,
+                    Prom_Usua_Modifica = item.Prom_Usua_Modifica,
                     Prom_Fecha_Modifica = DateTime.Now
                 };
                 var list = _restauranteServices.EditarPromocion(modelo);
@@ -109,7 +109,7 @@ namespace Proyecto_BK.API.Controllers
             }
         }
 
-        [HttpDelete("API/[controller]/Delete")]
+        [HttpDelete("API/[controller]/Delete/{Prom_Id}")]
         public IActionResult Delete(int Prom_Id)
         {
             var response = _restauranteServices.EliminarPromocion(Prom_Id);

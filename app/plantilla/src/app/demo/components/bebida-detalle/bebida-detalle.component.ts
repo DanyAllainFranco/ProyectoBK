@@ -115,7 +115,7 @@ export class BebidaDetalleComponent implements OnInit{
 
 
   Volver(){
-    this.router.navigate(['app/IndexBebidas'])
+    this.router.navigate(['app/bebidas'])
   }
 
 }

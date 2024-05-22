@@ -72,7 +72,7 @@ namespace Proyecto_BK.API.Controllers
                 Post_Descripcion = item.Post_Descripcion,
                 Post_Precio = item.Post_Precio,
                 Post_Imagen = item.Post_Imagen,
-                Post_Usua_Creacion = 1,
+                Post_Usua_Creacion = item.Post_Usua_Creacion,
                 Post_Fecha_Creacion = DateTime.Now
             };
             var list = _restauranteServices.CrearPostre(modelo);
@@ -91,7 +91,7 @@ namespace Proyecto_BK.API.Controllers
                     Post_Descripcion = item.Post_Descripcion,
                     Post_Precio = item.Post_Precio,
                     Post_Imagen = item.Post_Imagen,
-                    Post_Usua_Modifica = 1,
+                    Post_Usua_Modifica = item.Post_Usua_Modifica,
                     Post_Fecha_Modifica = DateTime.Now
                 };
                 var list = _restauranteServices.EditarPostre(modelo);

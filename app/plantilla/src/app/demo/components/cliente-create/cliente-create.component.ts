@@ -49,6 +49,7 @@ import { DepartamentoServiceService } from '../../service/departamento-service.s
 import { EstadoCivilServiceService } from '../../service/estadocivil-service.service';
 import { ClientesEnviar } from '../../models/ClientesViewModel';
 import { ClientesServiceService } from '../../service/cliente-service.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-cliente-create',
@@ -65,10 +66,14 @@ export class ClienteCreateComponent implements OnInit{
     municipios: SelectItem[] = [];
     estadosciviles: SelectItem[] = [];
     DepartamentoId: string;
+    submitted: boolean = false;
+    Usua_Id:number;
     constructor(private productService: ProductService,
       private router: Router,
       private fb: FormBuilder,
       private municipioService: ServiceService,
+      
+    private cookieService: CookieService,
       private departamentoService: DepartamentoServiceService,
       private estadoService: EstadoCivilServiceService,
       private clienteService: ClientesServiceService,
@@ -81,13 +86,14 @@ export class ClienteCreateComponent implements OnInit{
           Clie_Sexo: ['', Validators.required],
           Clie_Correo: ['', Validators.required],
           Esta_Id: ['', Validators.required],
-          // Muni_Codigo: ['', Validators.required]
+           Muni_Codigo: ['', Validators.required]
         });
         }
 
 ngOnInit(): void {
   this.cargarDepartamentos();
   this.cargarEstados();
+  this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
 }
 
 cargarDepartamentos(){
@@ -103,21 +109,22 @@ cargarDepartamentos(){
   );
 }
 
-onDepartmentChange(departmentId: any) {
-  console.log("CODIGO: " + departmentId.values)
-  // if (departmentId !== '0') {
-  //   this.municipioService.getMunicipiosPorDepartamento(departmentId).subscribe(
-  //     (data: any) => {
-  //       this.municipios =data.map(item => ({ label: item.muni_Descripcion, value: item.muni_Codigo })); 
-  //     },
-  //     error => {
-  //       console.error('Error fetching municipios:', error);
-  //     }
-  //   );
-  // } else {
-  //   this.municipios = []; 
-  // }
+onDepartmentChange(event: any) {
+  const departmentId = event.value;
+  if (departmentId) {
+    this.municipioService.getMunicipiosPorDepartamento(departmentId).subscribe(
+      (data: any[]) => {
+        this.municipios = data.map(item => ({ label: item.muni_Descripcion, value: item.muni_Codigo }));
+      },
+      error => {
+        console.error('Error fetching municipios:', error);
+      }
+    );
+  } else {
+    this.municipios = [];
+  }
 }
+
 
 
 cargarEstados(){
@@ -135,7 +142,7 @@ cargarEstados(){
 
 
 Volver(){
-  this.router.navigate(['app/IndexComboPersonal'])
+  this.router.navigate(['app/clientes'])
 }
 
 
@@ -150,23 +157,24 @@ guardar() {
     const Muni_Codigo = this.form.value.Muni_Codigo;
 
     const NuevoCombo: ClientesEnviar = {
-    
-      Clie_Identidad: Clie_Identidad,
-      Clie_Nombre: Clie_Nombre,
-      Clie_Apellido: Clie_Apellido,
-      Clie_Sexo: Clie_Sexo,
-      Clie_Correo: Clie_Correo,
-      Esta_Id: Esta_Id,
-      Muni_Codigo: Muni_Codigo,
-      Clie_Usua_Creacion: 1,
-    };
+      clie_Id: 0,
+      clie_Identidad: Clie_Identidad,
+      clie_Nombre: Clie_Nombre,
+      clie_Apellido: Clie_Apellido,
+      clie_Sexo: Clie_Sexo,
+      clie_Correo: Clie_Correo,
+      esta_Id: Esta_Id,
+      muni_Codigo: Muni_Codigo,
+      clie_Usua_Creacion: this.Usua_Id
+      };
 
+      console.log("NUEVOCOMBO: " + NuevoCombo)
     this.clienteService.agregar(NuevoCombo).subscribe(
       (respuesta: Respuesta) => {
         if (respuesta.success) {
           // this.messageService.add({severity:'success', summary:'Éxito', detail:'!Combo registrado correctamente!'});
           this.clienteService.successMessage = '¡Cliente registrado correctamente!';
-          this.router.navigate(['app/IndexComboPersonal']);
+          this.router.navigate(['app/clientes']);
         } else {
           this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});
           console.error('Error al crear el combo:', respuesta.message);
@@ -178,8 +186,7 @@ guardar() {
       }
     );
   } else {
-    console.log("Ingrese los campos")
-    this.invalid = true;
+   this.submitted = true;
   }
 }
 
@@ -216,4 +223,4 @@ guardar() {
     ClienteCreateComponent
   ]
 })
-export class  ComboCreateModule { }
+export class  ClienteCreateModule { }

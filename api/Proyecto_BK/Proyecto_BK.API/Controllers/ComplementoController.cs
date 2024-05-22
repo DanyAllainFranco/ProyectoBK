@@ -76,7 +76,7 @@ namespace Proyecto_BK.API.Controllers
                 Comp_Descripcion = item.Comp_Descripcion,
                 Comp_Precio = item.Comp_Precio,
                 Comp_Imagen = item.Comp_Imagen,
-                Comp_Usua_Creacion = 1,
+                Comp_Usua_Creacion = item.Comp_Usua_Creacion,
                 Comp_Fecha_Creacion = DateTime.Now
             };
             var list = _restauranteServices.CrearComplemento(modelo);
@@ -95,7 +95,7 @@ namespace Proyecto_BK.API.Controllers
                     Comp_Descripcion = item.Comp_Descripcion,
                     Comp_Precio = item.Comp_Precio,
                     Comp_Imagen = item.Comp_Imagen,
-                    Comp_Usua_Creacion = 1,
+                    Comp_Usua_Modifica = item.Comp_Usua_Modifica,
                     Comp_Fecha_Creacion = DateTime.Now
                 };
                 var list = _restauranteServices.EditarComplemento(modelo);

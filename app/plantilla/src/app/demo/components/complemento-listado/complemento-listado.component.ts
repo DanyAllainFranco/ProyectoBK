@@ -29,6 +29,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-complemento-listado',
@@ -50,7 +51,9 @@ export class ComplementoListadoComponent implements OnInit {
   selectedImageURL: string | null = null;
   imageSelected: boolean = false;
   showFileUpload: boolean = true;
+  submitted: boolean = false;
   prueba: string = "";
+  Usua_Id:number;
   constructor(
     private service: ComplementoServiceService,
     private router: Router ,
@@ -58,7 +61,8 @@ export class ComplementoListadoComponent implements OnInit {
     private cookieService: CookieService,
     private _postreServices: PostreServiceService,
     private messageService: MessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private creationGuard: CreationGuard
   ) {
     this.formDepartamento = this.fb.group({
       // post_Id: ["", Validators.required],
@@ -70,8 +74,8 @@ export class ComplementoListadoComponent implements OnInit {
 
   ngOnInit(): void {
    this.getComplementos();
-
-   const showSuccessMessage = this.cookieService.get('showSuccessMessage');
+   this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
+   const showSuccessMessage = this.cookieService.get('showSuccessMessageComplemento');
    const tipo =  this.cookieService.get('Mensaje');
    console.log("SDAS: " + showSuccessMessage)
    if (showSuccessMessage) {
@@ -82,13 +86,14 @@ export class ComplementoListadoComponent implements OnInit {
        else{
          this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Complemento editado correctamente' });
        }
+       this.cookieService.delete('showSuccessMessageComplemento');
      });
-     this.cookieService.delete('showSuccessMessage');
-     this.cookieService.delete('Mensaje');
+ 
    }
   }
    
   detallePostre(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetalleComplemento', combId]); // Redirige a la ruta de edición con el ID del rol
   }
   getComplementos(){
@@ -127,14 +132,17 @@ export class ComplementoListadoComponent implements OnInit {
   }
 
   guardarDepartamento() {
-    if (this.formDepartamento.invalid) {
-      return;
+    if (this.formDepartamento.valid) {
+      if (this.modalTitle === 'Nuevo Registro') {
+        this.NuevoDepartamento();
+      } else {
+        this.actualizarDepartamento();
+      }
     }
-    if (this.modalTitle === 'Nuevo Registro') {
-      this.NuevoDepartamento();
-    } else {
-      this.actualizarDepartamento();
+    else{
+      this.submitted = true;
     }
+   
   }
 
 
@@ -145,14 +153,14 @@ export class ComplementoListadoComponent implements OnInit {
       comp_Descripcion: this.formDepartamento.value.comp_Descripcion,
       comp_Precio: this.formDepartamento.value.comp_Precio,
       comp_Imagen: this.prueba,
-      comp_Usua_Modifica: 1,
+      comp_Usua_Modifica: this.Usua_Id,
     }
 
     this.service.actualizar(modelo).subscribe({
       next: (data) => {
         this.getComplementos();
         this.cookieService.set('Mensaje', 'Editado');
-        this.cookieService.set('showSuccessMessage', 'true');
+        this.cookieService.set('showSuccessMessageComplemento', 'true');
         // localStorage.setItem('', '');
         location.reload();
         // this.display = false;
@@ -204,14 +212,14 @@ export class ComplementoListadoComponent implements OnInit {
       comp_Descripcion: this.formDepartamento.value.comp_Descripcion,
       comp_Precio: this.formDepartamento.value.comp_Precio,
       comp_Imagen: this.prueba,
-      comp_Usua_Creacion: 1,
+      comp_Usua_Creacion: this.Usua_Id,
     };
 
   
     this.service.agregar(modelo).subscribe({
       next: () => {
         this.getComplementos();
-        this.cookieService.set('showSuccessMessage', 'true');
+        this.cookieService.set('showSuccessMessageComplemento', 'true');
         this.cookieService.set('Mensaje', 'Nuevo');
         location.reload();
       },

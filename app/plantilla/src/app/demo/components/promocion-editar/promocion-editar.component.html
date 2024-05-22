@@ -1,35 +1,3 @@
-<!-- <div class="grid">
-    <p-toast></p-toast>
-    <div class="col-12 p-lg-12">
-        <div class="card">
-            <h3>Rol:</h3>
-            <form [formGroup]="form">
-                <div class="field">
-
-                    <br>
-                    <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;" [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
-                </div>
-             
-            </form>
-
-            <div class="col-12 xl:col-8">
-                <p-pickList [source]="sourceCities" [target]="targetCities" sourceHeader="Pantallas" targetHeader="Pantallas Agregadas" [dragdrop]="true"
-                [responsive]="true" [sourceStyle]="{'height':'250px'}" [targetStyle]="{'height':'250px'}"
-                >
-        <ng-template let-pantalla pTemplate="item">
-            <div>{{ pantalla.name }}</div>
-        </ng-template>
-    </p-pickList>
-            </div>
-
-            <div class="p-field p-d-flex" style="justify-content: end;">
-                <button pButton pRipple type="button" label="Volver" icon="pi pi-times" class="p-button-rounded p-button-secondary mt-4" (click)="Volver()"></button>
-                <button pButton pRipple type="button" label="Guardar" icon="pi pi-check" class="p-button-rounded ms-6" (click)="guardar()"></button>
-            </div>
-        </div>
-    </div>
-</div> -->
-
 
 <div class="grid">
     <div class="col-12">
@@ -41,25 +9,25 @@
   
             <div class="field col-12 md:col-6">
               <label>Nombre:</label>
-              <input type="text" class="p-inputtext" formControlName="prom_Descripcion">
-              <!-- <br>
-                      <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
-                          [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small> -->
+              <input type="text" class="p-inputtext" formControlName="prom_Descripcion" [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['prom_Descripcion'].invalid}">
+              <small class="ng-dirty ng-invalid"
+              *ngIf="submitted && form.controls['prom_Descripcion'].invalid"
+              style="color: red !important;">Nombre Requerido</small>
             </div>
             <div class="field col-12 md:col-6">
               <label>Precio:</label>
-              <input type="text" class="p-inputtext" formControlName="prom_Precio">
-              <!-- <br>
-                      <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
-                          [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small> -->
+              <input type="text" class="p-inputtext" formControlName="prom_Precio" [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['prom_Precio'].invalid}">
+              <small class="ng-dirty ng-invalid"
+              *ngIf="submitted && form.controls['prom_Precio'].invalid"
+              style="color: red !important;">Precio Requerido</small>
             </div>
             <div class="field col-12 md:col-6">
               <label>Dia</label>
               <p-dropdown [options]="dias" formControlName="dias_Id" placeholder="Seleccione"
-                [showClear]="false"></p-dropdown>
-              <!-- <br>
-                      <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
-                          [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small> -->
+                [showClear]="false" [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['dias_Id'].invalid}"></p-dropdown>
+                <small class="ng-dirty ng-invalid"
+                *ngIf="submitted && form.controls['dias_Id'].invalid"
+                style="color: red !important;">Dia Requerido</small>
             </div>
             <div class="field col-12 md:col-6">
               <label>Imagen</label>
@@ -67,9 +35,7 @@
                 [multiple]="false" accept="image/*" [maxFileSize]="1000000"
                 chooseLabel="{{ showFileUpload ? 'Seleccione' : '' }}">
               </p-fileUpload>
-              <br>
-              <small class="ng-dirty ng-invalid" style="color: red; font-size: 15px;"
-                [style.display]="invalid ? 'block' : 'none'">El campo es requerido</small>
+       
             </div>
           </form>
         </div>

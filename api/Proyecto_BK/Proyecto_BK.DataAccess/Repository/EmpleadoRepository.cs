@@ -60,6 +60,7 @@ namespace Proyecto_BK.DataAccess.Repository
                 parametro.Add("@Empl_Sexo", item.Empl_Sexo);
                 parametro.Add("@Empl_Correo", item.Empl_Correo);
                 parametro.Add("@Esta_Id", item.Esta_Id);
+                parametro.Add("@Sucu_Id", item.Sucu_Id);
                 parametro.Add("@Muni_Codigo", item.Muni_Codigo);
                 parametro.Add("@Carg_Id", item.Carg_Id);
                 parametro.Add("@Empl_Usua_Creacion", item.Empl_Usua_Creacion);
@@ -109,6 +110,7 @@ namespace Proyecto_BK.DataAccess.Repository
                 parameter.Add("@Empl_Sexo", item.Empl_Sexo);
                 parameter.Add("@Empl_Correo", item.Empl_Correo);
                 parameter.Add("@Esta_Id", item.Esta_Id);
+                parameter.Add("@Sucu_Id", item.Sucu_Id);
                 parameter.Add("@Muni_Codigo", item.Muni_Codigo);
                 parameter.Add("@Carg_Id", item.Carg_Id);
                 parameter.Add("@Empl_Usua_Modifica", item.Empl_Usua_Modifica);

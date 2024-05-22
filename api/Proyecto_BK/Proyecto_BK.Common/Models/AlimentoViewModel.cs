@@ -13,6 +13,8 @@ namespace Proyecto_BK.Common.Models
         public string Usua_Creacion { get; set; }
         [NotMapped]
         public string Usua_Modifica { get; set; }
+        [NotMapped]
+        public string CantidadAgregada { get; set; }
         public int Alim_Id { get; set; }
         public string Alim_Descripcion { get; set; }
         public decimal? Alim_Precio { get; set; }

@@ -17,6 +17,8 @@ import { ToastModule } from 'primeng/toast';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { MessageService } from 'primeng/api';
+import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-cargo-listado',
@@ -34,13 +36,16 @@ export class CargoListadoComponent implements OnInit {
   modalButtonLabel: string = 'Guardar';
   confirmacionVisible: boolean = false;
   cargoAEliminar: Cargos | null = null;
-
+  submitted = false;
+  Usua_Id:number;
   constructor(
     private service: CargosServiceService,
     private router: Router,
     private fb: FormBuilder,
+    private cookieService: CookieService,
     private _cargoServicio: CargosServiceService,
     private messageService: MessageService,
+    private creationGuard: CreationGuard,
   ) {
     this.formCargo = this.fb.group({
       cargo: ["", Validators.required],
@@ -50,9 +55,11 @@ export class CargoListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCargos();
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
   }
 
   detalleRol(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetalleCargo', combId]); 
   }
 
@@ -116,19 +123,22 @@ export class CargoListadoComponent implements OnInit {
   }
 
   guardarCargo() {
-    if (this.formCargo.invalid) {
-      return;
+    if (this.formCargo.valid) {
+      if (this.modalTitle === 'Nuevo Registro') {
+        this.nuevoCargo();
+      } else {
+        this.actualizarCargo();
+      }
     }
-    if (this.modalTitle === 'Nuevo Registro') {
-      this.nuevoCargo();
-    } else {
-      this.actualizarCargo();
-    }
+   else{
+    this.submitted = true;
+   }
   }
 
   nuevoCargo() {
     const modelo: Cargos = {
       carg_Descripcion: this.formCargo.value.cargo,
+      carg_Usua_creacion: this.Usua_Id
     }
     this._cargoServicio.agregar(modelo).subscribe({
       next: (data) => {  
@@ -147,7 +157,8 @@ export class CargoListadoComponent implements OnInit {
     const idCargo = this.selectedCargo.carg_Id;
     const modelo: Cargos = {
       carg_Descripcion: this.formCargo.value.cargo,
-      carg_Id: this.formCargo.value.id
+      carg_Id: this.formCargo.value.id,
+      carg_Usua_Modifica: this.Usua_Id
     }
     this._cargoServicio.actualizar(idCargo, modelo).subscribe({
       next: (data) => {

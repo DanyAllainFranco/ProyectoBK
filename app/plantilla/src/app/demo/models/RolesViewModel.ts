@@ -5,7 +5,9 @@ export class Roles{
 
 export class Rol{
     rol_Id!: number;
-    rol_Descripcion!:string;   
+    rol_Descripcion!:string;  
+    Rol_Usua_Creacion?:number; 
+    Rol_Usua_Modifica?:number; 
 }
 export class RolesDLL{
 rol_Id?:number;

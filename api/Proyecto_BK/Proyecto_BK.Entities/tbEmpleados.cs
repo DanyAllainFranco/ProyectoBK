@@ -25,6 +25,7 @@ namespace Proyecto_BK.Entities
         public int? Esta_Id { get; set; }
         public string Muni_Codigo { get; set; }
         public int? Carg_Id { get; set; }
+        public int? Sucu_Id { get; set; }
         public int? Empl_Usua_Creacion { get; set; }
         public DateTime? Empl_Fecha_Creacion { get; set; }
         public int? Empl_Usua_Modifica { get; set; }
@@ -36,6 +37,16 @@ namespace Proyecto_BK.Entities
         public string Muni_Descripcion { get; set; }
         [NotMapped]
         public string Carg_Descripcion { get; set; }
+        [NotMapped]
+        public string Dept_Codigo { get; set; }
+        [NotMapped]
+        public string Dept_Descripcion { get; set; }
+        [NotMapped]
+        public string Sucu_Descripcion { get; set; }
+        [NotMapped]
+        public string Usua_Creacion { get; set; }
+        [NotMapped]
+        public string Usua_Modifica { get; set; }
         public virtual tbCargos Carg { get; set; }
         public virtual tbUsuarios Empl_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Empl_Usua_ModificaNavigation { get; set; }

@@ -30,6 +30,8 @@ namespace Proyecto_BK.Entities
         public string Usua_Creacion { get; set; }
         [NotMapped]
         public string Usua_Modifica { get; set; }
+        [NotMapped]
+        public string CantidadAgregada { get; set; }
 
         [NotMapped]
         public string text { get; set; }

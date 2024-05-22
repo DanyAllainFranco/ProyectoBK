@@ -27,18 +27,19 @@ import { CarouselModule } from 'primeng/carousel';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-aliment-listado',
   templateUrl:'./alimento-listado.component.html',
   styleUrl: './alimento-listado.component.scss',
-  providers: [MessageService]
+  providers: [MessageService,]
 })
 
 export class AlimentosListadoComponent implements OnInit {
   alimentos!: Alimento2[];
 
-
+  Usua_Id:number;
   display: boolean = false;
   departamento: Postre[] = [];
   formDepartamento: FormGroup;
@@ -52,14 +53,15 @@ export class AlimentosListadoComponent implements OnInit {
   imageSelected: boolean = false;
   showFileUpload: boolean = true;
   prueba: string = "";
-
+  submitted: boolean = false;
   constructor(
     private service: AlimentosServiceService, 
     private router: Router,
     private fb: FormBuilder,
     private cookieService: CookieService,
     private messageService: MessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private creationGuard: CreationGuard
   ) {
     this.formDepartamento = this.fb.group({
       // post_Id: ["", Validators.required],
@@ -71,8 +73,9 @@ export class AlimentosListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAlimentos();
-
-    const showSuccessMessage = this.cookieService.get('showSuccessMessage');
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
+    console.log("USUA_ID: " + this.Usua_Id)
+    const showSuccessMessage = this.cookieService.get('showSuccessMessageAlimento');
     const tipo =  this.cookieService.get('Mensaje');
     console.log("SDAS: " + showSuccessMessage)
     if (showSuccessMessage) {
@@ -83,15 +86,16 @@ export class AlimentosListadoComponent implements OnInit {
         else{
           this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Alimento editado correctamente' });
         }
+        this.cookieService.delete('showSuccessMessageAlimento');
       });
-      this.cookieService.delete('showSuccessMessage');
-      this.cookieService.delete('Mensaje');
+    
     }
  
   }
 
    detalleAlimento(combId: number) {
-    this.router.navigate(['app/DetallePostre', combId]);
+    this.creationGuard.allow();
+    this.router.navigate(['app/DetalleAlimento', combId]);
   }
 
 getAlimentos(){
@@ -132,14 +136,16 @@ editDepartamento(departamento: any) {
 }
 
 guardarDepartamento() 
-{   if (this.formDepartamento.invalid) {
-     return;
+{   if (this.formDepartamento.valid) {
+  if (this.modalTitle === 'Nuevo Registro') {
+    this.NuevoDepartamento();
+  } else {
+    this.actualizarDepartamento();
+  }
+   }else{
+    this.submitted = true;
    }
-   if (this.modalTitle === 'Nuevo Registro') {
-     this.NuevoDepartamento();
-   } else {
-     this.actualizarDepartamento();
-   }
+
  }
 
  actualizarDepartamento() {
@@ -149,14 +155,14 @@ guardarDepartamento()
      alim_Descripcion: this.formDepartamento.value.alim_Descripcion,
      alim_Precio: this.formDepartamento.value.alim_Precio,
      alim_Imagen: this.prueba,
-     alim_Usua_Modifica: 1,
+     alim_Usua_Modifica: this.Usua_Id,
    }
 
    this.service.actualizar(modelo).subscribe({
      next: (data) => {
        this.getAlimentos();
        this.cookieService.set('Mensaje', 'Editado');
-       this.cookieService.set('showSuccessMessage', 'true');
+       this.cookieService.set('showSuccessMessageAlimento', 'true');
        // localStorage.setItem('', '');
        location.reload();
        // this.display = false;
@@ -209,7 +215,7 @@ recargarPagina() {
       alim_Descripcion: this.formDepartamento.value.alim_Descripcion,
      alim_Precio: this.formDepartamento.value.alim_Precio,
      alim_Imagen: this.prueba,
-     alim_Usua_Creacion: 1,
+     alim_Usua_Creacion: this.Usua_Id,
    };
 
    // Enviar los datos del formulario a tu API para agregar el registro

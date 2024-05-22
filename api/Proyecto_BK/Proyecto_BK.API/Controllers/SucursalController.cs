@@ -30,11 +30,11 @@ namespace Proyecto_BK.API.Controllers
             return Ok(list.Data);
         }
 
-        [HttpGet("API/[controller]/Find")]
+        [HttpGet("API/[controller]/Find/{Sucu_Id}")]
         public IActionResult Find(int Sucu_Id)
         {
             var result = _restauranteServices.LlenarSucursal(Sucu_Id);
-            return Ok(result);
+            return Ok(result.Data);
         }
 
         [HttpPost("API/[controller]/Insert")]
@@ -45,8 +45,8 @@ namespace Proyecto_BK.API.Controllers
             {
                 Sucu_Descripcion = json.Sucu_Descripcion,
                 Muni_Codigo = json.Muni_Codigo,
-                Empl_Id = json.Empl_Id,
-                Sucu_Usua_Creacion = 1,
+               
+                Sucu_Usua_Creacion = json.Sucu_Usua_Creacion,
                 Sucu_Fecha_Creacion = DateTime.Now
             };
             var response = _restauranteServices.CrearSucursal(modelo);
@@ -62,8 +62,8 @@ namespace Proyecto_BK.API.Controllers
                 Sucu_Id = json.Sucu_Id,
                 Sucu_Descripcion = json.Sucu_Descripcion,
                 Muni_Codigo = json.Muni_Codigo,
-                Empl_Id = json.Empl_Id,
-                Sucu_Usua_Modifica = 1,
+             
+                Sucu_Usua_Modifica = json.Sucu_Usua_Modifica,
                 Sucu_Fecha_Modifica = DateTime.Now
             };
             var list = _restauranteServices.EditarSucursal(modelo);

@@ -28,6 +28,7 @@ import { Pantallas } from 'src/app/demo/models/PantallaViewMode';
 import { Rol } from 'src/app/demo/models/RolesViewModel';
 import { Respuesta } from 'src/app/demo/models/ServiceResult';
 import { MessageService } from 'primeng/api';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-rol-create',
@@ -42,7 +43,7 @@ export class RolCreateComponent implements OnInit{
     sortOptions: SelectItem[] = [];
 
     sortOrder: number = 0;
-
+    submitted = false;
     sortField: string = '';
 
     sourceCities: any[] = [];
@@ -58,12 +59,13 @@ export class RolCreateComponent implements OnInit{
 
     pickListVisible: boolean = false;
 
+    Usua_Id:number;
     invalid: boolean = false;
 
     constructor(private productService: ProductService,
       private router: Router,
       private fb: FormBuilder,
-      
+      private cookieService: CookieService,
       private messageService: MessageService,
        private rolService: RolService) {
         this.form = this.fb.group({
@@ -73,12 +75,12 @@ export class RolCreateComponent implements OnInit{
 
     ngOnInit() {
       this.cargarPantallas();
-
+      this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
       
   }
 
   Volver(){
-    this.router.navigate(['app/IndexRol'])
+    this.router.navigate(['app/roles'])
   }
   cargarPantallas() {
     this.rolService.getPantallas2(0).subscribe(
@@ -99,6 +101,7 @@ export class RolCreateComponent implements OnInit{
         const nuevoRol: Rol = {
             rol_Id: 0,
             rol_Descripcion: nombreRol,
+            Rol_Usua_Creacion: this.Usua_Id
         };
 
         this.rolService.agregar(nuevoRol).subscribe(
@@ -123,7 +126,7 @@ export class RolCreateComponent implements OnInit{
                     );
                     
                     this.rolService.successMessage = '¡Rol registrado correctamente!';
-                this.router.navigate(['app/IndexRoles']);
+                this.router.navigate(['app/roles']);
                     // Resto de la lógica de éxito (como mostrar mensajes, redireccionar, etc.)
                 } else {
                     console.error('Error al crear el rol:', respuesta.message);
@@ -134,8 +137,7 @@ export class RolCreateComponent implements OnInit{
             }
         );
     } else {
-        console.log("Ingrese los campos")
-        this.invalid = true;
+      this.submitted = true;
     }
 }
 

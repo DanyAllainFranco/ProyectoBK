@@ -41,6 +41,8 @@ namespace Proyecto_BK.Entities
         public decimal precio { get; set; }
 
         public string Usua_Modifica { get; set; }
+        [NotMapped]
+        public string CantidadAgregada { get; set; }
         public virtual tbUsuarios Comp_Usua_CreacionNavigation { get; set; }
         public virtual tbUsuarios Comp_Usua_ModificaNavigation { get; set; }
         public virtual ICollection<tbCombo> tbCombo { get; set; }

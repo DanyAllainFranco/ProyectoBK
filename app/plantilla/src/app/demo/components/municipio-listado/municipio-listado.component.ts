@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, SelectItem } from 'primeng/api';
 import { Router } from '@angular/router';
-import { Fill,Municipio,MunicipioEnviar } from 'src/app/demo/models/MunicipioViewModel';
+import { Fill,Municipio,Municipio2,MunicipioEnviar } from 'src/app/demo/models/MunicipioViewModel';
 import { dropDepartamento } from 'src/app/demo/models/DepartamentosViewModel';
 import { MensajeViewModel } from 'src/app/demo/models/MensajeVIewModel';
-
+import { CookieService } from 'ngx-cookie-service';
 import { ServiceService } from 'src/app/demo/service/municipio-service.service';
-import { FormGroup, FormControl,  Validators  } from '@angular/forms';
+import { FormGroup, FormControl,  Validators, FormBuilder  } from '@angular/forms';
+import { DepartamentoServiceService } from '../../service/departamento-service.service';
 @Component({
   templateUrl: './municipio-listado.component.html',
   styleUrl: './municipio-listado.component.css',
@@ -29,8 +30,14 @@ export class MunicipioListadoComponent implements OnInit {
     MunCodigo: boolean = true;
     Valor: string = "";
     staticData = [{}];
-
+    modalTitle: string = 'Nuevo Registro';
+    modalButtonLabel: string = 'Guardar';
+    display: boolean = false;
+    formDepartamento: FormGroup;
     deleteProductDialog: boolean = false;
+    confirmacionVisible: boolean = false;
+    departamentoAEliminar: Municipio | null = null;
+    selectedDepartamento: any;
     //Detalle
     Muni: String = "";
     Codigo: String = "";
@@ -39,27 +46,40 @@ export class MunicipioListadoComponent implements OnInit {
     UsuarioModificacion: String = "";
     FechaCreacion: String = "";
     FechaModificacion: String = "";
+    complementos: SelectItem[] = [];
+    Usua_Id:number;
     ID: String = "";
     constructor(
         private service: ServiceService, 
         private router: Router,
         private confirmationService: ConfirmationService, 
-        private messageService: MessageService
+        private messageService: MessageService,
+        private complementoService: DepartamentoServiceService,
+        private fb: FormBuilder,
+        
+    private cookieService: CookieService,
     ) { 
        
     
     }
     
     ngOnInit(): void {
+      this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
         //Inicializamos form,drops,lista
-        this.municipioForm = new FormGroup({
-            Muni_Codigo: new FormControl("",Validators.required),
-            Muni_Descripcion: new FormControl("", Validators.required),
-            Dept_Codigo: new FormControl('0', [Validators.required])
+        this.formDepartamento = this.fb.group({
+            muni_Codigo: ["", Validators.required],
+            muni_Descripcion: ["", Validators.required],
+            dept_Codigo: ["0", Validators.required],
           });
+
         this.service.getDropDownsDepartamentos().subscribe((data: dropDepartamento[]) => {
             this.departamentos = data;
         });
+        this.cargarDepartamentos();
+     this.getMunicipios();
+    }
+    
+    getMunicipios(){
         this.service.getMunicipios().subscribe((data: Municipio[]) => {
             console.log(data);
             this.Municipio = data;
@@ -107,6 +127,131 @@ export class MunicipioListadoComponent implements OnInit {
         this.Valor = "";
     }
     
+
+    
+  confirmarEliminarDepartamento(departamento: Municipio) {
+    this.departamentoAEliminar = departamento;
+    this.confirmacionVisible = true;
+  }
+  
+  eliminarDepartamento() {
+    if (this.departamentoAEliminar) {
+      const idDepartamento = this.departamentoAEliminar.muni_Codigo;
+      this.service.eliminar(idDepartamento).subscribe({
+        next: (data) => {
+          this.getMunicipios();
+          this.confirmacionVisible = false;
+          console.log(idDepartamento);
+          this.messageService.add({severity:'success', summary:'Éxito', detail:'¡Municipio eliminado correctamente!'});
+        },
+        error: (e) => {
+          console.log(e);
+          this.messageService.add({severity:'error', summary:'Error', detail:'Este Municipio no se puede eliminar.'});
+        }
+      });
+    }
+  }
+  
+  cancelarEliminar() {
+    this.confirmacionVisible = false;
+  }
+
+  displayNuevoDepartamento() {
+    this.formDepartamento = this.fb.group({
+        muni_Codigo: ["", Validators.required],
+        muni_Descripcion: ["", Validators.required],
+        dept_Codigo: ["0", Validators.required],
+      });
+    this.modalTitle = 'Nuevo Registro';
+    this.modalButtonLabel = 'Guardar';
+    this.display = true;
+  }
+
+  editDepartamento(departamento: any) {
+    this.selectedDepartamento = departamento;
+  
+    this.modalTitle = 'Editar Registro';
+    this.modalButtonLabel = 'Actualizar';
+    this.formDepartamento.patchValue({
+      muni_Codigo: departamento.muni_Codigo,
+      muni_Descripcion: departamento.muni_Descripcion,
+      dept_Codigo: departamento.dept_Codigo
+    });
+    this.display = true;
+  }
+
+  guardarDepartamento() {
+    if (this.formDepartamento.valid) {
+      if (this.modalTitle === 'Nuevo Registro') {
+        this.NuevoDepartamento();
+      } else {
+        this.actualizarDepartamento();
+      }
+    }
+    else{
+      this.submitted = true;
+    }
+ 
+  }
+
+  NuevoDepartamento() {
+    const modelo: Municipio2 = {
+      muni_Codigo: this.formDepartamento.value.muni_Codigo,
+      muni_Descripcion: this.formDepartamento.value.muni_Descripcion,
+      dept_Codigo: this.formDepartamento.value.dept_Codigo,
+      Muni_Usua_Creacion: this.Usua_Id
+    }
+    this.service.agregar(modelo).subscribe({
+      next: (data) => {  
+        this.getMunicipios();
+        this.display = false;
+        this.messageService.add({severity:'success', summary:'Éxito', detail:'¡Municipio creado correctamente!'});
+      },
+      error: (e) => {
+        console.log(e);
+        this.messageService.add({severity:'error', summary:'Error', detail:'Codigo ya existente.'});
+      }
+    })
+  }
+
+  cargarDepartamentos(){
+    this.complementoService.getDepartamento().subscribe(
+      (data: any[]) => {
+        console.log(data)
+        this.complementos = data.map(item => ({ label: item.dept_Descripcion, value: item.dep_Codigo }));
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+
+  actualizarDepartamento() {
+    const idDepartamento = this.selectedDepartamento.dept_Codigo;
+    const modelo: Municipio2 = {
+        muni_Codigo: this.formDepartamento.value.muni_Codigo,
+        muni_Descripcion: this.formDepartamento.value.muni_Descripcion,
+        dept_Codigo: this.formDepartamento.value.dept_Codigo, 
+        Muni_Usua_Modifica: this.Usua_Id
+      }
+    this.service.actualizar(modelo).subscribe({
+      next: (data) => {
+        this.getMunicipios();
+        this.display = false;
+        console.log(idDepartamento);
+        this.messageService.add({severity:'success', summary:'Éxito', detail:'¡Municipio editado correctamente!'});
+      },
+      error: (e) => {
+        console.log(e);
+        this.messageService.add({severity:'error', summary:'Error', detail:'Departamento ya existente.'});
+      }
+    })
+  }
+
+      cerrar(){
+        this.display = false;
+      }
     //Funcionan como regex
     ValidarNumeros(event: KeyboardEvent) {
         if (!/[0-9]/.test(event.key) && event.key !== 'Backspace' && event.key !== 'Tab') {
@@ -139,7 +284,7 @@ export class MunicipioListadoComponent implements OnInit {
              this.municipioForm = new FormGroup({
                  Muni_Codigo: new FormControl("",Validators.required),
                  Muni_Descripcion: new FormControl("", Validators.required),
-                 Dept_Codigo: new FormControl('0', [Validators.required])
+                 Dept_Codigo: new FormControl('0', [Validators.required]),
              });
      
             }else{

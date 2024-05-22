@@ -89,7 +89,7 @@ namespace Proyecto_BK.API.Controllers
                 Usua_Admin = json.Usua_Admin,
                 Empl_Id = json.Empl_Id,
                 Rol_Id = json.Rol_Id,
-                Usua_Usua_Modifica = 1,
+                Usua_Usua_Modifica = json.Usua_Usua_Modifica,
                 Usua_Fecha_Modifica = DateTime.Now,
             };
             var list = _accesoServices.EditarUsuario(modelo);

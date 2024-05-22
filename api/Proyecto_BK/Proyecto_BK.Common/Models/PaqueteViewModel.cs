@@ -19,15 +19,8 @@ namespace Proyecto_BK.Common.Models
         public DateTime? Paqe_Fecha_Modifica { get; set; }
         public bool? Paqe_Estado { get; set; }
         [NotMapped]
-
-        public string text { get; set; }
+        public string Usua_Creacion { get; set; }
         [NotMapped]
-        public int value { get; set; }
-        [NotMapped]
-
-        public string image { get; set; }
-        [NotMapped]
-        public decimal precio { get; set; }
-
+        public string Usua_Modifica { get; set; }
     }
 }

@@ -24,6 +24,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-postre-listado',
@@ -47,6 +48,8 @@ export class PostreListadoComponent implements OnInit {
   imageSelected: boolean = false;
   showFileUpload: boolean = true;
   prueba: string = "";
+  submitted: boolean = false;
+  Usua_Id:number;
 
   constructor(
     private service: PostreServiceService, 
@@ -55,7 +58,8 @@ export class PostreListadoComponent implements OnInit {
     private cookieService: CookieService,
     private _postreServices: PostreServiceService,
     private messageService: MessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private creationGuard: CreationGuard
   ) {
     this.formDepartamento = this.fb.group({
       // post_Id: ["", Validators.required],
@@ -66,9 +70,10 @@ export class PostreListadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.getPostres();
     // const  = localStorage.getItem('showSuccessMessage');
-    const showSuccessMessage = this.cookieService.get('showSuccessMessage');
+    const showSuccessMessage = this.cookieService.get('showSuccessMessagePostre');
     const tipo =  this.cookieService.get('Mensaje');
     console.log("SDAS: " + showSuccessMessage)
     if (showSuccessMessage) {
@@ -79,13 +84,14 @@ export class PostreListadoComponent implements OnInit {
         else{
           this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Postre editado correctamente' });
         }
+        this.cookieService.delete('showSuccessMessagePostre');
       });
-      this.cookieService.delete('showSuccessMessage');
-      this.cookieService.delete('Mensaje');
+    
     }
   }
   
   detallePostre(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetallePostre', combId]); // Redirige a la ruta de edición con el ID del rol
   }
 
@@ -125,14 +131,18 @@ export class PostreListadoComponent implements OnInit {
   }
 
   guardarDepartamento() {
-    if (this.formDepartamento.invalid) {
-      return;
+    if (this.formDepartamento.valid) {
+      if (this.modalTitle === 'Nuevo Registro') {
+        this.NuevoDepartamento();
+      } else {
+        this.actualizarDepartamento();
+      }
+   
     }
-    if (this.modalTitle === 'Nuevo Registro') {
-      this.NuevoDepartamento();
-    } else {
-      this.actualizarDepartamento();
+    else{
+      this.submitted = true;
     }
+ 
   }
 
   actualizarDepartamento() {
@@ -142,14 +152,14 @@ export class PostreListadoComponent implements OnInit {
       post_Descripcion: this.formDepartamento.value.post_Descripcion,
       post_Precio: this.formDepartamento.value.post_Precio,
       post_Imagen: this.prueba,
-      post_Usua_Modifica: 1,
+      post_Usua_Modifica: this.Usua_Id,
     }
 
     this._postreServices.actualizar(modelo).subscribe({
       next: (data) => {
         this.getPostres();
         this.cookieService.set('Mensaje', 'Editado');
-        this.cookieService.set('showSuccessMessage', 'true');
+        this.cookieService.set('showSuccessMessagePostre', 'true');
         // localStorage.setItem('', '');
         location.reload();
         // this.display = false;
@@ -201,14 +211,14 @@ export class PostreListadoComponent implements OnInit {
       post_Descripcion: this.formDepartamento.value.post_Descripcion,
       post_Precio: this.formDepartamento.value.post_Precio,
       post_Imagen: this.prueba,
-      post_Usua_Creacion: 1,
+      post_Usua_Creacion: this.Usua_Id,
     };
 
     // Enviar los datos del formulario a tu API para agregar el registro
     this._postreServices.agregar(modelo).subscribe({
       next: () => {
         this.getPostres();
-        this.cookieService.set('showSuccessMessage', 'true');
+        this.cookieService.set('showSuccessMessagePostre', 'true');
         this.cookieService.set('Mensaje', 'Nuevo');
         // localStorage.setItem('showSuccessMessage', 'true');
         location.reload();

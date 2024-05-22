@@ -36,6 +36,7 @@ import { EmpleadoDDL } from '../../models/EmpleadoViewModel';
 import { UsuarioEnviar } from '../../models/UsuariosViewModel';
 import { RolService } from '../../service/rol.service';
 import { CheckboxModule } from 'primeng/checkbox';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-usuario-create',
@@ -48,22 +49,26 @@ export class UsuarioCreateComponent implements OnInit{
   form: FormGroup;
       empleados: any[] = [];
 valCheck: string[] = [];
+submitted = false;
     complementos: SelectItem[] = [];
+    Usua_Id:number;
     constructor(
       private router: Router,
       private fb: FormBuilder,
       private complementoService: RolService,
       private messageService: MessageService,
+      private cookieService: CookieService,
       private rolService: UsuariosServiceService) {
         this.form = this.fb.group({
           Usua_Usuario: ['', Validators.required],
           Usua_Contra: ['', Validators.required],
           Empl_Id: ['', Validators.required],
           Rol_Id: ['', Validators.required],
-          Usua_Admin: [false],
+          Usua_Admin: [false]
         });
         }
   ngOnInit(): void {
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.EmpleDLL();
     this.cargarRoles();
   }
@@ -94,7 +99,7 @@ valCheck: string[] = [];
 
 
   Volver(){
-    this.router.navigate(['app/IndexUsuarios'])
+    this.router.navigate(['app/usuarios'])
   }
 
   guardar() {    
@@ -105,7 +110,7 @@ valCheck: string[] = [];
           if (respuesta.success) {
             // this.messageService.add({severity:'success', summary:'Éxito', detail:'!Combo registrado correctamente!'});
             this.rolService.successMessage = '¡Usuario registrado correctamente!';
-            this.router.navigate(['app/IndexUsuarios']);
+            this.router.navigate(['app/usuarios']);
           } else {
             this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});
             console.error('Error al crear el combo:', respuesta.message);
@@ -117,7 +122,7 @@ valCheck: string[] = [];
         }
       );
     } else {
-      console.log("Ingrese los campos")
+      this.submitted = true;
     }
   }
 }

@@ -20,6 +20,8 @@ namespace Proyecto_BK.Common.Models
         public DateTime? Post_Fecha_Modifica { get; set; }
         public bool? Post_Estado { get; set; }
         [NotMapped]
+        public string CantidadAgregada { get; set; }
+        [NotMapped]
         public string Usua_Creacion { get; set; }
         [NotMapped]
         public string Usua_Modifica { get; set; }

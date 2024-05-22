@@ -28,6 +28,7 @@ import { Subscription } from 'rxjs';
 import {InicioDeSesionComponent} from 'src/app/demo/components/inicio-de-sesion/inicio-de-sesion.component';
 import { LoginComponent } from '../auth/login/login.component';
 import {AlmacenardatosService} from 'src/app/demo/service/almacenardatos.service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-combopersonal-listado',
@@ -45,6 +46,7 @@ export class CombopersonalListadoComponent implements OnInit {
     private router: Router,
     private messageService: MessageService,
     private authService: AlmacenardatosService,
+    private creationGuard: CreationGuard
   ) {}
 
   ngOnInit(): void {
@@ -113,12 +115,15 @@ cancelarEliminar() {
 }
 
   editarCombo(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/EditarCombo', combId]); // Redirige a la ruta de edición con el ID del rol
   }
   detalleCombo(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetalleCombo', combId]); // Redirige a la ruta de edición con el ID del rol
   }
   Nuevo(){
+    this.creationGuard.allow();
     this.router.navigate(['app/CreateCombo'])
   }
 }

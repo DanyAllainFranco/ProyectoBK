@@ -11,6 +11,12 @@ import { dropMunicipio } from 'src/app/demo/models/MunicipioViewModel';
 import { dropCargo } from 'src/app/demo/models/CargosViewModel';
 import { dropEstadoCivil } from 'src/app/demo/models/EstadoCivilViewModel';
 import { MensajeViewModel } from 'src/app/demo/models/MensajeVIewModel';
+import { LlenarEmpleados } from '../../models/ClientesViewModel';
+import { SucursalServiceService } from '../../service/sucursal-service.service';
+import { dA } from '@fullcalendar/core/internal-common';
+import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
+
 @Component({
   templateUrl: './empleado-listado.component.html',
   styleUrl: './empleado-listado.component.css',
@@ -27,7 +33,7 @@ export class EmpleadoListadoComponent {
   municipios: any[] = [];
   estadocivil: any[] = [];
   cargo: any[] = [];
-
+  sucursales: any[] = [];
   rol: any[] = [];
   fill: any[] = [];
   viewModel: EmpleadoEnviar = new EmpleadoEnviar();
@@ -64,12 +70,18 @@ export class EmpleadoListadoComponent {
   ID: string = "";
   MunicipioCodigo: String = "";
 
-  constructor(private service: ServiceService, private router: Router,   private messageService: MessageService
-  
+
+  confirmacionVisible: boolean = false;
+  departamentoAEliminar: LlenarEmpleados | null = null;
+  Usua_Id:number;
+  constructor(private service: ServiceService, private sucursal: SucursalServiceService,
+     private router: Router,   private messageService: MessageService,   private cookieService: CookieService,
+     private creationGuard: CreationGuard
   ) { }
 
 
   ngOnInit(): void {
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.clienteForm = new FormGroup({
         Empl_Nombre: new FormControl("",Validators.required),
         Empl_Apellido: new FormControl("", Validators.required),
@@ -78,8 +90,10 @@ export class EmpleadoListadoComponent {
         Carg_Id: new FormControl("", Validators.required),
         Empl_Correo:new FormControl("",Validators.required),
       Esta_Id: new FormControl("", Validators.required),
+      Sucu_Id: new FormControl("",Validators.required),
       Dept_Codigo: new FormControl("0", [Validators.required]),
       Muni_Codigo: new FormControl("0", [Validators.required]),
+      Usua_Id: new FormControl(this.Usua_Id)
     });
     this.service.getDropDownsDepartamentos().subscribe((data: dropDepartamento[]) => {
     console.log(data);
@@ -96,14 +110,26 @@ export class EmpleadoListadoComponent {
         console.log(data);
         this.cargo = data;
         });
+        this.sucursal.getSucursal().subscribe((data:any) =>{
+          console.log("DATA:" + data)
+          this.sucursales = data;
 
+        },error=>{
+          console.log(error)
+        }
+      )
 
+this.getEmpleados();
+
+   }
+   
+   getEmpleados(){
     this.service.getEmpleados().subscribe((data: any)=>{
-        console.log(data);
-        this.Empleado = data;
-      },error=>{
-        console.log(error);
-      });
+      console.log(data);
+      this.Empleado = data;
+    },error=>{
+      console.log(error);
+    });
    }
    onDepartmentChange(departmentId) {
     if (departmentId !== '0') {
@@ -120,6 +146,22 @@ export class EmpleadoListadoComponent {
       this.municipios = []; // Clear municipios if the department is invalid or reset
     }
   }
+
+  detalleCombo(combId: number) {
+    this.creationGuard.allow();
+    this.router.navigate(['app/DetalleEmpleado', combId]); // Redirige a la ruta de edición con el ID del rol
+  }
+
+  editarCombo(combId: number) {
+    this.creationGuard.allow();
+    this.router.navigate(['app/EditarEmpleado', combId]); // Redirige a la ruta de edición con el ID del rol
+  }
+
+  Nuevo(){
+    this.creationGuard.allow();
+    this.router.navigate(['app/CreateEmpleado'])
+  }
+
    collapse(){
     this.Collapse= true;
     this.DataTable = false;
@@ -251,6 +293,39 @@ confirmDelete() {
     });
 
 }
+
+
+
+confirmarEliminarDepartamento(departamento: LlenarEmpleados) {
+
+  this.departamentoAEliminar = departamento;
+  console.log(this.departamentoAEliminar)
+  this.confirmacionVisible = true;
+}
+
+eliminarDepartamento() {
+  if (this.departamentoAEliminar) {
+    console.log(this.departamentoAEliminar.empl_Id)
+    const idDepartamento = this.departamentoAEliminar.empl_Id;
+    this.service.EliminarEmpleado(idDepartamento).subscribe({
+      next: (data) => {
+        this.getEmpleados();
+        this.confirmacionVisible = false;
+        console.log(idDepartamento);
+        this.messageService.add({severity:'success', summary:'Éxito', detail:'!Empleado eliminado correctamente!'});
+      },
+      error: (e) => {
+        console.log(e);
+        this.messageService.add({severity:'error', summary:'Error', detail:'Este combo no se puede eliminar.'});
+      }
+    });
+  }
+}
+
+cancelarEliminar() {
+  this.confirmacionVisible = false;
+}
+
 Fill(codigo) {
     this.service.getFill(codigo).subscribe({
         next: (data: Fill) => {

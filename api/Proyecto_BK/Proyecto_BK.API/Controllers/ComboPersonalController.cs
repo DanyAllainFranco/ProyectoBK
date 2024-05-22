@@ -120,7 +120,7 @@ namespace Proyecto_BK.API.Controllers
                 Post_Id = item.Post_id,
                 Comp_Id = item.Comp_Id,
                 Alim_Id = item.Alim_Id,
-                Comb_Usua_Creacion = 1,
+                Comb_Usua_Creacion = item.Comb_Usua_Creacion,
                 Comb_Fecha_Creacion = DateTime.Now
             };
             var list = _restauranteServices.CrearComboPersonal(modelo);
@@ -142,7 +142,7 @@ namespace Proyecto_BK.API.Controllers
                 Post_Id = item.Post_id,
                 Comp_Id = item.Comp_Id,
                 Alim_Id = item.Alim_Id,
-                Comb_Usua_Modifica = 1,
+                Comb_Usua_Modifica = item.Comb_Usua_Modifica,
                 Comb_Fecha_Modificacion = DateTime.Now
             };
             var list = _restauranteServices.EditarComboPersonal(modelo);

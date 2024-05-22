@@ -22,7 +22,30 @@ export class EmpleadoDDL{
     empl_Nombre?: string;
 }
 
-
+export class LlenarEmpleados{
+    empl_Id: number;
+    empl_Identidad: string;
+    empl_Nombre: string;
+    empl_Apellido: string;
+    empl_Sexo: string;
+    empl_Correo: string;
+    usua_Creacion: string;
+    usua_Modifica: string;
+    esta_Id: number;
+    sucu_Id:number;
+    carg_Id: number;
+    carg_Descripcion: string;
+    sucu_Descripcion:string;
+    muni_Codigo?: string;
+    muni_Descripcion: string;
+    esta_Descripcion: string;
+    dept_Descripcion: string;
+    dept_Codigo: string;
+    empl_Usua_Creacion?: number;
+    empl_Fecha_Creacion?: string;
+    empl_Usua_Modifica?: number;
+    empl_Fecha_Modifica?: string;
+}
 
 export class dropEmpleado{
     value?:String;
@@ -39,7 +62,7 @@ export class EmpleadoEnviar {
     Muni_Codigo: string;
     Esta_Id: string;
     Carg_Id: string;
-  
+    Usua_Id:number;
   
 
 

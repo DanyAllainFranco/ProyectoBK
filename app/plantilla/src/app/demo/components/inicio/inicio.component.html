@@ -1,0 +1,101 @@
+<!-- <div class="grid fluid">
+    <div class="col-12 lg:col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <h5>Seleccione el rango de fecha:</h5>
+            <div class="field">
+                <input type="date" id="fechaInicio" [(ngModel)]="fechaInicio" (change)="cambiarFechaInicio($event)" class="p-inputtext col-6">
+                <input type="date" id="fechaFin" [(ngModel)]="fechaFin" (change)="cambiarFechaFin($event)" class="p-inputtext col-6">
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="grid">
+    <!-- <div class="col-12 lg:col-6 xl:col-3">
+        <div class="card mb-0">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <span class="block text-500 font-medium mb-3">Ventas</span>
+                    <div class="text-900 font-medium text-xl">{{ cantidadVentasAlimentos.toString().charAt(0) === '0' ? cantidadVentasAlimentos.toString().slice(1) : cantidadVentasAlimentos }}</div>
+
+
+
+                </div>
+                <div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                    <i class="pi pi-shopping-cart text-blue-500 text-xl"></i>
+                </div>
+            </div>
+            <span class="text-green-500 font-medium">Alimento: </span>
+            <span class="text-500">{{ alim_Descripcion }}</span>
+        </div>
+    </div> -->
+    <div class="col-12 lg:col-6 xl:col-3">
+        <div class="card mb-0" style="height: 138px;">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <span class="block text-500 font-medium mb-3">Ventas</span>
+                    <div class="text-900 font-medium text-xl">{{ cantidadVentasBebidas.toString().charAt(0) === '0' ? cantidadVentasBebidas.toString().slice(1) : cantidadVentasBebidas }}</div>
+                </div>
+                <div class="flex align-items-center justify-content-center bg-orange-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                    <i class="pi pi-map-marker text-orange-500 text-xl"></i>
+                </div>
+            </div>
+            <span class="text-green-500 font-medium">Bebida: </span>
+            <span class="text-500">{{ bebi_Descripcion }}</span>
+        </div>
+    </div>
+
+
+    <div class="col-12 lg:col-6 xl:col-3">
+        <div class="card mb-0" style="height: 138px;">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <span class="block text-500 font-medium mb-3">Ventas</span>
+                    <div class="text-900 font-medium text-xl">{{ cantidadVentasComplementos.toString().charAt(0) === '0' ? cantidadVentasComplementos.toString().slice(1) : cantidadVentasComplementos }}</div>
+                </div>
+                <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                    <i class="pi pi-inbox text-cyan-500 text-xl"></i>
+                </div>
+            </div>
+            <span class="text-green-500 font-medium">Complemento: </span>
+            <span class="text-500">{{ comp_Descripcion }}</span>
+        </div>
+    </div>
+
+
+
+
+    <div class="col-12 lg:col-6 xl:col-3">
+        <div class="card mb-0">
+            <div class="flex justify-content-between mb-3">
+                <div>
+                    <span class="block text-500 font-medium mb-3">Ventas</span>
+                    <div class="text-900 font-medium text-xl">{{ cantidadVentasPostres.toString().charAt(0) === '0' ? cantidadVentasPostres.toString().slice(1) : cantidadVentasPostres }}</div>
+                </div>
+                <div class="flex align-items-center justify-content-center bg-purple-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
+                    <i class="pi pi-comment text-purple-500 text-xl"></i>
+                </div>
+            </div>
+            <span class="text-green-500 font-medium">Postre: </span>
+            <span class="text-500">{{ post_Descripcion }}</span>
+        </div>
+    </div>
+</div>
+
+
+  <div class="grid fluid">
+    <div class="col-12 lg:col-6">
+        <div class="card">
+            <h5>Sucursales con mas Ventas</h5>
+            <p-chart type="pie" [data]="chartDataSucursal" [options]="chartOptionsSucursal" styleClass="chart"></p-chart>
+        </div>
+    </div>
+    <div class="col-12 lg:col-6">
+        <div class="card">
+            <h5>Empleados con mas Ventas</h5>
+            <p-chart type="doughnut" [data]="chartDataEmpleado" [options]="chartOptionsEmpleado" styleClass="chart"></p-chart>
+        </div>
+    </div>
+</div>
+

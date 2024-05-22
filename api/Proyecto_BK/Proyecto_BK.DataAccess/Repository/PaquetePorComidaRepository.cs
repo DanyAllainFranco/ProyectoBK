@@ -35,16 +35,77 @@ namespace Proyecto_BK.DataAccess.Repository
             }
         }
 
+        public IEnumerable<tbPaquetesPorComidas> MostrarAlimentos(int Paqe_Id)
+        {
+            string sql = ScriptsBaseDeDatos.PaCo_MostrarAlimentos;
+
+            List<tbPaquetesPorComidas> result = new List<tbPaquetesPorComidas>();
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Paqe_Id", Paqe_Id);
+                result = db.Query<tbPaquetesPorComidas>(sql, parametro, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+        public IEnumerable<tbPaquetesPorComidas> MostrarBebidas(int Paqe_Id)
+        {
+            string sql = ScriptsBaseDeDatos.PaCo_MostrarBebidas;
+
+            List<tbPaquetesPorComidas> result = new List<tbPaquetesPorComidas>();
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Paqe_Id", Paqe_Id);
+                result = db.Query<tbPaquetesPorComidas>(sql, parametro, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+
+        public IEnumerable<tbPaquetesPorComidas> MostrarComplementos(int Paqe_Id)
+        {
+            string sql = ScriptsBaseDeDatos.PaCo_MostrarComplementos;
+
+            List<tbPaquetesPorComidas> result = new List<tbPaquetesPorComidas>();
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Paqe_Id", Paqe_Id);
+                result = db.Query<tbPaquetesPorComidas>(sql, parametro, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+        public IEnumerable<tbPaquetesPorComidas> MostrarPostres(int Paqe_Id)
+        {
+            string sql = ScriptsBaseDeDatos.PaCo_MostrarPostres;
+
+            List<tbPaquetesPorComidas> result = new List<tbPaquetesPorComidas>();
+
+            using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Paqe_Id", Paqe_Id);
+                result = db.Query<tbPaquetesPorComidas>(sql, parametro, commandType: CommandType.StoredProcedure).ToList();
+
+                return result;
+            }
+        }
+
         public RequestStatus Insert(tbPaquetesPorComidas item)
         {
             using (var db = new SqlConnection(Proyecto_BKContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Paqe_Id", item.Paqe_Id);
-                parameter.Add("Bebi_Id", item.Bebi_Id);
-                parameter.Add("Post_id", item.Post_id);
-                parameter.Add("Comp_Id", item.Comp_Id);
-                parameter.Add("Alim_Id", item.Alim_Id);
+                parameter.Add("@Prod_Id", item.Prod_Id);
+                parameter.Add("@PaCo_Cantidad", item.PaCo_Cantidad);
+                parameter.Add("@PaCo_Identificador", item.PaCo_Identificador);
                 parameter.Add("PaCo_Usua_Creacion", item.PaCo_Usua_Creacion);
                 parameter.Add("PaCo_Fecha_Creacion", item.PaCo_Fecha_Creacion);
 
@@ -70,10 +131,9 @@ namespace Proyecto_BK.DataAccess.Repository
                 var parameter = new DynamicParameters();
                 parameter.Add("PaCo_Id", item.PaCo_Id);
                 parameter.Add("Paqe_Id", item.Paqe_Id);
-                parameter.Add("Bebi_Id", item.Bebi_Id);
-                parameter.Add("Post_id", item.Post_id);
-                parameter.Add("Comp_Id", item.Comp_Id);
-                parameter.Add("Alim_Id", item.Alim_Id);
+                parameter.Add("@Prod_Id", item.Prod_Id);
+                parameter.Add("@PaCo_Cantidad", item.PaCo_Cantidad);
+                parameter.Add("@PaCo_Identificador", item.PaCo_Identificador);
                 parameter.Add("PaCo_Usua_Modifica", item.PaCo_Usua_Modifica);
                 parameter.Add("PaCo_Fecha_Modifica", item.PaCo_Fecha_Modifica);
 

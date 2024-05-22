@@ -115,7 +115,7 @@ export class PostreDetalleComponent implements OnInit{
 }
 
 Volver(){
-  this.router.navigate(['app/IndexPostre'])
+  this.router.navigate(['app/postres'])
 }
 
 }

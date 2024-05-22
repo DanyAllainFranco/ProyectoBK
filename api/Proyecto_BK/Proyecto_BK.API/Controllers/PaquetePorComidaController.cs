@@ -36,7 +36,32 @@ namespace Proyecto_BK.API.Controllers
             var result = _restauranteServices.LlenarPaquetePorComida(PaCo_Id);
             return Ok(result);
         }
+        [HttpGet("API/[controller]/MostrarAlimentos/{Paqe_Id}")]
+        public IActionResult MostrarAlimentos(int Paqe_Id)
+        {
+            var list = _restauranteServices.ListAlimentosAgregados(Paqe_Id);
+            return Ok(list.Data);
+        }
+        [HttpGet("API/[controller]/MostrarBebidas/{Paqe_Id}")]
+        public IActionResult MostrarBebidas(int Paqe_Id)
+        {
+            var list = _restauranteServices.ListBebidasAgregados(Paqe_Id);
+            return Ok(list.Data);
+        }
 
+        [HttpGet("API/[controller]/MostrarPostres/{Paqe_Id}")]
+        public IActionResult MostrarPostres(int Paqe_Id)
+        {
+            var list = _restauranteServices.ListPostresAgregados(Paqe_Id);
+            return Ok(list.Data);
+        }
+
+        [HttpGet("API/[controller]/MostrarComplementos/{Paqe_Id}")]
+        public IActionResult MostrarComplementos(int Paqe_Id)
+        {
+            var list = _restauranteServices.ListComplementosAgregados(Paqe_Id);
+            return Ok(list.Data);
+        }
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(PaquetePorComidaViewModel json)
         {
@@ -44,10 +69,9 @@ namespace Proyecto_BK.API.Controllers
             var modelo = new tbPaquetesPorComidas()
             {
                 Paqe_Id = json.Paqe_Id,
-                Bebi_Id = json.Bebi_Id,
-                Post_id = json.Post_id,
-                Comp_Id = json.Comp_Id,
-                Alim_Id = json.Alim_Id,
+                Prod_Id = json.Prod_Id,
+                PaCo_Cantidad = json.PaCo_Cantidad,
+                PaCo_Identificador = json.PaCo_Identificador,
                 PaCo_Usua_Creacion = 1,
                 PaCo_Fecha_Creacion = DateTime.Now
             };
@@ -63,10 +87,9 @@ namespace Proyecto_BK.API.Controllers
             {
                 PaCo_Id = Convert.ToInt32(json.PaCo_Id),
                 Paqe_Id = json.Paqe_Id,
-                Bebi_Id = json.Bebi_Id,
-                Post_id = json.Post_id,
-                Comp_Id = json.Comp_Id,
-                Alim_Id = json.Alim_Id,
+                Prod_Id = json.Prod_Id,
+                PaCo_Cantidad = json.PaCo_Cantidad,
+                PaCo_Identificador = json.PaCo_Identificador,
                 PaCo_Usua_Modifica = 1,
                 PaCo_Fecha_Modifica = DateTime.Now
             };

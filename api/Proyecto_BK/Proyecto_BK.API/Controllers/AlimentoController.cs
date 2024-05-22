@@ -66,7 +66,7 @@ namespace Proyecto_BK.API.Controllers
                 Alim_Descripcion = json.Alim_Descripcion,
                 Alim_Precio = json.Alim_Precio,
                 Alim_Imagen = json.Alim_Imagen,
-                Alim_Usua_Creacion = 1,
+                Alim_Usua_Creacion = json.Alim_Usua_Creacion,
                 Alim_Fecha_Creacion = DateTime.Now
             };
             var response = _restauranteServices.CrearAlimento(modelo);
@@ -83,7 +83,7 @@ namespace Proyecto_BK.API.Controllers
                 Alim_Descripcion = json.Alim_Descripcion,
                 Alim_Precio = json.Alim_Precio,
                 Alim_Imagen = json.Alim_Imagen,
-                Alim_Usua_Modifica = 1,
+                Alim_Usua_Modifica = json.Alim_Usua_Modifica,
                 Alim_Fecha_Modifica = DateTime.Now
             };
             var list = _restauranteServices.EditarAlimento(modelo);

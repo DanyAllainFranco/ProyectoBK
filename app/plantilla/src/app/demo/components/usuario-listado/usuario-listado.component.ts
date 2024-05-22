@@ -23,7 +23,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { BadgeModule } from 'primeng/badge';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RolService } from '../../service/rol.service';
-
+import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 @Component({
   selector: 'app-usuario-listado',
   templateUrl: './usuario-listado.component.html',
@@ -52,6 +53,7 @@ export class UsuariosListadoComponent implements OnInit {
   confirmacionBotonClase: string;
   selectedDepartamento: any;
   complementos: SelectItem[] = [];
+  Usua_Id:number;
 
   constructor(
     private service: UsuariosServiceService,
@@ -60,6 +62,8 @@ export class UsuariosListadoComponent implements OnInit {
     private _usuarioServicio: UsuariosServiceService,
     private complementoService: RolService,
     private messageService: MessageService,
+    private cookieService: CookieService,
+    private creationGuard: CreationGuard
   ) {
     this.formDepartamento = this.fb.group({
       // post_Id: ["", Validators.required],
@@ -72,6 +76,7 @@ export class UsuariosListadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
     this.getUsuarios();
     this.EmpleDLL();
     this.cargarRoles();
@@ -112,7 +117,9 @@ export class UsuariosListadoComponent implements OnInit {
       }
     );
   }
+  
   detalleRol(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetalleUsuario', combId]); 
   }
 
@@ -120,6 +127,7 @@ export class UsuariosListadoComponent implements OnInit {
     this.display = false;
   }
   Nuevo() {
+    this.creationGuard.allow();
     this.router.navigate(['app/CreateUsuario']);
   }
 
@@ -177,10 +185,13 @@ editDepartamento(departamento: any) {
 }
 
 guardarDepartamento() {
-  if (this.formDepartamento.invalid) {
-    return;
+  if (this.formDepartamento.valid) {
+    this.actualizarDepartamento();
   }
-   this.actualizarDepartamento();
+  else{
+    this.submitted = true;
+  }
+  
 }
 
 actualizarDepartamento() {
@@ -191,7 +202,7 @@ actualizarDepartamento() {
     Usua_Admin: this.formDepartamento.value.admin,
     Empl_Id: this.formDepartamento.value.empl_Id,
     Rol_Id: this.formDepartamento.value.rol_Id,
-    Usua_Usua_Modifica: 1
+    Usua_Usua_Modifica: this.Usua_Id
   }
 
   this._usuarioServicio.actualizar(modelo).subscribe({

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Graficos } from '../models/GraficosViewModel';
+import { AlimentosVendidos, Graficos } from '../models/GraficosViewModel';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { BASE_URL } from './UrlParaAPI';
 
 
 
@@ -13,6 +14,38 @@ export class ObtenerFiltros {
 
   constructor(private http: HttpClient) { }
   baseUrl = 'https://localhost:44332/API/ComboPersonal';
+
+
+  obtenerAlimentosMasVendidos(Usua_Usuario:string,FechaInicio: string, FechaFinal: string): Observable<any> {
+    return this.http.get<any>(`${BASE_URL}API/Factura/AlimentoMasVendido/${Usua_Usuario}/${FechaInicio}/${FechaFinal}`);
+  }
+
+  obtenerBebidaMasVendidos(Usua_Usuario:string,FechaInicio: string, FechaFinal: string): Observable<{ bebi_Descripcion: number, bebi_Precio: string,  bebi_Imagen:string, cantidadVentas: number }[]> {
+    return this.http.get<{ bebi_Descripcion: number, bebi_Precio: string,  bebi_Imagen:string, cantidadVentas: number }[]>(`${BASE_URL}API/Factura/BebidaMasVendido/${Usua_Usuario}/${FechaInicio}/${FechaFinal}`);
+  }
+
+
+  obtenerComplementosMasVendidos(Usua_Usuario:string,FechaInicio: string, FechaFinal: string): Observable<{ comp_Descripcion: number, comp_Precio: string,  comp_Imagen:string, cantidadVentas: number }[]> {   console.log(FechaInicio)
+    return this.http.get<{ comp_Descripcion: number, comp_Precio: string,  comp_Imagen:string, cantidadVentas: number }[]>(`${BASE_URL}API/Factura/ComplementosMasVendido/${Usua_Usuario}/${FechaInicio}/${FechaFinal}`);
+  }
+
+  obtenerPostresMasVendidos(Usua_Usuario:string,FechaInicio: string, FechaFinal: string): Observable<{ post_Descripcion: number, post_Precio: string,  post_Imagen:string, cantidadVentas: number }[]> {
+    return this.http.get<{ post_Descripcion: number, post_Precio: string,  post_Imagen:string, cantidadVentas: number }[]>(`${BASE_URL}API/Factura/PostreMasVendido/${Usua_Usuario}/${FechaInicio}/${FechaFinal}`);
+  }
+
+
+  obtenerSucursalesTop5(Usua_Usuario:string,FechaInicio: string, FechaFinal: string): Observable<{ sucu_Descripcion: string,cantidadVentas: number }[]> {
+    return this.http.get<{ sucu_Descripcion: string, cantidadVentas: number }[]>(`${BASE_URL}API/Factura/SucursalesTop5/${Usua_Usuario}/${FechaInicio}/${FechaFinal}`);
+  }
+
+  obtenerEmpleadosTop5(Usua_Usuario:string,FechaInicio: string, FechaFinal: string): Observable<{ empleado: string, cantidadVentas: number }[]> {
+    return this.http.get<{ empleado: string, cantidadVentas: number }[]>(`${BASE_URL}API/Factura/EmpleadosTop5/${Usua_Usuario}/${FechaInicio}/${FechaFinal}`);
+  }
+  // obtenerAlimentosMasVendidos(Usua_Usuario:string,FechaInicio: string, FechaFinal: string): Observable<{ alim_Id: number, alim_Descripcion: string, totalPedidosAlimentos: number }[]> {
+  //   const url = `${this.baseUrl}/GrafiAlimentosFiltro/${Usua_Usuario}/${FechaInicio}/${FechaFinal}`;
+  //   console.log("Esta es la url:" + " " + url)
+  //   return this.http.get<{ alim_Id: number, alim_Descripcion: string, totalPedidosAlimentos: number }[]>(url);
+  // } 
 
   obtenerAlimentosFiltro(Usua_Usuario:string,FechaInicio: string, FechaFinal: string): Observable<{ alim_Id: number, alim_Descripcion: string, totalPedidosAlimentos: number }[]> {
     const url = `${this.baseUrl}/GrafiAlimentosFiltro/${Usua_Usuario}/${FechaInicio}/${FechaFinal}`;

@@ -16,9 +16,13 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
-import { MessageService } from 'primeng/api';
+import { MessageService, SelectItem } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
-
+import { DepartamentoServiceService } from '../../service/departamento-service.service';
+import { ServiceService } from '../../service/municipio-service.service';
+import { dropDepartamento } from '../../models/DepartamentosViewModel';
+import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 @Component({
   selector: 'app-sucursal-listado',
   templateUrl: './sucursal-listado.component.html',
@@ -31,49 +35,83 @@ export class SucursalListadoComponent implements OnInit {
   display: boolean = false;
   submitted = false;
   sucursal: SucursalesMostrar[] = [];
-  municipios: any[] = [];
   formSucursal: FormGroup;
   selectedSucursal: any;
   modalTitle: string = 'Nueva Sucursal';
   modalButtonLabel: string = 'Guardar';
   confirmacionVisible: boolean = false;
   sucursalAEliminar: Sucursales | null = null;
-
+  departamentos: any[] = [];
+  municipios: SelectItem[] = [];
+  Usua_Id:number;
   constructor(
     private service: SucursalServiceService,
     private router: Router,
     private fb: FormBuilder,
+    private cookieService: CookieService,
     private _sucursalServicio: SucursalServiceService,
     private messageService: MessageService,
+    private departamentoService: DepartamentoServiceService,
+    private municipioService: ServiceService, 
+    private creationGuard: CreationGuard
   ) {
     this.formSucursal = this.fb.group({
       sucursal: ["", Validators.required],
+      Dept_Codigo: ["0", Validators.required],
       Muni_Codigo: ["0",Validators.required],
       id: [""]
     });
+    
   }
 
   ngOnInit(): void {
     this.getSucursales();
-    this.MunicipioDDL(); // Llama a la función para cargar los datos del Dropdown
+    this.Usua_Id = Number.parseInt(this.cookieService.get('Usua_Id'));
+    this.municipioService.getDropDownsDepartamentos().subscribe((data: dropDepartamento[]) => {
+      this.departamentos = data;
+  });
   }
 
-  getSucursales() {
-    this.service.getSucursal().subscribe(
-      (data: any) => {
-        this.sucursal = data;
+
+  cargarDepartamentos(){
+    this.departamentoService.getDepartamento().subscribe(
+      (data: any[]) => {
+        console.log(data)
+        
+        this.departamentos = data.map(item => ({ label: item.dept_Descripcion, value: item.dept_Codigo }));
       },
       error => {
         console.log(error);
       }
     );
   }
+  
+  
+  onDepartmentChange(departmentId) {
+    console.log("ID: "+ departmentId)
+    if (departmentId !== '0') {
+      this.municipioService.getMunicipios2(departmentId).subscribe(
+        (data: any) => {
+          this.municipios = data; 
+        },
+        error => {
+          console.error('Error fetching municipios:', error);
+        }
+      );
+    } else {
+      this.municipios = []; // Clear municipios if the department is invalid or reset
+    }
+  }
 
-  MunicipioDDL() {
-    this.service.MuninicioDDL().subscribe(
-      (data: DropMunicipios[]) => {
-        this.municipios = data;
-        console.log(data);
+  detalleRol(combId: number) {
+    this.creationGuard.allow();
+    this.router.navigate(['app/DetalleSucursal', combId]); 
+  }
+
+  getSucursales() {
+    this.service.getSucursal().subscribe(
+      (data: any) => {
+        this.sucursal = data;
       },
       error => {
         console.log(error);
@@ -146,7 +184,8 @@ export class SucursalListadoComponent implements OnInit {
   nuevaSucursal() {
     const modelo: Sucursales = {
       sucu_Descripcion: this.formSucursal.value.sucursal,
-      muni_Codigo: this.formSucursal.value.Muni_Codigo
+      muni_Codigo: this.formSucursal.value.Muni_Codigo,
+      sucu_Usua_Creacion: this.Usua_Id
     }
     this._sucursalServicio.agregar(modelo).subscribe({
       next: (data) => {  
@@ -166,7 +205,8 @@ export class SucursalListadoComponent implements OnInit {
     const modelo: Sucursales = {
       sucu_Descripcion: this.formSucursal.value.sucursal,
       muni_Codigo: this.formSucursal.value.Muni_Codigo,
-      sucu_Id: this.formSucursal.value.id
+      sucu_Id: this.formSucursal.value.id,
+      sucu_Usua_Modifica: this.Usua_Id
     }
     this._sucursalServicio.actualizar(idSucursal, modelo).subscribe({
       next: (data) => {

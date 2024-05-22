@@ -23,7 +23,8 @@ export class ComboPEnviar {
     Post_Id?: string;
     Comp_Id?: string;
     Alim_Id?: string;
-    ComB_Usua_Creacion?: number;
+    Comb_Usua_Creacion?: number;
+    Comb_Usua_Modifica?: number;
 }
 
 export class Llenar{

@@ -8,6 +8,7 @@ import { Login } from '../../models/LoginViewModel';
 import { CommonModule } from '@angular/common';
 import {AlmacenardatosService} from 'src/app/demo/service/almacenardatos.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthGuardService } from 'src/app/demo/service/auth-guard.service';
 
 @Component({
   selector: 'app-inicio-de-sesion',
@@ -17,11 +18,13 @@ import { CookieService } from 'ngx-cookie-service';
 })
 
 export class InicioDeSesionComponent {
-  loginForm: FormGroup;  
+  loginForm: FormGroup; 
+  submitted: boolean = false; 
+  prueba: boolean = false;
   constructor(public layoutService: LayoutService, 
     private cookieService: CookieService,
     private formBuilder: FormBuilder,
-    private authService: AlmacenardatosService,
+    private authService: AuthGuardService,
      private usuarioService: UsuariosServiceService,
      private router: Router) {
       this.loginForm = this.formBuilder.group({
@@ -41,19 +44,26 @@ export class InicioDeSesionComponent {
           console.log('Respuesta del servidor:', response);
           if (response !== "Error") {
             console.log("Datos: " + response[0].usua_Id)
-            this.authService.setUserId(loginData.Usua_Id);
+       
             localStorage.setItem('usuario', loginData.Usua_Usuario); 
+          
              this.cookieService.set('Usua_Id', response[0].usua_Id);
-            // const valor = this.cookieService.get('Usua_Id');
-             this.router.navigate(['/app/PrincipalGraficos'], { queryParams: { usuario: loginData.Usua_Usuario } });
+             this.cookieService.set('Usua_Usuario', response[0].usua_Usuario);
+             this.cookieService.set('Rol_Id', response[0].rol_Id);
+             this.cookieService.set('Usua_Admin', response[0].usua_Admin);
+             this.authService.setUsuarioLogueado(response[0].usua_Usuario);
+             this.authService.loadPermissions();
+            const valor = this.cookieService.get('Usua_Id');
+         
+            this.router.navigate(['/app/Inicio']);
           }
         },
         error => {
-          console.error('Error al iniciar sesión:', error);
+          this.submitted = true;
         }
       );
     } else {
-      console.log('Formulario inválido');
+      this.prueba = true;
     }
   }
   
