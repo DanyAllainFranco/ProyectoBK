@@ -15,6 +15,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-paquete-listado',
@@ -25,7 +26,7 @@ import { RatingModule } from 'primeng/rating';
 export class PaqueteListadoComponent implements OnInit {
   paquete!: Paquetes[];
 
-  constructor(private service: PaquetesServiceService, private router: Router) {}
+  constructor(private service: PaquetesServiceService, private creationGuard: CreationGuard,private router: Router) {}
 
   ngOnInit(): void {
   this.getPaquete();
@@ -44,12 +45,15 @@ export class PaqueteListadoComponent implements OnInit {
   }
 
   editarPromo(rolId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/EditarPaquete', rolId]); // Redirige a la ruta de edición con el ID del rol
   }
   Nuevo(){
+    this.creationGuard.allow();
     this.router.navigate(['app/CreatePaquete'])
   }
   detalleRol(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetallePaquete', combId]); // Redirige a la ruta de edición con el ID del rol
   }
 }

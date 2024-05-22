@@ -29,6 +29,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-complemento-listado',
@@ -60,7 +61,8 @@ export class ComplementoListadoComponent implements OnInit {
     private cookieService: CookieService,
     private _postreServices: PostreServiceService,
     private messageService: MessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private creationGuard: CreationGuard
   ) {
     this.formDepartamento = this.fb.group({
       // post_Id: ["", Validators.required],
@@ -91,6 +93,7 @@ export class ComplementoListadoComponent implements OnInit {
   }
    
   detallePostre(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetalleComplemento', combId]); // Redirige a la ruta de edición con el ID del rol
   }
   getComplementos(){

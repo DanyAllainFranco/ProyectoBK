@@ -42,16 +42,16 @@ export class LlenarClientes{
 }
 
 export class ClientesEnviar {
-    Clie_Id: number;
-    Clie_Identidad?: number;
-    Clie_Nombre?: string;
-    Clie_Apellido?: string;
-    Clie_Sexo?: string;
-    Clie_Correo?: string;
-    Esta_Id?: string;
-    Muni_Codigo?: string;
-    Clie_Usua_Creacion?: number;
-    Clie_Usua_Modifica?: number;
+    clie_Id?: number;
+    clie_Identidad?: number;
+    clie_Nombre?: string;
+    clie_Apellido?: string;
+    clie_Sexo?: string;
+    clie_Correo?: string;
+    esta_Id?: string;
+    muni_Codigo?: string;
+    clie_Usua_Creacion?: number;
+    clie_Usua_Modifica?: number;
 }
 
 
@@ -66,7 +66,8 @@ export class EmpleadosEnviar {
     Carg_Id: number;
     Sucu_Id: number;
     Muni_Codigo?: string;
-    Usua_Id?: number;
+    Empl_Usua_Creacion?: number;
+    Empl_Usua_Modifica?: number;
 }
 
 

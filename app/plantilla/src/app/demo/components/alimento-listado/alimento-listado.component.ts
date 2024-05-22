@@ -27,6 +27,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-aliment-listado',
@@ -59,7 +60,8 @@ export class AlimentosListadoComponent implements OnInit {
     private fb: FormBuilder,
     private cookieService: CookieService,
     private messageService: MessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private creationGuard: CreationGuard
   ) {
     this.formDepartamento = this.fb.group({
       // post_Id: ["", Validators.required],
@@ -92,7 +94,8 @@ export class AlimentosListadoComponent implements OnInit {
   }
 
    detalleAlimento(combId: number) {
-    this.router.navigate(['app/DetallePostre', combId]);
+    this.creationGuard.allow();
+    this.router.navigate(['app/DetalleAlimento', combId]);
   }
 
 getAlimentos(){

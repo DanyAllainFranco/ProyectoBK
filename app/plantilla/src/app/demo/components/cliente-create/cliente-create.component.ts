@@ -156,17 +156,19 @@ guardar() {
     const Esta_Id = this.form.value.Esta_Id;
     const Muni_Codigo = this.form.value.Muni_Codigo;
 
-    const NuevoCombo: any = {
-      
-      Clie_Identidad: Clie_Identidad,
-      Clie_Nombre: Clie_Nombre,
-      Clie_Apellido: Clie_Apellido,
-      Clie_Sexo: Clie_Sexo,
-      Clie_Correo: Clie_Correo,
-      Esta_Id: Esta_Id,
-      Muni_Codigo: Muni_Codigo,
+    const NuevoCombo: ClientesEnviar = {
+      clie_Id: 0,
+      clie_Identidad: Clie_Identidad,
+      clie_Nombre: Clie_Nombre,
+      clie_Apellido: Clie_Apellido,
+      clie_Sexo: Clie_Sexo,
+      clie_Correo: Clie_Correo,
+      esta_Id: Esta_Id,
+      muni_Codigo: Muni_Codigo,
+      clie_Usua_Creacion: this.Usua_Id
       };
 
+      console.log("NUEVOCOMBO: " + NuevoCombo)
     this.clienteService.agregar(NuevoCombo).subscribe(
       (respuesta: Respuesta) => {
         if (respuesta.success) {

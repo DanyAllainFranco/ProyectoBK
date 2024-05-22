@@ -18,6 +18,7 @@ import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { MessageService } from 'primeng/api';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-departamentos-listado',
@@ -43,7 +44,8 @@ export class DepartamentosListadoComponent implements OnInit {
     private fb: FormBuilder,
     private _departamentoServicio: DepartamentoServiceService,
     private messageService: MessageService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private creationGuard: CreationGuard
    
   ) {
     this.formDepartamento = this.fb.group({
@@ -59,6 +61,7 @@ export class DepartamentosListadoComponent implements OnInit {
   }
 
   detalleRol(combId: string) {
+    this.creationGuard.allow();
     console.log(combId)
    this.router.navigate(['app/DetalleDepartamento', combId]); 
   }

@@ -17,6 +17,7 @@ import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { DialogModule } from 'primeng/dialog';
 import { MessageService } from 'primeng/api';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-promocion-listado',
@@ -28,7 +29,7 @@ export class PromocionListadoComponent implements OnInit {
   Promocion!: Promocion[];
   confirmacionVisible: boolean = false;
   departamentoAEliminar: any | null = null;
-  constructor(private service: PromocionServiceService,  private messageService: MessageService, private router: Router) {}
+  constructor(private service: PromocionServiceService,   private creationGuard: CreationGuard, private messageService: MessageService, private router: Router) {}
 
   ngOnInit(): void {
     this.getPromocion();
@@ -59,9 +60,11 @@ export class PromocionListadoComponent implements OnInit {
     );
   }
   editarPromo(rolId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/EditarPromocion', rolId]); // Redirige a la ruta de edición con el ID del rol
   }
   Nuevo(){
+    this.creationGuard.allow();
     this.router.navigate(['app/CreatePromocion'])
   }
 
@@ -93,6 +96,7 @@ export class PromocionListadoComponent implements OnInit {
   }
 
   detallePromo(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetallePromocion', combId]); // Redirige a la ruta de edición con el ID del rol
   }
   

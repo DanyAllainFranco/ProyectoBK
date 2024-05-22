@@ -24,6 +24,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-postre-listado',
@@ -57,7 +58,8 @@ export class PostreListadoComponent implements OnInit {
     private cookieService: CookieService,
     private _postreServices: PostreServiceService,
     private messageService: MessageService,
-    private http: HttpClient
+    private http: HttpClient,
+    private creationGuard: CreationGuard
   ) {
     this.formDepartamento = this.fb.group({
       // post_Id: ["", Validators.required],
@@ -89,6 +91,7 @@ export class PostreListadoComponent implements OnInit {
   }
   
   detallePostre(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetallePostre', combId]); // Redirige a la ruta de edición con el ID del rol
   }
 

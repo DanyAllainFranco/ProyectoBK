@@ -25,6 +25,9 @@ export class ServiceService {
     return this.http.get<EmpleadoDDL[]>(this.EmplDDL);
   }
 
+  obtenerCliePorId(idCombo: number): Observable<LlenarEmpleados> {
+    return this.http.get<LlenarEmpleados>(`${BASE_URL}API/Empleado/Fill/${idCombo}`);
+  }
 
   prueba = 'https://localhost:44332/API/Empleado/Insert';
   agregarEmpleados(modelo: EmpleadosEnviar): Observable<Respuesta> {

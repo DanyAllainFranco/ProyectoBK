@@ -31,6 +31,7 @@ export class Fill {
     esta_Usua_Creacion: string;
     esta_Fecha_Creacion: string;
     esta_Usua_Modifica : string;
-    usua_Creacion: string;
     esta_Fecha_Modifica : string;
+    usua_Creacion: string;
+    usua_Modifica: string;
 }

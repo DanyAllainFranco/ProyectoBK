@@ -7,6 +7,7 @@ import { RolService } from '../demo/service/rol.service';
 import { consumerPollProducersForChange } from '@angular/core/primitives/signals';
 import { Subscription } from 'rxjs';
 import { aD } from '@fullcalendar/core/internal-common';
+import { CreationGuard } from '../demo/service/autguard-url.service';
 
 @Component({
   selector: 'app-menu',
@@ -23,7 +24,8 @@ export class AppMenuComponent implements OnInit {
     private servicioLogin: RolService,
     private cookieService: CookieService,
     public layoutService: LayoutService,
-    private router: Router
+    private router: Router,
+    private creationGuard: CreationGuard
   ) { }
 
   ngOnInit() {
@@ -111,6 +113,7 @@ Menucompleto = [
         { 
           label: 'Dashboard', 
           icon: 'pi pi-fw pi-chart-pie', 
+     
           routerLink: ['/app/dashboard'] 
         },
         {

@@ -24,6 +24,7 @@ import { BadgeModule } from 'primeng/badge';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RolService } from '../../service/rol.service';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 @Component({
   selector: 'app-usuario-listado',
   templateUrl: './usuario-listado.component.html',
@@ -62,6 +63,7 @@ export class UsuariosListadoComponent implements OnInit {
     private complementoService: RolService,
     private messageService: MessageService,
     private cookieService: CookieService,
+    private creationGuard: CreationGuard
   ) {
     this.formDepartamento = this.fb.group({
       // post_Id: ["", Validators.required],
@@ -117,6 +119,7 @@ export class UsuariosListadoComponent implements OnInit {
   }
   
   detalleRol(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetalleUsuario', combId]); 
   }
 
@@ -124,6 +127,7 @@ export class UsuariosListadoComponent implements OnInit {
     this.display = false;
   }
   Nuevo() {
+    this.creationGuard.allow();
     this.router.navigate(['app/CreateUsuario']);
   }
 

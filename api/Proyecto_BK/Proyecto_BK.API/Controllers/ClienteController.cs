@@ -51,7 +51,7 @@ namespace Proyecto_BK.API.Controllers
                 Clie_Correo = json.Clie_Correo,
                 Esta_Id = json.Esta_Id,
                 Muni_Codigo = json.Muni_Codigo,
-                Clie_Usua_Creacion = 1,
+                Clie_Usua_Creacion = json.Clie_Usua_Creacion,
                 Clie_Fecha_Creacion = DateTime.Now
             };
             var response = _generalServices.CrearCliente(modelo);

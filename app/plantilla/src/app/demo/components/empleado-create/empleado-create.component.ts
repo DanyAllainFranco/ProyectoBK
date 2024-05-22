@@ -174,7 +174,7 @@ cargarEstados(){
 
 
 Volver(){
-  this.router.navigate(['app/IndexEmpleado'])
+  this.router.navigate(['app/empleados'])
 }
 
 
@@ -201,7 +201,7 @@ guardar() {
       Sucu_Id: sucu_Id,
       Carg_Id: carg_Id,
       Muni_Codigo: muni_Codigo,
-      Usua_Id: this.Usua_Id,
+      Empl_Usua_Creacion: this.Usua_Id,
     };
 
     this.clienteService.agregarEmpleados(NuevoCombo).subscribe(
@@ -209,7 +209,7 @@ guardar() {
         if (respuesta.success) {
           // this.messageService.add({severity:'success', summary:'Éxito', detail:'!Combo registrado correctamente!'});
           this.clienteService.successMessage = '¡Empleado registrado correctamente!';
-          this.router.navigate(['app/IndexEmpleado']);
+          this.router.navigate(['app/empleados']);
         } else {
           this.messageService.add({severity:'error', summary:'Error', detail:'Error al registrar el combo'});
           console.error('Error al crear el combo:', respuesta.message);

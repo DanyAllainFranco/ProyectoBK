@@ -28,6 +28,7 @@ import {InicioDeSesionComponent} from 'src/app/demo/components/inicio-de-sesion/
 import { LoginComponent } from '../auth/login/login.component';
 import {AlmacenardatosService} from 'src/app/demo/service/almacenardatos.service';
 import { Llenar } from '../../models/ComboPersonalViewModel';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-cliente-listado',
@@ -40,7 +41,7 @@ export class ClientesListadoComponent implements OnInit {
   clientes!: Clientes[];
   confirmacionVisible: boolean = false;
   departamentoAEliminar: LlenarClientes | null = null;
-  constructor(private service: ClientesServiceService, private messageService: MessageService,private router: Router) {}
+  constructor(private service: ClientesServiceService,  private creationGuard: CreationGuard, private messageService: MessageService,private router: Router) {}
 
   ngOnInit(): void {
   this.getClientes();
@@ -66,6 +67,7 @@ export class ClientesListadoComponent implements OnInit {
   }
 
   detalleCombo(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetalleCliente', combId]); // Redirige a la ruta de edición con el ID del rol
   }
 
@@ -112,10 +114,12 @@ export class ClientesListadoComponent implements OnInit {
   }
 
   editarCombo(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/EditarCliente', combId]); // Redirige a la ruta de edición con el ID del rol
   }
 
   Nuevo(){
+    this.creationGuard.allow();
     this.router.navigate(['app/CreateCliente'])
   }
 }

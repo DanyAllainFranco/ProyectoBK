@@ -7,7 +7,7 @@
                     <div class="field col-12 md:col-6">
                         <label>Identidad:</label>
                         <input [ngClass]="{'ng-invalid ng-dirty': submitted && form.controls['empl_Identidad'].invalid}"
-                            type="number" class="p-inputtext" formControlName="empl_Identidad">
+                            type="text" class="p-inputtext" formControlName="empl_Identidad">
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && form.controls['empl_Identidad'].invalid"
                             style="color: red !important;">Identidad Requerido</small>
                     </div>

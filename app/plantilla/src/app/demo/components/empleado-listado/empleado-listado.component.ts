@@ -15,6 +15,7 @@ import { LlenarEmpleados } from '../../models/ClientesViewModel';
 import { SucursalServiceService } from '../../service/sucursal-service.service';
 import { dA } from '@fullcalendar/core/internal-common';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   templateUrl: './empleado-listado.component.html',
@@ -75,7 +76,7 @@ export class EmpleadoListadoComponent {
   Usua_Id:number;
   constructor(private service: ServiceService, private sucursal: SucursalServiceService,
      private router: Router,   private messageService: MessageService,   private cookieService: CookieService,
-  
+     private creationGuard: CreationGuard
   ) { }
 
 
@@ -147,14 +148,17 @@ this.getEmpleados();
   }
 
   detalleCombo(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetalleEmpleado', combId]); // Redirige a la ruta de edición con el ID del rol
   }
 
   editarCombo(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/EditarEmpleado', combId]); // Redirige a la ruta de edición con el ID del rol
   }
 
   Nuevo(){
+    this.creationGuard.allow();
     this.router.navigate(['app/CreateEmpleado'])
   }
 

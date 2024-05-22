@@ -18,6 +18,7 @@ import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { MessageService } from 'primeng/api';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 
 @Component({
   selector: 'app-cargo-listado',
@@ -44,6 +45,7 @@ export class CargoListadoComponent implements OnInit {
     private cookieService: CookieService,
     private _cargoServicio: CargosServiceService,
     private messageService: MessageService,
+    private creationGuard: CreationGuard,
   ) {
     this.formCargo = this.fb.group({
       cargo: ["", Validators.required],
@@ -57,6 +59,7 @@ export class CargoListadoComponent implements OnInit {
   }
 
   detalleRol(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetalleCargo', combId]); 
   }
 

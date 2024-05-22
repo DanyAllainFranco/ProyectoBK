@@ -204,8 +204,8 @@ detalles(id){
     this.service.getFill(id).subscribe({
         next: (data: Fill) => {
            this.Esta = data.esta_Descripcion,
-           this.UsuarioCreacion = data.esta_Usua_Creacion,
-           this.UsuarioModificacion = data.esta_Usua_Modifica
+           this.UsuarioCreacion = data.usua_Creacion,
+           this.UsuarioModificacion = data.usua_Modifica
            this.FechaCreacion = data.esta_Fecha_Creacion,
            this.FechaModificacion = data.esta_Fecha_Modifica
         }

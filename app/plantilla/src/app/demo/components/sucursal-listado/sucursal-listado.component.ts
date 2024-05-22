@@ -22,6 +22,7 @@ import { DepartamentoServiceService } from '../../service/departamento-service.s
 import { ServiceService } from '../../service/municipio-service.service';
 import { dropDepartamento } from '../../models/DepartamentosViewModel';
 import { CookieService } from 'ngx-cookie-service';
+import { CreationGuard } from '../../service/autguard-url.service';
 @Component({
   selector: 'app-sucursal-listado',
   templateUrl: './sucursal-listado.component.html',
@@ -52,6 +53,7 @@ export class SucursalListadoComponent implements OnInit {
     private messageService: MessageService,
     private departamentoService: DepartamentoServiceService,
     private municipioService: ServiceService, 
+    private creationGuard: CreationGuard
   ) {
     this.formSucursal = this.fb.group({
       sucursal: ["", Validators.required],
@@ -102,6 +104,7 @@ export class SucursalListadoComponent implements OnInit {
   }
 
   detalleRol(combId: number) {
+    this.creationGuard.allow();
     this.router.navigate(['app/DetalleSucursal', combId]); 
   }
 
